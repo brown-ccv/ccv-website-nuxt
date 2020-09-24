@@ -41,9 +41,6 @@ export default {
   },
   computed: {
     ...mapState('services', ['services', 'index', 'rates'])
-  },
-  beforeMount() {
-    this.$store.dispatch('services/fetchData');
   }
 };
 </script>

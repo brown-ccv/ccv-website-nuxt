@@ -1,5 +1,5 @@
 export default {
-  ssr: true,
+  ssr: false,
   /*
    ** Headers of the page
    */
@@ -22,6 +22,13 @@ export default {
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+  },
+  /*
+   ** Router Congig
+   */
+  router: {
+    middleware: 'pre-fetch',
+    prefetchPayloads: true
   },
   /*
    ** Customize the progress-bar color
@@ -58,7 +65,16 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3001',
+    headers: {
+      common: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'localhost'
+      }
+    }
+  },
   /*
    ** Build configuration
    */

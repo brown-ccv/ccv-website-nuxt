@@ -25,7 +25,6 @@ import Footer from '@/components/base/Footer.vue';
 
 export default {
   components: { Navbar, Footer, DBanner },
-  middleware: 'status',
   computed: {
     ...mapState('status', ['status']),
     statusAll() {

@@ -1,4 +1,3 @@
-import DataService from '@/services/DataService.js';
 export const state = () => ({
   about: []
 });
@@ -8,9 +7,8 @@ export const mutations = {
   }
 };
 export const actions = {
-  fetchData({ commit }) {
-    return DataService.getData('about').then((response) => {
-      commit('SET_ABOUT', response.data);
-    });
+  async fetchData({ commit }) {
+    const data = await this.$axios.$get('/about');
+    commit('SET_ABOUT', data);
   }
 };

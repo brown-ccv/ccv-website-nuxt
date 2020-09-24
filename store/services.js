@@ -1,9 +1,8 @@
-import DataService from '@/services/DataService.js';
 export const state = () => ({
-  services: [],
-  service: {},
-  index: {},
-  rates: {}
+  services: null,
+  service: null,
+  index: null,
+  rates: null
 });
 export const mutations = {
   SET_SERVICES(state, payload) {
@@ -23,13 +22,12 @@ export const mutations = {
   }
 };
 export const actions = {
-  fetchData({ commit }) {
-    DataService.getData('services/consulting').then((response) => {
-      commit('SET_SERVICES', response.data);
-    });
-    DataService.getData('services').then((response) => {
-      commit('SET_SERVICES_INDEX', response.data);
-    });
+  async fetchData({ commit }) {
+    const services = await this.$axios.$get('/services/consulting');
+    commit('SET_SERVICES', services);
+
+    const index = await this.$axios.$get('/services');
+    commit('SET_SERVICES_INDEX', index);
   },
   setService({ commit }, item) {
     return commit('SET_SERVICE', item);
