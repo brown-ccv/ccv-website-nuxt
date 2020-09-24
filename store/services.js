@@ -1,12 +1,16 @@
 export const state = () => ({
-  services: null,
+  consulting: null,
+  infrastructure: null,
   service: null,
   index: null,
   rates: null
 });
 export const mutations = {
-  SET_SERVICES(state, payload) {
-    state.services = payload;
+  SET_CONSULTING_SERVICES(state, payload) {
+    state.consulting = payload;
+  },
+  SET_INFRASTRUCTURE_SERVICES(state, payload) {
+    state.infrastructure = payload;
   },
   SET_SERVICES_INDEX(state, payload) {
     state.index = payload.filter((a) => a.title === 'Services')[0];
@@ -23,9 +27,10 @@ export const mutations = {
 };
 export const actions = {
   async fetchData({ commit }) {
-    const services = await this.$axios.$get('/services/consulting');
-    commit('SET_SERVICES', services);
-
+    const consulting = await this.$axios.$get('/services/consulting');
+    commit('SET_CONSULTING_SERVICES', consulting);
+    const infrastructure = await this.$axios.$get('/services/infrastructure');
+    commit('SET_INFRASTRUCTURE_SERVICES', infrastructure);
     const index = await this.$axios.$get('/services');
     commit('SET_SERVICES_INDEX', index);
   },

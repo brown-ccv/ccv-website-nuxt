@@ -1,5 +1,5 @@
 export default {
-  ssr: false,
+  ssr: true,
   /*
    ** Headers of the page
    */
@@ -27,8 +27,7 @@ export default {
    ** Router Congig
    */
   router: {
-    middleware: 'pre-fetch',
-    prefetchPayloads: true
+    middleware: 'status'
   },
   /*
    ** Customize the progress-bar color

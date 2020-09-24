@@ -6,7 +6,7 @@
       :subtitle="home.hero.lead"
     >
       <template #button>
-        <DButton name="Learn about CCV's services" />
+        <DButton name="Learn about CCV's services" variant="link" />
       </template>
     </DHero>
   </div>
