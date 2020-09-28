@@ -1,5 +1,5 @@
 <template>
-  <div>{{ about }}</div>
+  <div>{{ index }}</div>
 </template>
 
 <script>
@@ -9,16 +9,16 @@ export default {
     await store.dispatch('about/fetchData');
   },
   computed: mapState({
-    about: (state) => state.about.about
+    index: (state) => state.about.index
   }),
   head() {
     return {
-      title: this.about.tagTitle,
+      title: this.index.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.about.tagDescription
+          content: this.index.description
         }
       ]
     };

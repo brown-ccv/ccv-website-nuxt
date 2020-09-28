@@ -26,10 +26,20 @@ import Footer from '@/components/base/Footer.vue';
 export default {
   components: { Navbar, Footer, DBanner },
   computed: {
-    ...mapState('status', ['status']),
+    ...mapState({ data: (state) => state.status.data }),
     statusAll() {
-      return this.status.filter((a) => a.name === 'all')[0];
+      return this.data.filter((a) => a.name === 'all')[0];
     }
+  },
+  head: {
+    titleTemplate: 'Center for Computation and Visualization | %s', // <-- title template
+    meta: [
+      {
+        hid: 'description',
+        name: 'description', // <-- moved this over from index.vue
+        content: 'Brown CCV'
+      }
+    ]
   }
 };
 </script>

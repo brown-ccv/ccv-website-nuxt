@@ -1,9 +1,9 @@
 export const state = () => ({
-  status: []
+  data: []
 });
 export const mutations = {
   SET_STATUS(state, payload) {
-    state.status = payload;
+    state.data = payload;
   }
 };
 export const actions = {

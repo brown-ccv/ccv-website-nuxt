@@ -1,14 +1,14 @@
 export const state = () => ({
-  about: []
+  index: null
 });
 export const mutations = {
   SET_ABOUT(state, payload) {
-    state.about = payload[0];
+    state.index = payload;
   }
 };
 export const actions = {
   async fetchData({ commit }) {
     const data = await this.$axios.$get('/about');
-    commit('SET_ABOUT', data);
+    commit('SET_ABOUT', data.index);
   }
 };

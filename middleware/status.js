@@ -1,4 +1,6 @@
 export default function({ store }) {
   // If the user is not authenticated
-  store.dispatch('status/fetchData');
+  if (store.state.status.data.length === 0) {
+    store.dispatch('status/fetchData');
+  }
 }

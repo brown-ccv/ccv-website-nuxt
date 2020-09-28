@@ -1,10 +1,6 @@
 <template>
   <div class="">
-    <DHero
-      variant="warning"
-      :title="home.hero.title"
-      :subtitle="home.hero.lead"
-    >
+    <DHero variant="warning" :title="index.title" :subtitle="index.description">
       <template #button>
         <DButton name="Learn about CCV's services" variant="link" />
       </template>
@@ -22,16 +18,16 @@ export default {
     await store.dispatch('home/fetchData');
   },
   computed: mapState({
-    home: (state) => state.home.home
+    index: (state) => state.home.index
   }),
   head() {
     return {
-      title: this.home.title,
+      title: this.index.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.home.tagDescription
+          content: this.index.title
         }
       ]
     };

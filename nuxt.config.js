@@ -27,7 +27,18 @@ export default {
    ** Router Congig
    */
   router: {
-    middleware: 'status'
+    middleware: ['status', 'status-redirect']
+  },
+  /*
+   ** Tell Nuxt to render these routes on the server side?
+   */
+  generate: {
+    routes: [
+      '/about/people',
+      '/about/opportunities',
+      '/services',
+      '/our-work/workshops'
+    ]
   },
   /*
    ** Customize the progress-bar color
