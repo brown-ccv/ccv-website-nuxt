@@ -69,7 +69,8 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    'nuxt-svg-loader'
+    'nuxt-svg-loader',
+    '@nuxt/content'
   ],
   /*
    ** Axios module configuration

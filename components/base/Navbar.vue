@@ -11,7 +11,10 @@
         <nuxt-link
           class="navbar-link"
           :to="{
-            name: 'services'
+            name: 'main',
+            params: {
+              main: 'services'
+            }
           }"
         >
           Services
@@ -45,7 +48,17 @@
         </ul>
       </li>
       <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-        <nuxt-link class="navbar-link" to="our-work"> Our Work </nuxt-link>
+        <nuxt-link
+          class="navbar-link"
+          :to="{
+            name: 'main',
+            params: {
+              main: 'our-work'
+            }
+          }"
+        >
+          Our Work
+        </nuxt-link>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
             <a href="#" tabindex="0">
@@ -65,9 +78,17 @@
         </ul>
       </li>
       <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-        <h2 class="navbar-link">
+        <nuxt-link
+          class="navbar-link"
+          :to="{
+            name: 'main',
+            params: {
+              main: 'help'
+            }
+          }"
+        >
           Help
-        </h2>
+        </nuxt-link>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
             <a href="#" tabindex="0">
@@ -87,9 +108,17 @@
         </ul>
       </li>
       <li class="navbar-item">
-        <a href="#" tabindex="0">
+        <nuxt-link
+          class="navbar-link"
+          :to="{
+            name: 'main',
+            params: {
+              main: 'about'
+            }
+          }"
+        >
           About
-        </a>
+        </nuxt-link>
       </li>
     </template>
     <template v-slot:end>

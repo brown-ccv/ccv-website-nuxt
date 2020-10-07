@@ -2,6 +2,21 @@
   <div>
     {{ data }}
     {{ index }}
+    <ul>
+      <li v-for="(d, i) in toc" :key="'datum' + i">
+        <nuxt-link
+          :to="{
+            name: 'main-category',
+            params: {
+              ...$route.params,
+              category: d
+            }
+          }"
+        >
+          {{ d }}
+        </nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,7 +29,8 @@ export default {
   },
   computed: mapState({
     data: (state) => state.content.data,
-    index: (state) => state.content.index
+    index: (state) => state.content.index,
+    toc: (state) => state.content.toc
   }),
   head() {
     return {
