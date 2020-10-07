@@ -3,4 +3,7 @@ export default function({ store }) {
   if (store.state.status.data.length === 0) {
     store.dispatch('status/fetchData');
   }
+  if (store.state.banners.data.length === 0) {
+    store.dispatch('banners/fetchData');
+  }
 }

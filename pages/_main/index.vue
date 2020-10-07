@@ -1,7 +1,16 @@
 <template>
   <div>
+    <DHero variant="primary" :title="index.title" :subtitle="index.description">
+      <template v-if="index['call-for-action']" #button>
+        <nuxt-link
+          class="d-button is-dark has-text-light"
+          :to="index['call-for-action'].href"
+        >
+          {{ index['call-for-action'].text }}
+        </nuxt-link>
+      </template>
+    </DHero>
     {{ data }}
-    {{ index }}
     <ul>
       <li v-for="(d, i) in toc" :key="'datum' + i">
         <nuxt-link
@@ -22,8 +31,12 @@
 
 <script>
 import { mapState } from 'vuex';
+import { DHero } from '@brown-ccv/disco-vue-components';
 
 export default {
+  components: {
+    DHero
+  },
   async fetch({ store, params, error }) {
     await store.dispatch('content/fetchData', params);
   },
