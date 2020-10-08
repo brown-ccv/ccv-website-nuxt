@@ -12,25 +12,7 @@
     </DHero>
     <Help v-if="$route.params.main === 'help'" :data="data" />
     <About v-else-if="$route.params.main === 'about'" :data="data" :toc="toc" />
-
-    <div v-else>
-      <ul>
-        <li v-for="(d, i) in toc" :key="'datum' + i">
-          <nuxt-link
-            :to="{
-              name: 'main-category',
-              params: {
-                ...$route.params,
-                category: d
-              }
-            }"
-          >
-            {{ d }}
-          </nuxt-link>
-        </li>
-      </ul>
-      {{ data }}
-    </div>
+    <DefaultList v-else :toc="toc" :data="data" />
   </div>
 </template>
 
@@ -39,12 +21,14 @@ import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
 import Help from '@/components/blocks/Help.vue';
 import About from '@/components/blocks/About.vue';
+import DefaultList from '@/components/blocks/DefaultList.vue';
 
 export default {
   components: {
     DHero,
     Help,
-    About
+    About,
+    DefaultList
   },
   async fetch({ store, params, error }) {
     await store.dispatch('content/fetchData', params);

@@ -22,25 +22,29 @@
           </h2>
           <div v-if="item.title === 'Opportunities'" class="card-group">
             <template v-if="item.data.length > 0">
-              <DCard
+              <a
                 v-for="(position, ind) in item.data"
                 :key="'position' + ind"
-                variant="light"
-                accent="link"
-                class="mx-3 my-3"
+                class="position-block"
+                :href="position.link"
               >
-                <template #content>
-                  <h3>{{ position.title }}</h3>
-                  <p>{{ position.team }}</p>
-                </template>
-                <template #footer>
-                  <a
-                    :href="position.link"
-                    class="d-button is-dark has-text-light"
-                    >Read the job descrition and apply</a
+                <div>
+                  <span
+                    ><fa
+                      :icon="['fal', 'map-marker']"
+                      class="mr-3"
+                    />Providence, RI - United States</span
                   >
-                </template>
-              </DCard>
+                  <p class="has-text-dark">
+                    {{ position.title }} – {{ position.subteam }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Learn More<fa class="ml-3" :icon="['fal', 'arrow-right']" />
+                  </p>
+                </div>
+              </a>
             </template>
             <div v-else>
               <p>
@@ -85,14 +89,13 @@
 </template>
 
 <script>
-import { DTOC, DCard, DPersonCard } from '@brown-ccv/disco-vue-components';
+import { DTOC, DPersonCard } from '@brown-ccv/disco-vue-components';
 import VRuntimeTemplate from 'v-runtime-template';
 
 export default {
   components: {
     DTOC,
     VRuntimeTemplate,
-    DCard,
     DPersonCard
   },
   filters: {
@@ -137,6 +140,11 @@ export default {
     margin-top: -5rem;
   }
 }
+.toc {
+  a {
+    font-size: $size-4;
+  }
+}
 .main-content {
   @extend .mt-6;
   display: flex;
@@ -147,7 +155,7 @@ export default {
   @include mobile {
     padding: 3ch;
   }
-  max-width: 100ch;
+  max-width: 120ch;
   p {
     font-size: $size-4;
   }
@@ -159,6 +167,18 @@ export default {
     @extend .mt-4;
     font-size: $size-4;
   }
+}
+.position-block {
+  @extend .py-5;
+  @extend .px-5;
+  @extend .my-3;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-white-bis);
+  box-shadow: 2px 5px 5px var(--color-light);
 }
 .section-title {
   @extend .py-4;
