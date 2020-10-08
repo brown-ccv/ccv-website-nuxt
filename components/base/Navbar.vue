@@ -75,6 +75,11 @@
               Publications
             </a>
           </li>
+          <li class="navbar-item">
+            <a href="#" tabindex="0">
+              Talks and Conferences
+            </a>
+          </li>
         </ul>
       </li>
       <li tabindex="0" class="navbar-item has-dropdown is-hoverable">

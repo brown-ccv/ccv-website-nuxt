@@ -11,6 +11,8 @@
       </template>
     </DHero>
     <Help v-if="$route.params.main === 'help'" :data="data" />
+    <About v-else-if="$route.params.main === 'about'" :data="data" :toc="toc" />
+
     <div v-else>
       <ul>
         <li v-for="(d, i) in toc" :key="'datum' + i">
@@ -36,11 +38,13 @@
 import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
 import Help from '@/components/blocks/Help.vue';
+import About from '@/components/blocks/About.vue';
 
 export default {
   components: {
     DHero,
-    Help
+    Help,
+    About
   },
   async fetch({ store, params, error }) {
     await store.dispatch('content/fetchData', params);

@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <main class="card-container">
     <DCard
       v-for="(item, i) in data"
       :key="'help-card-' + i"
@@ -10,6 +10,7 @@
     >
       <template #content>
         <fa
+          v-if="item.fa"
           size="2x"
           :icon="[item.fa.prefix, item.fa.icon]"
           :aria-label="'icon of' + item.fa.icon"
@@ -26,7 +27,7 @@
         >
       </template>
     </DCard>
-  </div>
+  </main>
 </template>
 
 <script>
