@@ -91,25 +91,31 @@
         </nuxt-link>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="mailto:support@ccv.brown.edu" tabindex="0">
               Submit a Ticket
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="https://docs.ccv.brown.edu" tabindex="0">
               Documentation
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
-              Slack
-            </a>
+            <nuxt-link
+              :to="{
+                name: 'main',
+                params: {
+                  main: 'help'
+                }
+              }"
+            >
+              More Help Options
+            </nuxt-link>
           </li>
         </ul>
       </li>
       <li class="navbar-item">
         <nuxt-link
-          class="navbar-link"
           :to="{
             name: 'main',
             params: {

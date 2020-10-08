@@ -1,8 +1,17 @@
 <template>
   <div class="">
-    <DHero variant="warning" :title="index.title" :subtitle="index.description">
+    <DHero
+      variant="primary"
+      :title="index.title"
+      :subtitle="index.description"
+      class="is-fullheight"
+    >
       <template #button>
-        <DButton name="Learn about CCV's services" variant="link" />
+        <DButton
+          name="Learn about CCV's services"
+          variant="dark"
+          size="medium"
+        />
       </template>
     </DHero>
   </div>

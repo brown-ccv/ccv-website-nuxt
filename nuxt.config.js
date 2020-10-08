@@ -59,7 +59,19 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    [
+      '@nuxtjs/fontawesome',
+      {
+        component: 'fa',
+        icons: {
+          brands: true
+        },
+        proIcons: {
+          light: true
+        }
+      }
+    ]
   ],
   /*
    ** Nuxt.js modules
