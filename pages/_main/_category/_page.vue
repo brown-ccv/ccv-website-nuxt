@@ -1,9 +1,17 @@
 <template>
-  <div class="content">
-    <v-runtime-template :template="data.body" />
-    <div v-if="data.description">
-      {{ data.description }}
-    </div>
+  <div>
+    <DHero
+      variant="primary"
+      :title="$route.params.page | humanize"
+      :subtitle="$route.params.category | humanize"
+    >
+    </DHero>
+    <main class="content-wrapper">
+      <v-runtime-template
+        class="content content-section"
+        :template="data.body"
+      />
+    </main>
   </div>
 </template>
 
@@ -17,7 +25,22 @@ export default {
     VRuntimeTemplate,
     ...disco
   },
+  filters: {
+    humanize(str) {
+      const cleanStr = str.split('-');
+      const upperFirst = cleanStr.map(
+        (str) => str.charAt(0).toUpperCase() + str.slice(1)
+      );
+      return upperFirst.join(' ');
+    }
+  },
   async fetch({ store, params, error }) {
+    if (store.state.content.data === null) {
+      await store.dispatch('content/fetchData', {
+        main: params.main,
+        category: params.category
+      });
+    }
     await store.dispatch('content/setSingle', params.page);
   },
   computed: {
@@ -28,4 +51,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@import '~bulma/sass/utilities/_all';
+@import '~bulma/sass/helpers/spacing';
+@import '~bulma/sass/helpers/visibility';
+@import '~bulma/sass/helpers/typography';
+.content-wrapper {
+  @extend .mt-6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
