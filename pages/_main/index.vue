@@ -1,34 +1,38 @@
 <template>
   <div>
-    <DHero variant="primary" :title="index.title" :subtitle="index.description">
+    <DHero
+      variant="primary"
+      :title="index.title"
+      :subtitle="index.description"
+      class="hero"
+    >
       <template v-if="index['call-for-action']" #button>
         <nuxt-link
           class="d-button is-dark has-text-light"
           :to="index['call-for-action'].href"
         >
-          {{ index['call-for-action'].text }}
+          {{ index['call-for-action'].text.toUpperCase() }}
+          <fa :icon="['fas', 'caret-right']" class="ml-2" />
         </nuxt-link>
       </template>
     </DHero>
-    <Help v-if="$route.params.main === 'help'" :data="data" />
+    <ListTemplate v-if="$route.params.main === 'help'" :data="data" />
     <About v-else-if="$route.params.main === 'about'" :data="data" :toc="toc" />
-    <DefaultList v-else :toc="toc" :data="data" />
+    <ListTemplate v-else :data="list.map((d) => d.index)" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
-import Help from '@/components/blocks/Help.vue';
+import ListTemplate from '@/components/blocks/ListTemplate.vue';
 import About from '@/components/blocks/About.vue';
-import DefaultList from '@/components/blocks/DefaultList.vue';
 
 export default {
   components: {
     DHero,
-    Help,
-    About,
-    DefaultList
+    ListTemplate,
+    About
   },
   async fetch({ store, params, error }) {
     await store.dispatch('content/fetchData', params);
@@ -36,7 +40,8 @@ export default {
   computed: mapState({
     data: (state) => state.content.data,
     index: (state) => state.content.index,
-    toc: (state) => state.content.toc
+    toc: (state) => state.content.toc,
+    list: (state) => state.content.list
   }),
   head() {
     return {
@@ -53,4 +58,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

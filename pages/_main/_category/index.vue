@@ -4,7 +4,8 @@
       variant="primary"
       :title="$route.params.category | humanize"
       :subtitle="$route.params.main | humanize"
-    />
+    >
+    </DHero>
     <ul>
       <li v-for="(d, i) in data" :key="'datum' + i">
         <nuxt-link

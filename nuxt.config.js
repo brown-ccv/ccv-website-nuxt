@@ -65,7 +65,8 @@ export default {
       {
         component: 'fa',
         icons: {
-          brands: true
+          brands: true,
+          solid: true
         },
         proIcons: {
           light: true

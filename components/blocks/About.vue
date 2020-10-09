@@ -81,7 +81,7 @@
               </template>
             </DPersonCard>
           </div>
-          <v-runtime-template v-if="item.body" v-lese :template="item.body" />
+          <v-runtime-template v-if="item.body" :template="item.body" />
         </template>
       </section>
     </main>
@@ -115,8 +115,15 @@ export default {
   },
   computed: {
     tocData() {
-      return this.toc.map((d) => {
-        return { name: d, link: `#${this.urlize(d)}` };
+      const icons = [
+        { name: 'heart-circle', family: 'light' },
+        { name: 'warehouse', family: 'light' },
+        { name: 'bullseye-arrow', family: 'light' },
+        { name: 'user-plus', family: 'light' },
+        { name: 'users', family: 'light' }
+      ];
+      return this.toc.map((d, i) => {
+        return { name: d, link: `#${this.urlize(d)}`, icon: icons[i] };
       });
     }
   },
@@ -133,6 +140,15 @@ export default {
 @import '~bulma/sass/helpers/spacing';
 @import '~bulma/sass/helpers/visibility';
 @import '~bulma/sass/helpers/typography';
+blockquote {
+  @extend .is-italic;
+  @extend .py-3;
+  @extend .px-6;
+  color: var(--color-gray);
+  p {
+    font-size: 1.3rem !important;
+  }
+}
 .toc-container {
   display: flex;
   justify-content: center;
@@ -155,7 +171,7 @@ export default {
   @include mobile {
     padding: 3ch;
   }
-  max-width: 120ch;
+  max-width: 130ch;
   p {
     font-size: $size-4;
   }

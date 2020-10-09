@@ -861,22 +861,22 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@brown-ccv/disco-styles@2.2.1", "@brown-ccv/disco-styles@^2.2.1":
-  version "2.2.1"
-  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-styles/2.2.1/d26719417a7d6f6d95576784cfd5e7d5d577eb33fc7ffdcafe738cb4e11f3d92#82b4ccdd6ef8c113f9ac94b6e615386139edfd6d"
-  integrity sha512-IGOIOckk/3zyHCQgRDTTpg5v34Ze1nmjmuNfX8umadw5jNiptiQJ6wYOM0S+pI/yAciLPbuLiUKz9tDrZTKjWg==
+"@brown-ccv/disco-styles@2.2.2", "@brown-ccv/disco-styles@^2.2.2":
+  version "2.2.2"
+  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-styles/2.2.2/30949ff400b36c73d1df82d41b2c68f232016a37e146ebccac11857a448ef34c#488fe7b721bd15936d15d766af8430cf42a4b542"
+  integrity sha512-UfxNcml6aTOmVH1Xwjs2+uCLhn7YB7g3+GKJNAd8RDTtXSzINetRvFme8lZzDCRxHybwvTMLEIA91M8sWf/HRg==
   dependencies:
     bulma "^0.9.0"
     cz-conventional-changelog "^3.2.0"
     git-cz "^4.3.1"
     semantic-release "^17.0.7"
 
-"@brown-ccv/disco-vue-components@^1.2.2":
-  version "1.2.2"
-  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-vue-components/1.2.2/0d279d85b2d33e68646909e62737cca0f1147b56aa1b63f9a9858a043d5bcccb#a077d30c656604eba5d4f03e62763f0df63c15ea"
-  integrity sha512-0KXT308B0yf9rN3e3IR8e2iaXzOno88bt+pQ3lUZLifhSXzmUdmk2s5XKy+zVNXlO7bTQqFuMHjJKul4WVXlWw==
+"@brown-ccv/disco-vue-components@^1.2.3":
+  version "1.2.3"
+  resolved "https://npm.pkg.github.com/download/@brown-ccv/disco-vue-components/1.2.3/204aa51b19b56ea3446cf58bc27e9bd8177448d81d66382c59265c640f18428b#4ced0f4fbc039868c5d5b15440d36f8947341b5d"
+  integrity sha512-SNxKOiltyiGjUZQTxPKlfZTq4VkB+hF2Eaq5OCeFw16SP2H3h67f7p+aC3khtof1CQkAinvnrZ/WXE2wAqV5MA==
   dependencies:
-    "@brown-ccv/disco-styles" "2.2.1"
+    "@brown-ccv/disco-styles" "2.2.2"
     "@fortawesome/free-brands-svg-icons" "^5.14.0"
     "@fortawesome/vue-fontawesome" "2"
     bulma "^0.9.0"

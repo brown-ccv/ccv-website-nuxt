@@ -1,10 +1,10 @@
 <template>
   <DNavbar variant="light">
     <template v-slot:brand>
-      <a class="navbar-item" href="#" aria-label="Back to Home">
+      <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
         <BrownLogo class="d-nav-brand" size="m" />
         <CCVLogo size="s" />
-      </a>
+      </nuxt-link>
     </template>
     <template v-slot:start>
       <li class="navbar-item has-dropdown is-hoverable">

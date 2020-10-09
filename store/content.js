@@ -2,7 +2,8 @@ export const state = () => ({
   data: null,
   index: null,
   toc: null,
-  single: null
+  single: null,
+  list: []
 });
 export const mutations = {
   SET_DATA(state, payload) {
@@ -15,6 +16,9 @@ export const mutations = {
       return d.title.replace(/ /g, '-').toLowerCase() === item.toLowerCase();
     });
     state.single = single[0];
+  },
+  SET_LIST(state, payload) {
+    state.list = payload;
   }
 };
 export const actions = {
@@ -24,6 +28,14 @@ export const actions = {
       .join('/');
     const data = await this.$axios.$get(`/${path}`);
     commit('SET_DATA', data);
+    // If not about and help, fetch data for all items in toc and add to list
+    if (!['help', 'about'].includes(params.main) && !params.category) {
+      await Promise.all(
+        data.toc.map((item) => {
+          return this.$axios.$get(`/${params.main}/${item}`);
+        })
+      ).then((values) => commit('SET_LIST', values));
+    }
   },
   setSingle({ commit }, item) {
     return commit('SET_SINGLE', item);
