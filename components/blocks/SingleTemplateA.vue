@@ -11,7 +11,7 @@
         class="content-section"
       >
         <template>
-          <h2 class="section-title title">
+          <h2 class="section-title title has-text-dark">
             <fa
               v-if="item.fa"
               size="2x"
@@ -23,7 +23,7 @@
           <v-runtime-template
             v-if="item.body"
             :template="item.body"
-            class="mb-6"
+            class="mb-6 has-text-dark"
           />
         </template>
       </section>

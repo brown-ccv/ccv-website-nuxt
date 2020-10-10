@@ -22,7 +22,8 @@
     "bulma": "^0.9.0",
     "frontmatter-markdown-loader": "^3.4.3",
     "nuxt": "^2.14.6",
-    "v-runtime-template": "^1.10.0"
+    "v-runtime-template": "^1.10.0",
+    "vue-scrollto": "^2.19.1"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

@@ -18,7 +18,7 @@
               :aria-label="'icon of' + item.fa.icon"
               class="has-text-success mb-5"
             />
-            <h2 class="title">
+            <h2 class="title has-text-black">
               {{ item.title }}
             </h2>
           </div>
