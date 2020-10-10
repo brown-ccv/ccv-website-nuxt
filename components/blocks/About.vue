@@ -170,8 +170,14 @@ blockquote {
 .content-section {
   @include mobile {
     padding: 3ch;
+    width: 55ch;
   }
-  max-width: 130ch;
+  @include tablet {
+    width: 100ch;
+  }
+  @include desktop {
+    width: 130ch;
+  }
   p {
     font-size: $size-4;
   }

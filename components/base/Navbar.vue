@@ -134,9 +134,23 @@
     </template>
     <template v-slot:end>
       <li class="navbar-item">
-        <div class="buttons">
-          <DButton name="search" />
-        </div>
+        <a
+          href="https://docs.ccv.brown.edu"
+          class="d-button is-white"
+          aria-label="CCV Services' Documentation"
+          >Documentation<fa class="ml-1" :icon="['fal', 'external-link']"
+        /></a>
+      </li>
+      <li class="navbar-item">
+        <a
+          href="https://medium.com/brown-ccv"
+          class="d-button is-white"
+          aria-label="CCV's Medium Blog"
+          >Blog<fa class="ml-1" :icon="['fab', 'medium']"
+        /></a>
+      </li>
+      <li class="navbar-item">
+        <DButton variant="white" name="search" />
       </li>
     </template>
   </DNavbar>
