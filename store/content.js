@@ -29,10 +29,13 @@ export const actions = {
     const data = await this.$axios.$get(`/${path}`);
     commit('SET_DATA', data);
     // If not about and help, fetch data for all items in toc and add to list
-    if (!['help', 'about'].includes(params.main) && !params.category) {
+    if (
+      !['help', 'about'].includes(params.main) &&
+      (!params.category || params.category === 'software')
+    ) {
       await Promise.all(
         data.toc.map((item) => {
-          return this.$axios.$get(`/${params.main}/${item}`);
+          return this.$axios.$get(`/${path}/${item}`);
         })
       ).then((values) => commit('SET_LIST', values));
     }

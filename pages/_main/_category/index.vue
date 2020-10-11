@@ -6,9 +6,18 @@
       :subtitle="$route.params.main | humanize"
     >
     </DHero>
-    <SingleTemplateA
+    <SingleTemplate
       v-if="$route.params.main != 'our-work'"
-      :data="data"
+      :index="data"
+      :toc="toc"
+    />
+    <SingleTemplate
+      v-else-if="
+        $route.params.main === 'our-work' &&
+          $route.params.category === 'software'
+      "
+      :index="list.map((d) => d.index)"
+      :data="list.map((d) => d.data[0])"
       :toc="toc"
     />
     <SingleTemplateB v-else :data="data" />
@@ -18,13 +27,13 @@
 <script>
 import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
-import SingleTemplateA from '@/components/blocks/SingleTemplateA.vue';
+import SingleTemplate from '@/components/blocks/SingleTemplate.vue';
 import SingleTemplateB from '@/components/blocks/SingleTemplateB.vue';
 
 export default {
   components: {
     DHero,
-    SingleTemplateA,
+    SingleTemplate,
     SingleTemplateB
   },
   filters: {
@@ -43,7 +52,8 @@ export default {
   computed: {
     ...mapState({
       data: (state) => state.content.data,
-      toc: (state) => state.content.toc
+      toc: (state) => state.content.toc,
+      list: (state) => state.content.list
     })
   }
 };
