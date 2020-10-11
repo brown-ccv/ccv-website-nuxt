@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="toc-container">
-      <DTOC :data="tocData" name="newtable" variant="white" class="toc" />
+      <DTOC :data="tocData" name="newtable" variant="light" class="toc" />
     </div>
     <main class="main-content">
       <section
@@ -26,7 +26,7 @@
             :template="category.body"
             class="mb-6 has-text-dark"
           />
-          <WorkCardGroup v-if="data" :data="data" :category="category.title" />
+          <CardGroup v-if="data" :data="data[i]" :category="category.title" />
         </template>
       </section>
     </main>
@@ -36,13 +36,13 @@
 <script>
 import { DTOC } from '@brown-ccv/disco-vue-components';
 import VRuntimeTemplate from 'v-runtime-template';
-import WorkCardGroup from '@/components/blocks/WorkCardGroup.vue';
+import CardGroup from '@/components/blocks/CardGroup.vue';
 
 export default {
   components: {
     DTOC,
     VRuntimeTemplate,
-    WorkCardGroup
+    CardGroup
   },
   filters: {
     humanize(str) {

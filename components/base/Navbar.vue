@@ -136,7 +136,7 @@
       <li class="navbar-item">
         <a
           href="https://docs.ccv.brown.edu"
-          class="d-button is-white"
+          class="d-button is-white has-text-link"
           aria-label="CCV Services' Documentation"
           >Documentation<fa class="ml-1" :icon="['fal', 'external-link']"
         /></a>
@@ -144,7 +144,7 @@
       <li class="navbar-item">
         <a
           href="https://medium.com/brown-ccv"
-          class="d-button is-white"
+          class="d-button is-white has-text-link"
           aria-label="CCV's Medium Blog"
           >Blog<fa class="ml-1" :icon="['fab', 'medium']"
         /></a>
