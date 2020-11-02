@@ -3,6 +3,7 @@ export default {
   /*
    ** Headers of the page
    */
+  components: true,
   devtools: true,
   vue: {
     config: {
@@ -24,7 +25,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-   ** Router Congig
+   ** Router Config
    */
   router: {
     middleware: ['banners', 'status-redirect']
@@ -69,7 +70,8 @@ export default {
           solid: true
         },
         proIcons: {
-          light: true
+          light: true,
+          solid: true
         }
       }
     ]

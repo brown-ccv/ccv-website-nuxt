@@ -18,7 +18,7 @@
           >
 
           <h2>{{ item.title }}</h2>
-          <span class="small has-text-link"
+          <span v-if="item.authors" class="small has-text-link"
             >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
           >
         </template>
