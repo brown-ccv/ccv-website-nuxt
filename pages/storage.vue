@@ -5,19 +5,23 @@
       :title="index.title"
       :subtitle="index.description"
     />
-    <div class="questions-container">
-      <MultipleChoice
-        v-for="(q, i) in questions"
-        :key="'q' + i"
-        :data="q"
-        @answer="recordAnswer"
+    <div class="selection-container">
+      <div class="questions-container">
+        <MultipleChoice
+          v-for="(q, i) in questions"
+          :key="'q' + i"
+          :data="q"
+          class="mb-6"
+          @answer="recordAnswer"
+        />
+      </div>
+      <ServiceSelection
+        :data="services"
+        :selected-data="filteredServices.map((s) => s.service)"
+        @service="recordService"
       />
     </div>
-    <ComparisonTable
-      :key="'key' + componentKey"
-      :data="filteredServices"
-      :categories="categories"
-    />
+    <ComparisonTable :data="filteredServices" :categories="categories" />
   </div>
 </template>
 
@@ -45,8 +49,8 @@ export default {
     return {
       answers: {},
       answerPayload: {},
-      componentKey: 0,
-      filteredServices: {}
+      selectedServices: [],
+      filteredServices: []
     };
   },
   computed: {
@@ -71,12 +75,21 @@ export default {
   watch: {
     answerPayload() {
       this.answers[this.answerPayload[0]] = this.answerPayload[1];
-      const filtered = this.filteredServices.filter((s) =>
-        this.answerPayload[1].includes(
-          s.features.filter((f) => f.name === this.answerPayload[0])[0].class
-        )
+      let filtered = this.services;
+      const ans = Object.keys(this.answers);
+      ans.forEach((a) => {
+        filtered = filtered.filter((s) => {
+          return this.answers[a].includes(
+            s.features.filter((f) => f.name === a)[0].class
+          );
+        });
+      });
+      this.selectedServices = filtered.map((s) => s.service);
+    },
+    selectedServices() {
+      this.filteredServices = this.services.filter((s) =>
+        this.selectedServices.includes(s.service)
       );
-      this.filteredServices = filtered;
     }
   },
   mounted() {
@@ -85,17 +98,41 @@ export default {
   methods: {
     recordAnswer(payload) {
       this.answerPayload = payload;
-      this.componentKey += 1;
+    },
+    recordService(payload) {
+      this.selectedServices = payload;
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import 'bulma';
 .questions-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
+}
+.service-box {
+  @extend .box;
+  @extend .my-1;
+  @extend .mx-4;
+  height: 10rem;
+  width: 10rem;
+  label {
+    font-weight: bold;
+  }
+}
+.selection-container {
+  @extend .mt-6;
+  display: flex;
+  justify-content: space-around;
+}
+.service-selection {
+  display: flex;
+  flex-basis: 40%;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 </style>
