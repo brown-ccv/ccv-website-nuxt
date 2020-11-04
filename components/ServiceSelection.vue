@@ -1,24 +1,28 @@
 <template>
   <div class="service-selection">
-    <div
+    <button
       v-for="(s, i) in data"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
       class="field service-box"
+      :class="[
+        selectedData.includes(s.service)
+          ? 'has-background-success'
+          : 'has-background-light'
+      ]"
+      type="button"
+      @click="change(s.service)"
     >
-      <input
-        :id="'checkbox-' + s.service + i"
-        v-model="selected"
-        class="is-checkradio"
-        type="checkbox"
-        :name="'checkbox-' + s.service + i"
-        :value="s.service"
-        @change="change"
-      />
-      <label :for="'checkbox-' + s.service + i">{{
-        s.service | humanize
-      }}</label>
-    </div>
+      <div class="fa-checkbox">
+        <fa
+          v-if="selectedData.includes(s.service)"
+          :icon="['fal', 'check-square']"
+          size="2x"
+        />
+        <fa v-else :icon="['fal', 'square']" size="2x" />
+      </div>
+      <p class="service-label">{{ s.service | humanize }}</p>
+    </button>
   </div>
 </template>
 
@@ -47,12 +51,37 @@ export default {
     };
   },
   methods: {
-    change() {
+    change(service) {
+      if (this.selected.includes(service)) {
+        this.selected.pop(service);
+      } else {
+        this.selected.push(service);
+      }
       this.$emit('service', this.selected);
-      this.$emit('resetQuestions', true);
     }
   }
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import 'bulma';
+.service-box {
+  @extend .box;
+  @extend .my-3;
+  @extend .mx-3;
+  height: 10rem;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.service-label {
+  width: 12ch;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.fa-checkbox {
+  align-self: flex-end;
+}
+</style>
