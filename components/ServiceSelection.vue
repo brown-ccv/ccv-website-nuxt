@@ -16,10 +16,10 @@
       <div class="fa-checkbox">
         <fa
           v-if="selectedData.includes(s.service)"
-          :icon="['fal', 'check-square']"
-          size="2x"
+          :icon="['fas', 'check-square']"
+          size="3x"
         />
-        <fa v-else :icon="['fal', 'square']" size="2x" />
+        <fa v-else :icon="['far', 'square']" size="3x" />
       </div>
       <p class="service-label">{{ s.service | humanize }}</p>
     </button>
@@ -50,10 +50,20 @@ export default {
       selected: []
     };
   },
+  watch: {
+    selectedData: {
+      deep: true,
+      handler(newVal) {
+        if (newVal.length === 0) {
+          this.selected = [];
+        }
+      }
+    }
+  },
   methods: {
     change(service) {
       if (this.selected.includes(service)) {
-        this.selected.pop(service);
+        this.selected = this.selected.filter((s) => s !== service);
       } else {
         this.selected.push(service);
       }
@@ -64,11 +74,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'bulma';
+@import '~bulma/sass/utilities/_all';
+@import '~bulma/sass/helpers/spacing';
 .service-box {
-  @extend .box;
   @extend .my-3;
   @extend .mx-3;
+  @extend .px-4;
+  @extend .py-4;
+  box-shadow: 2px 4px 10px var(--color-grey-lighter);
   height: 10rem;
   border-radius: 0;
   border: none;

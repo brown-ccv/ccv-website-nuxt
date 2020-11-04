@@ -173,10 +173,6 @@ export default {
       this.filterServices();
     },
     clearAll() {
-      const refKeys = Object.keys(this.$refs);
-      refKeys.forEach((refKey) => {
-        this.$refs[refKey][0].selected = null;
-      });
       this.answers = {};
       this.answersPayload = {};
       this.selectedServices = [];
@@ -187,14 +183,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'bulma';
+@import '~bulma/sass/utilities/_all';
+@import '~bulma/sass/helpers/spacing';
 .questions-container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
 }
-
 .selection-container {
   @extend .mt-6;
   display: flex;

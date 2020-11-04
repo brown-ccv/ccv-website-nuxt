@@ -71,7 +71,9 @@ export default {
         },
         proIcons: {
           light: true,
-          solid: true
+          solid: true,
+          regular: true,
+          duotone: true
         }
       }
     ]
