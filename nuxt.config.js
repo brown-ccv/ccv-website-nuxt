@@ -87,9 +87,13 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-svg-loader',
+    '@nuxtjs/markdownit',
     // Or if you have custom options...
     ['vue-scrollto/nuxt', { duration: 800 }]
   ],
+  markdownit: {
+    injected: true
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

@@ -89,6 +89,7 @@
 <script>
 import { mapState } from 'vuex';
 import { DHero, DButton, DIcon } from '@brown-ccv/disco-vue-components';
+
 export default {
   components: {
     DHero,

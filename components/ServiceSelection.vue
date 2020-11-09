@@ -1,6 +1,6 @@
 <template>
   <div class="service-selection">
-    <button
+    <div
       v-for="(s, i) in data"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
@@ -10,24 +10,52 @@
           ? 'has-background-success'
           : 'has-background-light'
       ]"
-      type="button"
-      @click="change(s.service)"
     >
-      <div class="fa-checkbox">
+      <button
+        class="button-nostyle fa-checkbox"
+        type="button"
+        @click="change(s.service)"
+      >
         <fa
           v-if="selectedData.includes(s.service)"
           :icon="['fas', 'check-square']"
           size="3x"
         />
         <fa v-else :icon="['far', 'square']" size="3x" />
-      </div>
-      <p class="service-label">{{ s.service | humanize }}</p>
-    </button>
+      </button>
+      <button
+        class="button-nostyle service-label"
+        @click="toggleShowModal(s.service)"
+      >
+        <span>{{ s.service | humanize }}</span>
+        <fa :icon="['far', 'info-circle']" />
+      </button>
+    </div>
+    <DModal
+      v-if="showModal"
+      variant="white"
+      accent="info"
+      width="large"
+      close-options="both"
+      close-button-text="Dismiss"
+      @close="showModal = !showModal"
+    >
+      <template #content>
+        <div class="content">
+          {{ modalData }}
+        </div>
+      </template>
+    </DModal>
   </div>
 </template>
 
 <script>
+import { DModal } from '@brown-ccv/disco-vue-components';
+
 export default {
+  components: {
+    DModal
+  },
   filters: {
     humanize(str) {
       const cleanStr = str.replace(/_/g, ' ');
@@ -47,7 +75,9 @@ export default {
   },
   data() {
     return {
-      selected: []
+      selected: [],
+      showModal: false,
+      modalData: ''
     };
   },
   watch: {
@@ -68,6 +98,10 @@ export default {
         this.selected.push(service);
       }
       this.$emit('service', this.selected);
+    },
+    toggleShowModal(data) {
+      this.modalData = data;
+      this.showModal = true;
     }
   }
 };
@@ -88,14 +122,25 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  cursor: pointer;
 }
 .service-label {
   width: 12ch;
   font-weight: bold;
   font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .fa-checkbox {
   align-self: flex-end;
+}
+.button-nostyle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-link);
+  &:hover {
+    color: var(--color-dark);
+  }
 }
 </style>
