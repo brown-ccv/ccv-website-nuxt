@@ -197,12 +197,7 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.service-selection {
-  display: flex;
-  flex-basis: 40%;
-  flex-wrap: wrap;
-  align-content: flex-start;
-}
+
 .storage-header {
   @extend .py-6;
   display: flex;

@@ -12,9 +12,15 @@
       </ul>
     </div>
     <div class="comparison-wrapper">
-      <div v-for="cat in categories" :key="cat" class="mb-6">
+      <div
+        v-for="(cat, ind) in categories"
+        :key="cat"
+        class="px-4 py-4"
+        :class="[
+          ind % 2 === 0 ? 'has-background-light' : 'has-background-white'
+        ]"
+      >
         <h2 class="subtitle">{{ cat | humanize }}</h2>
-        <hr />
         <div class="comparison-container">
           <ul
             v-for="(service, index) in data"
@@ -130,6 +136,9 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  .subtitle {
+    font-weight: bold;
+  }
 }
 .comparison-container {
   display: flex;

@@ -23,12 +23,10 @@
         />
         <fa v-else :icon="['far', 'square']" size="3x" />
       </button>
-      <button
-        class="button-nostyle service-label"
-        @click="toggleShowModal(s.service)"
-      >
-        <span>{{ s.service | humanize }}</span>
-        <fa :icon="['far', 'info-circle']" />
+      <button class="button-nostyle service-label" @click="toggleShowModal(s)">
+        <span
+          >{{ s.service | humanize }} <fa :icon="['far', 'info-circle']" />
+        </span>
       </button>
     </div>
     <DModal
@@ -42,7 +40,8 @@
     >
       <template #content>
         <div class="content">
-          {{ modalData }}
+          <h2 class="title">{{ modalData.service | humanize }}</h2>
+          <p v-html="$md.render(modalData.description || '')"></p>
         </div>
       </template>
     </DModal>
@@ -110,26 +109,26 @@ export default {
 <style lang="scss">
 @import '~bulma/sass/utilities/_all';
 @import '~bulma/sass/helpers/spacing';
+.service-selection {
+  display: flex;
+  flex-basis: 30%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
 .service-box {
-  @extend .my-3;
-  @extend .mx-3;
+  @extend .my-1;
   @extend .px-4;
   @extend .py-4;
-  box-shadow: 2px 4px 10px var(--color-grey-lighter);
-  height: 10rem;
+  width: 100%;
   border-radius: 0;
   border: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
 }
 .service-label {
-  width: 12ch;
   font-weight: bold;
   font-size: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 .fa-checkbox {
   align-self: flex-end;
