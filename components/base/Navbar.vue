@@ -21,27 +21,30 @@
         </nuxt-link>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/services/classroom" tabindex="0">
               Classroom
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/services/computing" tabindex="0">
               Computing
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/services/file-storage-and-transfer" tabindex="0">
               File Storage and Transfer
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/services/visualization" tabindex="0">
               Visualization Systems
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a
+              href="/services/consulting/advanced-research-computing"
+              tabindex="0"
+            >
               Consulting
             </a>
           </li>
@@ -61,22 +64,22 @@
         </nuxt-link>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/our-work/workshops" tabindex="0">
               Workshops
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/our-work/software" tabindex="0">
               Software
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="https://publications.ccv.brown.edu" tabindex="0">
               Publications
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#" tabindex="0">
+            <a href="/our-work/talks" tabindex="0">
               Talks and Conferences
             </a>
           </li>
