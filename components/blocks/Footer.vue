@@ -23,27 +23,30 @@
         <ul class="mr-6">
           <li><h2>Services</h2></li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/classroom" tabindex="0">
               Classroom
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/computing" tabindex="0">
               Computing
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/file-storage-and-transfe" tabindex="0">
               File Storage and Transfer
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/visualization" tabindex="0">
               Visualization Systems
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a
+              href="/services/consulting/advanced-research-computing"
+              tabindex="0"
+            >
               Consulting
             </a>
           </li>
@@ -51,22 +54,25 @@
         <ul class="mr-6">
           <li><h2>Documentation</h2></li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="https://docs.ccv.brown.edu" tabindex="0">
               Oscar
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a
+              href="/services/computing#data-risk-level-3-computing-(stronghold)"
+              tabindex="0"
+            >
               Stronghold
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/file-storage-and-transfer#globus" tabindex="0">
               Globus
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/services/classroom#jupyterhub" tabindex="0">
               Jupyterhub
             </a>
           </li>
@@ -74,17 +80,17 @@
         <ul class="mr-6">
           <li><h2>Our Work</h2></li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/our-work/workshops" tabindex="0">
               Workshops
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/our-work/software" tabindex="0">
               Software
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="https://publications.ccv.brown.edu" tabindex="0">
               Publications
             </a>
           </li>
@@ -96,22 +102,25 @@
             </h2>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="mailto:support@ccv.brown.edu" tabindex="0">
               Submit a Ticket
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a
+              href="https://ask.cyberinfrastructure.org/c/brown-research-computing/37"
+              tabindex="0"
+            >
               Discourse
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="https://ccv-share.slack.com/signup#/" tabindex="0">
               Slack
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="https://events.brown.edu/ccv/month" tabindex="0">
               Office Hours
             </a>
           </li>
@@ -123,27 +132,27 @@
             </h2>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/about#mission" tabindex="0">
               Mission
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/about#people" tabindex="0">
               People
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/about#opportunities" tabindex="0">
               Opportunities
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="https://events.brown.edu/ccv/month" tabindex="0">
               Events
             </a>
           </li>
           <li class="">
-            <a href="#" tabindex="0">
+            <a href="/about#facilities-statement" tabindex="0">
               How To Cite CCV
             </a>
           </li>
@@ -151,7 +160,7 @@
       </section>
     </template>
     <template #third
-      >© 2020 Center for Computation and Visualization, Brown University | 180
+      >© 2021 Center for Computation and Visualization, Brown University | 180
       George St, Providence RI 02906</template
     >
   </DFooter>
