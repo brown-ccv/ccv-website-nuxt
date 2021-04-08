@@ -38,7 +38,8 @@ export default {
       '/about/people',
       '/about/opportunities',
       '/services',
-      '/our-work/workshops'
+      '/our-work/workshops',
+      '/test'
     ]
   },
   /*
@@ -82,6 +83,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    '@nuxt/content',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
