@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="toc-container">
-      <DTOC :data="tocData" name="newtable" variant="white" class="toc" />
+      <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
-    <main class="main-content">
+    <!-- <main class="main-content">
       <section
         v-for="(item, i) in data"
         :id="item.title | urlize"
@@ -84,19 +84,16 @@
           <v-runtime-template v-if="item.body" :template="item.body" />
         </template>
       </section>
-    </main>
+    </main> -->
   </div>
 </template>
 
 <script>
-import { DTOC, DPersonCard } from '@brown-ccv/disco-vue-components';
-import VRuntimeTemplate from 'v-runtime-template';
+import { DTOC } from '@brown-ccv/disco-vue-components';
 
 export default {
   components: {
-    DTOC,
-    VRuntimeTemplate,
-    DPersonCard
+    DTOC
   },
   filters: {
     urlize(str) {
@@ -104,10 +101,10 @@ export default {
     }
   },
   props: {
-    data: {
-      type: Array,
-      required: true
-    },
+    // data: {
+    //   type: Array,
+    //   required: true
+    // },
     toc: {
       type: Array,
       required: true
@@ -115,15 +112,12 @@ export default {
   },
   computed: {
     tocData() {
-      const icons = [
-        { name: 'heart-circle', family: 'light' },
-        { name: 'warehouse', family: 'light' },
-        { name: 'bullseye-arrow', family: 'light' },
-        { name: 'user-plus', family: 'light' },
-        { name: 'users', family: 'light' }
-      ];
       return this.toc.map((d, i) => {
-        return { name: d, link: `#${this.urlize(d)}`, icon: icons[i] };
+        return {
+          name: d.title,
+          link: `#${this.urlize(d.path)}`,
+          icon: { name: d.fa.icon, family: 'light' }
+        };
       });
     }
   },

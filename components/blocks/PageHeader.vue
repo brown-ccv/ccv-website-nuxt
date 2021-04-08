@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DBanner
+    <!-- <DBanner
       v-if="statusAll.open_issues > 0"
       variant="danger"
       accent="warning"
@@ -9,7 +9,7 @@
       <template #badge>
         <a href="https://status.ccv.brown.edu">CCV Status</a>
       </template>
-    </DBanner>
+    </DBanner> -->
     <DBanner
       v-for="(banner, i) in banners"
       :key="'banner' + i"
