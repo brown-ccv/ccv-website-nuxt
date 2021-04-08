@@ -7,22 +7,19 @@
       class="hero"
     >
     </DHero>
-    <About :toc="toc" />
+    <About :data="data" />
   </div>
 </template>
 
 <script>
 import { DHero } from '@brown-ccv/disco-vue-components';
-import About from '@/components/blocks/About.vue';
+import About from '@/components/blocks/About2.vue';
 
 export default {
   components: {
     DHero,
     About
   },
-  //   async fetch({ store, params, error }) {
-  //     await store.dispatch('content/fetchData', params);
-  //   },
   async asyncData({ $content, params }) {
     const index = await $content('about/index').fetch();
     const toc = await $content('about', params.slug)
@@ -30,9 +27,14 @@ export default {
       .where({ title: { $ne: 'About' } })
       .sortBy('title', 'desc')
       .fetch();
+    const data = await $content('about', params.slug)
+      .where({ title: { $ne: 'About' } })
+      .sortBy('title', 'desc')
+      .fetch();
     return {
       index,
-      toc
+      toc,
+      data
     };
   }
   //   head() {
