@@ -20,13 +20,6 @@
               :aria-label="'icon of' + category.fa.icon"
             />{{ category.title }}
           </h2>
-          <!-- General markdown content pages -->
-          <!-- <nuxt-content v-if="item.extension === '.md'" :document="item" /> -->
-          <!-- <nuxt-content
-            v-if="category.body"
-            :document="category.body"
-            class="mb-6 has-text-dark"
-          /> -->
           <CardGroup
             :data="data.filter((a) => a.category === category.title)"
           />

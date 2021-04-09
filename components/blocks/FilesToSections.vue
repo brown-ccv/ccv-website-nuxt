@@ -53,7 +53,7 @@ export default {
       return this.data.map((d, i) => {
         return {
           name: d.title,
-          link: `#${this.urlize(d.path)}`,
+          link: `#${this.urlize(d.title)}`,
           icon: { name: d.fa.icon, family: 'light' }
         };
       });
