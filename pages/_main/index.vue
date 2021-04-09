@@ -1,5 +1,5 @@
 <template>
-  <!-- General template for routes (About, Services...)  -->
+  <!-- General template for main routes i.e. about, services, help...  -->
   <div>
     <DHero
       variant="primary"
@@ -18,8 +18,11 @@
         </nuxt-link>
       </template>
     </DHero>
+    <!-- The help page is a list of simple cards, informed by .yml files -->
     <ListTemplate v-if="$route.params.main === 'help'" :data="data" />
+    <!-- The about page is a made of sections, informed by .md files -->
     <About v-else-if="$route.params.main === 'about'" :data="data" />
+    <!-- This is for pages with subdirectories. They are a list of categories -->
     <ListTemplate v-else :data="list" />
   </div>
 </template>

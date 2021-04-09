@@ -21,16 +21,12 @@
             />{{ category.title }}
           </h2>
 
-          <nuxt-content
+          <v-runtime-template
             v-if="category.body"
-            :document="category.body"
+            :template="category.body"
             class="mb-6 has-text-dark"
           />
-          <CardGroup
-            v-if="data[i].category === category.title"
-            :data="data[i]"
-            :category="category.title"
-          />
+          <CardGroup v-if="data" :data="data[i]" :category="category.title" />
         </template>
       </section>
     </main>
@@ -39,11 +35,13 @@
 
 <script>
 import { DTOC } from '@brown-ccv/disco-vue-components';
+import VRuntimeTemplate from 'v-runtime-template';
 import CardGroup from '@/components/blocks/CardGroup.vue';
 
 export default {
   components: {
     DTOC,
+    VRuntimeTemplate,
     CardGroup
   },
   filters: {
@@ -57,6 +55,10 @@ export default {
     }
   },
   props: {
+    toc: {
+      type: Array,
+      required: true
+    },
     index: {
       type: Array,
       required: true
@@ -68,11 +70,15 @@ export default {
   },
   computed: {
     tocData() {
-      return this.index.map((d, i) => {
+      const icons = this.index.map((item) => {
+        const icon = item.fa.icon;
+        return icon;
+      });
+      return this.toc.map((d, i) => {
         return {
-          name: d.title,
-          link: `#${this.urlize(d.path)}`,
-          icon: { name: d.fa.icon, family: 'light' }
+          name: this.humanize(d),
+          link: `#${this.urlize(d)}`,
+          icon: { name: icons[i], family: 'light' }
         };
       });
     }
