@@ -7,22 +7,21 @@
     >
     </DHero>
     <main class="content-wrapper">
-      <v-runtime-template
+      <!-- General markdown content pages -->
+      <nuxt-content
+        v-if="item.extension === '.md'"
+        :document="data"
         class="content content-section"
-        :template="data.body"
       />
     </main>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import VRuntimeTemplate from 'v-runtime-template';
 import * as disco from '@brown-ccv/disco-vue-components';
 
 export default {
   components: {
-    VRuntimeTemplate,
     ...disco
   },
   filters: {
@@ -34,19 +33,18 @@ export default {
       return upperFirst.join(' ');
     }
   },
-  async fetch({ store, params, error }) {
-    if (store.state.content.data === null) {
-      await store.dispatch('content/fetchData', {
-        main: params.main,
-        category: params.category
-      });
-    }
-    await store.dispatch('content/setSingle', params.page);
-  },
-  computed: {
-    ...mapState({
-      data: (state) => state.content.single
-    })
+  async asyncData({ $content, params }) {
+    const data = await $content(
+      `${params.main}/${params.category}/${params.page}`,
+      params.slug
+    )
+      .where({ slug: { $ne: 'index' } })
+      .sortBy('title', 'desc')
+      .fetch();
+
+    return {
+      data
+    };
   }
 };
 </script>
