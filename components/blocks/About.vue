@@ -138,9 +138,7 @@ blockquote {
     font-size: 1.3rem !important;
   }
 }
-.nuxt-content p {
-  margin-bottom: 20px;
-}
+
 .toc-container {
   display: flex;
   justify-content: center;
