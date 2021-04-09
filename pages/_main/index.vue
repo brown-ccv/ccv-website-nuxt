@@ -18,42 +18,50 @@
         </nuxt-link>
       </template>
     </DHero>
-    <!-- <ListTemplate v-if="$route.params.main === 'help'" :data="data" /> -->
-    <About v-if="$route.params.main === 'about'" :data="data" />
-    <!-- <ListTemplate v-else :data="list.map((d) => d.index)" /> -->
+    <ListTemplate v-if="$route.params.main === 'help'" :data="data" />
+    <About v-else-if="$route.params.main === 'about'" :data="data" />
+    <ListTemplate v-else :data="list" />
   </div>
 </template>
 
 <script>
 import { DHero } from '@brown-ccv/disco-vue-components';
-// import ListTemplate from '@/components/blocks/ListTemplate.vue';
+import ListTemplate from '@/components/blocks/ListTemplate.vue';
 import About from '@/components/blocks/About2.vue';
 
 export default {
   components: {
     DHero,
+    ListTemplate,
     About
   },
   async asyncData({ $content, params }) {
+    // get the index files of top content directories.
+    // this provides title and subtitle for banners
     const index = await $content(`${params.main}/index`).fetch();
+
+    // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)
-      .where({ title: { $ne: 'About' } })
+      .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
       .fetch();
+
+    // for directories that have subdirectories, gather index.yml files
+    // which will be feed the content in the cards
+    const list = await $content(`${params.main}`, params.slug, {
+      deep: true
+    })
+      .where({ path: { $regex: '^/+[^/]+/+[^/]+/+index' } })
+      .sortBy('title', 'desc')
+      .fetch();
+
     return {
       index,
-      data
+      data,
+      list
     };
   }
-  //   async fetch({ store, params, error }) {
-  //     await store.dispatch('content/fetchData', params);
-  //   },
-  //   computed: mapState({
-  //     data: (state) => state.content.data,
-  //     index: (state) => state.content.index,
-  //     toc: (state) => state.content.toc,
-  //     list: (state) => state.content.list
-  //   })
+
   //   This is the status banner
   //   head() {
   //     return {
