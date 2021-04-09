@@ -18,37 +18,6 @@
             :aria-label="'icon of' + item.fa.icon"
           />{{ item.title }}
         </h2>
-        <!-- General markdown content pages -->
-        <nuxt-content v-if="item.extension === '.md'" :document="item" />
-        <!-- People -->
-        <div v-if="item.title === 'People'" class="card-group">
-          <DPersonCard
-            v-for="person in item.data"
-            :key="person.name | urlize"
-            variant="white"
-            accent="warning"
-            width="small"
-            class="mx-1 my-1"
-            :name="person.name"
-            :title="person.title"
-            :team="person.team"
-            :main-image="
-              'https://ccv.brown.edu/images/people/JPEG/' + person.image
-            "
-            :hover-image="
-              'https://ccv.brown.edu/images/people/JPEG/' +
-                person.image.replace('main', 'hover')
-            "
-          >
-            <template #icons>
-              <a
-                :href="'https://github.com/' + person.github_username"
-                aria-label="information icon"
-                ><fa :icon="['fab', 'github']"
-              /></a>
-            </template>
-          </DPersonCard>
-        </div>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
           <template v-if="item.data.length > 0">
@@ -81,6 +50,37 @@
             </p>
           </div>
         </div>
+        <!-- People -->
+        <div v-if="item.title === 'People'" class="card-group">
+          <DPersonCard
+            v-for="person in item.data"
+            :key="person.name | urlize"
+            variant="white"
+            accent="warning"
+            width="small"
+            class="mx-1 my-1"
+            :name="person.name"
+            :title="person.title"
+            :team="person.team"
+            :main-image="
+              'https://ccv.brown.edu/images/people/JPEG/' + person.image
+            "
+            :hover-image="
+              'https://ccv.brown.edu/images/people/JPEG/' +
+                person.image.replace('main', 'hover')
+            "
+          >
+            <template #icons>
+              <a
+                :href="'https://github.com/' + person.github_username"
+                aria-label="information icon"
+                ><fa :icon="['fab', 'github']"
+              /></a>
+            </template>
+          </DPersonCard>
+        </div>
+        <!-- General markdown content pages -->
+        <nuxt-content v-if="item.extension === '.md'" :document="item" />
       </section>
     </main>
   </div>
