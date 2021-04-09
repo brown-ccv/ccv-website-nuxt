@@ -98,10 +98,6 @@ export default {
     data: {
       type: Array,
       required: true
-    },
-    category: {
-      type: String,
-      required: true
     }
   }
 };

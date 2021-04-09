@@ -21,14 +21,13 @@
             />{{ category.title }}
           </h2>
 
-          <nuxt-content
+          <!-- <nuxt-content
             v-if="category.body"
             :document="category.body"
             class="mb-6 has-text-dark"
-          />
+          /> -->
           <CardGroup
-            v-if="data[i].category === category.title"
-            :data="data[i]"
+            :data="data.filter((a) => a.category === category.title)"
             :category="category.title"
           />
         </template>

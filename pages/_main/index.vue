@@ -30,7 +30,7 @@
 <script>
 import { DHero } from '@brown-ccv/disco-vue-components';
 import ListTemplate from '@/components/blocks/ListTemplate.vue';
-import About from '@/components/blocks/About2.vue';
+import About from '@/components/blocks/About.vue';
 
 export default {
   components: {
