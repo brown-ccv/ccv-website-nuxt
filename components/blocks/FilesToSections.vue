@@ -5,32 +5,21 @@
     </div>
     <main class="main-content">
       <section
-        v-for="(category, i) in index"
-        :id="category.title | urlize"
-        :key="'section' + i"
+        v-for="(item, i) in data"
+        :id="item.title | urlize"
+        :key="'about-section' + i"
         class="content-section"
       >
-        <template>
-          <h2 class="section-title title has-text-dark">
-            <fa
-              v-if="category.fa"
-              size="2x"
-              class="mr-3 has-text-white"
-              :icon="[category.fa.prefix, category.fa.icon]"
-              :aria-label="'icon of' + category.fa.icon"
-            />{{ category.title }}
-          </h2>
-
-          <!-- <nuxt-content
-            v-if="category.body"
-            :document="category.body"
-            class="mb-6 has-text-dark"
-          /> -->
-          <CardGroup
-            :data="data.filter((a) => a.category === category.title)"
-            :category="category.title"
-          />
-        </template>
+        <h2 class="section-title title">
+          <fa
+            size="2x"
+            class="mr-3 has-text-white"
+            :icon="[item.fa.prefix, item.fa.icon]"
+            :aria-label="'icon of' + item.fa.icon"
+          />{{ item.title }}
+        </h2>
+        <!-- General markdown content pages -->
+        <nuxt-content v-if="item.extension === '.md'" :document="item" />
       </section>
     </main>
   </div>
@@ -38,12 +27,10 @@
 
 <script>
 import { DTOC } from '@brown-ccv/disco-vue-components';
-import CardGroup from '@/components/blocks/CardGroup.vue';
 
 export default {
   components: {
-    DTOC,
-    CardGroup
+    DTOC
   },
   filters: {
     humanize(str) {
@@ -56,10 +43,6 @@ export default {
     }
   },
   props: {
-    index: {
-      type: Array,
-      required: true
-    },
     data: {
       type: Array,
       default: null
@@ -67,7 +50,7 @@ export default {
   },
   computed: {
     tocData() {
-      return this.index.map((d, i) => {
+      return this.data.map((d, i) => {
         return {
           name: d.title,
           link: `#${this.urlize(d.path)}`,

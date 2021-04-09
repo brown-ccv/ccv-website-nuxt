@@ -4,28 +4,30 @@
     <DHero
       variant="primary"
       :title="$route.params.category | humanize"
-      :subtitle="index2.description"
+      :subtitle="index.description"
     >
     </DHero>
-
-    <SingleTemplate
+    <!-- This is for directories containing subdirectories -->
+    <DirsToCardSections
       v-if="$route.params.main === 'our-work'"
-      :index="list2"
-      :data="data2"
+      :index="list"
+      :data="data"
     />
-    <!-- <SingleTemplate v-else :index="data" :toc="toc" /> -->
+    <!-- This is for directories containing markdown files -->
+    <FilesToSections v-else :data="data" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
-import SingleTemplate from '@/components/blocks/SingleTemplate.vue';
+import DirsToCardSections from '@/components/blocks/DirsToCardSections.vue';
+import FilesToSections from '@/components/blocks/FilesToSections.vue';
 
 export default {
   components: {
     DHero,
-    SingleTemplate
+    DirsToCardSections,
+    FilesToSections
   },
   filters: {
     humanize(str) {
@@ -41,12 +43,12 @@ export default {
     // get the index files of content subdirectories directories
     // such as /our-work/software.
     // this provides title and subtitle for banners
-    const index2 = await $content(
+    const index = await $content(
       `${params.main}/${params.category}/index`
     ).fetch();
 
-    // get the content for directories that are only one level deep
-    const data2 = await $content(
+    // get the content for all sub-directories {deep:true}
+    const data = await $content(
       `${params.main}/${params.category}`,
       params.slug,
       {
@@ -59,7 +61,7 @@ export default {
 
     // for directories that have subdirectories, gather index.yml files
     // which will be feed the content in the cards
-    const list2 = await $content(
+    const list = await $content(
       `${params.main}/${params.category}`,
       params.slug,
       {
@@ -71,20 +73,10 @@ export default {
       .fetch();
 
     return {
-      index2,
-      data2,
-      list2
+      index,
+      data,
+      list
     };
-  },
-  async fetch({ store, params, error }) {
-    await store.dispatch('content/fetchData', params);
-  },
-  computed: {
-    ...mapState({
-      data: (state) => state.content.data,
-      toc: (state) => state.content.toc,
-      list: (state) => state.content.list
-    })
   }
 };
 </script>
