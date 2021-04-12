@@ -6,6 +6,8 @@
 
 ```bash
 # install dependencies
+$ npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+$ npm config set "//npm.fontawesome.com/:_authToken" <TOKEN>
 $ npm install
 
 # update the content
