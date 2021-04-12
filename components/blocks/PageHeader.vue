@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <DBanner
-      v-if="statusAll.open_issues > 0"
+    <DBanner
+      v-if="statusAll && statusAll.open_issues > 0"
       variant="danger"
       accent="warning"
       :text="'Service Disrruption: ' + statusAll.disrrupted.join(', ')"
@@ -9,7 +9,7 @@
       <template #badge>
         <a href="https://status.ccv.brown.edu">CCV Status</a>
       </template>
-    </DBanner> -->
+    </DBanner>
     <DBanner
       v-for="(banner, i) in banners"
       :key="'banner' + i"
@@ -36,32 +36,17 @@
   </div>
 </template>
 <script>
-import { DBanner } from '@brown-ccv/disco-vue-components';
 import { mapState } from 'vuex';
+
+import { DBanner } from '@brown-ccv/disco-vue-components';
 import Navbar from '@/components/base/Navbar.vue';
 
 export default {
   components: { Navbar, DBanner },
-  data() {
-    return {
-      variants: [
-        'warning',
-        'link',
-        'primary',
-        'success',
-        'dark',
-        'light',
-        'info'
-      ]
-    };
-  },
   computed: {
-    ...mapState({
-      data: (state) => state.status.data,
-      banners: (state) => state.banners.data
-    }),
+    ...mapState(['banners', 'status']),
     statusAll() {
-      return this.data.filter((a) => a.name === 'all')[0];
+      return this.status.filter((a) => a.name === 'all')[0];
     }
   }
 };

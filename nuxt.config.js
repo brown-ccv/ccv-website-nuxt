@@ -28,7 +28,7 @@ export default {
    ** Router Config
    */
   router: {
-    middleware: ['banners', 'status-redirect']
+    middleware: ['status-redirect']
   },
   /*
    ** Tell Nuxt to render these routes on the server side?
