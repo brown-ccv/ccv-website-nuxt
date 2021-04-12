@@ -1,88 +1,86 @@
 <template>
   <div>
     <div class="toc-container">
-      <DTOC :data="tocData" name="newtable" variant="white" class="toc" />
+      <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
     <main class="main-content">
       <section
         v-for="(item, i) in data"
         :id="item.title | urlize"
-        :key="'people-section' + i"
+        :key="'about-section' + i"
         class="content-section"
       >
-        <template>
-          <h2 class="section-title title">
-            <fa
-              v-if="item.fa"
-              size="2x"
-              class="mr-3 has-text-white"
-              :icon="[item.fa.prefix, item.fa.icon]"
-              :aria-label="'icon of' + item.fa.icon"
-            />{{ item.title }}
-          </h2>
-          <div v-if="item.title === 'Opportunities'" class="card-group">
-            <template v-if="item.data.length > 0">
-              <a
-                v-for="(position, ind) in item.data"
-                :key="'position' + ind"
-                class="position-block"
-                :href="position.link"
-              >
-                <div>
-                  <span
-                    ><fa
-                      :icon="['fal', 'map-marker']"
-                      class="mr-3"
-                    />Providence, RI - United States</span
-                  >
-                  <p class="has-text-dark">
-                    {{ position.title }} – {{ position.subteam }}
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    Learn More<fa class="ml-3" :icon="['fal', 'arrow-right']" />
-                  </p>
-                </div>
-              </a>
-            </template>
-            <div v-else>
-              <p>
-                There are no positions open at the moment Check back with us in
-                the future. We appreciate your interest!
-              </p>
-            </div>
-          </div>
-          <div v-if="item.title === 'People'" class="card-group">
-            <DPersonCard
-              v-for="person in item.data"
-              :key="person.name | urlize"
-              variant="white"
-              accent="warning"
-              width="small"
-              class="mx-1 my-1"
-              :name="person.name"
-              :title="person.title"
-              :team="person.team"
-              :main-image="
-                'https://ccv.brown.edu/images/people/JPEG/' + person.image
-              "
-              :hover-image="
-                'https://ccv.brown.edu/images/people/JPEG/' +
-                  person.image.replace('main', 'hover')
-              "
+        <h2 class="section-title title">
+          <fa
+            size="2x"
+            class="mr-3 has-text-white"
+            :icon="[item.fa.prefix, item.fa.icon]"
+            :aria-label="'icon of' + item.fa.icon"
+          />{{ item.title }}
+        </h2>
+        <!-- Opportunities -->
+        <div v-if="item.title === 'Opportunities'" class="card-group">
+          <template v-if="item.data.length > 0">
+            <a
+              v-for="(position, ind) in item.data"
+              :key="'position' + ind"
+              class="position-block"
+              :href="position.link"
             >
-              <template #icons>
-                <a
-                  :href="'https://github.com/' + person.github_username"
-                  aria-label="information icon"
-                  ><fa :icon="['fab', 'github']"
-                /></a>
-              </template>
-            </DPersonCard>
+              <div>
+                <span
+                  ><fa :icon="['fal', 'map-marker']" class="mr-3" />Providence,
+                  RI - United States</span
+                >
+                <p class="has-text-dark">
+                  {{ position.title }} – {{ position.subteam }}
+                </p>
+              </div>
+              <div>
+                <p>
+                  Learn More<fa class="ml-3" :icon="['fal', 'arrow-right']" />
+                </p>
+              </div>
+            </a>
+          </template>
+          <div v-else>
+            <p>
+              There are no positions open at the moment Check back with us in
+              the future. We appreciate your interest!
+            </p>
           </div>
-          <v-runtime-template v-if="item.body" :template="item.body" />
-        </template>
+        </div>
+        <!-- People -->
+        <div v-if="item.title === 'People'" class="card-group">
+          <DPersonCard
+            v-for="person in item.data"
+            :key="person.name | urlize"
+            variant="white"
+            accent="warning"
+            width="small"
+            class="mx-1 my-1"
+            :name="person.name"
+            :title="person.title"
+            :team="person.team"
+            :main-image="
+              'https://ccv.brown.edu/images/people/JPEG/' + person.image
+            "
+            :hover-image="
+              'https://ccv.brown.edu/images/people/JPEG/' +
+                person.image.replace('main', 'hover')
+            "
+          >
+            <template #icons>
+              <a
+                :href="'https://github.com/' + person.github_username"
+                aria-label="information icon"
+                ><fa :icon="['fab', 'github']"
+              /></a>
+            </template>
+          </DPersonCard>
+        </div>
+        <!-- General markdown content pages -->
+        <nuxt-content v-if="item.extension === '.md'" :document="item" />
       </section>
     </main>
   </div>
@@ -90,12 +88,10 @@
 
 <script>
 import { DTOC, DPersonCard } from '@brown-ccv/disco-vue-components';
-import VRuntimeTemplate from 'v-runtime-template';
 
 export default {
   components: {
     DTOC,
-    VRuntimeTemplate,
     DPersonCard
   },
   filters: {
@@ -107,23 +103,16 @@ export default {
     data: {
       type: Array,
       required: true
-    },
-    toc: {
-      type: Array,
-      required: true
     }
   },
   computed: {
     tocData() {
-      const icons = [
-        { name: 'heart-circle', family: 'light' },
-        { name: 'warehouse', family: 'light' },
-        { name: 'bullseye-arrow', family: 'light' },
-        { name: 'user-plus', family: 'light' },
-        { name: 'users', family: 'light' }
-      ];
-      return this.toc.map((d, i) => {
-        return { name: d, link: `#${this.urlize(d)}`, icon: icons[i] };
+      return this.data.map((d, i) => {
+        return {
+          name: d.title,
+          link: `#${this.urlize(d.title)}`,
+          icon: { name: d.fa.icon, family: 'light' }
+        };
       });
     }
   },
@@ -149,6 +138,7 @@ blockquote {
     font-size: 1.3rem !important;
   }
 }
+
 .toc-container {
   display: flex;
   justify-content: center;

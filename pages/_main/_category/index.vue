@@ -1,31 +1,33 @@
 <template>
+  <!-- General template for sub-routes i.e. our-work/software  -->
   <div>
     <DHero
       variant="primary"
       :title="$route.params.category | humanize"
-      :subtitle="$route.params.main | humanize"
+      :subtitle="index.description"
     >
     </DHero>
-
-    <SingleTemplate
+    <!-- This is for directories containing subdirectories -->
+    <DirsToCardSections
       v-if="$route.params.main === 'our-work'"
-      :index="list.map((d) => d.index)"
-      :data="list.map((d) => d.data)"
-      :toc="toc"
+      :index="list"
+      :data="data"
     />
-    <SingleTemplate v-else :index="data" :toc="toc" />
+    <!-- This is for directories containing markdown files -->
+    <FilesToSections v-else :data="data" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { DHero } from '@brown-ccv/disco-vue-components';
-import SingleTemplate from '@/components/blocks/SingleTemplate.vue';
+import DirsToCardSections from '@/components/blocks/DirsToCardSections.vue';
+import FilesToSections from '@/components/blocks/FilesToSections.vue';
 
 export default {
   components: {
     DHero,
-    SingleTemplate
+    DirsToCardSections,
+    FilesToSections
   },
   filters: {
     humanize(str) {
@@ -37,15 +39,44 @@ export default {
       return str.toLowerCase().replace(/ /g, '-');
     }
   },
-  async fetch({ store, params, error }) {
-    await store.dispatch('content/fetchData', params);
-  },
-  computed: {
-    ...mapState({
-      data: (state) => state.content.data,
-      toc: (state) => state.content.toc,
-      list: (state) => state.content.list
-    })
+  async asyncData({ $content, params }) {
+    // get the index files of content subdirectories directories
+    // such as /our-work/software.
+    // this provides title and subtitle for banners
+    const index = await $content(
+      `${params.main}/${params.category}/index`
+    ).fetch();
+
+    // get the content for all sub-directories {deep:true}
+    const data = await $content(
+      `${params.main}/${params.category}`,
+      params.slug,
+      {
+        deep: true
+      }
+    )
+      .where({ slug: { $ne: 'index' } })
+      .sortBy('title', 'desc')
+      .fetch();
+
+    // for directories that have subdirectories, gather index.yml files
+    // which will be feed the content in the cards
+    const list = await $content(
+      `${params.main}/${params.category}`,
+      params.slug,
+      {
+        deep: true
+      }
+    )
+      .where({ path: { $regex: '^/+[^/]+/+[^/]+/+[^/]+/+index' } })
+      .sortBy('title', 'desc')
+      .fetch();
+
+    return {
+      index,
+      data,
+      list
+    };
   }
 };
 </script>

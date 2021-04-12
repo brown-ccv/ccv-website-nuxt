@@ -8,6 +8,9 @@
 # install dependencies
 $ npm install
 
+# update the content
+git submodule update --init
+
 # serve with hot reload at localhost:3000
 $ npm run dev
 

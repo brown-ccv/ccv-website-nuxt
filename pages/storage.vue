@@ -87,7 +87,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { DHero, DButton, DIcon } from '@brown-ccv/disco-vue-components';
 
 export default {
@@ -103,11 +102,12 @@ export default {
       return upperFirst;
     }
   },
-  async fetch({ store, error }) {
-    await store.dispatch('content/fetchData', {
-      main: 'services',
-      category: 'file-storage-and-transfer'
-    });
+  async asyncData({ $content }) {
+    const index = await $content(
+      'services/file-storage-and-transfer/index'
+    ).fetch();
+
+    return { index };
   },
   data() {
     return {
@@ -118,9 +118,6 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      index: (state) => state.content.index
-    }),
     services: {
       get() {
         return this.index.services;

@@ -18,28 +18,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { DHero, DButton } from '@brown-ccv/disco-vue-components';
 
 export default {
   components: { DHero, DButton },
-  async fetch({ store, error }) {
-    await store.dispatch('home/fetchData');
-  },
-  computed: mapState({
-    index: (state) => state.home.index
-  }),
-  head() {
+  async asyncData({ $content }) {
+    const index = await $content('home/index').fetch();
+
     return {
-      title: this.index.title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.index.title
-        }
-      ]
+      index
     };
   }
+  //   Status banner
+  //   head() {
+  //     return {
+  //       title: this.index.title,
+  //       meta: [
+  //         {
+  //           hid: 'description',
+  //           name: 'description',
+  //           content: this.index.title
+  //         }
+  //       ]
+  //     };
+  //   }
 };
 </script>
