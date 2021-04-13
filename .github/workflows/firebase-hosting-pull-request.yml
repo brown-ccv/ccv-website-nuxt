@@ -29,7 +29,13 @@ jobs:
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN_DISCO_MIR }}
           npm ci
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          mkdir -p functions/.nuxt/dist/
+          cp -r .nuxt/dist/server functions/.nuxt/dist/
+          mkdir -p public/_nuxt
+          cp -r .nuxt/dist/client/ public/_nuxt
+          cp -a static/. public/
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
