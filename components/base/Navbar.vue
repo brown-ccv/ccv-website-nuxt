@@ -1,24 +1,16 @@
 <template>
   <DNavbar variant="light">
     <template v-slot:brand>
-      <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
+      <a class="navbar-item" href="/" aria-label="Back to Home">
         <BrownLogo class="d-nav-brand" size="m" />
         <CCVLogo size="s" />
-      </nuxt-link>
+      </a>
     </template>
     <template v-slot:start>
       <li class="navbar-item has-dropdown is-hoverable">
-        <nuxt-link
-          class="navbar-link"
-          :to="{
-            name: 'main',
-            params: {
-              main: 'services'
-            }
-          }"
-        >
+        <a class="navbar-link" href="/services">
           Services
-        </nuxt-link>
+        </a>
         <ul class="navbar-dropdown">
           <li class="navbar-item">
             <a href="/services/classroom" tabindex="0">

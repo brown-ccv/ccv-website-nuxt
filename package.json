@@ -13,7 +13,7 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "test": "jest",
-    "predeploy": "rm -r public/* && mkdir -p public/_nuxt && cp -r functions/.nuxt/dist/client/ public/_nuxt && cp -a static/* public/",
+    "predeploy": "rm -rf public/* && mkdir -p public/_nuxt && cp -r .nuxt functions && cp -r functions/.nuxt/dist/client/ public/_nuxt && cp -a static/* public/ && cp nuxt.config.js functions && cp -r content functions/content",
     "deploy": "firebase deploy"
   },
   "dependencies": {
@@ -50,6 +50,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
+    "firebase-tools": "^9.10.0",
     "git-cz": "^4.3.1",
     "husky": "^4.0.0",
     "jest": "^26",

@@ -1,5 +1,5 @@
 export default {
-  //   ssr: true,
+  ssr: true,
   /*
    ** Headers of the page
    */
@@ -30,18 +30,16 @@ export default {
   router: {
     middleware: ['status-redirect']
   },
-  /*
-   ** Tell Nuxt to render these routes on the server side?
-   */
-  generate: {
-    routes: [
-      '/about/people',
-      '/about/opportunities',
-      '/services',
-      '/our-work/workshops',
-      '/test'
-    ]
-  },
+  // /*
+  //  ** Tell Nuxt to render these routes on the server side?
+  //  */
+  // generate: {
+  //   routes: [
+  //     '/about',
+  //     '/services',
+  //     '/'
+  //   ]
+  // },
   /*
    ** Customize the progress-bar color
    */
@@ -110,7 +108,10 @@ export default {
       }
     }
   },
-  buildDir: 'functions/.nuxt',
+  content: {
+    dir: 'content'
+  },
+  buildDir: '.nuxt',
   /*
    ** Build configuration
    */

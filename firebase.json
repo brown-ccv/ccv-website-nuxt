@@ -17,5 +17,10 @@
           "function": "ssrapp"
         }
       ]
+    },
+    "emulators": {
+      "ui": {
+        "enabled": true
+      }
     }
   }
