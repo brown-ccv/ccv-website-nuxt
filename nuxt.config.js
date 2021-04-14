@@ -1,5 +1,5 @@
 export default {
-  ssr: true,
+  //   ssr: true,
   /*
    ** Headers of the page
    */
@@ -110,6 +110,7 @@ export default {
       }
     }
   },
+  buildDir: 'functions/.nuxt',
   /*
    ** Build configuration
    */

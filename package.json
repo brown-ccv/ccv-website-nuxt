@@ -6,12 +6,15 @@
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
+    "serve": "firebase serve --only functions,hosting",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "commit": "git-cz",
     "dev": "nuxt",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "rm -r public/* && mkdir -p public/_nuxt && cp -r functions/.nuxt/dist/client/ public/_nuxt && cp -a static/* public/",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@brown-ccv/disco-styles": "^2.2.2",
