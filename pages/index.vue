@@ -2,8 +2,8 @@
   <div class="">
     <DHero
       variant="primary"
-      :title="index.title"
-      :subtitle="index.description"
+      title="Center for Computation & Visualization"
+      subtitle="Scientific and technical computing expertise to advance computational research"
       class="is-fullheight"
     >
       <template #button>
@@ -21,14 +21,14 @@
 import { DHero, DButton } from '@brown-ccv/disco-vue-components';
 
 export default {
-  components: { DHero, DButton },
-  async asyncData({ $content }) {
-    const index = await $content('home/index').fetch();
+  components: { DHero, DButton }
+  //   async asyncData({ $content }) {
+  //     const index = await $content('home/index').fetch();
 
-    return {
-      index
-    };
-  }
+  //     return {
+  //       index
+  //     };
+  //   }
   //   Status banner
   //   head() {
   //     return {

@@ -30,16 +30,10 @@ jobs:
           npm ci
       - name: Build
         run: |
+          npm run generate
           npm run build
-          mkdir -p functions/.nuxt/dist/
-          cp -r .nuxt/dist/server functions/.nuxt/dist/
-          mkdir -p public/_nuxt
-          cp -r .nuxt/dist/client/ public/_nuxt
-          cp -a static/. public/
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CCV_BROWN_EDU }}'
-          projectId: ccv-brown-edu
+          npm run predeploy
+      - name: Deploy to Firebase
+        run: npm run qa-deploy
         env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

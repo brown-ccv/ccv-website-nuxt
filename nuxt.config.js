@@ -31,11 +31,11 @@ export default {
     middleware: ['status-redirect']
   },
   /*
-   ** These routes will be static
+   ** These routes won't be static
    */
-  //   generate: {
-  //     // exclude: ['/']
-  //   },
+  generate: {
+    exclude: ['/']
+  },
   /*
    ** Customize the progress-bar color
    */

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DBanner
+    <!-- <DBanner
       v-if="statusAll && statusAll.open_issues > 0"
       variant="danger"
       accent="warning"
@@ -31,23 +31,23 @@
           {{ banner.title }}
         </nuxt-link>
       </template>
-    </DBanner>
+    </DBanner> -->
     <Navbar />
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
 
-import { DBanner } from '@brown-ccv/disco-vue-components';
+// import { DBanner } from '@brown-ccv/disco-vue-components';
 import Navbar from '@/components/base/Navbar.vue';
 
 export default {
-  components: { Navbar, DBanner },
-  computed: {
-    ...mapState(['banners', 'status']),
-    statusAll() {
-      return this.status.filter((a) => a.name === 'all')[0];
-    }
-  }
+  components: { Navbar }
+  //   computed: {
+  //     ...mapState(['banners', 'status']),
+  //     statusAll() {
+  //       return this.status.filter((a) => a.name === 'all')[0];
+  //     }
+  //   }
 };
 </script>
