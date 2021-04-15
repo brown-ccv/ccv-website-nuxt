@@ -28,6 +28,7 @@ jobs:
           npm config set "//npm.fontawesome.com/:_authToken" ${{ secrets.FONTAWESOME_TOKEN }}
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN_DISCO_MIR }}
           npm ci
+          cd functions && npm ci && cd ../
       - name: Build
         run: |
           npm run generate

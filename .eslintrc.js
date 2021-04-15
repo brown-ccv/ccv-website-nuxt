@@ -14,13 +14,12 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended'
   ],
-  plugins: [
-    'prettier'
-  ],
+  plugins: ['prettier'],
   rules: {
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'always'],
-    'indent': ['error', 2],
-    'no-multi-spaces': ['error']
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    indent: ['error', 2],
+    'no-multi-spaces': ['error'],
+    'vue/comment-directive': 'off'
   }
-}
+};

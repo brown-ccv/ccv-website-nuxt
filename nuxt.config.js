@@ -80,8 +80,6 @@ export default {
     '@nuxt/content',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
     // Or if you have custom options...
