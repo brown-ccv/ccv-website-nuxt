@@ -30,16 +30,12 @@ export default {
   router: {
     middleware: ['status-redirect']
   },
-  // /*
-  //  ** Tell Nuxt to render these routes on the server side?
-  //  */
-  // generate: {
-  //   routes: [
-  //     '/about',
-  //     '/services',
-  //     '/'
-  //   ]
-  // },
+  /*
+   ** These routes will be static
+   */
+  //   generate: {
+  //     // exclude: ['/']
+  //   },
   /*
    ** Customize the progress-bar color
    */

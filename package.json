@@ -13,7 +13,7 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "test": "jest",
-    "predeploy": "rm -rf public/* && mkdir -p public/_nuxt && cp -r .nuxt functions && cp -r functions/.nuxt/dist/client/ public/_nuxt && cp -a static/* public/ && cp nuxt.config.js functions && cp -r content functions/content",
+    "predeploy": "rm -rf functions/.nuxt/* && cp -r .nuxt functions && cp nuxt.config.js functions",
     "deploy": "firebase deploy"
   },
   "dependencies": {

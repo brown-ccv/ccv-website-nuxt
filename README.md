@@ -31,6 +31,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Testing build set up 
 
 ```
+npm run generate
 npm run build
 npm run predeploy
 npm run serve
