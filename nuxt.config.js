@@ -81,9 +81,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'nuxt-svg-loader',
-    '@nuxtjs/markdownit',
-    // Or if you have custom options...
-    ['vue-scrollto/nuxt', { duration: 800 }]
+    '@nuxtjs/markdownit'
   ],
   markdownit: {
     injected: true
