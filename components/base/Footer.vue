@@ -1,5 +1,5 @@
 <template>
-  <DFooter class="has-background-ligth" variant="light">
+  <DFooter class="has-background-light" variant="light">
     <template #first>
       <section
         style="display: flex; justify-content: space-between; flex-wrap: wrap; "
@@ -167,12 +167,11 @@
 </template>
 
 <script>
-import {
-  DFooter,
-  CCVLogo,
-  BrownLogo,
-  DIcon
-} from '@brown-ccv/disco-vue-components';
+import DFooter from '@/components/disco-vue-components/d-footer';
+import DIcon from '@/components/disco-vue-components/d-icon';
+import CCVLogo from '@/components/disco-vue-components/logos/CCVLogo';
+import BrownLogo from '@/components/disco-vue-components/logos/BrownLogo';
+
 export default {
   components: {
     DFooter,

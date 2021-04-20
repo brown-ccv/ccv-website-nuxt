@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { DModal } from '@brown-ccv/disco-vue-components';
+import DModal from '@/components/disco-vue-components/d-modal';
 
 export default {
   components: {

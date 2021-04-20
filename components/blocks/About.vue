@@ -87,7 +87,8 @@
 </template>
 
 <script>
-import { DTOC, DPersonCard } from '@brown-ccv/disco-vue-components';
+import DTOC from '@/components/disco-vue-components/d-table-of-contents';
+import DPersonCard from '@/components/disco-vue-components/d-person-card';
 
 export default {
   components: {

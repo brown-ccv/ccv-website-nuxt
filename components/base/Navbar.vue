@@ -160,12 +160,11 @@
 </template>
 
 <script>
-import {
-  DNavbar,
-  DButton,
-  CCVLogo,
-  BrownLogo
-} from '@brown-ccv/disco-vue-components';
+import DNavbar from '@/components/disco-vue-components/d-navbar';
+import DButton from '@/components/disco-vue-components/d-button';
+import CCVLogo from '@/components/disco-vue-components/logos/CCVLogo';
+import BrownLogo from '@/components/disco-vue-components/logos/BrownLogo';
+
 export default {
   components: {
     DNavbar,

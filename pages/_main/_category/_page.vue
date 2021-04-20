@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import * as disco from '@brown-ccv/disco-vue-components';
+import DHero from '@/components/disco-vue-components/d-hero';
 
 export default {
   components: {
-    ...disco
+    DHero
   },
   filters: {
     humanize(str) {

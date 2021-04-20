@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { DTOC } from '@brown-ccv/disco-vue-components';
+import DTOC from '@/components/disco-vue-components/d-table-of-contents';
 import CardGroup from '@/components/blocks/CardGroup.vue';
 
 export default {

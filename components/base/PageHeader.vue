@@ -4,7 +4,7 @@
       v-if="statusAll && statusAll.open_issues > 0"
       variant="danger"
       accent="warning"
-      :text="'Service Disrruption: ' + statusAll.disrrupted.join(', ')"
+      :text="'Service Disruption: ' + statusAll.disrrupted.join(', ')"
     >
       <template #badge>
         <a href="https://status.ccv.brown.edu">CCV Status</a>
@@ -38,7 +38,7 @@
 <script>
 import { mapState } from 'vuex';
 
-import { DBanner } from '@brown-ccv/disco-vue-components';
+import DBanner from '@/components/disco-vue-components/d-banner';
 import Navbar from '@/components/base/Navbar.vue';
 
 export default {

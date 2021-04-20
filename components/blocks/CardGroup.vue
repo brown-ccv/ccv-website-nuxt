@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { DCard } from '@brown-ccv/disco-vue-components';
+import DCard from '@/components/disco-vue-components/d-card';
 
 export default {
   components: {
