@@ -1,5 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
+# node details for functions potentially containing secrets
+functions/.npmrc
 
+# public folder
 public/
 
 ### Node template
