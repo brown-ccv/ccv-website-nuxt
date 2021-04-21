@@ -25,9 +25,7 @@
     "@nuxtjs/markdownit": "^1.2.10",
     "bulma": "^0.9.0",
     "bulma-checkradio": "^1.1.1",
-    "nuxt": "2.15.4",
-    "vue-loader": "15.9.3",
-    "vue-svg-loader": "^0.16.0"
+    "nuxt": "2.15.4"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

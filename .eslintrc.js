@@ -16,10 +16,10 @@ module.exports = {
   ],
   plugins: ['prettier'],
   rules: {
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
-    indent: ['error', 2],
-    'no-multi-spaces': ['error'],
+    quotes: ['warn', 'single'],
+    semi: ['warn', 'always'],
+    indent: ['warn', 2],
+    'no-multi-spaces': ['warn'],
     'vue/comment-directive': 'off'
   }
 };
