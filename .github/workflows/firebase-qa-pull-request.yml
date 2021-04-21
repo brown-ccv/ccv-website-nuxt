@@ -31,6 +31,7 @@ jobs:
           cp .npmrc functions/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
           echo "//npm.fontawesome.com//:_authToken=${{ secrets.FONTAWESOME_TOKEN }}" >> functions/.npmrc
+          cat functions/.npmrc
           cd functions && npm ci && cd ../
       - name: Build
         run: |

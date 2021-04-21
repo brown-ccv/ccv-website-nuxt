@@ -14,7 +14,7 @@ async function handleRequest(req, res) {
       isReady = true;
     }
     console.log(req.path);
-    // res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=15778476');
+    res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=7200');
     await nuxt.render(req, res);
   } catch (error) {
     console.log(error);
