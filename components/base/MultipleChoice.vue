@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import DButton from '@/components/disco-vue-components/d-button';
-import DIcon from '@/components/disco-vue-components/d-icon';
+import DButton from '@/components/base/DButton';
+import DIcon from '@/components/base/DIcon';
 
 export default {
   components: {

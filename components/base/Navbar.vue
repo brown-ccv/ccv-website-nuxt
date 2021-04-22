@@ -160,10 +160,10 @@
 </template>
 
 <script>
-import DNavbar from '@/components/disco-vue-components/d-navbar';
-import DButton from '@/components/disco-vue-components/d-button';
-import CCVLogo from '@/components/disco-vue-components/logos/CCVLogo';
-import BrownLogo from '@/components/disco-vue-components/logos/BrownLogo';
+import DNavbar from '@/components/base/DNavbar';
+import DButton from '@/components/base/DButton';
+import CCVLogo from '@/components/base/CCVLogo';
+import BrownLogo from '@/components/base/BrownLogo';
 
 export default {
   components: {

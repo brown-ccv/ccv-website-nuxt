@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import DHero from '@/components/disco-vue-components/d-hero';
+import DHero from '@/components/base/DHero';
 import FilesToCards from '@/components/blocks/FilesToCards.vue';
 import About from '@/components/blocks/About.vue';
 

@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import DButton from '@/components/disco-vue-components/d-button.vue';
+import DButton from '@/components/base/DButton';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

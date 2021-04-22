@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import DIcon from '@/components/disco-vue-components/d-icon.vue';
+import DIcon from '@/components/base/DIcon';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

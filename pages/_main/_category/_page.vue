@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import DHero from '@/components/disco-vue-components/d-hero';
+import DHero from '@/components/base/DHero';
 
 export default {
   components: {

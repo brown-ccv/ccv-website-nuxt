@@ -38,8 +38,8 @@
 <script>
 import { mapState } from 'vuex';
 
-import DBanner from '@/components/disco-vue-components/d-banner';
-import Navbar from '@/components/base/Navbar.vue';
+import DBanner from '@/components/base/DBanner';
+import Navbar from '@/components/base/Navbar';
 
 export default {
   components: { Navbar, DBanner },

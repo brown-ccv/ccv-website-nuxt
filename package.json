@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@brown-ccv/disco-styles": "^2.2.2",
-    "@brown-ccv/disco-vue-components": "^1.2.3",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",

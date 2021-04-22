@@ -167,10 +167,10 @@
 </template>
 
 <script>
-import DFooter from '@/components/disco-vue-components/d-footer';
-import DIcon from '@/components/disco-vue-components/d-icon';
-import CCVLogo from '@/components/disco-vue-components/logos/CCVLogo';
-import BrownLogo from '@/components/disco-vue-components/logos/BrownLogo';
+import DFooter from '@/components/base/DFooter';
+import DIcon from '@/components/base/DIcon';
+import CCVLogo from '@/components/base/CCVLogo';
+import BrownLogo from '@/components/base/BrownLogo';
 
 export default {
   components: {
