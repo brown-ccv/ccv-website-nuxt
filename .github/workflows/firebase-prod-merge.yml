@@ -40,5 +40,5 @@ jobs:
         run: npm run prod-deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      - name: Remove content from functions (duplicate git submodule confuses gh)
+      - name: Remove content folder (extra git module instance confuses gh)
         run: rm -rf functions/content
