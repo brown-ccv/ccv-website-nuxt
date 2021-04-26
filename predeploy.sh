@@ -1,6 +1,5 @@
 #!/bin/sh
 
-<<<<<<< HEAD
 # === clean up old state ===
 
 # client
