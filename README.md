@@ -9,7 +9,6 @@
 $ npm config set "@fortawesome:registry" https://npm.fontawesome.com/
 $ npm config set "//npm.fontawesome.com/:_authToken" <TOKEN>
 $ npm install
-$ npm run fn-install
 
 # update the content
 git submodule update --init
@@ -24,6 +23,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Testing build set up
 
 ```
+npm run fn-install
 npm run generate
 npm run build
 npm run predeploy
