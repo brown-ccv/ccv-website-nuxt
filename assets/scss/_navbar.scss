@@ -1,0 +1,8 @@
+.d-nav-brand {
+  @extend .pr-3;
+}
+.navbar-burger {
+  @include mobile {
+      align-self: center;
+  }
+}
