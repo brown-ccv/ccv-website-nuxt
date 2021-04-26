@@ -111,6 +111,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    extractCSS: true,
     hotMiddleware: {
       client: {
         // turn off client overlay when errors are present

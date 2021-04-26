@@ -30,7 +30,6 @@ jobs:
           echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONTAWESOME_TOKEN }}" >> functions/.npmrc
       - name: Build
         run: |
-          npm run generate
           npm run build
           npm run predeploy
       - name: Deploy to Firebase

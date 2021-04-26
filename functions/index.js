@@ -15,7 +15,20 @@ async function handleRequest(req, res) {
     }
     console.log(req.path);
     res.set('Cache-Control', 'public, max-age=3600, s-maxage=7200');
-    await nuxt.render(req, res);
+    await nuxt.server.app.handle(req, res, (out) => console.log(out));
+    // const pathParts = req.path.split('/');
+    // console.log(pathParts);
+    // if (pathParts.length > 1 && pathParts[1] === '_content' && req.method === 'POST') {
+    //   // req.method = 'GET'
+    //   // req.query = { ...req.body }
+    //   // let params = req.body;
+    //   // req.query
+    //   // req.params = req.body
+    //   console.log(req.method);
+    //   await contentHandler.handle(req, res);
+    // } else {
+    //   await nuxt.server.app.handle(req, res, (out) => console.log(out));
+    // }
   } catch (error) {
     console.log(error);
     process.exit(1);
