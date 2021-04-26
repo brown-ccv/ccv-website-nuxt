@@ -3,7 +3,6 @@ export default {
   /*
    ** Headers of the page
    */
-  components: true,
   devtools: true,
   vue: {
     config: {
