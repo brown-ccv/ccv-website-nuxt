@@ -6,7 +6,7 @@
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
-    "serve": "firebase serve --only functions,hosting",
+    "serve": "firebase use qa && firebase serve --only functions,hosting",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "commit": "git-cz",
@@ -14,6 +14,7 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "test": "jest",
+    "fn-install": "cp .npmrc functions/.npmrc && cd functions && npm ci",
     "predeploy": "rm -rf functions/.nuxt/* && cp -r .nuxt functions && cp nuxt.config.js functions",
     "prod-deploy": "firebase deploy -P prod",
     "qa-deploy": "firebase deploy -P qa"
