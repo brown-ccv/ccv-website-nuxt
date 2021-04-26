@@ -2,3 +2,4 @@ node_modules/
 .nuxt
 nuxt.config.js
 .npmrc
+content
