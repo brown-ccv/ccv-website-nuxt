@@ -9,7 +9,7 @@
     <main class="content-wrapper">
       <!-- General markdown content pages -->
       <nuxt-content
-        v-if="item.extension === '.md'"
+        v-if="data.extension === '.md'"
         :document="data"
         class="content content-section"
       />

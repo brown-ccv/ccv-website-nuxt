@@ -15,13 +15,26 @@ git submodule update --init
 
 # serve with hot reload at localhost:3000
 $ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+## Testing build set up
+
+```
+npm run fn-install
+npm run generate
+npm run build
+npm run predeploy
+npm run serve
+```
+
+Main guide used :
+* https://github.com/benmayer/nuxt-ssr-firebase-template
+With it's corresponding post
+* https://ben-mayer.com/blog/building-a-web-app-using-nuxtjs-and-firebase
+
+Other useful
+* https://stackoverflow.com/questions/61060666/how-to-deploy-nuxt-ssr-app-to-firebase-through-cloud-functions
+* https://dev.to/slushnys/how-to-host-nuxt-js-application-on-firebase-with-a-single-command-1nio

@@ -31,16 +31,10 @@ export default {
     middleware: ['status-redirect']
   },
   /*
-   ** Tell Nuxt to render these routes on the server side?
+   ** These routes won't be static
    */
   generate: {
-    routes: [
-      '/about/people',
-      '/about/opportunities',
-      '/services',
-      '/our-work/workshops',
-      '/test'
-    ]
+    exclude: ['/']
   },
   /*
    ** Customize the progress-bar color
@@ -86,12 +80,8 @@ export default {
     '@nuxt/content',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
     'nuxt-svg-loader',
-    '@nuxtjs/markdownit',
-    // Or if you have custom options...
-    ['vue-scrollto/nuxt', { duration: 800 }]
+    '@nuxtjs/markdownit'
   ],
   markdownit: {
     injected: true
@@ -110,6 +100,10 @@ export default {
       }
     }
   },
+  content: {
+    dir: 'content'
+  },
+  buildDir: '.nuxt',
   /*
    ** Build configuration
    */
