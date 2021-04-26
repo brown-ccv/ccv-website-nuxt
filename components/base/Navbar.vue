@@ -169,16 +169,19 @@
               href="https://docs.ccv.brown.edu"
               class="d-button is-white has-text-link"
               aria-label="CCV Services' Documentation"
-              >Documentation<fa class="ml-1" :icon="['fal', 'external-link']"
-            /></a>
+              >Documentation
+              <span class="icon">
+                <i class="ml-1 fas fa-external-link-alt" />
+              </span>
+            </a>
           </li>
           <li class="navbar-item">
             <a
               href="https://medium.com/brown-ccv"
               class="d-button is-white has-text-link"
               aria-label="CCV's Medium Blog"
-              >Blog<fa class="ml-1" :icon="['fab', 'medium']"
-            /></a>
+              >Blog<span class="icon"> <i class="ml-1 fab fa-medium" /> </span
+            ></a>
           </li>
           <li class="navbar-item">
             <DButton variant="white" name="search" />

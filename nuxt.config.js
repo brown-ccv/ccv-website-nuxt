@@ -21,7 +21,16 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
+        integrity:
+          'sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ',
+        crossorigin: 'anonymous'
+      }
+    ]
   },
   /*
    ** Router Config
@@ -54,23 +63,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
-    [
-      '@nuxtjs/fontawesome',
-      {
-        component: 'fa',
-        icons: {
-          brands: true,
-          solid: true
-        },
-        proIcons: {
-          light: true,
-          solid: true,
-          regular: true,
-          duotone: true
-        }
-      }
-    ]
+    '@nuxtjs/stylelint-module'
   ],
   /*
    ** Nuxt.js modules

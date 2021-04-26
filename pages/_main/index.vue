@@ -14,7 +14,9 @@
           :to="index['call-for-action'].href"
         >
           {{ index['call-for-action'].text.toUpperCase() }}
-          <fa :icon="['fas', 'caret-right']" class="ml-2" />
+          <span class="icon ml-2">
+            <i class="fas fa-caret-right" />
+          </span>
         </nuxt-link>
       </template>
     </DHero>

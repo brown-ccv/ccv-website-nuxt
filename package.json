@@ -29,16 +29,8 @@
     "nuxt": "2.15.4"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/pro-duotone-svg-icons": "^5.15.1",
-    "@fortawesome/pro-light-svg-icons": "^5.15.1",
-    "@fortawesome/pro-regular-svg-icons": "^5.15.1",
-    "@fortawesome/pro-solid-svg-icons": "^5.15.1",
-    "@fortawesome/vue-fontawesome": "2",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/stylelint-module": "^3.1.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.1.0",

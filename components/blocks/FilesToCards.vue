@@ -11,13 +11,13 @@
       >
         <template #header>
           <div class="px-5">
-            <fa
-              v-if="item.fa"
-              size="3x"
-              :icon="[item.fa.prefix, item.fa.icon]"
+            <span
+              class="icon is-size-1 has-text-success mb-5"
               :aria-label="'icon of' + item.fa.icon"
-              class="has-text-success mb-5"
-            />
+            >
+              <i :class="[item.fa.prefix, `fa-${item.fa.icon}`]" />
+            </span>
+
             <h2 class="title has-text-black">
               {{ item.title }}
             </h2>
@@ -34,7 +34,9 @@
             :href="link.target"
           >
             {{ link.text.toUpperCase() }}
-            <fa :icon="['fas', 'caret-right']" class="ml-2" />
+            <span class="icon ml-2">
+              <i class="fas fa-caret-right" />
+            </span>
           </a>
         </template>
       </DCard>

@@ -34,63 +34,47 @@
             >
               <div v-if="feat.name === cat" class="class-item">
                 <span v-if="feat.class === 'fast'" class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fas', 'tachometer-average']"
-                    class="has-text-warning"
-                  />{{ feat.class }}</span
+                  ><span class="icon is-size-3 has-text-warning"
+                    ><i class="fas fa-tachometer-alt"/></span
+                  >{{ feat.class }}</span
                 >
                 <span
                   v-else-if="feat.class === 'faster'"
                   class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fas', 'tachometer-fast']"
-                    class="has-text-link"
-                  />{{ feat.class }}</span
+                  ><span class="icon is-size-3 has-text-link"
+                    ><i class="fas fa-tachometer-alt"/></span
+                  >{{ feat.class }}</span
                 >
                 <span
                   v-else-if="feat.class === 'fastest'"
                   class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fas', 'tachometer-fastest']"
-                    class="has-text-success"
-                  />{{ feat.class }}</span
+                  ><span class="icon is-size-3 has-text-success"
+                    ><i class="fas fa-tachometer-alt"/></span
+                  >{{ feat.class }}</span
                 >
                 <span v-else-if="feat.class === true" class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fal', 'check']"
-                    class="has-text-success"
-                  />Yes</span
+                  ><span class="icon is-size-3 has-text-success"
+                    ><i class="fas fa-check"/></span
+                  >Yes</span
                 >
                 <span
                   v-else-if="feat.class === 'partial'"
                   class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fal', 'check']"
-                    class="has-text-success"
-                  />{{ feat.class }}</span
+                  ><span class="icon is-size-3 has-text-success"
+                    ><i class="fas fa-check"/></span
+                  >{{ feat.class }}</span
                 >
                 <span v-else-if="feat.class === false" class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fal', 'times']"
-                    class="has-text-danger"
-                  />No</span
+                  ><span class="icon is-size-3 has-text-danger"
+                    ><i class="fas fa-times"/></span
+                  >No</span
                 >
                 <span
                   v-else-if="[1, 2, 3].includes(feat.class)"
                   class="title class-item"
-                  ><fa
-                    size="2x"
-                    :icon="['fas', 'shield']"
-                    :class="[
-                      feat.class === 2 ? 'has-text-warning' : 'has-text-danger'
-                    ]"
-                  />{{ feat.class }}</span
+                  ><span class="icon is-size-3 has-text-warning"
+                    ><i class="fas fa-shield-alt"/></span
+                  >{{ feat.class }}</span
                 >
                 <span v-else class="title">{{ feat.class }}</span>
                 <ul>
