@@ -87,7 +87,9 @@
 </template>
 
 <script>
-import { DHero, DButton, DIcon } from '@brown-ccv/disco-vue-components';
+import DHero from '@/components/base/DHero';
+import DButton from '@/components/base/DButton';
+import DIcon from '@/components/base/DIcon';
 
 export default {
   components: {

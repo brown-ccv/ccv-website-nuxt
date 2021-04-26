@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import { DHero, DButton } from '@brown-ccv/disco-vue-components';
+import DButton from '@/components/base/DButton';
+import DHero from '@/components/base/DHero';
 
 export default {
   components: { DHero, DButton }

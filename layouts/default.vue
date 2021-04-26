@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import Footer from '@/components/blocks/Footer.vue';
-import PageHeader from '@/components/blocks/PageHeader.vue';
+import Footer from '@/components/base/Footer.vue';
+import PageHeader from '@/components/base/PageHeader.vue';
 
 export default {
   components: {

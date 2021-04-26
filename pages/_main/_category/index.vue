@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { DHero } from '@brown-ccv/disco-vue-components';
+import DHero from '@/components/base/DHero';
 import DirsToCardSections from '@/components/blocks/DirsToCardSections.vue';
 import FilesToSections from '@/components/blocks/FilesToSections.vue';
 

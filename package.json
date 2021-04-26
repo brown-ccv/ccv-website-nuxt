@@ -8,6 +8,7 @@
     "build": "nuxt build",
     "serve": "firebase serve --only functions,hosting",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "commit": "git-cz",
     "dev": "nuxt",
     "generate": "nuxt generate",
@@ -19,7 +20,6 @@
   },
   "dependencies": {
     "@brown-ccv/disco-styles": "^2.2.2",
-    "@brown-ccv/disco-vue-components": "1.4.3",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/markdownit": "^1.2.10",
