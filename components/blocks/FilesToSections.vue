@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { DTOC } from '@brown-ccv/disco-vue-components';
+import DTOC from '@/components/base/DTableOfContents';
 
 export default {
   components: {

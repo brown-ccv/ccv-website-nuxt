@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { DCard } from '@brown-ccv/disco-vue-components';
+import DCard from '@/components/base/DCard';
 
 export default {
   components: {
