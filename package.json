@@ -49,6 +49,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
     "firebase-tools": "^9.10.0",
     "git-cz": "^4.3.1",
     "husky": "^4.0.0",
