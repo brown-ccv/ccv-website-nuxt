@@ -10,9 +10,9 @@ export const state = () => ({
 });
 
 export const actions = {
-  //   async nuxtServerInit({ commit }, { $content }) {
-  //     const data = await $content('home', 'banners').fetch();
-  //     // TODO: mutate status too!
-  //     await commit('mutate', { property: 'banners', with: data });
-  //   }
+  async nuxtServerInit({ commit }, { $content }) {
+    const data = await $content('home', 'banners').fetch();
+    // TODO: mutate status too!
+    await commit('mutate', { property: 'banners', with: data });
+  }
 };
