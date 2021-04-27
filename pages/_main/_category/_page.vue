@@ -34,13 +34,9 @@ export default {
     }
   },
   async asyncData({ $content, params }) {
-    console.log(`pages/_main/_category/_page.vue: ${params}`);
-    const data = await $content(
-      `${params.main}/${params.category}/${params.page}`,
-      params.slug
-    )
-      // .where({ slug: { $ne: 'index' } })
-      // .sortBy('title', 'desc')
+    const data = await $content(params.main, params.category, params.page)
+      .where({ slug: { $ne: 'index' } })
+      .sortBy('title', 'desc')
       .fetch();
 
     return {

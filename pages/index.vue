@@ -14,6 +14,10 @@
         />
       </template>
     </DHero>
+    <client-only>
+      <p>{{ todo.id }}</p>
+      {{ todo }}
+    </client-only>
   </div>
 </template>
 
@@ -23,8 +27,20 @@ import DHero from '@/components/base/DHero';
 
 export default {
   components: { DHero, DButton },
-  asyncData({ params }) {
-    console.log(`pages/index.vue: ${params}`);
+  async fetch() {
+    // example to prove out the client-only rendering
+    const num = Math.floor(Math.random() * 10);
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${num}`
+    );
+    this.todo = await response.json();
+  },
+  data() {
+    return {
+      todo: {}
+    };
   }
+  // call fetch only on client-side
+  // fetchOnServer: false
 };
 </script>

@@ -2,22 +2,14 @@
 
 # === clean up old state ===
 
-# client
-# rm -rf dist
-
-# server
+# server-side
 rm -rf functions/content
 rm -rf functions/.nuxt/*
 rm -rf functions/server-middleware
 
 # === set up new state ===
 
-# client
-# mkdir dist
-# cp -r .nuxt/dist/client dist
-# cp -r static/* dist
-
-# server
+# server-side
 cp -r content functions/content
 cp -r server-middleware functions/server-middleware
 cp nuxt.config.js functions

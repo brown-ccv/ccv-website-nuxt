@@ -44,7 +44,6 @@ export default {
     // get the index files of content subdirectories directories
     // such as /our-work/software.
     // this provides title and subtitle for banners
-    console.log(`pages/_main/_category/index.vue: ${JSON.stringify(params)}`);
     const index = await $content(params.main, params.category, 'index').fetch();
 
     // get the content for all sub-directories {deep:true}

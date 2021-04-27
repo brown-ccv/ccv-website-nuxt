@@ -43,8 +43,7 @@ export default {
   async asyncData({ $content, params }) {
     // get the index files of top content directories.
     // this provides title and subtitle for banners
-    console.log(`pages/_main/index.vue: ${params}`);
-    const index = await $content(`${params.main}/index`).fetch();
+    const index = await $content(params.main, 'index').fetch();
 
     // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)

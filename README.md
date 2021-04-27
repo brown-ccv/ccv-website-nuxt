@@ -27,10 +27,8 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Testing build set up
 
 ```
-npm run fn-install
-npm run build
-npm run predeploy
-npm run serve
+npm run fn-install # if needed
+npm run local-deploy
 ```
 
 May need to set up github credentials with functions env:

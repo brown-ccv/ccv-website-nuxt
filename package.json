@@ -17,6 +17,7 @@
     "test": "jest",
     "fn-install": "cp .npmrc functions/.npmrc && cd functions && npm ci",
     "predeploy": "./predeploy.sh",
+    "local-deploy": "npm run generate && npm run build && npm run predeploy && npm run serve",
     "prod-deploy": "firebase deploy -P prod",
     "qa-deploy": "firebase deploy -P qa"
   },
@@ -49,8 +50,7 @@
     "node-sass": "^4.14.1",
     "nuxt-svg-loader": "^1.2.0",
     "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2",
-    "stylelint": "^13.12.0"
+    "sass-loader": "^8.0.2"
   },
   "husky": {
     "hooks": {
@@ -58,7 +58,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": "npm run lint",
-    "*.{css,vue}": "stylelint"
+    "*.{js,vue}": "npm run lint"
   }
 }

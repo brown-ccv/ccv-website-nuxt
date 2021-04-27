@@ -49,11 +49,7 @@
               </nuxt-link>
             </li>
             <li class="navbar-item">
-              <nuxt-link
-                to="/services/file-storage-and-transfer"
-                tabindex="0"
-                exact
-              >
+              <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
                 File Storage and Transfer
               </nuxt-link>
             </li>
