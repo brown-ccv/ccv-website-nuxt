@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <DBanner
+    <DBanner
       v-if="statusAll && statusAll.open_issues > 0"
       variant="danger"
       accent="warning"
@@ -31,21 +31,33 @@
           {{ banner.title }}
         </nuxt-link>
       </template>
-    </DBanner> -->
+    </DBanner>
     <Navbar />
   </div>
 </template>
 <script>
-// import DBanner from '@/components/base/DBanner';
+import DBanner from '@/components/base/DBanner';
 import Navbar from '@/components/base/Navbar';
 
 export default {
-  components: { Navbar }
-  //   computed: {
-  //     ...mapState(['banners', 'status']),
-  //     statusAll() {
-  //       return this.status.filter((a) => a.name === 'all')[0];
-  //     }
-  //   }
+  components: { Navbar, DBanner },
+  async fetch() {
+    this.banners = await this.$content('home', 'banners').fetch();
+    const res = await fetch('/_ghapi/status');
+    this.status = await res.json();
+  },
+  // call fetch only on client-side
+  fetchOnServer: false,
+  data() {
+    return {
+      banners: [],
+      status: []
+    };
+  },
+  computed: {
+    statusAll() {
+      return this.status.filter((a) => a.name === 'all')[0];
+    }
+  }
 };
 </script>

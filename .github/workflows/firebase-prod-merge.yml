@@ -25,12 +25,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-          npm config set "//npm.fontawesome.com/:_authToken" ${{ secrets.FONTAWESOME_TOKEN }}
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN_DISCO_MIR }}
           npm ci
           cp .npmrc functions/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
-          echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONTAWESOME_TOKEN }}" >> functions/.npmrc
       - name: Build
         run: |
           npm run generate
@@ -40,3 +38,5 @@ jobs:
         run: npm run prod-deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Remove content folder (extra git module instance confuses gh)
+        run: rm -rf functions/content

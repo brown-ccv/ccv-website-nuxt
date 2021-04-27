@@ -16,16 +16,15 @@
         type="button"
         @click="change(s.service)"
       >
-        <fa
-          v-if="selectedData.includes(s.service)"
-          :icon="['fas', 'check-square']"
-          size="3x"
-        />
-        <fa v-else :icon="['far', 'square']" size="3x" />
+        <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
+          ><i class="fas fa-check-square"
+        /></span>
+        <span v-else class="icon is-size-2"><i class="far fa-square"/></span>
       </button>
       <button class="button-nostyle service-label" @click="toggleShowModal(s)">
         <span
-          >{{ s.service | humanize }} <fa :icon="['far', 'info-circle']" />
+          >{{ s.service | humanize }}
+          <span class="icon"><i class="far fa-info-circle"/></span>
         </span>
       </button>
     </div>

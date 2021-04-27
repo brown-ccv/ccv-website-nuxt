@@ -2,7 +2,7 @@
 
 > CCV Website Experimental in Nuxt.js
 
-## Build Setup
+## Dev Setup
 
 ```bash
 # install dependencies
@@ -17,6 +17,12 @@ git submodule update --init
 $ npm run dev
 ```
 
+Add a .env file with the below keys (token needs read access to ccv-status repo) for the status banner to work (will gracefully degrade in dev mode if not available):
+```
+GITHUB_USER=
+GITHUB_TOKEN=
+```
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 
@@ -24,10 +30,14 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ```
 npm run fn-install
-npm run generate
 npm run build
 npm run predeploy
 npm run serve
+```
+
+May need to set up github credentials with functions env:
+```
+firebase functions:config:set gh.token="THE API KEY" gh.user="THE CLIENT ID"
 ```
 
 Main guide used :

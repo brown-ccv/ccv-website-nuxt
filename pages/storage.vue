@@ -17,7 +17,7 @@
         >
           <template v-slot:icon-right>
             <span class="icon">
-              <DIcon class="small-icon" name="redo" family="light" />
+              <i class="far fa-redo-alt" />
             </span>
           </template>
         </DButton>
@@ -30,7 +30,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <DIcon class="small-icon" name="arrow-down" family="light" />
+            <i class="far fa-arrow-down" />
           </span>
         </a>
 
@@ -43,7 +43,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <DIcon class="small-icon" name="arrow-down" family="light" />
+            <i class="far fa-arrow-down" />
           </span>
         </a>
       </span>
@@ -73,11 +73,9 @@
       :categories="categories"
     />
     <div v-else class="storage-section py-6 mx-6 my-6 has-background-light">
-      <fa
-        :icon="['fas', 'exclamation-triangle']"
-        size="3x"
-        class="has-text-warning"
-      />
+      <span class="icon is-size-2 has-text-warning">
+        <i class="fas fa-exclamation-triangle" />
+      </span>
       <p class="title py-6 px-6">
         No services selected, answer some of the questions or select a service
         above.
@@ -89,13 +87,11 @@
 <script>
 import DHero from '@/components/base/DHero';
 import DButton from '@/components/base/DButton';
-import DIcon from '@/components/base/DIcon';
 
 export default {
   components: {
     DHero,
-    DButton,
-    DIcon
+    DButton
   },
   filters: {
     humanize(str) {

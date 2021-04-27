@@ -10,9 +10,8 @@
       >
         <template #header>
           <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-            ><fa :icon="['fal', 'users']" class="mr-2" /><abbr
-              :title="item.group | expandAcronym"
-            >
+            ><span class="icon"><i class="fas fa-users"/></span
+            ><abbr :title="item.group | expandAcronym">
               {{ item.group }}
             </abbr></span
           >
@@ -32,43 +31,40 @@
               class="link-item d-button has-text-link"
               :href="item.links.repository"
               ><span
-                >REPOSITORY<fa
-                  class="ml-2"
-                  :icon="['fal', 'code-merge']"/></span
+                >REPOSITORY<span class="icon ml-2"
+                  ><i class="fas fa-code"/></span></span
             ></a>
             <a
               v-if="item.links.website"
               class="link-item d-button has-text-link"
               :href="item.links.website"
               ><span
-                >WEBSITE<fa
-                  class="ml-2"
-                  :icon="['fal', 'external-link']"/></span
+                >WEBSITE<span class="icon ml-2"
+                  ><i class="fas fa-external-link-alt"/></span></span
             ></a>
             <a
               v-if="item.links.documentation"
               class="link-item d-button has-text-link"
               :href="item.links.documentation"
               ><span
-                >DOCUMENTATION<fa class="ml-2" :icon="['fal', 'book']"/></span
+                >DOCUMENTATION<span class="icon ml-2"
+                  ><i class="fas fa-book"/></span></span
             ></a>
             <a
               v-if="item.links.publication"
               class="link-item d-button has-text-link"
               :href="item.links.publication"
               ><span
-                >PUBLICATION<fa
-                  class="ml-2"
-                  :icon="['fal', 'newspaper']"/></span
+                >PUBLICATION<span class="icon ml-2"
+                  ><i class="fas fa-newspaper"/></span></span
             ></a>
             <a
               v-if="item.links.doi"
               class="link-item d-button has-text-link"
               :href="'https://' + item.links.doi"
               ><span
-                >PUBLICATION<fa
-                  class="ml-2"
-                  :icon="['fal', 'newspaper']"/></span
+                >PUBLICATION<span class="icon ml-2"
+                  ><i class="fas fa-newspaper"/></span></span
             ></a>
           </div>
         </template>

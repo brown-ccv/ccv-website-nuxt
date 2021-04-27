@@ -12,14 +12,16 @@
       >
         <template v-slot:icon-right>
           <span class="icon">
-            <DIcon class="small-icon" name="redo" family="light" />
+            <i class="far fa-redo-alt" />
           </span>
         </template>
       </DButton>
     </span>
     <details class="question-details mb-4">
       <summary>
-        <fa class="info-icon" :icon="['fas', 'info-circle']" />
+        <span class="icon">
+          <i class="fas fa-info-circle info-icon" />
+        </span>
       </summary>
       <p v-html="$md.render(data.information || '')"></p>
     </details>
@@ -48,12 +50,10 @@
 
 <script>
 import DButton from '@/components/base/DButton';
-import DIcon from '@/components/base/DIcon';
 
 export default {
   components: {
-    DButton,
-    DIcon
+    DButton
   },
   props: {
     data: {

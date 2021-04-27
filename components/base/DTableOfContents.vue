@@ -12,11 +12,11 @@
           :class="[textColor]"
           tabindex="0"
         >
-          <d-icon
-            class="d-toc-icon"
-            :name="entry.icon.name"
-            :family="entry.icon.family"
-          ></d-icon>
+          <span v-if="entry.fa" class="icon">
+            <i
+              :class="['d-toc-icon', entry.fa.prefix, `fa-${entry.fa.icon}`]"
+            />
+          </span>
           <span class="d-toc-start">
             {{ entry['name'] }}
           </span>
@@ -28,13 +28,9 @@
 </template>
 
 <script>
-import DIcon from '@/components/base/DIcon';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
-  components: {
-    'd-icon': DIcon
-  },
   mixins: [discoBaseMixin],
   props: {
     data: {
