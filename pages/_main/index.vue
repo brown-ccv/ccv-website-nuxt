@@ -31,8 +31,6 @@
 
 <script>
 import DHero from '@/components/base/DHero';
-// import FilesToCards from '@/components/blocks/FilesToCards.vue';
-// import About from '@/components/blocks/About.vue';
 
 export default {
   components: {

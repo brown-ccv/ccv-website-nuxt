@@ -38,7 +38,6 @@
   </div>
 </template>
 <script>
-// import DBanner from '@/components/base/DBanner';
 import Navbar from '@/components/base/Navbar';
 
 export default {
