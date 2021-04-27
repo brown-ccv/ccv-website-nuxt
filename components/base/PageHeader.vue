@@ -36,15 +36,21 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
-
 import DBanner from '@/components/base/DBanner';
 import Navbar from '@/components/base/Navbar';
 
 export default {
   components: { Navbar, DBanner },
+  async fetch() {
+    this.banners = await this.$content('home', 'banners').fetch();
+  },
+  data() {
+    return {
+      banners: [],
+      status: []
+    };
+  },
   computed: {
-    ...mapState(['banners', 'status']),
     statusAll() {
       return this.status.filter((a) => a.name === 'all')[0];
     }
