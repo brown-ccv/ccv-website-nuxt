@@ -43,7 +43,11 @@ export default {
   components: { Navbar, DBanner },
   async fetch() {
     this.banners = await this.$content('home', 'banners').fetch();
+    const res = await fetch('/_ghapi/status');
+    this.status = await res.json();
   },
+  // call fetch only on client-side
+  fetchOnServer: false,
   data() {
     return {
       banners: [],

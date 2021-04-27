@@ -83,13 +83,11 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:3001',
-    headers: {
-      common: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'localhost'
-      }
+    baseURL: 'http://localhost:3000'
+  },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
     }
   },
   content: {
@@ -113,5 +111,9 @@ export default {
     extend(config, { isDev, isClient }) {
       config.resolve.alias.vue = 'vue/dist/vue.common';
     }
-  }
+  },
+  serverMiddleware: [
+    '~/server-middleware/gh-api.js'
+    // { path: '/_ghapi/status', handler: '~/server-middleware/gh-api.js' }
+  ]
 };
