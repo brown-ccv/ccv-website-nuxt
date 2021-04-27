@@ -39,8 +39,8 @@ export default {
     return {
       todo: {}
     };
-  }
+  },
   // call fetch only on client-side
-  // fetchOnServer: false
+  fetchOnServer: false
 };
 </script>
