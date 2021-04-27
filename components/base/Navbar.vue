@@ -18,7 +18,7 @@
         aria-label="menu"
         :aria-expanded="expanded"
         data-target="navbar-main"
-        @click="expand"
+        @click="expanded = !expanded"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -29,164 +29,161 @@
     <div
       id="navbar-main"
       class="navbar-menu"
+      @click="expanded = !expanded"
       :class="{ 'is-active': expanded }"
     >
       <ul class="navbar-start" data-testid="navbar-start">
-        <template>
-          <li class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link
-              class="navbar-link"
-              :to="{
-                name: 'main',
-                params: {
-                  main: 'services'
-                }
-              }"
-            >
-              Services
-            </nuxt-link>
-            <ul class="navbar-dropdown">
-              <li class="navbar-item">
-                <a href="/services/classroom" tabindex="0">
-                  Classroom
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="/services/computing" tabindex="0">
-                  Computing
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="/services/file-storage-and-transfer" tabindex="0">
-                  File Storage and Transfer
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="/services/visualization" tabindex="0">
-                  Visualization Systems
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a
-                  href="/services/consulting/advanced-research-computing"
-                  tabindex="0"
-                >
-                  Consulting
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link
-              class="navbar-link"
-              :to="{
-                name: 'main',
-                params: {
-                  main: 'our-work'
-                }
-              }"
-            >
-              Our Work
-            </nuxt-link>
-            <ul class="navbar-dropdown">
-              <li class="navbar-item">
-                <a href="/our-work/workshops" tabindex="0">
-                  Workshops
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="/our-work/software" tabindex="0">
-                  Software
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="https://publications.ccv.brown.edu" tabindex="0">
-                  Publications
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="/our-work/talks" tabindex="0">
-                  Talks and Conferences
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-            <nuxt-link
-              class="navbar-link"
-              :to="{
-                name: 'main',
-                params: {
-                  main: 'help'
-                }
-              }"
-            >
-              Help
-            </nuxt-link>
-            <ul class="navbar-dropdown">
-              <li class="navbar-item">
-                <a href="mailto:support@ccv.brown.edu" tabindex="0">
-                  Submit a Ticket
-                </a>
-              </li>
-              <li class="navbar-item">
-                <a href="https://docs.ccv.brown.edu" tabindex="0">
-                  Documentation
-                </a>
-              </li>
-              <li class="navbar-item">
-                <nuxt-link
-                  :to="{
-                    name: 'main',
-                    params: {
-                      main: 'help'
-                    }
-                  }"
-                >
-                  More Help Options
-                </nuxt-link>
-              </li>
-            </ul>
-          </li>
-          <li class="navbar-item">
-            <nuxt-link
-              :to="{
-                name: 'main',
-                params: {
-                  main: 'about'
-                }
-              }"
-            >
-              About
-            </nuxt-link>
-          </li>
-        </template>
+        <li class="navbar-item has-dropdown is-hoverable">
+          <nuxt-link
+            class="navbar-link"
+            :to="{
+              name: 'main',
+              params: {
+                main: 'services'
+              }
+            }"
+          >
+            Services
+          </nuxt-link>
+          <ul class="navbar-dropdown">
+            <li class="navbar-item">
+              <nuxt-link to="/services/classroom" tabindex="0">
+                Classroom
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link to="/services/computing" tabindex="0">
+                Computing
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
+                File Storage and Transfer
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link to="/services/visualization" tabindex="0">
+                Visualization Systems
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link
+                to="/services/consulting/advanced-research-computing"
+                tabindex="0"
+              >
+                Consulting
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
+        <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+          <nuxt-link
+            class="navbar-link"
+            :to="{
+              name: 'main',
+              params: {
+                main: 'our-work'
+              }
+            }"
+          >
+            Our Work
+          </nuxt-link>
+          <ul class="navbar-dropdown">
+            <li class="navbar-item">
+              <nuxt-link to="/our-work/workshops" tabindex="0">
+                Workshops
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link to="/our-work/software" tabindex="0">
+                Software
+              </nuxt-link>
+            </li>
+            <li class="navbar-item">
+              <a href="https://publications.ccv.brown.edu" tabindex="0">
+                Publications
+              </a>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link to="/our-work/talks" tabindex="0">
+                Talks and Conferences
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
+        <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+          <nuxt-link
+            class="navbar-link"
+            :to="{
+              name: 'main',
+              params: {
+                main: 'help'
+              }
+            }"
+          >
+            Help
+          </nuxt-link>
+          <ul class="navbar-dropdown">
+            <li class="navbar-item">
+              <a href="mailto:support@ccv.brown.edu" tabindex="0">
+                Submit a Ticket
+              </a>
+            </li>
+            <li class="navbar-item">
+              <a href="https://docs.ccv.brown.edu" tabindex="0">
+                Documentation
+              </a>
+            </li>
+            <li class="navbar-item">
+              <nuxt-link
+                :to="{
+                  name: 'main',
+                  params: {
+                    main: 'help'
+                  }
+                }"
+              >
+                More Help Options
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
+        <li class="navbar-item">
+          <nuxt-link
+            :to="{
+              name: 'main',
+              params: {
+                main: 'about'
+              }
+            }"
+          >
+            About
+          </nuxt-link>
+        </li>
       </ul>
       <ul class="navbar-end" data-testid="navbar-end">
-        <template>
-          <li class="navbar-item">
-            <a
-              href="https://docs.ccv.brown.edu"
-              class="d-button is-white has-text-link"
-              aria-label="CCV Services' Documentation"
-              >Documentation
-              <span class="icon">
-                <i class="ml-1 fas fa-external-link-alt" />
-              </span>
-            </a>
-          </li>
-          <li class="navbar-item">
-            <a
-              href="https://medium.com/brown-ccv"
-              class="d-button is-white has-text-link"
-              aria-label="CCV's Medium Blog"
-              >Blog<span class="icon"> <i class="ml-1 fab fa-medium" /> </span
-            ></a>
-          </li>
-          <li class="navbar-item">
-            <DButton variant="white" name="search" />
-          </li>
-        </template>
+        <li class="navbar-item">
+          <a
+            href="https://docs.ccv.brown.edu"
+            class="d-button is-white has-text-link"
+            aria-label="CCV Services' Documentation"
+            >Documentation
+            <span class="icon">
+              <i class="ml-1 fas fa-external-link-alt" />
+            </span>
+          </a>
+        </li>
+        <li class="navbar-item">
+          <a
+            href="https://medium.com/brown-ccv"
+            class="d-button is-white has-text-link"
+            aria-label="CCV's Medium Blog"
+            >Blog<span class="icon"> <i class="ml-1 fab fa-medium" /> </span
+          ></a>
+        </li>
+        <li class="navbar-item">
+          <DButton variant="white" name="search" />
+        </li>
       </ul>
     </div>
   </nav>
@@ -209,11 +206,6 @@ export default {
     return {
       expanded: false
     };
-  },
-  methods: {
-    expand() {
-      this.expanded = !this.expanded;
-    }
   }
 };
 </script>

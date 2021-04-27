@@ -71,24 +71,11 @@ export default {
   modules: [
     '@nuxt/content',
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     'nuxt-svg-loader',
     '@nuxtjs/markdownit'
   ],
   markdownit: {
     injected: true
-  },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {
-    baseURL: 'http://localhost:3000'
-  },
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL
-    }
   },
   content: {
     dir: 'content'
@@ -113,7 +100,7 @@ export default {
     }
   },
   serverMiddleware: [
-    '~/server-middleware/gh-api.js'
-    // { path: '/_ghapi/status', handler: '~/server-middleware/gh-api.js' }
+    // '~/server-middleware/gh-api.js'
+    { path: '/_ghapi', handler: '~/server-middleware/gh-api.js' }
   ]
 };
