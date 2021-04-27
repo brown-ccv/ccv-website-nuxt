@@ -16,7 +16,6 @@ async function handleRequest(req, res) {
     if (!isReady) {
       nuxt = await nuxt;
       isReady = true;
-      // console.log(nuxt.server.app.stack);
     }
     console.log(req.path);
     res.set('Cache-Control', 'public, max-age=3600, s-maxage=7200');
