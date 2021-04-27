@@ -5,6 +5,8 @@ process.env.DEBUG = 'nuxt:*';
 process.env.GITHUB_USER = functions.config().gh.user;
 process.env.GITHUB_TOKEN = functions.config().gh.token;
 
+console.log(process.env.GITHUB_USER);
+
 let isReady = false;
 
 let nuxt = loadNuxt('start');
