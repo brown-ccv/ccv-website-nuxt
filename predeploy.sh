@@ -3,7 +3,7 @@
 # === clean up old state ===
 
 # client
-rm -rf dist
+# rm -rf dist
 
 # server
 rm -rf functions/content
@@ -13,9 +13,9 @@ rm -rf functions/server-middleware
 # === set up new state ===
 
 # client
-mkdir dist
-cp -r .nuxt/dist/client dist
-cp -r static/* dist
+# mkdir dist
+# cp -r .nuxt/dist/client dist
+# cp -r static/* dist
 
 # server
 cp -r content functions/content

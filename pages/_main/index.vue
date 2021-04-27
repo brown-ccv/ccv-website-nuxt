@@ -31,18 +31,19 @@
 
 <script>
 import DHero from '@/components/base/DHero';
-import FilesToCards from '@/components/blocks/FilesToCards.vue';
-import About from '@/components/blocks/About.vue';
+// import FilesToCards from '@/components/blocks/FilesToCards.vue';
+// import About from '@/components/blocks/About.vue';
 
 export default {
   components: {
     DHero,
-    FilesToCards,
-    About
+    FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
+    About: () => import('@/components/blocks/About.vue')
   },
   async asyncData({ $content, params }) {
     // get the index files of top content directories.
     // this provides title and subtitle for banners
+    console.log(`pages/_main/index.vue: ${params}`);
     const index = await $content(`${params.main}/index`).fetch();
 
     // get the content for directories that are only one level deep
@@ -66,20 +67,6 @@ export default {
       list
     };
   }
-
-  //   This is the status banner
-  //   head() {
-  //     return {
-  //       title: this.index.title, // gets appended to templateTitle from default layout title
-  //       meta: [
-  //         {
-  //           hid: 'description', // important to override template description tag
-  //           name: 'description',
-  //           content: this.index.description
-  //         }
-  //       ]
-  //     };
-  //   }
 };
 </script>
 

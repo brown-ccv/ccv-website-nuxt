@@ -28,6 +28,7 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
       - name: Build
         run: |
+          npm run generate
           npm run build
           npm run predeploy
       - name: Deploy to Firebase

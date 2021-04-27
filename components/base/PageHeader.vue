@@ -1,46 +1,51 @@
 <template>
   <div>
-    <DBanner
-      v-if="statusAll && statusAll.open_issues > 0"
-      variant="danger"
-      accent="warning"
-      :text="'Service Disruption: ' + statusAll.disrrupted.join(', ')"
-    >
-      <template #badge>
-        <a href="https://status.ccv.brown.edu">CCV Status</a>
-      </template>
-    </DBanner>
-    <DBanner
-      v-for="(banner, i) in banners"
-      :key="'banner' + i"
-      :text="banner.tagDescription"
-      variant="dark"
-      accent="primary"
-    >
-      <template #badge>
-        <nuxt-link
-          :to="{
-            name: 'main-category-page',
-            params: {
-              main: 'home',
-              category: 'banners',
-              page: banner.title.toLowerCase()
-            }
-          }"
-        >
-          {{ banner.title }}
-        </nuxt-link>
-      </template>
-    </DBanner>
+    <client-only>
+      <DBanner
+        v-if="statusAll && statusAll.open_issues > 0"
+        variant="danger"
+        accent="warning"
+        :text="'Service Disruption: ' + statusAll.disrrupted.join(', ')"
+      >
+        <template #badge>
+          <a href="https://status.ccv.brown.edu">CCV Status</a>
+        </template>
+      </DBanner>
+      <DBanner
+        v-for="(banner, i) in banners"
+        :key="'banner' + i"
+        :text="banner.tagDescription"
+        variant="dark"
+        accent="primary"
+      >
+        <template #badge>
+          <nuxt-link
+            :to="{
+              name: 'main-category-page',
+              params: {
+                main: 'home',
+                category: 'banners',
+                page: banner.title.toLowerCase()
+              }
+            }"
+          >
+            {{ banner.title }}
+          </nuxt-link>
+        </template>
+      </DBanner>
+    </client-only>
     <Navbar />
   </div>
 </template>
 <script>
-import DBanner from '@/components/base/DBanner';
+// import DBanner from '@/components/base/DBanner';
 import Navbar from '@/components/base/Navbar';
 
 export default {
-  components: { Navbar, DBanner },
+  components: {
+    Navbar,
+    DBanner: () => import('@/components/base/DBanner')
+  },
   async fetch() {
     this.banners = await this.$content('home', 'banners').fetch();
     const res = await fetch('/_ghapi/status');

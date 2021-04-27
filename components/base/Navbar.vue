@@ -29,20 +29,12 @@
     <div
       id="navbar-main"
       class="navbar-menu"
-      @click="expanded = !expanded"
       :class="{ 'is-active': expanded }"
+      @click="expanded = !expanded"
     >
       <ul class="navbar-start" data-testid="navbar-start">
         <li class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link
-            class="navbar-link"
-            :to="{
-              name: 'main',
-              params: {
-                main: 'services'
-              }
-            }"
-          >
+          <nuxt-link class="navbar-link" to="/services">
             Services
           </nuxt-link>
           <ul class="navbar-dropdown">
@@ -57,7 +49,11 @@
               </nuxt-link>
             </li>
             <li class="navbar-item">
-              <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
+              <nuxt-link
+                to="/services/file-storage-and-transfer"
+                tabindex="0"
+                exact
+              >
                 File Storage and Transfer
               </nuxt-link>
             </li>
@@ -77,15 +73,7 @@
           </ul>
         </li>
         <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link
-            class="navbar-link"
-            :to="{
-              name: 'main',
-              params: {
-                main: 'our-work'
-              }
-            }"
-          >
+          <nuxt-link class="navbar-link" to="/our-work">
             Our Work
           </nuxt-link>
           <ul class="navbar-dropdown">
@@ -112,15 +100,7 @@
           </ul>
         </li>
         <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link
-            class="navbar-link"
-            :to="{
-              name: 'main',
-              params: {
-                main: 'help'
-              }
-            }"
-          >
+          <nuxt-link class="navbar-link" to="/help">
             Help
           </nuxt-link>
           <ul class="navbar-dropdown">
@@ -135,28 +115,14 @@
               </a>
             </li>
             <li class="navbar-item">
-              <nuxt-link
-                :to="{
-                  name: 'main',
-                  params: {
-                    main: 'help'
-                  }
-                }"
-              >
+              <nuxt-link to="/help">
                 More Help Options
               </nuxt-link>
             </li>
           </ul>
         </li>
         <li class="navbar-item">
-          <nuxt-link
-            :to="{
-              name: 'main',
-              params: {
-                main: 'about'
-              }
-            }"
-          >
+          <nuxt-link to="/about">
             About
           </nuxt-link>
         </li>

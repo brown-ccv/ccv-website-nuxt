@@ -22,26 +22,9 @@ import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 
 export default {
-  components: { DHero, DButton }
-  //   async asyncData({ $content }) {
-  //     const index = await $content('home/index').fetch();
-
-  //     return {
-  //       index
-  //     };
-  //   }
-  //   Status banner
-  //   head() {
-  //     return {
-  //       title: this.index.title,
-  //       meta: [
-  //         {
-  //           hid: 'description',
-  //           name: 'description',
-  //           content: this.index.title
-  //         }
-  //       ]
-  //     };
-  //   }
+  components: { DHero, DButton },
+  asyncData({ params }) {
+    console.log(`pages/index.vue: ${params}`);
+  }
 };
 </script>
