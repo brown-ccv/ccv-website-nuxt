@@ -11,29 +11,29 @@
           <a href="https://status.ccv.brown.edu">CCV Status</a>
         </template>
       </DBanner>
-      <DBanner
-        v-for="(banner, i) in banners"
-        :key="'banner' + i"
-        :text="banner.tagDescription"
-        variant="dark"
-        accent="primary"
-      >
-        <template #badge>
-          <nuxt-link
-            :to="{
-              name: 'main-category-page',
-              params: {
-                main: 'home',
-                category: 'banners',
-                page: banner.title.toLowerCase()
-              }
-            }"
-          >
-            {{ banner.title }}
-          </nuxt-link>
-        </template>
-      </DBanner>
     </client-only>
+    <DBanner
+      v-for="(banner, i) in banners"
+      :key="'banner' + i"
+      :text="banner.tagDescription"
+      variant="dark"
+      accent="primary"
+    >
+      <template #badge>
+        <nuxt-link
+          :to="{
+            name: 'main-category-page',
+            params: {
+              main: 'home',
+              category: 'banners',
+              page: banner.title.toLowerCase()
+            }
+          }"
+        >
+          {{ banner.title }}
+        </nuxt-link>
+      </template>
+    </DBanner>
     <Navbar />
   </div>
 </template>

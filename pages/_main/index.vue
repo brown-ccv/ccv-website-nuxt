@@ -31,6 +31,7 @@
 
 <script>
 import DHero from '@/components/base/DHero';
+// other components are lazy loaded per advice in https://vueschool.io/articles/vuejs-tutorials/lazy-loading-individual-vue-components-and-prefetching/
 
 export default {
   components: {
