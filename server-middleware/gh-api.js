@@ -60,8 +60,6 @@ const statusQuery = (organization, issueState) => `{
   `;
 
 app.all('/status', async (req, res, next) => {
-  console.log('IN STATUS API');
-
   // short circuit if no credentials
   if (!client) res.json([]);
 

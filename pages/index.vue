@@ -14,6 +14,10 @@
         />
       </template>
     </DHero>
+    <client-only>
+      <p>{{ todo.id }}</p>
+      {{ todo }}
+    </client-only>
   </div>
 </template>
 
@@ -22,26 +26,21 @@ import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 
 export default {
-  components: { DHero, DButton }
-  //   async asyncData({ $content }) {
-  //     const index = await $content('home/index').fetch();
-
-  //     return {
-  //       index
-  //     };
-  //   }
-  //   Status banner
-  //   head() {
-  //     return {
-  //       title: this.index.title,
-  //       meta: [
-  //         {
-  //           hid: 'description',
-  //           name: 'description',
-  //           content: this.index.title
-  //         }
-  //       ]
-  //     };
-  //   }
+  components: { DHero, DButton },
+  async fetch() {
+    // example to prove out the client-only rendering
+    const num = Math.floor(Math.random() * 10);
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${num}`
+    );
+    this.todo = await response.json();
+  },
+  data() {
+    return {
+      todo: {}
+    };
+  },
+  // call fetch only on client-side
+  fetchOnServer: false
 };
 </script>

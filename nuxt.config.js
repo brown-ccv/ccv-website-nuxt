@@ -1,5 +1,5 @@
 export default {
-  ssr: true,
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -37,12 +37,6 @@ export default {
    */
   router: {
     middleware: ['status-redirect']
-  },
-  /*
-   ** These routes won't be static
-   */
-  generate: {
-    exclude: ['/']
   },
   /*
    ** Customize the progress-bar color
@@ -100,7 +94,6 @@ export default {
     }
   },
   serverMiddleware: [
-    // '~/server-middleware/gh-api.js'
     { path: '/_ghapi', handler: '~/server-middleware/gh-api.js' }
   ]
 };

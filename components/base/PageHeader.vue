@@ -1,15 +1,17 @@
 <template>
   <div>
-    <DBanner
-      v-if="statusAll && statusAll.open_issues > 0"
-      variant="danger"
-      accent="warning"
-      :text="'Service Disruption: ' + statusAll.disrrupted.join(', ')"
-    >
-      <template #badge>
-        <a href="https://status.ccv.brown.edu">CCV Status</a>
-      </template>
-    </DBanner>
+    <client-only>
+      <DBanner
+        v-if="statusAll && statusAll.open_issues > 0"
+        variant="danger"
+        accent="warning"
+        :text="'Service Disruption: ' + statusAll.disrrupted.join(', ')"
+      >
+        <template #badge>
+          <a href="https://status.ccv.brown.edu">CCV Status</a>
+        </template>
+      </DBanner>
+    </client-only>
     <DBanner
       v-for="(banner, i) in banners"
       :key="'banner' + i"
@@ -36,11 +38,13 @@
   </div>
 </template>
 <script>
-import DBanner from '@/components/base/DBanner';
 import Navbar from '@/components/base/Navbar';
 
 export default {
-  components: { Navbar, DBanner },
+  components: {
+    Navbar,
+    DBanner: () => import('@/components/base/DBanner')
+  },
   async fetch() {
     this.banners = await this.$content('home', 'banners').fetch();
     const res = await fetch('/_ghapi/status');
