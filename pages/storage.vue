@@ -87,11 +87,17 @@
 <script>
 import DHero from '@/components/base/DHero';
 import DButton from '@/components/base/DButton';
+import MultipleChoice from '@/components/base/MultipleChoice';
+import ServiceSelection from '@/components/ServiceSelection';
+import ComparisonTable from '@/components/ComparisonTable';
 
 export default {
   components: {
     DHero,
-    DButton
+    DButton,
+    MultipleChoice,
+    ServiceSelection,
+    ComparisonTable
   },
   filters: {
     humanize(str) {
