@@ -1,0 +1,19 @@
+.d-card {
+  @extend .py-4;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: var(--color-grey-lighter) 0px 0px 10px 0px;
+}
+.d-person-card {
+  padding: 0 !important;
+}
+.person-image {
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.person-image-figure {
+  height: 40ex;
+}

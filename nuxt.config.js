@@ -49,16 +49,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    '@/assets/scss/_button',
-    '@/assets/scss/_color',
-    '@/assets/scss/_defaults',
-    '@/assets/scss/_fonts',
-    '@/assets/scss/_helpers',
-    '@/assets/scss/_navbar',
-    '@/assets/scss/_variables',
-    '@/assets/scss/disco'
-  ],
+  css: ['@/assets/scss/disco'],
   /*
    ** Plugins to load before mounting the App
    */

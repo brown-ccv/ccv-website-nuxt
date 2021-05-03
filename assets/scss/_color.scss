@@ -52,6 +52,6 @@ width: 120%;
 .label-code {
 padding-left: 0;
 font-size: 0.7em;
-@extend .has-text-grey-dark;
-@extend .has-background-light;
+@extend .has-text-grey-dark !optional;
+@extend .has-background-light !optional;
 }

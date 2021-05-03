@@ -1,0 +1,29 @@
+.d-toc-container {
+  display: grid;
+  justify-items: center;
+}
+.d-toc {
+  width: 60vw;
+  @include mobile {
+    width: 90vw;
+  }
+}
+.d-toc-content {
+  display: grid;
+  grid-template-columns: 1fr 10fr 10fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'icon start . end';
+  padding: $size-5;
+  &:hover {
+    background-color: $light;
+  }
+}
+.d-toc-start {
+  grid-area: start;
+}
+.d-toc-end {
+  grid-area: end;
+}
+.d-toc-icon {
+  grid-area: icon;
+}
