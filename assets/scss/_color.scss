@@ -1,3 +1,4 @@
+@import './node_modules/bulma/bulma.sass';
 
 $variants: "yellow",
 "yellow-light",
@@ -44,7 +45,7 @@ border: 1px solid var(--color-grey-light);
 }
 .label {
 padding-top: 1rem;
-@extend .has-text-dark !optional;
+@extend .has-text-dark;
 }
 .label-code-wrapper {
 width: 120%;
@@ -52,6 +53,6 @@ width: 120%;
 .label-code {
 padding-left: 0;
 font-size: 0.7em;
-@extend .has-text-grey-dark !optional;
-@extend .has-background-light !optional;
+@extend .has-text-grey-dark;
+@extend .has-background-light;
 }
