@@ -60,5 +60,8 @@
   },
   "lint-staged": {
     "*.{js,vue}": "npm run lint"
+  },
+  "stylelint": {
+    "rules": {}
   }
 }

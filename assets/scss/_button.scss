@@ -1,12 +1,12 @@
 @import 'variables';
 
 .d-button {
-  @extend .button !optional;
+  @extend .button;
   border-radius: 0 !important;
   font-family: $font-family-bold;
 }
 
 .d-button-delete {
-  @extend .delete !optional;
+  @extend .delete;
   border-radius: 0 !important;
 }
