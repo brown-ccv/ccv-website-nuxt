@@ -22,7 +22,6 @@
     "qa-deploy": "firebase deploy -P qa"
   },
   "dependencies": {
-    "@brown-ccv/disco-styles": "^2.2.2",
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/markdownit": "^1.2.10",
     "bulma": "^0.9.0",
