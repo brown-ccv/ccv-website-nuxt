@@ -11,12 +11,13 @@
         class="content-section"
       >
         <h2 class="section-title title">
-          <fa
-            size="2x"
-            class="mr-3 has-text-white"
-            :icon="[item.fa.prefix, item.fa.icon]"
+          <span
+            class="icon mr-3 has-text-white is-size-2"
             :aria-label="'icon of' + item.fa.icon"
-          />{{ item.title }}
+          >
+            <i :class="[item.fa.prefix, `fa-${item.fa.icon}`]" />
+          </span>
+          {{ item.title }}
         </h2>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
@@ -28,9 +29,11 @@
               :href="position.link"
             >
               <div>
-                <span
-                  ><fa :icon="['fal', 'map-marker']" class="mr-3" />Providence,
-                  RI - United States</span
+                <span>
+                  <span class="icon mr-3">
+                    <i class="fas fa-map-marker" />
+                  </span>
+                  Providence, RI - United States</span
                 >
                 <p class="has-text-dark">
                   {{ position.title }} – {{ position.subteam }}
@@ -38,7 +41,9 @@
               </div>
               <div>
                 <p>
-                  Learn More<fa class="ml-3" :icon="['fal', 'arrow-right']" />
+                  Learn More<span class="icon ml-3">
+                    <i class="fas fa-arrow-right" />
+                  </span>
                 </p>
               </div>
             </a>
@@ -74,8 +79,8 @@
               <a
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><fa :icon="['fab', 'github']"
-              /></a>
+                ><span class="icon"><i class="fab fa-github"/></span>
+              </a>
             </template>
           </DPersonCard>
         </div>
@@ -87,7 +92,8 @@
 </template>
 
 <script>
-import { DTOC, DPersonCard } from '@brown-ccv/disco-vue-components';
+import DTOC from '@/components/base/DTableOfContents';
+import DPersonCard from '@/components/base/DPersonCard';
 
 export default {
   components: {

@@ -9,7 +9,7 @@
     <main class="content-wrapper">
       <!-- General markdown content pages -->
       <nuxt-content
-        v-if="item.extension === '.md'"
+        v-if="data.extension === '.md'"
         :document="data"
         class="content content-section"
       />
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import * as disco from '@brown-ccv/disco-vue-components';
+import DHero from '@/components/base/DHero';
 
 export default {
   components: {
-    ...disco
+    DHero
   },
   filters: {
     humanize(str) {
@@ -34,10 +34,7 @@ export default {
     }
   },
   async asyncData({ $content, params }) {
-    const data = await $content(
-      `${params.main}/${params.category}/${params.page}`,
-      params.slug
-    )
+    const data = await $content(params.main, params.category, params.page)
       .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
       .fetch();

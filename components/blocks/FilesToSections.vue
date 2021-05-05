@@ -11,12 +11,13 @@
         class="content-section"
       >
         <h2 class="section-title title">
-          <fa
-            size="2x"
-            class="mr-3 has-text-white"
-            :icon="[item.fa.prefix, item.fa.icon]"
+          <span
+            class="icon is-size-3 mr-3 has-text-white"
             :aria-label="'icon of' + item.fa.icon"
-          />{{ item.title }}
+          >
+            <i :class="[item.fa.prefix, `fa-${item.fa.icon}`]" />
+          </span>
+          {{ item.title }}
         </h2>
         <!-- General markdown content pages -->
         <nuxt-content v-if="item.extension === '.md'" :document="item" />
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import { DTOC } from '@brown-ccv/disco-vue-components';
+import DTOC from '@/components/base/DTableOfContents';
 
 export default {
   components: {

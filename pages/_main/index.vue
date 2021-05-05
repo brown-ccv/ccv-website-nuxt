@@ -14,7 +14,9 @@
           :to="index['call-for-action'].href"
         >
           {{ index['call-for-action'].text.toUpperCase() }}
-          <fa :icon="['fas', 'caret-right']" class="ml-2" />
+          <span class="icon ml-2">
+            <i class="fas fa-caret-right" />
+          </span>
         </nuxt-link>
       </template>
     </DHero>
@@ -28,20 +30,19 @@
 </template>
 
 <script>
-import { DHero } from '@brown-ccv/disco-vue-components';
-import FilesToCards from '@/components/blocks/FilesToCards.vue';
-import About from '@/components/blocks/About.vue';
+import DHero from '@/components/base/DHero';
+// other components are lazy loaded per advice in https://vueschool.io/articles/vuejs-tutorials/lazy-loading-individual-vue-components-and-prefetching/
 
 export default {
   components: {
     DHero,
-    FilesToCards,
-    About
+    FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
+    About: () => import('@/components/blocks/About.vue')
   },
   async asyncData({ $content, params }) {
     // get the index files of top content directories.
     // this provides title and subtitle for banners
-    const index = await $content(`${params.main}/index`).fetch();
+    const index = await $content(params.main, 'index').fetch();
 
     // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)
@@ -64,20 +65,6 @@ export default {
       list
     };
   }
-
-  //   This is the status banner
-  //   head() {
-  //     return {
-  //       title: this.index.title, // gets appended to templateTitle from default layout title
-  //       meta: [
-  //         {
-  //           hid: 'description', // important to override template description tag
-  //           name: 'description',
-  //           content: this.index.description
-  //         }
-  //       ]
-  //     };
-  //   }
 };
 </script>
 
