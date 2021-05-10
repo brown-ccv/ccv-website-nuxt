@@ -19,15 +19,14 @@
 </template>
 
 <script>
-import { DHero } from '@brown-ccv/disco-vue-components';
-import DirsToCardSections from '@/components/blocks/DirsToCardSections.vue';
-import FilesToSections from '@/components/blocks/FilesToSections.vue';
+import DHero from '@/components/base/DHero';
 
 export default {
   components: {
     DHero,
-    DirsToCardSections,
-    FilesToSections
+    DirsToCardSections: () =>
+      import('@/components/blocks/DirsToCardSections.vue'),
+    FilesToSections: () => import('@/components/blocks/FilesToSections.vue')
   },
   filters: {
     humanize(str) {
@@ -43,31 +42,21 @@ export default {
     // get the index files of content subdirectories directories
     // such as /our-work/software.
     // this provides title and subtitle for banners
-    const index = await $content(
-      `${params.main}/${params.category}/index`
-    ).fetch();
+    const index = await $content(params.main, params.category, 'index').fetch();
 
     // get the content for all sub-directories {deep:true}
-    const data = await $content(
-      `${params.main}/${params.category}`,
-      params.slug,
-      {
-        deep: true
-      }
-    )
+    const data = await $content(params.main, params.category, {
+      deep: true
+    })
       .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
       .fetch();
 
     // for directories that have subdirectories, gather index.yml files
     // which will be feed the content in the cards
-    const list = await $content(
-      `${params.main}/${params.category}`,
-      params.slug,
-      {
-        deep: true
-      }
-    )
+    const list = await $content(params.main, params.category, {
+      deep: true
+    })
       .where({ path: { $regex: '^/+[^/]+/+[^/]+/+[^/]+/+index' } })
       .sortBy('title', 'desc')
       .fetch();

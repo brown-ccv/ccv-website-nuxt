@@ -11,14 +11,14 @@
         class="content-section"
       >
         <template>
-          <h2 class="section-title title has-text-dark">
-            <fa
-              v-if="category.fa"
-              size="2x"
-              class="mr-3 has-text-white"
-              :icon="[category.fa.prefix, category.fa.icon]"
-              :aria-label="'icon of' + category.fa.icon"
-            />{{ category.title }}
+          <h2
+            class="section-title title has-text-dark"
+            :aria-label="'icon of' + category.fa.icon"
+          >
+            <span class="icon is-size-2 mr-3 has-text-white">
+              <i :class="[category.fa.prefix, `fa-${category.fa.icon}`]" />
+            </span>
+            {{ category.title }}
           </h2>
           <CardGroup
             :data="data.filter((a) => a.category === category.title)"
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import { DTOC } from '@brown-ccv/disco-vue-components';
-import CardGroup from '@/components/blocks/CardGroup.vue';
+import DTOC from '@/components/base/DTableOfContents';
+import CardGroup from '@/components/blocks/CardGroup';
 
 export default {
   components: {

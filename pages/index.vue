@@ -2,8 +2,8 @@
   <div class="">
     <DHero
       variant="primary"
-      :title="index.title"
-      :subtitle="index.description"
+      title="Center for Computation & Visualization"
+      subtitle="Scientific and technical computing expertise to advance computational research"
       class="is-fullheight"
     >
       <template #button>
@@ -14,33 +14,33 @@
         />
       </template>
     </DHero>
+    <client-only>
+      <p>{{ todo.id }}</p>
+      {{ todo }}
+    </client-only>
   </div>
 </template>
 
 <script>
-import { DHero, DButton } from '@brown-ccv/disco-vue-components';
+import DButton from '@/components/base/DButton';
+import DHero from '@/components/base/DHero';
 
 export default {
   components: { DHero, DButton },
-  async asyncData({ $content }) {
-    const index = await $content('home/index').fetch();
-
+  async fetch() {
+    // example to prove out the client-only rendering
+    const num = Math.floor(Math.random() * 10);
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${num}`
+    );
+    this.todo = await response.json();
+  },
+  data() {
     return {
-      index
+      todo: {}
     };
-  }
-  //   Status banner
-  //   head() {
-  //     return {
-  //       title: this.index.title,
-  //       meta: [
-  //         {
-  //           hid: 'description',
-  //           name: 'description',
-  //           content: this.index.title
-  //         }
-  //       ]
-  //     };
-  //   }
+  },
+  // call fetch only on client-side
+  fetchOnServer: false
 };
 </script>

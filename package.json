@@ -6,64 +6,52 @@
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
+    "preserve": "cd functions && firebase functions:config:get > .runtimeconfig.json && cd ..",
+    "serve": "firebase serve -P qa --only functions,hosting",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "commit": "git-cz",
     "dev": "nuxt",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "test": "jest"
+    "test": "jest",
+    "fn-install": "cp .npmrc functions/.npmrc && cd functions && npm ci",
+    "predeploy": "./predeploy.sh",
+    "local-deploy": "npm run generate && npm run build && npm run predeploy && npm run serve",
+    "prod-deploy": "firebase deploy -P prod",
+    "qa-deploy": "firebase deploy -P qa"
   },
   "dependencies": {
     "@brown-ccv/disco-styles": "^2.2.2",
-    "@brown-ccv/disco-vue-components": "^1.2.3",
-    "@nuxt/content": "^1.9.0",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxt/content": "^1.14.0",
     "@nuxtjs/markdownit": "^1.2.10",
     "bulma": "^0.9.0",
     "bulma-checkradio": "^1.1.1",
-    "frontmatter-markdown-loader": "^3.4.3",
-    "nuxt": "^2.14.6",
-    "v-runtime-template": "^1.10.0",
-    "vue-scrollto": "^2.19.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "nuxt": "2.15.4"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/pro-duotone-svg-icons": "^5.15.1",
-    "@fortawesome/pro-light-svg-icons": "^5.15.1",
-    "@fortawesome/pro-regular-svg-icons": "^5.15.1",
-    "@fortawesome/pro-solid-svg-icons": "^5.15.1",
-    "@nuxt/components": "^1.1.0",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/stylelint-module": "^3.1.0",
-    "@vue/test-utils": "^1.0.0-beta.27",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.1.0",
-    "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "git-cz": "^4.3.1",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
+    "firebase-tools": "^9.10.0",
     "husky": "^4.0.0",
-    "jest": "^26",
     "lint-staged": "^10.0.0",
     "node-sass": "^4.14.1",
     "nuxt-svg-loader": "^1.2.0",
     "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2",
-    "stylelint": "^13.12.0",
-    "vue-cli-plugin-cz": "^1.2.2",
-    "vue-jest": "^4.0.0-0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "sass-loader": "^10.1.1",
+    "stylelint": "^13.13.0"
   },
   "husky": {
     "hooks": {
@@ -71,7 +59,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": "npm run lint",
-    "*.{css,vue}": "stylelint"
+    "*.{js,vue}": "npm run lint"
   }
 }
