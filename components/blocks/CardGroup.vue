@@ -98,3 +98,5 @@ export default {
   }
 };
 </script>
+
+<!-- see assets/scss/_layout.scss for relevant styles -->
