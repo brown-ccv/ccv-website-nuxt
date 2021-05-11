@@ -1,0 +1,60 @@
+@import "./node_modules/bulma/bulma.sass";
+
+// cursor
+.has-cursor-pointer {
+  cursor: pointer;
+}
+
+// Width
+.is-width-small {
+  width: 40ex;
+  @include mobile {
+    width: 60vw;
+  }
+}
+.is-width-medium {
+  width: 60ex;
+  @include mobile {
+      width: 75vw;
+  }
+}
+.is-width-large {
+  width: 90ex;
+  @include mobile {
+    width: 90vw;
+  }
+}
+
+
+//  Sizes
+
+.xxs {
+  height: $size-4;
+}
+.xs {
+  height: $size-3;
+}
+.s {
+  height: $size-2;
+}
+.m {
+  height: $size-1;
+}
+.l {
+  height: $size-1 * 1.5;
+}
+.xl {
+  height: $size-1 * 2;
+}
+.xxl {
+  height: $size-1 * 3;
+}
+
+// height
+.is-full-height {
+  height: 100vh;
+  padding-top: 10rem;
+  @include mobile {
+    padding-top: 2rem;
+  }
+}

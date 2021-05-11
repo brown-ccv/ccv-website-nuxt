@@ -1,0 +1,22 @@
+h1, h2, h3, h4 {
+  font-family: $font-family-bold;
+}
+
+.monospace {
+  font-family: $family-monospace;
+  font-size: 3em;
+}
+
+.d-title {
+  @extend .title;
+  font-family: $font-family-bold;
+  font-size: $size-1 * 1.5;
+  @include mobile {
+    font-size: $size-1;
+  }
+}
+.d-subtitle {
+  @extend .subtitle;
+  font-family: $family-sans-serif;
+  font-size: $size-3;
+}

@@ -1,0 +1,58 @@
+@import './node_modules/bulma/bulma.sass';
+
+$variants: "yellow",
+"yellow-light",
+"yellow-lighter",
+"yellow-dark",
+"yellow-darker",
+"green",
+"green-light",
+"green-lighter",
+"green-dark",
+"green-darker"
+"light",
+"dark"
+;
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-background-#{$variant} {
+    background-color: var($color) !important;
+  }
+  .is-#{$variant} {
+    background-color: var($color) !important;
+  }
+}
+
+.color-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.color-swatch {
+  padding: 1rem;
+  box-shadow: 0 8px 8px -5px  var(--color-grey-light);
+  text-align: left;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  background-color: var(--color-light);
+}
+.color {
+  height: 10rem;
+  width: 10rem;
+  border: 1px solid var(--color-grey-light);
+}
+.label {
+  padding-top: 1rem;
+  @extend .has-text-dark;
+}
+.label-code-wrapper {
+  width: 120%;
+}
+.label-code {
+  padding-left: 0;
+  font-size: 0.7em;
+  @extend .has-text-grey-dark;
+  @extend .has-background-light;
+}

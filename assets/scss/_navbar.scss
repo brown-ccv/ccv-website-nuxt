@@ -1,0 +1,14 @@
+@import "./node_modules/bulma/bulma.sass";
+
+.d-nav-brand {
+  @extend .pr-3;
+}
+.navbar-burger {
+  @include mobile {
+      align-self: center;
+  }
+}
+
+.navbar-start {
+  font-size: 1.1em;
+}
