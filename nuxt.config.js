@@ -23,6 +23,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.typekit.net/egg1tbq.css' },
       {
         rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
@@ -45,7 +46,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@brown-ccv/disco-styles'],
+  css: ['@/assets/scss/disco'],
   /*
    ** Plugins to load before mounting the App
    */

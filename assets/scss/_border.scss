@@ -1,0 +1,49 @@
+
+$variants: "primary",
+"info",
+"link",
+"success",
+"warning",
+"danger",
+"dark",
+"light";
+
+
+$sides: 'top', 'left', 'right', 'bottom';
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+
+  // full border
+  .has-border-#{$variant} {
+    border: 5px solid var($color);
+  }
+
+  // single side border
+  @each $side in $sides {
+    .has-border-#{$side}-#{$variant} {
+      border-#{$side}: 5px solid var($color);
+      }
+    }
+  }
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-border-top-#{$variant} {
+    border-top: 5px solid var($color);
+  }
+}
+
+@each $variant in $variants {
+  $color: --color-#{$variant};
+  .has-header-rule-#{$variant}::after {
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var($color);
+    content: '';
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

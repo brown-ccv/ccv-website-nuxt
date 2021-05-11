@@ -1,0 +1,10 @@
+.d-hero {
+  @extend .hero;
+  padding-left: 10rem;
+  @include mobile {
+    padding-left: 0;
+  }
+}
+
+
+  
