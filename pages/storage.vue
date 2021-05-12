@@ -17,7 +17,7 @@
         >
           <template v-slot:icon-right>
             <span class="icon">
-              <i class="far fa-redo-alt" />
+              <i class="fas fa-redo-alt" />
             </span>
           </template>
         </DButton>
@@ -30,7 +30,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <i class="far fa-arrow-down" />
+            <i class="fas fa-arrow-down" />
           </span>
         </a>
 
@@ -43,7 +43,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <i class="far fa-arrow-down" />
+            <i class="fas fa-arrow-down" />
           </span>
         </a>
       </span>
