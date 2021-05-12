@@ -31,7 +31,7 @@
               <div>
                 <span>
                   <span class="icon mr-3">
-                    <i class="fas fa-map-marker" />
+                    <i class="mdi mdi-map-marker mdi-24px" />
                   </span>
                   Providence, RI - United States</span
                 >
