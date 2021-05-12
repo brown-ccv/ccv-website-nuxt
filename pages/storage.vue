@@ -184,7 +184,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~bulma/sass/utilities/_all';
 @import '~bulma/sass/helpers/spacing';
 .questions-container {

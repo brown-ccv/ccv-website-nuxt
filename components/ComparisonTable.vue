@@ -113,7 +113,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .comparison-wrapper {
   overflow-x: scroll;
   display: flex;

@@ -27,17 +27,28 @@
           <p class="card-p">{{ item.description }}</p>
         </template>
         <template #footer>
-          <a
-            v-for="link in item.links"
-            :key="link.text"
-            class="d-button is-dark has-text-light mx-5 mb-5"
-            :href="link.target"
-          >
-            {{ link.text.toUpperCase() }}
-            <span class="icon ml-2">
-              <i class="fas fa-caret-right" />
-            </span>
-          </a>
+          <div v-for="link in item.links" :key="link.text">
+            <a
+              v-if="link.target.startsWith('http')"
+              :href="link.target"
+              class="d-button is-dark has-text-light mx-5 mb-5"
+            >
+              {{ link.text.toUpperCase() }}
+              <span class="icon ml-2">
+                <i class="fas fa-caret-right" />
+              </span>
+            </a>
+            <nuxt-link
+              v-else
+              :to="link.target"
+              class="d-button is-dark has-text-light mx-5 mb-5"
+            >
+              {{ link.text.toUpperCase() }}
+              <span class="icon ml-2">
+                <i class="fas fa-caret-right" />
+              </span>
+            </nuxt-link>
+          </div>
         </template>
       </DCard>
     </div>
@@ -65,7 +76,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<!-- see assets/scss/_layout.scss for relevant styles -->
+<style lang="scss" scoped>
 @import '~bulma/sass/utilities/_all';
 @import '~bulma/sass/helpers/spacing';
 @import '~bulma/sass/helpers/visibility';
