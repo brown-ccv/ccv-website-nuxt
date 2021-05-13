@@ -2,4 +2,3 @@
 	path = content
 	url = https://github.com/brown-ccv/ccv-website-content.git
 	branch = main
-	update = rebase
