@@ -8,8 +8,13 @@
 # install dependencies
 $ npm install
 
-# update the content
+# initialize the content
 git submodule update --init
+
+# update the content based on HEAD of remote
+# this is optional, there is a post-merge hook that calls this,
+# but you can trigger on demand if you need to
+git submodule update --remote
 
 # serve with hot reload at localhost:3000
 $ npm run dev
