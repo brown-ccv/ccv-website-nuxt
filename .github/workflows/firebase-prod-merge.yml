@@ -33,7 +33,9 @@ jobs:
           cp .npmrc functions/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
       - name: Build
+        # Make sure content is tracking main and up-to date, then builds and deploys 
         run: |
+          git config -f .gitmodules submodule.content.branch main
           git submodule update --remote
           npm run generate
           npm run build
