@@ -35,7 +35,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
       - name: Build
         run: |
-          git submodule add -b ${{ github.event.inputs.branch }} https://github.com/brown-ccv/ccv-website-content.git  content
+          branch=`[ -z "${{ github.event.inputs.branch }}" ] && echo "main"`
+          git submodule add -b $branch https://github.com/brown-ccv/ccv-website-content.git  ./content
           git submodule update --remote
           npm run generate
           npm run build
