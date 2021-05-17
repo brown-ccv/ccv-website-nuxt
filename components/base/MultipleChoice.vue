@@ -12,7 +12,7 @@
       >
         <template v-slot:icon-right>
           <span class="icon">
-            <i class="far fa-redo-alt" />
+            <i class="mdi mdi-redo-variant" />
           </span>
         </template>
       </DButton>
@@ -20,7 +20,7 @@
     <details class="question-details mb-4">
       <summary>
         <span class="icon">
-          <i class="fas fa-info-circle info-icon" />
+          <i class="mdi mdi-information-outline info-icon" />
         </span>
       </summary>
       <p v-html="$md.render(data.information || '')"></p>

@@ -131,7 +131,7 @@
             aria-label="CCV Services' Documentation"
             >Documentation
             <span class="icon">
-              <i class="ml-1 fas fa-external-link-alt" />
+              <i class="ml-1 mdi mdi-file-document-box" />
             </span>
           </a>
         </li>
@@ -140,7 +140,7 @@
             href="https://medium.com/brown-ccv"
             class="d-button is-white has-text-link"
             aria-label="CCV's Medium Blog"
-            >Blog<span class="icon"> <i class="ml-1 fab fa-medium" /> </span
+            >Blog<span class="icon"> <i class="ml-1 mdi mdi-medium" /> </span
           ></a>
         </li>
         <li class="navbar-item">

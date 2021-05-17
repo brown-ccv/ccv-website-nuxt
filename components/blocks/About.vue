@@ -13,9 +13,9 @@
         <h2 class="section-title title">
           <span
             class="icon mr-3 has-text-white is-size-2"
-            :aria-label="'icon of' + item.fa.icon"
+            :aria-label="'icon of' + item.mdi.icon"
           >
-            <i :class="[item.fa.prefix, `fa-${item.fa.icon}`]" />
+            <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
           </span>
           {{ item.title }}
         </h2>
@@ -42,7 +42,7 @@
               <div>
                 <p>
                   Learn More<span class="icon ml-3">
-                    <i class="fas fa-arrow-right" />
+                    <i class="mdi mdi-arrow-right" />
                   </span>
                 </p>
               </div>
@@ -79,7 +79,7 @@
               <a
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="fab fa-github"/></span>
+                ><span class="icon"><i class="mdi mdi-github"/></span>
               </a>
             </template>
           </DPersonCard>
@@ -117,7 +117,7 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.fa.icon, family: 'light' }
+          icon: { name: d.mdi.icon, family: 'light' }
         };
       });
     }

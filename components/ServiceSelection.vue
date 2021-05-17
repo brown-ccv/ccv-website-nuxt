@@ -12,19 +12,19 @@
       ]"
     >
       <button
-        class="button-nostyle fa-checkbox"
+        class="button-nostyle mdi mdi-checkbox-marked"
         type="button"
         @click="change(s.service)"
       >
         <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
-          ><i class="fas fa-check-square"
+          ><i class="mdi mdi-checkbox-marked"
         /></span>
-        <span v-else class="icon is-size-2"><i class="far fa-square"/></span>
+        <span v-else class="icon is-size-2"><i class="mdi mdi-square"/></span>
       </button>
       <button class="button-nostyle service-label" @click="toggleShowModal(s)">
         <span
           >{{ s.service | humanize }}
-          <span class="icon"><i class="far fa-info-circle"/></span>
+          <span class="icon"><i class="mdi mdi-information"/></span>
         </span>
       </button>
     </div>
@@ -129,7 +129,7 @@ export default {
   font-weight: bold;
   font-size: 1.1rem;
 }
-.fa-checkbox {
+.mdi-checkbox-marked {
   align-self: flex-end;
 }
 .button-nostyle {
