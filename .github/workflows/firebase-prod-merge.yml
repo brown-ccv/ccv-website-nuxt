@@ -26,16 +26,11 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        run: |
-          npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN_DISCO_MIR }}
-          npm ci
-          cp .npmrc functions/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
+        run: npm ci
       - name: Build
         # Make sure content is tracking main and up-to date, then builds and deploys 
         run: |
-          git config -f .gitmodules submodule.content.branch main
+          git submodule set-branch -b main content
           git submodule update --remote
           npm run generate
           npm run build
