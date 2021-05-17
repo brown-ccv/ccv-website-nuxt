@@ -20,12 +20,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        run: |
-          npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GH_TOKEN_DISCO_MIR }}
-          npm ci
-          cp .npmrc functions/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_DISCO_MIR }}" >> functions/.npmrc
+        run: npm ci
       - name: Build
         run: |
           git submodule update --remote
