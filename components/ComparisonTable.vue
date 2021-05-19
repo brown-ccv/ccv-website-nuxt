@@ -1,6 +1,6 @@
 <template>
   <main class="storage-section pt-6 mt-6">
-    <div class="comparison-container sticky has-background-white">
+    <div class="comparison-container sticky has-background-white has-text-dark">
       <ul
         v-for="(service, index) in data"
         :key="index"
@@ -133,7 +133,7 @@ export default {
 }
 .comparison-item.subtitle {
   width: 12ch;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .class-container {
@@ -152,7 +152,7 @@ export default {
   position: sticky;
   top: 1rem;
   padding: 2rem;
-  opacity: 90%;
+  opacity: 0.9;
 }
 .storage-section {
   display: flex;
