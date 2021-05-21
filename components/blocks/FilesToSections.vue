@@ -73,4 +73,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<!-- see assets/scss/_layout.scss for relevant styles -->

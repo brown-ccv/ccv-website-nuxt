@@ -7,11 +7,13 @@
       class="is-fullheight"
     >
       <template #button>
-        <DButton
-          name="Learn about CCV's services"
-          variant="dark"
-          size="medium"
-        />
+        <nuxt-link to="/services/">
+          <DButton
+            name="Learn about CCV's services"
+            variant="dark"
+            size="medium"
+          />
+        </nuxt-link>
       </template>
     </DHero>
     <client-only>

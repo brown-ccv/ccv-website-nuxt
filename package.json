@@ -19,7 +19,8 @@
     "predeploy": "./predeploy.sh",
     "local-deploy": "npm run generate && npm run build && npm run predeploy && npm run serve",
     "prod-deploy": "firebase deploy -P prod",
-    "qa-deploy": "firebase deploy -P qa"
+    "qa-deploy": "firebase deploy -P qa",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mdi/font": "^5.9.55",
@@ -46,18 +47,13 @@
     "firebase-admin": "^9.2.0",
     "firebase-functions": "^3.11.0",
     "firebase-tools": "^9.10.0",
-    "husky": "^4.0.0",
+    "husky": "^6.0.0",
     "lint-staged": "^10.0.0",
     "node-sass": "^4.14.1",
     "nuxt-svg-loader": "^1.2.0",
     "prettier": "^1.19.1",
     "sass-loader": "^10.1.1",
     "stylelint": "^13.13.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,vue}": "npm run lint"

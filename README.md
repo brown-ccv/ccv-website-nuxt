@@ -8,8 +8,13 @@
 # install dependencies
 $ npm install
 
-# update the content
+# initialize the content submodule
 git submodule update --init
+
+# update the content to point to HEAD of remote tracking branch
+# this is optional, there is a post-merge hook that calls this,
+# but you can trigger on demand to make sure content is up-to-date
+git submodule update --remote
 
 # serve with hot reload at localhost:3000
 $ npm run dev
