@@ -12,10 +12,11 @@
           :class="[textColor]"
           tabindex="0"
         >
-          <span v-if="entry.mdi" class="icon">
-            <i
+          <span v-if="entry.icon" class="icon">
+            <!-- <i
               :class="['d-toc-icon', entry.mdi.prefix, `mdi-${entry.mdi.icon}`]"
-            />
+            /> -->
+            <i :class="['d-toc-icon mdi', `mdi-${entry.icon.name}`]" />
           </span>
           <span class="d-toc-start">
             {{ entry['name'] }}

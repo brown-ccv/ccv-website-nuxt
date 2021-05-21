@@ -10,7 +10,7 @@
       >
         <template #header>
           <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-            ><span class="icon"><i class="fas fa-users"/></span
+            ><span class="icon"><i class="mdi mdi-account-multiple"/></span
             ><abbr :title="item.group | expandAcronym">
               {{ item.group }}
             </abbr></span
@@ -32,7 +32,7 @@
               :href="item.links.repository"
               ><span
                 >REPOSITORY<span class="icon ml-2"
-                  ><i class="fas fa-code"/></span></span
+                  ><i class="mdi mdi-code-greater-than-or-equal"/></span></span
             ></a>
             <a
               v-if="item.links.website"
@@ -40,7 +40,7 @@
               :href="item.links.website"
               ><span
                 >WEBSITE<span class="icon ml-2"
-                  ><i class="fas fa-external-link-alt"/></span></span
+                  ><i class="mdi mdi-link-variant"/></span></span
             ></a>
             <a
               v-if="item.links.documentation"
@@ -48,7 +48,7 @@
               :href="item.links.documentation"
               ><span
                 >DOCUMENTATION<span class="icon ml-2"
-                  ><i class="fas fa-book"/></span></span
+                  ><i class="mdi mdi-book"/></span></span
             ></a>
             <a
               v-if="item.links.publication"
@@ -56,7 +56,7 @@
               :href="item.links.publication"
               ><span
                 >PUBLICATION<span class="icon ml-2"
-                  ><i class="fas fa-newspaper"/></span></span
+                  ><i class="mdi mdi-newspaper"/></span></span
             ></a>
             <a
               v-if="item.links.doi"
@@ -64,7 +64,7 @@
               :href="'https://' + item.links.doi"
               ><span
                 >PUBLICATION<span class="icon ml-2"
-                  ><i class="fas fa-newspaper"/></span></span
+                  ><i class="mdi mdi-newspaper"/></span></span
             ></a>
           </div>
         </template>
