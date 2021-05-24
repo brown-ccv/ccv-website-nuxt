@@ -85,7 +85,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~bulma-checkradio';
 @import '~bulma/sass/utilities/_all';
 .question-header {
