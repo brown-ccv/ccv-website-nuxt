@@ -13,7 +13,7 @@
           <div class="px-5">
             <span
               class="icon is-size-1 has-text-success mb-5"
-              :aria-label="'icon of' + item.mdi.icon"
+              :aria-label="'icon of ' + item.mdi.icon"
             >
               <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
             </span>

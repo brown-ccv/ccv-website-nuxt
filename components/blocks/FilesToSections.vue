@@ -13,7 +13,7 @@
         <h2 class="section-title title">
           <span
             class="icon is-size-3 mr-3 has-text-white"
-            :aria-label="'icon of' + item.mdi.icon"
+            :aria-label="'icon of ' + item.mdi.icon"
           >
             <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
           </span>
