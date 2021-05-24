@@ -63,7 +63,7 @@ export default {
       return this.index.map((d, i) => {
         return {
           name: d.title,
-          link: `#${this.urlize(d.path)}`,
+          link: `#${this.urlize(d.title)}`,
           icon: { name: d.mdi.icon, family: 'light' }
         };
       });
