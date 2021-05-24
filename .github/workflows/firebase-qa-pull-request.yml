@@ -31,5 +31,14 @@ jobs:
         run: npm run qa-deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Get preview url for hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
+          projectId: qa-ccv-brown-edu
+          expires: 7d
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
       - name: Remove content folder (extra git module instance confuses gh)
         run: rm -rf functions/content
