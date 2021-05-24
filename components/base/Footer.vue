@@ -14,16 +14,16 @@
       </div>
       <div style="display: flex;">
         <span class="icon">
-          <i class="pr-4 fab fa-instagram" />
+          <i class="pr-4 mdi mdi-instagram" />
         </span>
         <span class="icon">
-          <i class="pr-4 far fa-envelope" />
+          <i class="pr-4 mdi mdi-email-outline" />
         </span>
         <span class="icon">
-          <i class="pr-4 far fa-calendar-alt" />
+          <i class="pr-4 mdi mdi-calendar" />
         </span>
         <span class="icon">
-          <i class="pr-4 far fa-comment-dots" />
+          <i class="pr-4 mdi mdi-comment-processing-outline" />
         </span>
       </div>
     </section>

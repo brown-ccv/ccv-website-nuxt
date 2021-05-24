@@ -17,7 +17,7 @@
         >
           <template v-slot:icon-right>
             <span class="icon">
-              <i class="fas fa-redo-alt" />
+              <i class="mdi mdi-refresh" />
             </span>
           </template>
         </DButton>
@@ -30,7 +30,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <i class="fas fa-arrow-down" />
+            <i class="mdi mdi-arrow-down" />
           </span>
         </a>
 
@@ -43,7 +43,7 @@
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
-            <i class="fas fa-arrow-down" />
+            <i class="mdi mdi-arrow-down" />
           </span>
         </a>
       </span>
@@ -74,7 +74,7 @@
     />
     <div v-else class="storage-section py-6 mx-6 my-6 has-background-light">
       <span class="icon is-size-2 has-text-warning">
-        <i class="fas fa-exclamation-triangle" />
+        <i class="mdi mdi-alert" />
       </span>
       <p class="title py-6 px-6">
         No services selected, answer some of the questions or select a service

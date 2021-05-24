@@ -15,7 +15,7 @@
         >
           {{ index['call-for-action'].text.toUpperCase() }}
           <span class="icon ml-2">
-            <i class="fas fa-caret-right" />
+            <i class="mdi mdi-menu-right" />
           </span>
         </nuxt-link>
       </template>

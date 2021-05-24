@@ -13,9 +13,9 @@
           <div class="px-5">
             <span
               class="icon is-size-1 has-text-success mb-5"
-              :aria-label="'icon of' + item.fa.icon"
+              :aria-label="'icon of ' + item.mdi.icon"
             >
-              <i :class="[item.fa.prefix, `fa-${item.fa.icon}`]" />
+              <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
             </span>
 
             <h2 class="title has-text-black">
@@ -35,7 +35,7 @@
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
-                <i class="fas fa-caret-right" />
+                <i class="mdi mdi-menu-rightt" />
               </span>
             </a>
             <nuxt-link
@@ -45,7 +45,7 @@
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
-                <i class="fas fa-caret-right" />
+                <i class="mdi mdi-menu-right" />
               </span>
             </nuxt-link>
           </div>
