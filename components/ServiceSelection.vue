@@ -7,7 +7,7 @@
       class="field service-box"
       :class="[
         selectedData.includes(s.service)
-          ? 'has-background-success'
+          ? 'has-background-info'
           : 'has-background-light'
       ]"
     >
