@@ -1,10 +1,10 @@
 <template>
   <main class="storage-section pt-6 mt-6">
-    <div class="comparison-container sticky has-background-white">
+    <div class="comparison-container sticky has-background-dark">
       <ul
         v-for="(service, index) in data"
         :key="index"
-        class="comparison-item subtitle"
+        class="comparison-item subtitle has-text-light"
       >
         {{
           service.service | humanize
@@ -129,11 +129,11 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  width: 120ch;
+  width: 140ch;
 }
 .comparison-item.subtitle {
   width: 12ch;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .class-container {
@@ -151,8 +151,9 @@ export default {
   position: -webkit-sticky;
   position: sticky;
   top: 1rem;
-  padding: 2rem;
-  opacity: 90%;
+  padding: 1rem;
+  opacity: 0.9;
+  border-radius: 10px;
 }
 .storage-section {
   display: flex;
