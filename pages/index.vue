@@ -29,6 +29,11 @@ import DHero from '@/components/base/DHero';
 
 export default {
   components: { DHero, DButton },
+  data() {
+    return {
+      todo: {},
+    };
+  },
   async fetch() {
     // example to prove out the client-only rendering
     const num = Math.floor(Math.random() * 10);
@@ -37,12 +42,7 @@ export default {
     );
     this.todo = await response.json();
   },
-  data() {
-    return {
-      todo: {}
-    };
-  },
   // call fetch only on client-side
-  fetchOnServer: false
+  fetchOnServer: false,
 };
 </script>

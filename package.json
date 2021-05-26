@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
+    "@nuxtjs/lunr-module": "^0.3.2",
     "@nuxtjs/markdownit": "^2.0.0",
     "bulma": "^0.9.2",
     "bulma-checkradio": "^1.1.1",
@@ -38,6 +39,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "cheerio": "^1.0.0-rc.9",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -48,6 +50,7 @@
     "firebase-tools": "^9.11.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
+    "lunr": "^2.3.9",
     "node-sass": "^6.0.0",
     "nuxt-svg-loader": "^1.2.0",
     "prettier": "^2.3.0",

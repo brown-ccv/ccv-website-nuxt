@@ -10,7 +10,7 @@
         class="ml-2"
         @click="clear(data.affected_category)"
       >
-        <template v-slot:icon-right>
+        <template #icon-right>
           <span class="icon">
             <i class="mdi mdi-redo-variant" />
           </span>
@@ -53,18 +53,18 @@ import DButton from '@/components/base/DButton';
 
 export default {
   components: {
-    DButton
+    DButton,
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       selected: null,
-      showModal: false
+      showModal: false,
     };
   },
   methods: {
@@ -72,16 +72,13 @@ export default {
       return this.$emit('answer', this.selected);
     },
     urlize(str) {
-      return str
-        .replace(/ /g, '-')
-        .replace('?', '')
-        .toLowerCase();
+      return str.replace(/ /g, '-').replace('?', '').toLowerCase();
     },
     clear(cat) {
       this.$emit('clear', cat);
       this.selected = null;
-    }
-  }
+    },
+  },
 };
 </script>
 

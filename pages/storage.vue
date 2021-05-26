@@ -15,7 +15,7 @@
           variant="light"
           @click="clearAll"
         >
-          <template v-slot:icon-right>
+          <template #icon-right>
             <span class="icon">
               <i class="mdi mdi-refresh" />
             </span>
@@ -97,14 +97,14 @@ export default {
     DButton,
     MultipleChoice,
     ServiceSelection,
-    ComparisonTable
+    ComparisonTable,
   },
   filters: {
     humanize(str) {
       const cleanStr = str.replace(/_/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
+    },
   },
   async asyncData({ $content }) {
     const index = await $content(
@@ -118,7 +118,7 @@ export default {
       answers: {},
       answerPayload: {},
       selectedServices: [],
-      filteredServices: []
+      filteredServices: [],
     };
   },
   computed: {
@@ -128,14 +128,14 @@ export default {
       },
       set(newVal, oldVal) {
         return newVal;
-      }
+      },
     },
     categories() {
       return this.services[0].features.map((feat) => feat.name);
     },
     questions() {
       return this.index.questions;
-    }
+    },
   },
   watch: {
     answerPayload() {
@@ -146,7 +146,7 @@ export default {
       this.filteredServices = this.services.filter((s) =>
         this.selectedServices.includes(s.service)
       );
-    }
+    },
   },
   mounted() {
     this.filteredServices = this.services;
@@ -179,8 +179,8 @@ export default {
       this.answersPayload = {};
       this.selectedServices = [];
       this.filteredServices = [];
-    }
-  }
+    },
+  },
 };
 </script>
 

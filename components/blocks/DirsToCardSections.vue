@@ -36,7 +36,7 @@ import CardGroup from '@/components/blocks/CardGroup';
 export default {
   components: {
     DTOC,
-    CardGroup
+    CardGroup,
   },
   filters: {
     humanize(str) {
@@ -46,17 +46,17 @@ export default {
     },
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    }
+    },
   },
   props: {
     index: {
       type: Array,
-      required: true
+      required: true,
     },
     data: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     tocData() {
@@ -64,10 +64,10 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.mdi.icon, family: 'light' }
+          icon: { name: d.mdi.icon, family: 'light' },
         };
       });
-    }
+    },
   },
   methods: {
     urlize(str) {
@@ -77,8 +77,8 @@ export default {
       const cleanStr = str.replace(/-/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
-  }
+    },
+  },
 };
 </script>
 

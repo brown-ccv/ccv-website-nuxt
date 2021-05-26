@@ -32,19 +32,19 @@ export default {
   props: {
     text: {
       type: String,
-      required: true
+      required: true,
     },
     tagSize: {
       type: String,
       default: 'normal',
       validator(value) {
         return ['normal', 'medium', 'large'].includes(value);
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      dismissed: false
+      dismissed: false,
     };
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
     },
     dismiss() {
       this.dismissed = true;
-    }
-  }
+    },
+  },
 };
 </script>

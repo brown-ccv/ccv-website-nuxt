@@ -8,7 +8,7 @@
       :class="[
         selectedData.includes(s.service)
           ? 'has-background-info'
-          : 'has-background-light'
+          : 'has-background-light',
       ]"
     >
       <button
@@ -19,12 +19,12 @@
         <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
           ><i class="mdi mdi-checkbox-marked"
         /></span>
-        <span v-else class="icon is-size-2"><i class="mdi mdi-square"/></span>
+        <span v-else class="icon is-size-2"><i class="mdi mdi-square" /></span>
       </button>
       <button class="button-nostyle service-label" @click="toggleShowModal(s)">
         <span
           >{{ s.service | humanize }}
-          <span class="icon"><i class="mdi mdi-information"/></span>
+          <span class="icon"><i class="mdi mdi-information" /></span>
         </span>
       </button>
     </div>
@@ -52,30 +52,30 @@ import DModal from '@/components/base/DModal';
 
 export default {
   components: {
-    DModal
+    DModal,
   },
   filters: {
     humanize(str) {
       const cleanStr = str.replace(/_/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
+    },
   },
   props: {
     data: {
       type: Array,
-      required: true
+      required: true,
     },
     selectedData: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       selected: [],
       showModal: false,
-      modalData: ''
+      modalData: '',
     };
   },
   watch: {
@@ -85,8 +85,8 @@ export default {
         if (newVal.length === 0) {
           this.selected = [];
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     change(service) {
@@ -100,8 +100,8 @@ export default {
     toggleShowModal(data) {
       this.modalData = data;
       this.showModal = true;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -22,7 +22,7 @@ import DHero from '@/components/base/DHero';
 
 export default {
   components: {
-    DHero
+    DHero,
   },
   filters: {
     humanize(str) {
@@ -31,7 +31,7 @@ export default {
         (str) => str.charAt(0).toUpperCase() + str.slice(1)
       );
       return upperFirst.join(' ');
-    }
+    },
   },
   async asyncData({ $content, params }) {
     const data = await $content(params.main, params.category, params.page)
@@ -40,9 +40,9 @@ export default {
       .fetch();
 
     return {
-      data
+      data,
     };
-  }
+  },
 };
 </script>
 

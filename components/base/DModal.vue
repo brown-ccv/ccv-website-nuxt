@@ -16,7 +16,7 @@
       :class="[
         'is-width-' + width,
         'has-border-top-' + accent,
-        'has-background-' + variant
+        'has-background-' + variant,
       ]"
     >
       <!-- header -->
@@ -68,32 +68,32 @@ import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   components: {
-    'd-button': DButton
+    'd-button': DButton,
   },
   mixins: [discoBaseMixin],
   props: {
     closeButtonText: {
       type: String,
-      default: 'Close'
+      default: 'Close',
     },
     closeOptions: {
       type: String,
       default: 'header',
       validator(value) {
         return ['header', 'footer', 'both'].includes(value);
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      isActive: true
+      isActive: true,
     };
   },
   methods: {
     onClose() {
       this.isActive = false;
       this.$emit('close');
-    }
-  }
+    },
+  },
 };
 </script>

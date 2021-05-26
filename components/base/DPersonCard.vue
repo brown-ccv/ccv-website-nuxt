@@ -44,39 +44,39 @@ import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   components: {
-    DCard
+    DCard,
   },
   mixins: [discoBaseMixin],
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     team: {
       type: String,
-      required: true
+      required: true,
     },
     mainImage: {
       type: String,
-      required: true
+      required: true,
     },
     hoverImage: {
       type: String,
-      required: true
+      required: true,
     },
     border: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      active: false
+      active: false,
     };
-  }
+  },
 };
 </script>

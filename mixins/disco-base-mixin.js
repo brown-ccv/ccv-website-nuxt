@@ -7,27 +7,27 @@ const discoBase = {
       default: 'danger',
       validator(value) {
         return utils.variantValidator(value);
-      }
+      },
     },
     variant: {
       type: String,
       default: 'primary',
       validator(value) {
         return utils.variantValidator(value);
-      }
+      },
     },
     width: {
       type: String,
       default: 'medium',
       validator(value) {
         return ['small', 'medium', 'large'].includes(value);
-      }
-    }
+      },
+    },
   },
   filters: {
     uppercase(str) {
       return str.toUpperCase();
-    }
+    },
   },
   computed: {
     textColor() {
@@ -47,8 +47,8 @@ const discoBase = {
     },
     headerRule() {
       return this.border ? 'has-header-rule-' + this.accent : 'header-rule';
-    }
-  }
+    },
+  },
 };
 
 export default discoBase;

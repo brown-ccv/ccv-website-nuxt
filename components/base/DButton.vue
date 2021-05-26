@@ -8,7 +8,7 @@
       'is-' + size,
       'is-' + variant,
       textColor,
-      { 'is-outlined': outlined }
+      { 'is-outlined': outlined },
     ]"
     @click="onClick"
   >
@@ -26,32 +26,32 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     size: {
       type: String,
       required: false,
       validator(value) {
         return ['small', 'normal', 'medium', 'large'].includes(value);
-      }
+      },
     },
     icon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     outlined: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     onClick() {
       this.$emit('click');
-    }
-  }
+    },
+  },
 };
 </script>

@@ -26,8 +26,8 @@
             params: {
               main: 'home',
               category: 'banners',
-              page: banner.title.toLowerCase()
-            }
+              page: banner.title.toLowerCase(),
+            },
           }"
         >
           {{ banner.title }}
@@ -43,7 +43,13 @@ import Navbar from '@/components/base/Navbar';
 export default {
   components: {
     Navbar,
-    DBanner: () => import('@/components/base/DBanner')
+    DBanner: () => import('@/components/base/DBanner'),
+  },
+  data() {
+    return {
+      banners: [],
+      status: [],
+    };
   },
   async fetch() {
     this.banners = await this.$content('home', 'banners').fetch();
@@ -52,16 +58,10 @@ export default {
   },
   // call fetch only on client-side
   fetchOnServer: false,
-  data() {
-    return {
-      banners: [],
-      status: []
-    };
-  },
   computed: {
     statusAll() {
       return this.status.filter((a) => a.name === 'all')[0];
-    }
-  }
+    },
+  },
 };
 </script>

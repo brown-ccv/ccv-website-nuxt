@@ -33,12 +33,12 @@ export default {
   props: {
     data: {
       type: Array,
-      required: true
+      required: true,
     },
     name: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 };
 </script>
 

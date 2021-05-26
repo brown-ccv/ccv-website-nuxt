@@ -34,9 +34,7 @@
     >
       <ul class="navbar-start" data-testid="navbar-start">
         <li class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/services">
-            Services
-          </nuxt-link>
+          <nuxt-link class="navbar-link" to="/services"> Services </nuxt-link>
           <ul class="navbar-dropdown">
             <li class="navbar-item">
               <nuxt-link to="/services/classroom" tabindex="0">
@@ -69,9 +67,7 @@
           </ul>
         </li>
         <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/our-work">
-            Our Work
-          </nuxt-link>
+          <nuxt-link class="navbar-link" to="/our-work"> Our Work </nuxt-link>
           <ul class="navbar-dropdown">
             <li class="navbar-item">
               <nuxt-link to="/our-work/workshops" tabindex="0">
@@ -96,9 +92,7 @@
           </ul>
         </li>
         <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/help">
-            Help
-          </nuxt-link>
+          <nuxt-link class="navbar-link" to="/help"> Help </nuxt-link>
           <ul class="navbar-dropdown">
             <li class="navbar-item">
               <a href="mailto:support@ccv.brown.edu" tabindex="0">
@@ -111,16 +105,12 @@
               </a>
             </li>
             <li class="navbar-item">
-              <nuxt-link to="/help">
-                More Help Options
-              </nuxt-link>
+              <nuxt-link to="/help"> More Help Options </nuxt-link>
             </li>
           </ul>
         </li>
         <li class="navbar-item">
-          <nuxt-link to="/about">
-            About
-          </nuxt-link>
+          <nuxt-link to="/about"> About </nuxt-link>
         </li>
       </ul>
       <ul class="navbar-end" data-testid="navbar-end">
@@ -144,7 +134,7 @@
           ></a>
         </li>
         <li class="navbar-item">
-          <DButton variant="white" name="search" />
+          <Search />
         </li>
       </ul>
     </div>
@@ -152,22 +142,22 @@
 </template>
 
 <script>
-import DButton from '@/components/base/DButton';
 import CCVLogo from '@/components/base/CCVLogo';
 import BrownLogo from '@/components/base/BrownLogo';
+import Search from '@/components/base/Search';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   components: {
-    DButton,
     CCVLogo,
-    BrownLogo
+    BrownLogo,
+    Search,
   },
   mixins: [discoBaseMixin],
   data() {
     return {
-      expanded: false
+      expanded: false,
     };
-  }
+  },
 };
 </script>

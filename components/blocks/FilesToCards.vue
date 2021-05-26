@@ -60,19 +60,19 @@ import DCard from '@/components/base/DCard';
 
 export default {
   components: {
-    DCard
+    DCard,
   },
   props: {
     data: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     filteredData() {
       return this.data.filter((d) => !d.hidden);
-    }
-  }
+    },
+  },
 };
 </script>
 

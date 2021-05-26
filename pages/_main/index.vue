@@ -37,7 +37,7 @@ export default {
   components: {
     DHero,
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
-    About: () => import('@/components/blocks/About.vue')
+    About: () => import('@/components/blocks/About.vue'),
   },
   async asyncData({ $content, params }) {
     // get the index files of top content directories.
@@ -53,7 +53,7 @@ export default {
     // for directories that have subdirectories, gather index.yml files
     // which will be feed the content in the cards
     const list = await $content(`${params.main}`, params.slug, {
-      deep: true
+      deep: true,
     })
       .where({ path: { $regex: '^/+[^/]+/+[^/]+/+index' } })
       .sortBy('title', 'desc')
@@ -62,8 +62,8 @@ export default {
     return {
       index,
       data,
-      list
+      list,
     };
-  }
+  },
 };
 </script>
