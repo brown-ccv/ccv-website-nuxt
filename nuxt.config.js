@@ -68,7 +68,8 @@ export default {
     '@nuxtjs/markdownit'
   ],
   markdownit: {
-    injected: true
+    injected: true,
+    breaks: false
   },
   content: {
     dir: 'content'
