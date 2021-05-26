@@ -30,8 +30,8 @@
     "eslint": "^7.27.0",
     "eslint-config-google": "^0.14.0",
     "firebase-functions-test": "^0.2.0",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2"
+    "node-sass": "^6.0.0",
+    "sass-loader": "^10.2.0"
   },
   "private": true
 }

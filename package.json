@@ -48,11 +48,13 @@
     "firebase-tools": "^9.11.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.0",
     "nuxt-svg-loader": "^1.2.0",
     "prettier": "^2.3.0",
-    "sass-loader": "^10.1.1",
-    "stylelint": "^13.13.0"
+    "sass-loader": "^10.2.0",
+    "stylelint": "^13.13.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "webpack": "^4.46.0"
   },
   "lint-staged": {
     "*.{js,vue}": "npm run lint"
