@@ -3,6 +3,7 @@ import path from 'path';
 
 import * as cheerio from 'cheerio';
 import lunr from 'lunr';
+import fetch from 'node-fetch';
 
 // adapted from https://github.com/nuxt-community/lunr-module/blob/master/lib/module.js
 const createSearchIndex = (documents) => {
@@ -67,6 +68,37 @@ const routeToTitle = (route) => {
     .join(' - ');
 };
 
+const scrapeDocs = async (url, docs, baseUrl) => {
+  const resp = await fetch(url);
+  const body = await resp.text();
+  docs[url] = body;
+  const $ = cheerio.load(body);
+  const links = $('a');
+  const subPages = [];
+  $(links).each((i, link) => {
+    const href = $(link).attr('href');
+    if (href === '/') return;
+    let fullUrl = baseUrl + href;
+
+    // truncate just to url path
+    const hashInd = fullUrl.indexOf('#');
+    if (hashInd >= 0) {
+      fullUrl = fullUrl.slice(0, hashInd);
+    }
+
+    // sub-page
+    if (fullUrl.startsWith(url) && !docs[fullUrl]) {
+      subPages.push(fullUrl);
+    }
+  });
+
+  for (const subPage of subPages) {
+    await scrapeDocs(subPage, docs, baseUrl);
+  }
+
+  return docs;
+};
+
 // adapted from https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites/blob/master/build_index.js
 const htmlToDocument = (html) => {
   const $ = cheerio.load(html);
@@ -103,6 +135,33 @@ export default (nuxt) => {
 
   nuxt.hook('generate:done', (generator) => {
     createSearchIndexAssets(generator, documents, metas);
+  });
+
+  // scrape the docs websites only if generating
+  nuxt.hook('generate:before', async () => {
+    const docsBaseUrl = 'https://docs.ccv.brown.edu';
+    const docsUrls = [
+      '/oscar',
+      '/stronghold',
+      '/jupyterhub',
+      '/globus',
+      '/visualization',
+    ];
+
+    for (const url of docsUrls) {
+      console.log(`scraping docs from ${url}`);
+      const docsDocs = {};
+      await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
+      for (const [key, value] of Object.entries(docsDocs)) {
+        const doc = htmlToDocument(value);
+        documents.push({
+          id: documentIndex,
+          ...doc,
+        });
+        metas[documentIndex] = { name: doc.title, href: key };
+        documentIndex++;
+      }
+    }
   });
 
   // won't have any indexed content from the site, but sets up for dev mode

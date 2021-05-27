@@ -105,8 +105,8 @@ export default {
     { path: '/_ghapi', handler: '~/server-middleware/gh-api.js' },
   ],
   hooks: {
-    ready(nuxt) {
-      addSearch(nuxt);
+    async ready(nuxt) {
+      await addSearch(nuxt);
     },
   },
 };

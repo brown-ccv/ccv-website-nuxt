@@ -39,9 +39,16 @@
           :tabIndex="100 + index"
           @click.prevent="closeResults"
         >
-          <nuxt-link :to="result.href" role="menuitem">
+          <nuxt-link
+            v-if="result.href.startsWith('/')"
+            :to="result.href"
+            role="menuitem"
+          >
             {{ result.name }}
           </nuxt-link>
+          <a v-else :href="result.href" role="menuitem">
+            {{ result.name }}
+          </a>
         </li>
       </ul>
     </div>
