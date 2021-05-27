@@ -67,13 +67,6 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
-    // https://github.com/nuxt-community/lunr-module
-    {
-      src: '@nuxtjs/lunr-module',
-      options: {
-        css: false,
-      },
-    },
   ],
   markdownit: {
     injected: true,
