@@ -6,12 +6,10 @@
     :class="'has-background-light'"
   >
     <div class="navbar-brand">
-      <template>
-        <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
-          <BrownLogo class="d-nav-brand pr-3" size="m" />
-          <CCVLogo size="s" />
-        </nuxt-link>
-      </template>
+      <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
+        <BrownLogo class="d-nav-brand pr-3" size="s" />
+        <CCVLogo size="s" />
+      </nuxt-link>
       <a
         role="button"
         class="navbar-burger burger"
@@ -138,6 +136,8 @@
         </li>
       </ul>
     </div>
+
+    <Search class="navbar-item" />
   </nav>
 </template>
 

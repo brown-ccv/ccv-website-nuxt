@@ -4,6 +4,8 @@
   @extend .button;
   border-radius: 0 !important;
   font-family: $font-family-bold;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 .d-button-delete {

@@ -87,7 +87,7 @@ export default {
     hotMiddleware: {
       client: {
         // turn off client overlay when errors are present
-        overlay: false,
+        overlay: true,
       },
     },
     extend(config, { isDev, isClient }) {
