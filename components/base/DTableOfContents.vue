@@ -8,7 +8,7 @@
       <li v-for="(entry, index) in data" :key="index" data-testid="toc-item">
         <a
           :href="entry.link"
-          class="d-toc-content link"
+          class="d-toc-content p-5 link"
           :class="[textColor]"
           tabindex="0"
         >
@@ -44,6 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 @import 'bulma';
+
 .d-toc-container {
   display: grid;
   justify-items: center;
@@ -59,9 +60,8 @@ export default {
   grid-template-columns: 1fr 10fr 10fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: 'icon start . end';
-  padding: $size-5;
   &:hover {
-    background-color: $light;
+    background-color: hsl(0, 0%, 96%);
   }
 }
 .d-toc-start {

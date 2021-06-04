@@ -45,7 +45,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/scss/disco.scss'],
+  css: ['@/assets/scss/disco.scss', 'bulma-checkradio'],
   /*
    ** Plugins to load before mounting the App
    */

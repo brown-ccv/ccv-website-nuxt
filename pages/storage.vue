@@ -5,7 +5,7 @@
       :title="index.title"
       :subtitle="index.description"
     />
-    <div class="storage-header">
+    <div class="storage-header py-6">
       <h2>{{ index.storage_tool_header }}</h2>
       <span>
         <DButton
@@ -48,7 +48,7 @@
         </a>
       </span>
     </div>
-    <div class="selection-container">
+    <div class="selection-container mt-6">
       <div class="questions-container">
         <MultipleChoice
           v-for="(q, i) in questions"
@@ -185,8 +185,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
 .questions-container {
   display: flex;
   justify-content: flex-start;
@@ -194,13 +192,11 @@ export default {
   flex-direction: column;
 }
 .selection-container {
-  @extend .mt-6;
   display: flex;
   justify-content: space-around;
 }
 
 .storage-header {
-  @extend .py-6;
   display: flex;
   flex-direction: column;
   justify-content: center;

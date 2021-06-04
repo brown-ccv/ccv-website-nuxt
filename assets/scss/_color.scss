@@ -1,5 +1,3 @@
-@import './node_modules/bulma/bulma.sass';
-
 $variants: "yellow",
 "yellow-light",
 "yellow-lighter",
@@ -55,4 +53,16 @@ $variants: "yellow",
   font-size: 0.7em;
   @extend .has-text-grey-dark;
   @extend .has-background-light;
+}
+
+svg {
+  .c1 {
+    fill: var(--color-yellow);
+  }
+  .c2 {
+    fill: var(--color-green);
+  }
+  .v {
+    fill: var(--color-yellow);
+  }
 }

@@ -10,3 +10,13 @@
   @extend .delete;
   border-radius: 0 !important;
 }
+
+.button-nostyle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-link);
+  &:hover {
+    color: var(--color-dark);
+  }
+}

@@ -8,7 +8,7 @@
     <div class="navbar-brand">
       <template>
         <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
-          <BrownLogo class="d-nav-brand" size="m" />
+          <BrownLogo class="d-nav-brand pr-3" size="m" />
           <CCVLogo size="s" />
         </nuxt-link>
       </template>
@@ -161,3 +161,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import 'bulma';
+
+.navbar-burger {
+  @include mobile {
+    align-self: center;
+  }
+}
+
+.navbar-start {
+  font-size: 1.1em;
+}
+</style>

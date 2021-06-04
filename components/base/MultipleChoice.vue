@@ -19,8 +19,8 @@
     </span>
     <details v-if="data.information" class="question-details mb-4">
       <summary>
-        <span class="icon">
-          <i class="mdi mdi-information-outline info-icon" />
+        <span class="icon has-text-info">
+          <i class="mdi mdi-information-outline" />
         </span>
       </summary>
       <p class="content" v-html="$md.render(data.information)"></p>
@@ -83,8 +83,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma-checkradio';
-@import '~bulma/sass/utilities/_all';
 .question-header {
   display: flex;
   align-content: center;
@@ -101,11 +99,5 @@ export default {
 .question-details {
   cursor: pointer;
   width: 50ch;
-}
-.info-icon {
-  color: var(--color-success);
-  &:hover {
-    color: var(--color-dark);
-  }
 }
 </style>

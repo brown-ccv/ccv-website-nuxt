@@ -5,7 +5,7 @@
         id="lunr-search"
         v-model="searchText"
         type="text"
-        class="lunr-input"
+        class="input"
         :placeholder="placeholderText"
         aria-label="Search"
         aria-haspopup="true"
@@ -17,11 +17,12 @@
         @keyup.down="keyDown"
       />
 
-      <ul
+      <div
         v-show="showResults"
         ref="results"
-        class="lunr-results"
+        class="lunr-results dropdown-content mt-2 p-2 has-text-left"
         tabIndex="-1"
+        role="menu"
         aria-labelledby="lunr-search"
         @keyup.enter="keyEnter"
         @keydown.up.stop.prevent
@@ -29,28 +30,39 @@
         @keyup.up.stop.prevent="keyUp"
         @keyup.down.stop.prevent="keyDown"
       >
-        <li v-if="statusMsg" class="lunr-status">
+        <div v-if="statusMsg" class="lunr-status">
           {{ statusMsg }}
-        </li>
-        <li
-          v-for="(result, index) in searchResults"
-          :key="`search-${result.ref}`"
-          class="lunr-result"
-          :tabIndex="100 + index"
-          @click.prevent="closeResults"
-        >
+        </div>
+        <template v-for="(result, index) in searchResults">
+          <hr
+            v-if="index !== 0"
+            :key="`search-divider-${result.ref}`"
+            class="dropdown-divider"
+          />
           <nuxt-link
             v-if="result.href.startsWith('/')"
+            :key="`search-result-${result.ref}`"
             :to="result.href"
             role="menuitem"
+            class="lunr-result dropdown-item is-size-6 pr-3"
+            :tab-index="100 + index"
+            @click.native="closeResults"
           >
             {{ result.name }}
           </nuxt-link>
-          <a v-else :href="result.href" role="menuitem">
+          <a
+            v-else
+            :key="`search-result-${result.ref}`"
+            :href="result.href"
+            role="menuitem"
+            class="lunr-result dropdown-item is-size-6 pr-3"
+            :tabIndex="100 + index"
+            @click="closeResults"
+          >
             {{ result.name }}
           </a>
-        </li>
-      </ul>
+        </template>
+      </div>
     </div>
   </client-only>
 </template>
@@ -207,60 +219,23 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
 .lunr-search {
   position: relative;
   display: inline-block;
-  font-size: 1rem;
-}
-
-.lunr-input {
-  display: inline-block;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  line-height: 2rem;
-  padding: 0 0.5em 0 2em;
-  outline: none;
-  transition: all 0.2s ease;
-  background-size: 1rem;
-}
-
-.lunr-input:focus {
-  border-color: #ddd;
 }
 
 .lunr-results {
   display: block;
   position: absolute;
+  right: 0;
   width: 20rem;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  margin: 0.5rem 0px 0px;
-  padding: 0.3rem;
-  list-style-type: none;
-  font-size: 1.1em;
 }
 
 .lunr-result {
-  cursor: pointer;
-  line-height: 1.6em;
-}
-
-.lunr-result:hover,
-.lunr-result:focus {
-  background-color: #eee;
-}
-
-.lunr-result a {
-  position: relative;
-  display: inline-block;
   width: 100%;
-}
-
-.lunr-result .text-right {
-  position: absolute;
-  right: 0;
+  display: inline-block;
+  white-space: normal;
 }
 
 .lunr-status {

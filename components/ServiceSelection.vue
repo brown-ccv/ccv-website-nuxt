@@ -4,7 +4,7 @@
       v-for="(s, i) in data"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
-      class="field service-box"
+      class="field service-box my-1 p-4"
       :class="[
         selectedData.includes(s.service)
           ? 'has-background-info'
@@ -106,8 +106,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
 .service-selection {
   display: flex;
   flex-basis: 30%;
@@ -115,9 +113,6 @@ export default {
   align-content: flex-start;
 }
 .service-box {
-  @extend .my-1;
-  @extend .px-4;
-  @extend .py-4;
   width: 100%;
   border-radius: 0;
   border: none;
@@ -131,14 +126,5 @@ export default {
 }
 .mdi-checkbox-marked {
   align-self: flex-end;
-}
-.button-nostyle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-link);
-  &:hover {
-    color: var(--color-dark);
-  }
 }
 </style>

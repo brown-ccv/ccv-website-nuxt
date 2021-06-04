@@ -6,7 +6,7 @@
       :subtitle="$route.params.category | humanize"
     >
     </DHero>
-    <main class="content-wrapper">
+    <main class="content-wrapper mt-6">
       <!-- General markdown content pages -->
       <nuxt-content
         v-if="data.extension === '.md'"
@@ -47,12 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
-@import '~bulma/sass/helpers/visibility';
-@import '~bulma/sass/helpers/typography';
 .content-wrapper {
-  @extend .mt-6;
   display: flex;
   flex-direction: column;
   justify-content: center;

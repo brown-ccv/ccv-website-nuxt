@@ -1,7 +1,7 @@
 <template>
   <svg
     id="ccv-logo"
-    class="ccv-logo"
+    class="ccv-logo ml-5"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -105,18 +105,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import 'bulma';
 .ccv-logo {
-  margin-left: $size-5;
   z-index: 100;
-}
-.c1 {
-  fill: var(--color-yellow);
-}
-.c2 {
-  fill: var(--color-green);
-}
-.v {
-  fill: var(--color-yellow);
 }
 </style>
