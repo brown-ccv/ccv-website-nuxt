@@ -38,12 +38,12 @@
   </div>
 </template>
 <script>
-import Navbar from '@/components/base/Navbar';
+import Navbar from '@/components/base/Navbar.vue';
 
 export default {
   components: {
     Navbar,
-    DBanner: () => import('@/components/base/DBanner'),
+    DBanner: () => import('@/components/base/DBanner.vue'),
   },
   data() {
     return {

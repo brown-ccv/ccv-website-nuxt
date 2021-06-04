@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import DCard from '@/components/base/DCard';
+import DCard from '@/components/base/DCard.vue';
 
 export default {
   components: {

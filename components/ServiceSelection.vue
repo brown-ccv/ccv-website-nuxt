@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import DModal from '@/components/base/DModal';
+import DModal from '@/components/base/DModal.vue';
 
 export default {
   components: {

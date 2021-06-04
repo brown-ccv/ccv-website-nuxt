@@ -92,8 +92,8 @@
 </template>
 
 <script>
-import DTOC from '@/components/base/DTableOfContents';
-import DPersonCard from '@/components/base/DPersonCard';
+import DTOC from '@/components/base/DTableOfContents.vue';
+import DPersonCard from '@/components/base/DPersonCard.vue';
 
 export default {
   components: {

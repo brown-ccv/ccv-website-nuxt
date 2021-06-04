@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import DButton from '@/components/base/DButton';
+import DButton from '@/components/base/DButton.vue';
 
 export default {
   components: {

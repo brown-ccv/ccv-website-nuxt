@@ -155,8 +155,8 @@
 </template>
 
 <script>
-import CCVLogo from '@/components/base/CCVLogo';
-import BrownLogo from '@/components/base/BrownLogo';
+import CCVLogo from '@/components/base/CCVLogo.vue';
+import BrownLogo from '@/components/base/BrownLogo.vue';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

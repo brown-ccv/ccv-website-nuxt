@@ -142,9 +142,9 @@
 </template>
 
 <script>
-import CCVLogo from '@/components/base/CCVLogo';
-import BrownLogo from '@/components/base/BrownLogo';
-import Search from '@/components/base/Search';
+import CCVLogo from '@/components/base/CCVLogo.vue';
+import BrownLogo from '@/components/base/BrownLogo.vue';
+import Search from '@/components/base/Search.vue';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

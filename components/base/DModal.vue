@@ -32,7 +32,7 @@
       </header>
 
       <!-- modal content -->
-      <!-- need to add background variant again here 
+      <!-- need to add background variant again here
       to override the background of modal-card-body -->
       <div
         data-testid="modal-content"
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import DButton from '@/components/base/DButton';
+import DButton from '@/components/base/DButton.vue';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

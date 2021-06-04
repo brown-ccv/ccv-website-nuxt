@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import DCard from '@/components/base/DCard';
+import DCard from '@/components/base/DCard.vue';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {

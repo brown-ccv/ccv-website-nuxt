@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import DTOC from '@/components/base/DTableOfContents';
+import DTOC from '@/components/base/DTableOfContents.vue';
 
 export default {
   components: {

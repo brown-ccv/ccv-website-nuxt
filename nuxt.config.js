@@ -45,7 +45,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/scss/disco'],
+  css: ['@/assets/scss/disco.scss'],
   /*
    ** Plugins to load before mounting the App
    */

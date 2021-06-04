@@ -85,11 +85,11 @@
 </template>
 
 <script>
-import DHero from '@/components/base/DHero';
-import DButton from '@/components/base/DButton';
-import MultipleChoice from '@/components/base/MultipleChoice';
-import ServiceSelection from '@/components/ServiceSelection';
-import ComparisonTable from '@/components/ComparisonTable';
+import DHero from '@/components/base/DHero.vue';
+import DButton from '@/components/base/DButton.vue';
+import MultipleChoice from '@/components/base/MultipleChoice.vue';
+import ServiceSelection from '@/components/ServiceSelection.vue';
+import ComparisonTable from '@/components/ComparisonTable.vue';
 
 export default {
   components: {

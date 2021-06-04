@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import DButton from '@/components/base/DButton';
-import DHero from '@/components/base/DHero';
+import DButton from '@/components/base/DButton.vue';
+import DHero from '@/components/base/DHero.vue';
 
 export default {
   components: { DHero, DButton },

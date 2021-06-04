@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import DHero from '@/components/base/DHero';
+import DHero from '@/components/base/DHero.vue';
 
 export default {
   components: {
