@@ -120,17 +120,21 @@ export default (nuxt) => {
   const metas = {};
   const documents = [];
 
-  nuxt.hook('generate:page', ({ route, html }) => {
-    if (route === '/') return;
-    const title = routeToTitle(route);
-    const doc = htmlToDocument(html);
+  const addDocument = ({ title, body, route }) => {
     documents.push({
       id: documentIndex,
-      ...doc,
+      body,
       title,
     });
     metas[documentIndex] = { name: title, href: route };
     documentIndex++;
+  };
+
+  nuxt.hook('generate:page', ({ route, html }) => {
+    if (route === '/') return;
+    const title = routeToTitle(route);
+    const doc = htmlToDocument(html);
+    addDocument({ ...doc, title, route });
   });
 
   nuxt.hook('generate:done', (generator) => {
@@ -154,19 +158,29 @@ export default (nuxt) => {
       await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
       for (const [key, value] of Object.entries(docsDocs)) {
         const doc = htmlToDocument(value);
-        documents.push({
-          id: documentIndex,
-          ...doc,
-        });
-        metas[documentIndex] = { name: doc.title, href: key };
-        documentIndex++;
+        addDocument({ ...doc, route: key });
       }
     }
   });
 
   // won't have any indexed content from the site, but sets up for dev mode
-  const webpackPlugin = (compilation) =>
+  const webpackPlugin = (compilation) => {
+    if (documents.length === 0) {
+      // add some fake results
+      addDocument({
+        title: 'Test one two three four five six seven eight nine ten',
+        route: '/services',
+        body: 'We are testing an internal link',
+      });
+      addDocument({
+        title: 'Somewhere over the rainbow',
+        route: 'https://docs.ccv.brown.edu/oscar',
+        body: 'We are testing an external link',
+      });
+    }
     createSearchIndexAssetsBuild(compilation, documents, metas);
+  };
+
   nuxt.options.build.plugins.push({
     apply(compiler) {
       compiler.hooks.emit.tap('LunrModulePlugin', webpackPlugin);
