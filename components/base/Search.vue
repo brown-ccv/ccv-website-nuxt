@@ -12,9 +12,7 @@
         :aria-expanded="showResults"
         autocomplete="off"
         spellcheck="false"
-        @keyup.enter="keyEnter"
-        @keyup.up="keyUp"
-        @keyup.down="keyDown"
+        @keyup.esc="closeResults"
       />
 
       <div
@@ -24,11 +22,6 @@
         tabIndex="-1"
         role="menu"
         aria-labelledby="lunr-search"
-        @keyup.enter="keyEnter"
-        @keydown.up.stop.prevent
-        @keydown.down.stop.prevent
-        @keyup.up.stop.prevent="keyUp"
-        @keyup.down.stop.prevent="keyDown"
       >
         <div v-if="statusMsg" class="lunr-status">
           {{ statusMsg }}
@@ -41,23 +34,25 @@
           />
           <nuxt-link
             v-if="result.href.startsWith('/')"
-            :key="`search-result-${result.ref}`"
+            :key="`search-result-${index}`"
             :to="result.href"
             role="menuitem"
             class="lunr-result dropdown-item is-size-6 pr-3"
             :tab-index="100 + index"
             @click.native="closeResults"
+            @keyup.native.esc="closeResults"
           >
             {{ result.name }}
           </nuxt-link>
           <a
             v-else
-            :key="`search-result-${result.ref}`"
+            :key="`search-result-${index}`"
             :href="result.href"
             role="menuitem"
             class="lunr-result dropdown-item is-size-6 pr-3"
-            :tabIndex="100 + index"
+            :tab-index="100 + index"
             @click="closeResults"
+            @keyup.esc="closeResults"
           >
             {{ result.name }}
           </a>
@@ -79,7 +74,6 @@ const statusMessages = {
 export default {
   data() {
     return {
-      language: 'en',
       placeholderText: 'Search...',
       statusMsg: '',
       searchMeta: undefined,
@@ -90,13 +84,8 @@ export default {
   },
   async fetch() {
     this.setStatus('fetching');
-    const searchJson = await fetch('/_nuxt/search-index/en.json').then(
-      (res) => {
-        if (res.status === 200) {
-          return res.json();
-        }
-      }
-    );
+    const searchIndex = await fetch('/_nuxt/search-index/en.json');
+    const searchJson = await searchIndex.json();
 
     this.setStatus('loading');
     this.searchMeta = searchJson.metas || undefined;
@@ -187,37 +176,6 @@ export default {
       }
 
       return this.searchMeta[ref];
-    },
-    keyEnter() {
-      const el = this.$refs.results.querySelector(':focus');
-      if (el) {
-        el.querySelector('a').click();
-        this.closeResults();
-      }
-    },
-    keyUp() {
-      if (!this.showResults) {
-        return;
-      }
-
-      const el = this.$refs.results.querySelector(':focus');
-      if (!el) {
-        this.$refs.results.querySelector(':last-child').focus();
-      } else if (el.previousSibling && el.previousSibling.focus) {
-        el.previousSibling.focus();
-      }
-    },
-    keyDown() {
-      if (!this.showResults) {
-        return;
-      }
-
-      const el = this.$refs.results.querySelector(':focus');
-      if (!el) {
-        this.$refs.results.querySelector(':first-child').focus();
-      } else if (el.nextSibling) {
-        el.nextSibling.focus();
-      }
     },
   },
 };
