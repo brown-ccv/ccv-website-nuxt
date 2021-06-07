@@ -27,14 +27,14 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "lunr": "^2.3.9",
-    "nuxt": "^2.15.6"
+    "nuxt": "^2.15.6",
+    "nuxt-svg-loader": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^7.27.0",
     "eslint-config-google": "^0.14.0",
     "firebase-functions-test": "^0.2.0",
     "node-sass": "^6.0.0",
-    "nuxt-svg-loader": "^1.2.0",
     "sass-loader": "^10.2.0",
     "webpack": "^4.46.0"
   },
