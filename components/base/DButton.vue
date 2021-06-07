@@ -38,6 +38,7 @@ export default {
       validator(value) {
         return ['small', 'normal', 'medium', 'large'].includes(value);
       },
+      default: 'normal',
     },
     icon: {
       type: Boolean,

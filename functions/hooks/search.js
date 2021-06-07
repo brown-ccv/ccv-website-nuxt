@@ -77,6 +77,7 @@ const scrapeDocs = async (url, docs, baseUrl) => {
   const subPages = [];
   $(links).each((i, link) => {
     const href = $(link).attr('href');
+    if (href === '/') return;
     let fullUrl = baseUrl + href;
 
     // truncate just to url path
@@ -114,22 +115,26 @@ const htmlToDocument = (html) => {
   };
 };
 
-export default async (nuxt) => {
+export default (nuxt) => {
   let documentIndex = 1;
   const metas = {};
   const documents = [];
+
+  const addDocument = ({ title, body, route }) => {
+    documents.push({
+      id: documentIndex,
+      body,
+      title,
+    });
+    metas[documentIndex] = { name: title, href: route };
+    documentIndex++;
+  };
 
   nuxt.hook('generate:page', ({ route, html }) => {
     if (route === '/') return;
     const title = routeToTitle(route);
     const doc = htmlToDocument(html);
-    documents.push({
-      id: documentIndex,
-      ...doc,
-      title,
-    });
-    metas[documentIndex] = { name: title, href: route };
-    documentIndex++;
+    addDocument({ ...doc, title, route });
   });
 
   nuxt.hook('generate:done', (generator) => {
@@ -147,25 +152,36 @@ export default async (nuxt) => {
       '/visualization',
     ];
 
-    for (const url of docsUrls) {
+    await Promise.allSettled(docsUrls.map(async (url) => {
       console.log(`scraping docs from ${url}`);
       const docsDocs = {};
       await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
       for (const [key, value] of Object.entries(docsDocs)) {
         const doc = htmlToDocument(value);
-        documents.push({
-          id: documentIndex,
-          ...doc,
-        });
-        metas[documentIndex] = { name: doc.title, href: key };
-        documentIndex++;
+        addDocument({ ...doc, route: key });
       }
-    }
+      console.log(`completed scraping: ${url}`)
+    }))
   });
 
   // won't have any indexed content from the site, but sets up for dev mode
-  const webpackPlugin = (compilation) =>
+  const webpackPlugin = (compilation) => {
+    if (documents.length === 0) {
+      // add some fake results
+      addDocument({
+        title: 'Test one two three four five six seven eight nine ten',
+        route: '/services',
+        body: 'We are testing an internal link',
+      });
+      addDocument({
+        title: 'Somewhere over the rainbow',
+        route: 'https://docs.ccv.brown.edu/oscar',
+        body: 'We are testing an external link',
+      });
+    }
     createSearchIndexAssetsBuild(compilation, documents, metas);
+  };
+
   nuxt.options.build.plugins.push({
     apply(compiler) {
       compiler.hooks.emit.tap('LunrModulePlugin', webpackPlugin);

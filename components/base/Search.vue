@@ -89,7 +89,6 @@ export default {
     };
   },
   async fetch() {
-    console.log('fetching index');
     this.setStatus('fetching');
     const searchJson = await fetch('/_nuxt/search-index/en.json').then(
       (res) => {
@@ -167,7 +166,6 @@ export default {
       this.searchResults = this.searchIndex
         .search(txt)
         .map((r) => this.getResultMeta(r));
-      console.log(this.searchResults);
 
       if (!this.searchResults || !this.searchResults.length) {
         this.setStatus('noresults');

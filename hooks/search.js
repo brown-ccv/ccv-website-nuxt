@@ -152,15 +152,18 @@ export default (nuxt) => {
       '/visualization',
     ];
 
-    for (const url of docsUrls) {
-      console.log(`scraping docs from ${url}`);
-      const docsDocs = {};
-      await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
-      for (const [key, value] of Object.entries(docsDocs)) {
-        const doc = htmlToDocument(value);
-        addDocument({ ...doc, route: key });
-      }
-    }
+    await Promise.allSettled(
+      docsUrls.map(async (url) => {
+        console.log(`scraping docs from ${url}`);
+        const docsDocs = {};
+        await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
+        for (const [key, value] of Object.entries(docsDocs)) {
+          const doc = htmlToDocument(value);
+          addDocument({ ...doc, route: key });
+        }
+        console.log(`completed scraping: ${url}`);
+      })
+    );
   });
 
   // won't have any indexed content from the site, but sets up for dev mode
