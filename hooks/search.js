@@ -6,6 +6,7 @@ import lunr from 'lunr';
 import fetch from 'node-fetch';
 
 // adapted from https://github.com/nuxt-community/lunr-module/blob/master/lib/module.js
+// turns the documents into a search index
 const createSearchIndex = (documents) => {
   let lunrBuilder;
   lunr((builder) => (lunrBuilder = builder));
@@ -24,6 +25,7 @@ const createSearchIndex = (documents) => {
 };
 
 // adapted from https://github.com/nuxt-community/lunr-module/blob/master/lib/module.js
+// adds a search index to the generated website
 const createSearchIndexAssets = (generator, documents, metas) => {
   const searchJson = createSearchIndex(documents);
   searchJson.metas = metas;
@@ -43,6 +45,7 @@ const createSearchIndexAssets = (generator, documents, metas) => {
 };
 
 // adapted from https://github.com/nuxt-community/lunr-module/blob/master/lib/module.js
+// adds a search index to the built website
 const createSearchIndexAssetsBuild = (compilation, documents, metas) => {
   const searchJson = createSearchIndex(documents);
   searchJson.metas = metas;
@@ -55,6 +58,7 @@ const createSearchIndexAssetsBuild = (compilation, documents, metas) => {
   };
 };
 
+// turn a ccv website route into a title for search results
 const routeToTitle = (route) => {
   return route
     .slice(1)
@@ -68,6 +72,7 @@ const routeToTitle = (route) => {
     .join(' - ');
 };
 
+// walk the links in a docs website recursively
 const scrapeDocs = async (url, docs, baseUrl) => {
   const resp = await fetch(url);
   const body = await resp.text();
@@ -78,12 +83,18 @@ const scrapeDocs = async (url, docs, baseUrl) => {
   $(links).each((i, link) => {
     const href = $(link).attr('href');
     if (href === '/') return;
+
     let fullUrl = baseUrl + href;
 
     // truncate just to url path
     const hashInd = fullUrl.indexOf('#');
     if (hashInd >= 0) {
       fullUrl = fullUrl.slice(0, hashInd);
+    }
+
+    // remove a trailing /
+    if (fullUrl.endsWith('/')) {
+      fullUrl = fullUrl.slice(0, -1);
     }
 
     // sub-page
@@ -100,6 +111,7 @@ const scrapeDocs = async (url, docs, baseUrl) => {
 };
 
 // adapted from https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites/blob/master/build_index.js
+// scrapes the relevant info from the html to get the title and body data
 const htmlToDocument = (html) => {
   const $ = cheerio.load(html);
   let title = $('title').text();
@@ -115,6 +127,8 @@ const htmlToDocument = (html) => {
   };
 };
 
+// run the hook
+// set up the documents and metas, on page generation add each doc to the index, also scrape the docs
 export default (nuxt) => {
   let documentIndex = 1;
   const metas = {};

@@ -34,7 +34,7 @@
           />
           <nuxt-link
             v-if="result.href.startsWith('/')"
-            :key="`search-result-${index}`"
+            :key="`search-result-${result.ref}`"
             :to="result.href"
             role="menuitem"
             class="lunr-result dropdown-item is-size-6 pr-3"
@@ -46,7 +46,7 @@
           </nuxt-link>
           <a
             v-else
-            :key="`search-result-${index}`"
+            :key="`search-result-${result.ref}`"
             :href="result.href"
             role="menuitem"
             class="lunr-result dropdown-item is-size-6 pr-3"
@@ -133,13 +133,14 @@ export default {
     },
     bodyListener(event) {
       if (this.$refs.lunr && !this.$refs.lunr.contains(event.target)) {
-        this.resultsVisible = false;
+        this.closeResults();
       }
     },
     closeResults() {
       this.searchText = '';
       this.resultsVisible = false;
       this.removeBodyListener();
+      clearTimeout(this.searchTimeout);
       this.clearStatus();
     },
     openResults() {
@@ -152,9 +153,9 @@ export default {
 
       this.setStatus('searching');
 
-      this.searchResults = this.searchIndex
-        .search(txt)
-        .map((r) => this.getResultMeta(r));
+      this.searchResults = this.searchIndex.search(txt).map((r) => {
+        return { ref: r.ref, ...this.getResultMeta(r) };
+      });
 
       if (!this.searchResults || !this.searchResults.length) {
         this.setStatus('noresults');
