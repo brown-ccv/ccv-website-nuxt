@@ -33,7 +33,7 @@
         <div v-if="statusMsg" class="lunr-status">
           {{ statusMsg }}
         </div>
-        <template v-for="(result, index) in searchResults">
+        <template v-for="(result, index) in filteredSearchResults">
           <hr
             v-if="index !== 0"
             :key="`search-divider-${result.ref}`"
@@ -110,6 +110,11 @@ export default {
       if (this.statusMsg) return true;
       if (this.resultsVisible) return true;
       return false;
+    },
+    filteredSearchResults() {
+      return this.searchResults.length > 10
+        ? this.searchResults.slice(0, 10)
+        : this.searchResults;
     },
   },
   fetchOnServer: false,
@@ -220,9 +225,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import 'bulma';
 .lunr-search {
   position: relative;
   display: inline-block;
+
+  @include mobile {
+    width: 93vw;
+  }
 }
 
 .lunr-results {
@@ -230,12 +240,17 @@ export default {
   position: absolute;
   right: 0;
   width: 20rem;
+  z-index: 100;
+
+  @include mobile {
+    width: 93vw;
+  }
 }
 
 .lunr-result {
   width: 100%;
   display: inline-block;
-  white-space: normal;
+  white-space: normal !important;
 }
 
 .lunr-status {

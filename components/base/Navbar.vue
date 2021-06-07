@@ -117,7 +117,7 @@
             href="https://docs.ccv.brown.edu"
             class="d-button is-white has-text-link"
             aria-label="CCV Services' Documentation"
-            >Documentation
+            >Docs
             <span class="icon">
               <i class="ml-1 mdi mdi-file-document-box" />
             </span>
@@ -131,13 +131,12 @@
             >Blog<span class="icon"> <i class="ml-1 mdi mdi-medium" /> </span
           ></a>
         </li>
-        <li class="navbar-item">
-          <Search />
-        </li>
       </ul>
     </div>
 
-    <Search class="navbar-item" />
+    <div class="navbar-item">
+      <Search />
+    </div>
   </nav>
 </template>
 
