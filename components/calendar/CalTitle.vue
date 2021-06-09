@@ -6,7 +6,7 @@
       class="time-btn"
       @click="timeBtnClick(false)"
     >
-      <font-awesome-icon :icon="['fas', 'chevron-circle-left']" size="lg" />
+      <i class="mdi mdi-arrow-left-bold-circle" />
     </div>
     <div>
       <h1>
@@ -19,7 +19,7 @@
       class="time-btn"
       @click="timeBtnClick(true)"
     >
-      <font-awesome-icon :icon="['fas', 'chevron-circle-right']" size="lg" />
+      <i class="mdi mdi-arrow-right-bold-circle" />
     </div>
   </div>
 </template>

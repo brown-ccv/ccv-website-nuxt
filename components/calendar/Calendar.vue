@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="calendar-container">
     <!--
        Display the title if not in the upcoming view.
        Call scrollTime when the scroll buttons are clicked.
@@ -248,5 +248,13 @@ a {
 
 .bump-margin-top {
   margin-top: 6em;
+}
+
+.calendar-container {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 </style>

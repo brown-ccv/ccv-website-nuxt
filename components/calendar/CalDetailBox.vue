@@ -53,6 +53,9 @@ export default {
      */
     description() {
       let str = this.info.description_long;
+      if (str === undefined) {
+        str = '';
+      }
       if (!str.includes('_blank')) {
         str = str.replace('<a', '<a target="_blank"');
       }

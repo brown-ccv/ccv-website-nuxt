@@ -38,16 +38,29 @@ import axios from 'axios';
 import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 import Calendar from '@/components/calendar/Calendar';
+import { getStringDate } from '@/utils.js';
+
+const numEvents = 4;
 
 export default {
   components: { DHero, DButton, Calendar },
   async fetch() {
-    // example to prove out the client-only rendering
-    const num = Math.floor(Math.random() * 10);
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/todos/${num}`
+    const currentDate = new Date();
+    const firstOfLastMonth = getStringDate(
+      currentDate.getMonth(),
+      1,
+      currentDate.getFullYear()
     );
-    this.todo = await response.json();
+    const today = getStringDate(
+      currentDate.getMonth() + 1,
+      currentDate.getDate(),
+      currentDate.getFullYear()
+    );
+    // Get the next 72 events from the first of last month, so the calendar can show events in the past as well
+    this.info = await this.getData(firstOfLastMonth);
+    // Get the next 72 events from today and extract the next six for the upcoming view
+    this.upcomingEvents = await this.getData(today);
+    this.upcomingEvents = this.upcomingEvents.slice(0, numEvents);
   },
   data() {
     return {
