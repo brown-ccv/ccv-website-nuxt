@@ -17,13 +17,13 @@
         </template>
       </DButton>
     </span>
-    <details class="question-details mb-4">
+    <details v-if="data.information" class="question-details mb-4">
       <summary>
         <span class="icon">
           <i class="mdi mdi-information-outline info-icon" />
         </span>
       </summary>
-      <p v-html="$md.render(data.information || '')"></p>
+      <p class="content" v-html="$md.render(data.information)"></p>
     </details>
     <div
       v-for="(a, i) in data.answers"

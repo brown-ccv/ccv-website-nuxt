@@ -1,15 +1,17 @@
 <template>
   <main class="storage-section pt-6 mt-6">
-    <div class="comparison-container sticky has-background-white">
-      <ul
-        v-for="(service, index) in data"
-        :key="index"
-        class="comparison-item subtitle"
-      >
-        {{
-          service.service | humanize
-        }}
-      </ul>
+    <div class="px-4 has-background-dark sticky">
+      <div class="comparison-container">
+        <ul
+          v-for="(service, index) in data"
+          :key="index"
+          class="comparison-item subtitle has-text-light"
+        >
+          {{
+            service.service | humanize
+          }}
+        </ul>
+      </div>
     </div>
     <div class="comparison-wrapper">
       <div
@@ -129,15 +131,14 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  width: 120ch;
 }
 .comparison-item.subtitle {
-  width: 12ch;
-  font-size: 1.7rem;
+  width: 12rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .class-container {
-  width: 20ch;
+  width: 12rem;
   display: flex;
   justify-content: center;
 }
@@ -150,9 +151,8 @@ export default {
 .sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 1rem;
-  padding: 2rem;
-  opacity: 90%;
+  top: 0rem;
+  padding: 1rem;
 }
 .storage-section {
   display: flex;

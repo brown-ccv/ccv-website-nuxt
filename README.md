@@ -49,3 +49,8 @@ With it's corresponding post
 Other useful
 * https://stackoverflow.com/questions/61060666/how-to-deploy-nuxt-ssr-app-to-firebase-through-cloud-functions
 * https://dev.to/slushnys/how-to-host-nuxt-js-application-on-firebase-with-a-single-command-1nio
+
+
+## Notes
+
+* 2021-05-26 (MCM): sass-loader stuck at 10 and webpack at 4 due to nuxt
