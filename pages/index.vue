@@ -16,16 +16,17 @@
         </nuxt-link>
       </template>
     </DHero>
-    <template>
-      <div id="app">
-        <Calendar
-          v-if="info.length >= 0"
-          :info="info"
-          :upcoming-events="upcomingEvents"
-          @month-change="getData"
-        />
-      </div>
-    </template>
+    <div id="calendar">
+      <h2 class="d-calendar-title">
+          Upcoming Events
+        </h2>
+      <Calendar
+        v-if="info.length >= 0"
+        :info="info"
+        :upcoming-events="upcomingEvents"
+        @month-change="getData"
+      />
+    </div>
     <client-only>
       <p>{{ todo.id }}</p>
       {{ todo }}

@@ -55,7 +55,6 @@
 import {
   ALL_MONTHS,
   ALL_DAYS_OF_WEEK,
-  getCurrentDate,
   getStringDate
 } from '../../utils.js';
 import Title from '@/components/calendar/CalTitle';
@@ -98,22 +97,22 @@ export default {
       /**
        * The year as a four-digit integer.
        */
-      displayYear: getCurrentDate().getFullYear(),
+      displayYear: new Date().getFullYear(),
       /**
        * The month as an integer with no leading 0 for months less than 10. Add one because getMonth is zero-indexed.
        */
-      displayMonth: getCurrentDate().getMonth() + 1,
+      displayMonth: new Date().getMonth() + 1,
       /**
        * The integer representation of the current day.
        */
-      displayDay: getCurrentDate().getDate(),
+      displayDay: new Date().getDate(),
       /**
        * Gets the string representation of the current date.
        */
       todaysDate: getStringDate(
-        getCurrentDate().getDate(),
-        getCurrentDate().getMonth() + 1,
-        getCurrentDate().getFullYear()
+        new Date().getDate(),
+        new Date().getMonth() + 1,
+        new Date().getFullYear()
       )
     };
   },

@@ -44,7 +44,12 @@
 </template>
 
 <script>
-import { getStringDate } from '../../utils.js';
+import { 
+  getStringDate,
+  getEventsDict,
+  calcColSpan,
+  calcMaxWidth 
+  } from '../../utils.js';
 import Event from '@/components/calendar/CalEvent';
 
 export default {
@@ -106,25 +111,6 @@ export default {
       totalHalfHours: 48
     };
   },
-  computed: {
-    /**
-     * Gets the events for this day.
-     *
-     * @returns {Array} An array of the event objects for this day.
-     */
-    events() {
-      // get events on this day
-      const stringDate = this.getStringDate();
-      const newEvents = [];
-
-      for (let i = 0; i < this.info.length; i++) {
-        if (this.info[i].date_utc.split(' ')[0] === stringDate) {
-          newEvents.push(this.info[i]);
-        }
-      }
-      return newEvents;
-    }
-  },
   methods: {
     /**
      * Generates the string representation of a date.
@@ -133,33 +119,6 @@ export default {
      */
     getStringDate() {
       return getStringDate(this.displayMonth, this.date, this.displayYear);
-    },
-    /**
-     * Set detailedOpen to false after 0.1 seconds, to allow time for potential mouseover.
-     */
-    startDetailClose() {
-      setTimeout(() => {
-        if (!this.rolloverDetailed) {
-          this.detailedOpen = false;
-        }
-      }, 100);
-    },
-    /**
-     * Removes the duplicate events by title.
-     *
-     * @param {Array} events An array of the events on this day.
-     * @returns {Array} The events with duplicates removed.
-     */
-    removeDuplicates(events) {
-      const eventsDict = {};
-      for (let i = 0; i < events.length; i++) {
-        const title = events[i].title;
-        eventsDict[title] = events[i];
-      }
-      const retEvents = Object.keys(eventsDict).map((k) => {
-        return eventsDict[k];
-      });
-      return retEvents;
     },
     /**
      * Organizes events into their respective timeslots and handles overlapping events.
@@ -249,9 +208,28 @@ export default {
         return this.maxConcurrent;
       }
       return this.maxConcurrent / eventElem.concurrent;
-    },
+    }, 
     calcMaxWidth(numConcurrent) {
       return 60 / numConcurrent + 'px';
+    }
+  },
+  computed: {
+    /**
+     * Gets the events for this day.
+     *
+     * @returns {Array} An array of the event objects for this day.
+     */
+    events() {
+      // get events on this day
+      const stringDate = this.getStringDate();
+      const newEvents = [];
+
+      for (let i = 0; i < this.info.length; i++) {
+        if (this.info[i].date_utc.split(' ')[0] === stringDate) {
+          newEvents.push(this.info[i]);
+        }
+      }
+      return newEvents;
     }
   }
 };

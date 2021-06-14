@@ -43,7 +43,6 @@ export default {
       } else {
         return (
           this.trimDesc(this.desc) +
-          '...' +
           " <a href='" +
           this.url +
           "' target='_blank'>More info</a>"
@@ -68,7 +67,7 @@ export default {
         return fullDesc.substr(
           0,
           Math.min(trimmedDesc.length, trimmedDesc.lastIndexOf(' '))
-        );
+        ) + '...';
       } else {
         return fullDesc;
       }

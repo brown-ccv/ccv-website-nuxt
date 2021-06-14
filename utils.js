@@ -21,13 +21,6 @@ export const variantValidator = (variant) => {
 //
 // Calendar Utils
 //
-/**
- *
- * @returns {Date} Today's date.
- */
-export function getCurrentDate() {
-  return new Date();
-}
 
 /**
  * Calculates the number of weeks in the current month.
@@ -82,14 +75,14 @@ export const ALL_DAYS_OF_WEEK = [
   'Sat'
 ];
 
-export const DISPLAY_YEAR = getCurrentDate().getFullYear();
+export const DISPLAY_YEAR = new Date().getFullYear();
 
-export const DISPLAY_MONTH = getCurrentDate().getMonth() + 1;
+export const DISPLAY_MONTH = new Date().getMonth() + 1;
 
-export const DISPLAY_DAY = getCurrentDate().getDate();
+export const DISPLAY_DAY = new Date().getDate();
 
 export const TODAYS_DATE = getStringDate(
-  getCurrentDate().getMonth() + 1,
-  getCurrentDate().getDate(),
-  getCurrentDate().getFullYear()
+  new Date().getMonth() + 1,
+  new Date().getDate(),
+  new Date().getFullYear()
 );

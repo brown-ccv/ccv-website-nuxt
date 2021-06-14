@@ -113,16 +113,6 @@ export default {
       return getStringDate(this.displayMonth, this.date, this.displayYear);
     },
     /**
-     * Set detailedOpen to false after 0.1 seconds, to allow time for potential mouseover.
-     */
-    startDetailClose() {
-      setTimeout(() => {
-        if (!this.rolloverDetailed) {
-          this.detailedOpen = false;
-        }
-      }, 100);
-    },
-    /**
      * Removes the duplicate events by title.
      *
      * @param {Array} events An array of the events on this day.
@@ -139,98 +129,8 @@ export default {
       });
       return retEvents;
     },
-    /**
-     * Organizes events into their respective timeslots and handles overlapping events.
-     *
-     * @param {Array} events An array of the events on this day.
-     */
-    getEventsDict(events) {
-      const eventsDict = {}; // { time/tr index : [ event ] }; (ea. event only appears in FIRST row / start time)
-      const calcConcurrentDict = {}; // separate copy of eventsDict (ea. event appears in ALL rows in timespan)
 
-      const eventToOverlapDict = {}; // { eventId: numOverlap } (holds # events overlapping given event)
-      let countConcurrent = 1; // determines max number of columns in day (min = 1, even if 0 events)
-
-      for (let i = 0; i < this.totalHalfHours; i++) {
-        // 48 half hour slots
-        eventsDict[i] = [];
-        calcConcurrentDict[i] = [];
-      }
-
-      for (let i = 0; i < events.length; i++) {
-        const ev = events[i];
-
-        // convert to current time zone
-        const startTime = new Date(0);
-        startTime.setUTCSeconds(parseInt(ev.date_ts));
-        const endTime = new Date(0);
-        endTime.setUTCSeconds(parseInt(ev.date2_ts));
-
-        // determine table row position in calendar (1 table row = 1/2 hour)
-        const enteredStart =
-          (startTime.getHours() * 60 + startTime.getMinutes()) / 30;
-        const enteredEnd =
-          (endTime.getHours() * 60 + endTime.getMinutes()) / 30;
-        const timeSpan = enteredEnd - enteredStart;
-        ev.rowspan = timeSpan;
-
-        for (let t = enteredStart; t < enteredEnd; t++) {
-          // add info to dictionaries for each table row
-          const existingEvents = eventsDict[t];
-          const concurrentEvents = calcConcurrentDict[t];
-          if (t === enteredStart) {
-            existingEvents.push(ev);
-          }
-          concurrentEvents.push(ev);
-          eventsDict[t] = existingEvents;
-          calcConcurrentDict[t] = concurrentEvents;
-
-          countConcurrent = Math.max(
-            countConcurrent,
-            concurrentEvents.length + 1
-          );
-
-          // for every event overlapping with current event,
-          // update eventToOverlapDict with its overlap count
-          for (let eventI = 0; eventI < concurrentEvents.length; eventI++) {
-            const currentId = concurrentEvents[eventI].id;
-            if (currentId in eventToOverlapDict) {
-              eventToOverlapDict[currentId] = Math.max(
-                concurrentEvents.length,
-                eventToOverlapDict[currentId]
-              );
-            } else {
-              eventToOverlapDict[currentId] = calcConcurrentDict[t].length;
-            }
-          }
-        }
-      }
-
-      // for every event in each time segment,
-      // save final # of overlaps from eventToOverlapDict to its properties
-      for (let t = 0; t < this.totalHalfHours; t++) {
-        for (let eventI = 0; eventI < eventsDict[t].length; eventI++) {
-          const currentId = eventsDict[t][eventI].id;
-          if (currentId in eventToOverlapDict) {
-            eventsDict[t][eventI].concurrent = eventToOverlapDict[currentId];
-          } else {
-            eventsDict[t][eventI].concurrent = 1;
-          }
-        }
-      }
-
-      this.maxConcurrent = countConcurrent;
-      return eventsDict;
-    },
-    calcColSpan(eventElem) {
-      if (eventElem.concurrent === 1) {
-        return this.maxConcurrent;
-      }
-      return this.maxConcurrent / eventElem.concurrent;
-    },
-    calcMaxWidth(numConcurrent) {
-      return 60 / numConcurrent + 'px';
-    }
+   
   }
 };
 </script>
