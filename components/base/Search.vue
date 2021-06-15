@@ -187,7 +187,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import 'bulma';
 .lunr-search {
   position: relative;
   display: inline-block;

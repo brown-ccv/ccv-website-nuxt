@@ -162,8 +162,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'bulma';
-
 .navbar-burger {
   @include mobile {
     align-self: center;

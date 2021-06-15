@@ -46,6 +46,9 @@ export default {
    ** Global CSS
    */
   css: ['@/assets/scss/disco.scss', 'bulma-checkradio'],
+  styleResources: {
+    scss: '~assets/scss/disco.scss',
+  },
   /*
    ** Plugins to load before mounting the App
    */
@@ -58,6 +61,8 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    // https://www.npmjs.com/package/@nuxtjs/style-resources
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Nuxt.js modules

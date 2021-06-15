@@ -44,8 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'bulma';
-
 .d-toc-container {
   display: grid;
   justify-items: center;
