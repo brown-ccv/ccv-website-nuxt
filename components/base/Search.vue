@@ -1,19 +1,24 @@
 <template>
   <client-only>
     <div ref="lunr" class="lunr-search">
-      <input
-        id="lunr-search"
-        v-model="searchText"
-        type="text"
-        class="input"
-        :placeholder="placeholderText"
-        aria-label="Search"
-        aria-haspopup="true"
-        :aria-expanded="showResults"
-        autocomplete="off"
-        spellcheck="false"
-        @keyup.esc="closeResults"
-      />
+      <div class="control has-icons-right">
+        <input
+          id="lunr-search"
+          v-model="searchText"
+          type="text"
+          class="input"
+          :placeholder="placeholderText"
+          aria-label="Search"
+          aria-haspopup="true"
+          :aria-expanded="showResults"
+          autocomplete="off"
+          spellcheck="false"
+          @keyup.esc="closeResults"
+        />
+        <span class="icon is-small is-right is-clickable" @click="closeResults">
+          <i class="mdi mdi-close" />
+        </span>
+      </div>
 
       <div
         v-show="showResults"
