@@ -36,7 +36,7 @@ export default {
   },
   async fetch() {
     // example to prove out the client-only rendering
-    const num = Math.floor(Math.random() * 10);
+    const num = Math.floor(Math.random() * 10 + 1);
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/todos/${num}`
     );
