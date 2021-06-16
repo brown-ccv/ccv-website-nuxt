@@ -19,7 +19,7 @@
         :key="cat"
         class="px-4 py-4"
         :class="[
-          ind % 2 === 0 ? 'has-background-light' : 'has-background-white'
+          ind % 2 === 0 ? 'has-background-light' : 'has-background-white',
         ]"
       >
         <h2 class="subtitle">{{ cat | humanize }}</h2>
@@ -37,45 +37,45 @@
               <div v-if="feat.name === cat" class="class-item">
                 <span v-if="feat.class === 'fast'" class="title class-item"
                   ><span class="icon is-size-3 has-text-warning"
-                    ><i class="mdi mdi-speedometer"/></span
+                    ><i class="mdi mdi-speedometer" /></span
                   >{{ feat.class }}</span
                 >
                 <span
                   v-else-if="feat.class === 'faster'"
                   class="title class-item"
                   ><span class="icon is-size-3 has-text-link"
-                    ><i class="mdi mdi-speedometer"/></span
+                    ><i class="mdi mdi-speedometer" /></span
                   >{{ feat.class }}</span
                 >
                 <span
                   v-else-if="feat.class === 'fastest'"
                   class="title class-item"
                   ><span class="icon is-size-3 has-text-success"
-                    ><i class="mdi mdi-speedometer"/></span
+                    ><i class="mdi mdi-speedometer" /></span
                   >{{ feat.class }}</span
                 >
                 <span v-else-if="feat.class === true" class="title class-item"
                   ><span class="icon is-size-3 has-text-success"
-                    ><i class="mdi mdi-check"/></span
+                    ><i class="mdi mdi-check" /></span
                   >Yes</span
                 >
                 <span
                   v-else-if="feat.class === 'partial'"
                   class="title class-item"
                   ><span class="icon is-size-3 has-text-success"
-                    ><i class="mdi mdi-check"/></span
+                    ><i class="mdi mdi-check" /></span
                   >{{ feat.class }}</span
                 >
                 <span v-else-if="feat.class === false" class="title class-item"
                   ><span class="icon is-size-3 has-text-danger"
-                    ><i class="mdi mdi-close"/></span
+                    ><i class="mdi mdi-close" /></span
                   >No</span
                 >
                 <span
                   v-else-if="[1, 2, 3].includes(feat.class)"
                   class="title class-item"
                   ><span class="icon is-size-3 has-text-warning"
-                    ><i class="mdi mdi-shield-half-full"/></span
+                    ><i class="mdi mdi-shield-half-full" /></span
                   >{{ feat.class }}</span
                 >
                 <span v-else class="title">{{ feat.class }}</span>
@@ -100,18 +100,18 @@ export default {
       const cleanStr = str.replace(/_/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
+    },
   },
   props: {
     data: {
       type: [Array, Object],
-      required: true
+      required: true,
     },
     categories: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

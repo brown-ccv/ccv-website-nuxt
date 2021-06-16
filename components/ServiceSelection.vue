@@ -4,11 +4,11 @@
       v-for="(s, i) in data"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
-      class="field service-box"
+      class="field service-box my-1 p-4"
       :class="[
         selectedData.includes(s.service)
           ? 'has-background-info'
-          : 'has-background-light'
+          : 'has-background-light',
       ]"
     >
       <button
@@ -19,12 +19,12 @@
         <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
           ><i class="mdi mdi-checkbox-marked"
         /></span>
-        <span v-else class="icon is-size-2"><i class="mdi mdi-square"/></span>
+        <span v-else class="icon is-size-2"><i class="mdi mdi-square" /></span>
       </button>
       <button class="button-nostyle service-label" @click="toggleShowModal(s)">
         <span
           >{{ s.service | humanize }}
-          <span class="icon"><i class="mdi mdi-information"/></span>
+          <span class="icon"><i class="mdi mdi-information" /></span>
         </span>
       </button>
     </div>
@@ -48,34 +48,34 @@
 </template>
 
 <script>
-import DModal from '@/components/base/DModal';
+import DModal from '@/components/base/DModal.vue';
 
 export default {
   components: {
-    DModal
+    DModal,
   },
   filters: {
     humanize(str) {
       const cleanStr = str.replace(/_/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
+    },
   },
   props: {
     data: {
       type: Array,
-      required: true
+      required: true,
     },
     selectedData: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       selected: [],
       showModal: false,
-      modalData: ''
+      modalData: '',
     };
   },
   watch: {
@@ -85,8 +85,8 @@ export default {
         if (newVal.length === 0) {
           this.selected = [];
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     change(service) {
@@ -100,14 +100,12 @@ export default {
     toggleShowModal(data) {
       this.modalData = data;
       this.showModal = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
 .service-selection {
   display: flex;
   flex-basis: 30%;
@@ -115,9 +113,6 @@ export default {
   align-content: flex-start;
 }
 .service-box {
-  @extend .my-1;
-  @extend .px-4;
-  @extend .py-4;
   width: 100%;
   border-radius: 0;
   border: none;
@@ -131,14 +126,5 @@ export default {
 }
 .mdi-checkbox-marked {
   align-self: flex-end;
-}
-.button-nostyle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-link);
-  &:hover {
-    color: var(--color-dark);
-  }
 }
 </style>

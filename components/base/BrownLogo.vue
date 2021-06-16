@@ -9,7 +9,7 @@ import BrownLogo from '@/assets/logos/brown-logo.vue';
 
 export default {
   components: {
-    BrownLogo
+    BrownLogo,
   },
   props: {
     size: {
@@ -18,8 +18,8 @@ export default {
       validator(value) {
         // The value must match one of these strings
         return ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'].includes(value);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

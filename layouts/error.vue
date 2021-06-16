@@ -7,7 +7,7 @@
 <script>
 export default {
   // eslint-disable-next-line vue/require-prop-types
-  props: ['error']
+  props: ['error'],
 };
 </script>
 

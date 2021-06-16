@@ -11,8 +11,8 @@ if (process.env.NODE_ENV !== 'production' && !process.env.GITHUB_TOKEN) {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      'User-Agent': process.env.GITHUB_USER
-    }
+      'User-Agent': process.env.GITHUB_USER,
+    },
   });
 }
 

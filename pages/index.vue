@@ -24,25 +24,25 @@
 </template>
 
 <script>
-import DButton from '@/components/base/DButton';
-import DHero from '@/components/base/DHero';
+import DButton from '@/components/base/DButton.vue';
+import DHero from '@/components/base/DHero.vue';
 
 export default {
   components: { DHero, DButton },
+  data() {
+    return {
+      todo: {},
+    };
+  },
   async fetch() {
     // example to prove out the client-only rendering
-    const num = Math.floor(Math.random() * 10);
+    const num = Math.floor(Math.random() * 10 + 1);
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/todos/${num}`
     );
     this.todo = await response.json();
   },
-  data() {
-    return {
-      todo: {}
-    };
-  },
   // call fetch only on client-side
-  fetchOnServer: false
+  fetchOnServer: false,
 };
 </script>

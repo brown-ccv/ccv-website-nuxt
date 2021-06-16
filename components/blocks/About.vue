@@ -72,14 +72,14 @@
             "
             :hover-image="
               'https://ccv.brown.edu/images/people/JPEG/' +
-                person.image.replace('main', 'hover')
+              person.image.replace('main', 'hover')
             "
           >
             <template #icons>
               <a
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-github"/></span>
+                ><span class="icon"><i class="mdi mdi-github" /></span>
               </a>
             </template>
           </DPersonCard>
@@ -92,24 +92,24 @@
 </template>
 
 <script>
-import DTOC from '@/components/base/DTableOfContents';
-import DPersonCard from '@/components/base/DPersonCard';
+import DTOC from '@/components/base/DTableOfContents.vue';
+import DPersonCard from '@/components/base/DPersonCard.vue';
 
 export default {
   components: {
     DTOC,
-    DPersonCard
+    DPersonCard,
   },
   filters: {
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    }
+    },
   },
   props: {
     data: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     tocData() {
@@ -117,16 +117,16 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.mdi.icon, family: 'light' }
+          icon: { name: d.mdi.icon, family: 'light' },
         };
       });
-    }
+    },
   },
   methods: {
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    }
-  }
+    },
+  },
 };
 </script>
 

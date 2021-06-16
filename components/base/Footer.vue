@@ -1,18 +1,21 @@
 <template>
   <footer
-    class="has-background-light d-footer"
+    class="has-background-light d-footer footer px-0"
     variant="light"
     data-testid="footer"
     :class="['has-background-' + variant, textColor]"
   >
     <section
-      style="display: flex; justify-content: space-between; flex-wrap: wrap; "
-      class="d-footer-content-first"
+      class="
+        d-footer-content-first
+        is-flex is-justify-content-space-between is-flex-wrap-wrap
+      "
     >
-      <div style="display: flex;">
-        <BrownLogo class="pr-4" size="s" /><CCVLogo size="xs" />
+      <div class="is-flex is-align-content-center">
+        <BrownLogo class="pr-4" size="xs" />
+        <CCVLogo size="xs" />
       </div>
-      <div style="display: flex;">
+      <div style="display: flex">
         <span class="icon">
           <i class="pr-4 mdi mdi-instagram" />
         </span>
@@ -29,20 +32,16 @@
     </section>
 
     <section
-      style="display: flex; flex-wrap: wrap; justify-content: space-between;"
+      style="display: flex; flex-wrap: wrap; justify-content: space-between"
       class="my-5 d-footer-content-second"
     >
       <ul class="mr-6">
         <li><h2>Services</h2></li>
         <li class="">
-          <a href="/services/classroom" tabindex="0">
-            Classroom
-          </a>
+          <a href="/services/classroom" tabindex="0"> Classroom </a>
         </li>
         <li class="">
-          <a href="/services/computing" tabindex="0">
-            Computing
-          </a>
+          <a href="/services/computing" tabindex="0"> Computing </a>
         </li>
         <li class="">
           <a href="/services/file-storage-and-transfer" tabindex="0">
@@ -66,9 +65,7 @@
       <ul class="mr-6">
         <li><h2>Documentation</h2></li>
         <li class="">
-          <a href="https://docs.ccv.brown.edu" tabindex="0">
-            Oscar
-          </a>
+          <a href="https://docs.ccv.brown.edu" tabindex="0"> Oscar </a>
         </li>
         <li class="">
           <a
@@ -84,22 +81,16 @@
           </a>
         </li>
         <li class="">
-          <a href="/services/classroom#jupyterhub" tabindex="0">
-            Jupyterhub
-          </a>
+          <a href="/services/classroom#jupyterhub" tabindex="0"> Jupyterhub </a>
         </li>
       </ul>
       <ul class="mr-6">
         <li><h2>Our Work</h2></li>
         <li class="">
-          <a href="/our-work/workshops" tabindex="0">
-            Workshops
-          </a>
+          <a href="/our-work/workshops" tabindex="0"> Workshops </a>
         </li>
         <li class="">
-          <a href="/our-work/software" tabindex="0">
-            Software
-          </a>
+          <a href="/our-work/software" tabindex="0"> Software </a>
         </li>
         <li class="">
           <a href="https://publications.ccv.brown.edu" tabindex="0">
@@ -109,9 +100,7 @@
       </ul>
       <ul class="mr-6">
         <li>
-          <h2 class="">
-            Help
-          </h2>
+          <h2 class="">Help</h2>
         </li>
         <li class="">
           <a href="mailto:support@ccv.brown.edu" tabindex="0">
@@ -139,29 +128,19 @@
       </ul>
       <ul class="mr-6">
         <li>
-          <h2 class="">
-            About
-          </h2>
+          <h2 class="">About</h2>
         </li>
         <li class="">
-          <a href="/about#mission" tabindex="0">
-            Mission
-          </a>
+          <a href="/about#mission" tabindex="0"> Mission </a>
         </li>
         <li class="">
-          <a href="/about#people" tabindex="0">
-            People
-          </a>
+          <a href="/about#people" tabindex="0"> People </a>
         </li>
         <li class="">
-          <a href="/about#opportunities" tabindex="0">
-            Opportunities
-          </a>
+          <a href="/about#opportunities" tabindex="0"> Opportunities </a>
         </li>
         <li class="">
-          <a href="https://events.brown.edu/ccv/month" tabindex="0">
-            Events
-          </a>
+          <a href="https://events.brown.edu/ccv/month" tabindex="0"> Events </a>
         </li>
         <li class="">
           <a href="/about#facilities-statement" tabindex="0">
@@ -179,15 +158,37 @@
 </template>
 
 <script>
-import CCVLogo from '@/components/base/CCVLogo';
-import BrownLogo from '@/components/base/BrownLogo';
+import CCVLogo from '@/components/base/CCVLogo.vue';
+import BrownLogo from '@/components/base/BrownLogo.vue';
 import discoBaseMixin from '@/mixins/disco-base-mixin.js';
 
 export default {
   components: {
     CCVLogo,
-    BrownLogo
+    BrownLogo,
   },
-  mixins: [discoBaseMixin]
+  mixins: [discoBaseMixin],
 };
 </script>
+
+<style lang="scss" scoped>
+.d-footer {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-areas:
+    '. first .'
+    '. second .'
+    '. third .';
+}
+.d-footer-content-first {
+  grid-area: first;
+}
+.d-footer-content-second {
+  grid-area: second;
+}
+.d-footer-content-third {
+  display: grid;
+  justify-content: center;
+  grid-area: third;
+}
+</style>
