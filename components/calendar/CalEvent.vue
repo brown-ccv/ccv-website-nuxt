@@ -1,5 +1,28 @@
 <template>
-  <div
+  <div v-if="view === 'upcoming' | view === 'weekly'"
+    class="event"
+    @click="toggleDetail(true)"
+    @mouseover="toggleDetail(false)"
+    @mouseleave="toggleDetail(false)"
+  >
+    <DetailBox
+      v-if="detailedOpen"
+      :info="info"
+      :display-year="this.displayYear"
+      :view="view"
+      @detailed-close="toggleDetail(false)"
+    />
+    <div v-if="view === 'upcoming'">
+      {{ date }}
+    </div>
+    <div :class="{ title: true, 'big-font': view === 'upcoming' }">
+      {{ info.title }}
+    </div>
+    <div :class="{ datetime: true, 'weekly-datetime': view === 'weekly' }">
+      {{ info.date_time }}
+    </div>
+  </div>
+  <div v-else
     class="event"
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(true)"
