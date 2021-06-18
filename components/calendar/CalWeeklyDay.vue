@@ -36,7 +36,7 @@
           :key="'hour' + i"
           :class="{ 'hour-line': (i - 1) % 2 === 1 }"
         >
-          <td><br ></td>
+          <td><br></td>
         </tr>
       </table>
     </div>

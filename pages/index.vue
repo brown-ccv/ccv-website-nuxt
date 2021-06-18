@@ -16,17 +16,25 @@
         </nuxt-link>
       </template>
     </DHero>
-    <div id="calendar">
-      <h2 class="d-calendar-title">
-        Upcoming Events
-      </h2>
-      <Calendar
-        v-if="info.length >= 0"
-        :info="info"
-        :upcoming-events="upcomingEvents"
-        @month-change="getData"
-      />
-    </div>
+    <section
+      role="banner"
+      class="d-hero is-medium"
+      :class="['is-' + variant, { 'is-full-height': fullHeight }]"
+    >
+      <div class="hero-body">
+        <div class="container">
+          <h1 role="heading" aria-level="1" class="d-calendar-title">
+            Upcoming Events
+          </h1>
+          <Calendar
+            v-if="info.length >= 0"
+            :info="info"
+            :upcoming-events="upcomingEvents"
+            @month-change="getData"
+          />
+        </div>
+      </div>
+    </section>
     <client-only>
       <p>{{ todo.id }}</p>
       {{ todo }}

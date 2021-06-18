@@ -12,7 +12,7 @@
               <p>{{ convertToTimeLabel(i / 2 - 0.5) }}</p>
             </td>
             <td v-else>
-              <br >
+              <br>
             </td>
           </tr>
         </table>
