@@ -7,7 +7,9 @@
     }"
   >
     <div>
-      <div class="date">{{ date }}</div>
+      <div class="date">
+        {{ date }}
+      </div>
       <div class="events">
         <Event
           v-for="ev in removeDuplicates(events)"
@@ -128,9 +130,7 @@ export default {
         return eventsDict[k];
       });
       return retEvents;
-    },
-
-   
+    }
   }
 };
 </script>

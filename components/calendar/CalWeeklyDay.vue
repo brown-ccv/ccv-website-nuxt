@@ -25,7 +25,7 @@
                           final height for events spanning > 1 row
                         * -12 to adjust for borders -->
           </td>
-          <td v-if="h.length === 0" :colspan="maxConcurrent"></td>
+          <td v-if="h.length === 0" :colspan="maxConcurrent" />
         </tr>
       </table>
 
@@ -36,7 +36,7 @@
           :key="'hour' + i"
           :class="{ 'hour-line': (i - 1) % 2 === 1 }"
         >
-          <td><br /></td>
+          <td><br ></td>
         </tr>
       </table>
     </div>
@@ -44,12 +44,12 @@
 </template>
 
 <script>
-import { 
+import {
   getStringDate,
   getEventsDict,
   calcColSpan,
-  calcMaxWidth 
-  } from '../../utils.js';
+  calcMaxWidth
+} from '../../utils.js';
 import Event from '@/components/calendar/CalEvent';
 
 export default {
@@ -110,6 +110,25 @@ export default {
        */
       totalHalfHours: 48
     };
+  },
+  computed: {
+    /**
+     * Gets the events for this day.
+     *
+     * @returns {Array} An array of the event objects for this day.
+     */
+    events() {
+      // get events on this day
+      const stringDate = this.getStringDate();
+      const newEvents = [];
+
+      for (let i = 0; i < this.info.length; i++) {
+        if (this.info[i].date_utc.split(' ')[0] === stringDate) {
+          newEvents.push(this.info[i]);
+        }
+      }
+      return newEvents;
+    }
   },
   methods: {
     /**
@@ -208,28 +227,9 @@ export default {
         return this.maxConcurrent;
       }
       return this.maxConcurrent / eventElem.concurrent;
-    }, 
+    },
     calcMaxWidth(numConcurrent) {
       return 60 / numConcurrent + 'px';
-    }
-  },
-  computed: {
-    /**
-     * Gets the events for this day.
-     *
-     * @returns {Array} An array of the event objects for this day.
-     */
-    events() {
-      // get events on this day
-      const stringDate = this.getStringDate();
-      const newEvents = [];
-
-      for (let i = 0; i < this.info.length; i++) {
-        if (this.info[i].date_utc.split(' ')[0] === stringDate) {
-          newEvents.push(this.info[i]);
-        }
-      }
-      return newEvents;
     }
   }
 };

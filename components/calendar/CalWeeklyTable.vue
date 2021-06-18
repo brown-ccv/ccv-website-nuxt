@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 40px"></th>
+          <th style="width: 40px" />
           <th
             v-for="(date, i) in displayDates[0]"
             id="weekday-names"

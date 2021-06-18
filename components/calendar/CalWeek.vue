@@ -11,7 +11,9 @@
             <td v-if="i % 2 == 1 && i / 2 > 1">
               <p>{{ convertToTimeLabel(i / 2 - 0.5) }}</p>
             </td>
-            <td v-else><br /></td>
+            <td v-else>
+              <br >
+            </td>
           </tr>
         </table>
       </div>

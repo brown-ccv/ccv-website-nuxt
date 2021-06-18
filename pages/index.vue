@@ -18,8 +18,8 @@
     </DHero>
     <div id="calendar">
       <h2 class="d-calendar-title">
-          Upcoming Events
-        </h2>
+        Upcoming Events
+      </h2>
       <Calendar
         v-if="info.length >= 0"
         :info="info"
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 import Calendar from '@/components/calendar/Calendar';
@@ -80,16 +79,25 @@ export default {
     /**
      * Gets the next 72 events from a given start date.
      */
+    // getData(startDate) {
+    //   return axios
+    //     .get(
+    //       'https://events.brown.edu/live/json/events/description_long/true/group/Center%20for%20Computation%20and%20Visualization%20%28CCV%29/start_date/' +
+    //         startDate +
+    //         '/'
+    //     )
+    //     .then((response) => {
+    //       return response.data;
+    //     });
+    // },
     getData(startDate) {
-      return axios
-        .get(
-          'https://events.brown.edu/live/json/events/description_long/true/group/Center%20for%20Computation%20and%20Visualization%20%28CCV%29/start_date/' +
-            startDate +
-            '/'
-        )
-        .then((response) => {
-          return response.data;
-        });
+      return fetch(
+        'https://events.brown.edu/live/json/events/description_long/true/group/Center%20for%20Computation%20and%20Visualization%20%28CCV%29/start_date/' +
+          startDate +
+          '/'
+      ).then((response) => {
+        return response.json();
+      });
     }
   },
   // call fetch only on client-side

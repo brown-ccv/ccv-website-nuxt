@@ -10,7 +10,7 @@
     </div>
     <div>
       <h1>
-        <slot></slot>
+        <slot />
       </h1>
     </div>
     <div

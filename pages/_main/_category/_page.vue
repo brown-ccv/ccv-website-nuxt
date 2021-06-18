@@ -4,8 +4,7 @@
       variant="primary"
       :title="$route.params.page | humanize"
       :subtitle="$route.params.category | humanize"
-    >
-    </DHero>
+    />
     <main class="content-wrapper">
       <!-- General markdown content pages -->
       <nuxt-content

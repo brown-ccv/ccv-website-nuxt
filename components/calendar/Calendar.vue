@@ -52,11 +52,7 @@
 </template>
 
 <script>
-import {
-  ALL_MONTHS,
-  ALL_DAYS_OF_WEEK,
-  getStringDate
-} from '../../utils.js';
+import { ALL_MONTHS, ALL_DAYS_OF_WEEK, getStringDate } from '../../utils.js';
 import Title from '@/components/calendar/CalTitle';
 import ToggleButton from '@/components/calendar/CalToggleButton';
 import Upcoming from '@/components/calendar/CalUpcoming';

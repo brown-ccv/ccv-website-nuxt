@@ -24,7 +24,9 @@
           </div>
         </template>
         <template #content>
-          <p class="card-p">{{ item.description }}</p>
+          <p class="card-p">
+            {{ item.description }}
+          </p>
         </template>
         <template #footer>
           <div v-for="link in item.links" :key="link.text">

@@ -1,18 +1,26 @@
 <template>
   <div :class="{ 'detail-box': true, 'detail-weekly': view === 'weekly' }">
     <div class="displayed-info">
-      <div class="detail-title">{{ info.title }}</div>
+      <div class="detail-title">
+        {{ info.title }}
+      </div>
       <div class="detail-time">
-        <div class="teal">When:</div>
+        <div class="teal">
+          When:
+        </div>
         <div>{{ info.date }}, {{ info.date_time }}</div>
       </div>
       <div class="detail-loc">
-        <div class="teal">Where:</div>
+        <div class="teal">
+          Where:
+        </div>
         <div>{{ info.location }}</div>
       </div>
       <div class="detail-info">
-        <div class="teal">Description:</div>
-        <div v-html="description"></div>
+        <div class="teal">
+          Description:
+        </div>
+        <div v-html="description" />
       </div>
     </div>
     <a :href="info.url" target="_blank" class="more-info-btn teal">More Info</a>

@@ -1,6 +1,6 @@
 <template>
   <div class="desc-size overflow-wrap scroll">
-    <span v-html="handledDesc"></span>
+    <span v-html="handledDesc" />
   </div>
 </template>
 
@@ -64,10 +64,12 @@ export default {
           trimmedDesc = fullDesc.substr(0, 200);
         }
         // Make sure the trimmed description doesn't cut off any words.
-        return fullDesc.substr(
-          0,
-          Math.min(trimmedDesc.length, trimmedDesc.lastIndexOf(' '))
-        ) + '...';
+        return (
+          fullDesc.substr(
+            0,
+            Math.min(trimmedDesc.length, trimmedDesc.lastIndexOf(' '))
+          ) + '...'
+        );
       } else {
         return fullDesc;
       }
