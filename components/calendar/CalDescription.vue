@@ -24,8 +24,10 @@ export default {
      * @returns {string} The formatted description.
      */
     handledDesc() {
-      if (!this.desc) return '';
-      if (this.desc.includes('is inviting you to a scheduled Zoom meeting.')) {
+      if (!this.desc) {
+        return '';
+        }
+      else if (this.desc.includes('is inviting you to a scheduled Zoom meeting.')) {
         const zoomLink = this.desc.match(
           'https://brown.zoom.us/[a-zA-Z0-9/@:%._+~#?&/=]*'
         )[0];

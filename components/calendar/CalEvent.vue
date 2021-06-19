@@ -1,5 +1,6 @@
 <template>
-  <div v-if="view === 'upcoming' | view === 'weekly'"
+  <div 
+    v-if="(view === 'upcoming') | (view === 'weekly')"
     class="event"
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(false)"
@@ -22,7 +23,8 @@
       {{ info.date_time }}
     </div>
   </div>
-  <div v-else
+  <div 
+    v-else
     class="event"
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(true)"
@@ -76,7 +78,7 @@ export default {
      * @returns {string} The date with the day of the week.
      */
     date() {
-      const dateTime = new Date(this.info.date_utc);
+      const dateTime = new Date(this.info.date_utc.replace(/-/g, "/"));
       const stringDate = this.info.date;
       return (
         new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(dateTime) +

@@ -44,12 +44,7 @@
 </template>
 
 <script>
-import {
-  getStringDate,
-  getEventsDict,
-  calcColSpan,
-  calcMaxWidth
-} from '../../utils.js';
+import { getStringDate } from '../../utils.js';
 import Event from '@/components/calendar/CalEvent';
 
 export default {
