@@ -35,10 +35,6 @@
         </div>
       </div>
     </section>
-    <client-only>
-      <p>{{ todo.id }}</p>
-      {{ todo }}
-    </client-only>
   </div>
 </template>
 
@@ -87,17 +83,6 @@ export default {
     /**
      * Gets the next 72 events from a given start date.
      */
-    // getData(startDate) {
-    //   return axios
-    //     .get(
-    //       'https://events.brown.edu/live/json/events/description_long/true/group/Center%20for%20Computation%20and%20Visualization%20%28CCV%29/start_date/' +
-    //         startDate +
-    //         '/'
-    //     )
-    //     .then((response) => {
-    //       return response.data;
-    //     });
-    // },
     getData(startDate) {
       return fetch(
         'https://events.brown.edu/live/json/events/description_long/true/group/Center%20for%20Computation%20and%20Visualization%20%28CCV%29/start_date/' +
