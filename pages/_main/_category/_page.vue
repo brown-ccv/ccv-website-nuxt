@@ -4,8 +4,9 @@
       variant="primary"
       :title="$route.params.page | humanize"
       :subtitle="$route.params.category | humanize"
-    />
-    <main class="content-wrapper">
+    >
+    </DHero>
+    <main class="content-wrapper mt-6">
       <!-- General markdown content pages -->
       <nuxt-content
         v-if="data.extension === '.md'"
@@ -17,11 +18,11 @@
 </template>
 
 <script>
-import DHero from '@/components/base/DHero';
+import DHero from '@/components/base/DHero.vue';
 
 export default {
   components: {
-    DHero
+    DHero,
   },
   filters: {
     humanize(str) {
@@ -30,7 +31,7 @@ export default {
         (str) => str.charAt(0).toUpperCase() + str.slice(1)
       );
       return upperFirst.join(' ');
-    }
+    },
   },
   async asyncData({ $content, params }) {
     const data = await $content(params.main, params.category, params.page)
@@ -39,19 +40,14 @@ export default {
       .fetch();
 
     return {
-      data
+      data,
     };
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
-@import '~bulma/sass/helpers/visibility';
-@import '~bulma/sass/helpers/typography';
 .content-wrapper {
-  @extend .mt-6;
   display: flex;
   flex-direction: column;
   justify-content: center;

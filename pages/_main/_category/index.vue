@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import DHero from '@/components/base/DHero';
+import DHero from '@/components/base/DHero.vue';
 
 export default {
   components: {
     DHero,
     DirsToCardSections: () =>
       import('@/components/blocks/DirsToCardSections.vue'),
-    FilesToSections: () => import('@/components/blocks/FilesToSections.vue')
+    FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
   },
   filters: {
     humanize(str) {
@@ -35,7 +35,7 @@ export default {
     },
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    }
+    },
   },
   async asyncData({ $content, params }) {
     // get the index files of content subdirectories directories
@@ -45,7 +45,7 @@ export default {
 
     // get the content for all sub-directories {deep:true}
     const data = await $content(params.main, params.category, {
-      deep: true
+      deep: true,
     })
       .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
@@ -54,7 +54,7 @@ export default {
     // for directories that have subdirectories, gather index.yml files
     // which will be feed the content in the cards
     const list = await $content(params.main, params.category, {
-      deep: true
+      deep: true,
     })
       .where({ path: { $regex: '^/+[^/]+/+[^/]+/+[^/]+/+index' } })
       .sortBy('title', 'desc')
@@ -63,8 +63,8 @@ export default {
     return {
       index,
       data,
-      list
+      list,
     };
-  }
+  },
 };
 </script>

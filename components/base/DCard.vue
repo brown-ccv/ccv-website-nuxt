@@ -7,7 +7,7 @@
       'is-width-' + width,
       borderColor,
       textColor,
-      'has-background-' + variant
+      'has-background-' + variant,
     ]"
   >
     <header v-if="!person" :class="[headerRule]">
@@ -31,12 +31,12 @@ export default {
     person: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     border: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>

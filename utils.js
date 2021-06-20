@@ -7,7 +7,7 @@ export const COLOR_VARIANTS = [
   'link',
   'dark',
   'light',
-  'white'
+  'white',
 ];
 
 export const SIZES_ABBR = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];

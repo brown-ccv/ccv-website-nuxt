@@ -4,9 +4,21 @@
   @extend .button;
   border-radius: 0 !important;
   font-family: $font-family-bold;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 .d-button-delete {
   @extend .delete;
   border-radius: 0 !important;
+}
+
+.button-nostyle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-link);
+  &:hover {
+    color: var(--color-dark);
+  }
 }

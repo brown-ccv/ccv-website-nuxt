@@ -12,7 +12,7 @@ import PageHeader from '@/components/base/PageHeader.vue';
 export default {
   components: {
     PageHeader,
-    Footer
+    Footer,
   },
   head: {
     titleTemplate: 'Center for Computation and Visualization | %s', // <-- title template
@@ -20,9 +20,9 @@ export default {
       {
         hid: 'description',
         name: 'description', // <-- moved this over from index.vue
-        content: 'Brown CCV'
-      }
-    ]
-  }
+        content: 'Brown CCV',
+      },
+    ],
+  },
 };
 </script>

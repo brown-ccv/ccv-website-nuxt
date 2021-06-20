@@ -10,7 +10,7 @@
       >
         <template #header>
           <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-            ><span class="icon"><i class="mdi mdi-account-multiple"/></span
+            ><span class="icon"><i class="mdi mdi-account-multiple" /></span
             ><abbr :title="item.group | expandAcronym">
               {{ item.group }}
             </abbr></span>
@@ -31,7 +31,7 @@
               :href="item.links.repository"
               ><span
                 >REPOSITORY<span class="icon ml-2"
-                  ><i class="mdi mdi-code-greater-than-or-equal"/></span></span
+                  ><i class="mdi mdi-code-greater-than-or-equal" /></span></span
             ></a>
             <a
               v-if="item.links.website"
@@ -39,7 +39,7 @@
               :href="item.links.website"
               ><span
                 >WEBSITE<span class="icon ml-2"
-                  ><i class="mdi mdi-link-variant"/></span></span
+                  ><i class="mdi mdi-link-variant" /></span></span
             ></a>
             <a
               v-if="item.links.documentation"
@@ -47,7 +47,7 @@
               :href="item.links.documentation"
               ><span
                 >DOCUMENTATION<span class="icon ml-2"
-                  ><i class="mdi mdi-book"/></span></span
+                  ><i class="mdi mdi-book" /></span></span
             ></a>
             <a
               v-if="item.links.publication"
@@ -55,7 +55,7 @@
               :href="item.links.publication"
               ><span
                 >PUBLICATION<span class="icon ml-2"
-                  ><i class="mdi mdi-newspaper"/></span></span
+                  ><i class="mdi mdi-newspaper" /></span></span
             ></a>
             <a
               v-if="item.links.doi"
@@ -63,7 +63,7 @@
               :href="'https://' + item.links.doi"
               ><span
                 >PUBLICATION<span class="icon ml-2"
-                  ><i class="mdi mdi-newspaper"/></span></span
+                  ><i class="mdi mdi-newspaper" /></span></span
             ></a>
           </div>
         </template>
@@ -73,28 +73,28 @@
 </template>
 
 <script>
-import DCard from '@/components/base/DCard';
+import DCard from '@/components/base/DCard.vue';
 
 export default {
   components: {
-    DCard
+    DCard,
   },
   filters: {
     expandAcronym(str) {
       const abbrMap = {
         CBC: 'Computational Biology Core',
         CCV: 'Center for Computation and Visualization',
-        DSCOV: 'Data Science, Computing and Visualization Series'
+        DSCOV: 'Data Science, Computing and Visualization Series',
       };
       return abbrMap[str];
-    }
+    },
   },
   props: {
     data: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
