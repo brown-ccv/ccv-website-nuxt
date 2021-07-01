@@ -15,7 +15,7 @@
       :class="{
         calendar: true,
         'weekly-calendar': view === 'weekly',
-        'bump-margin-top': view === 'upcoming'
+        'bump-margin-top': view === 'upcoming',
       }"
     >
       <!-- Show toggle buttons if the view is not upcoming, and handle view change with the changeView method -->
@@ -25,40 +25,43 @@
         @view-change="changeView"
       />
       <!-- Display for the monthly or weekly views -->
-        <MonthlyTable
-          v-if="view === 'monthly'"
-          :view="view"
-          :info="info"
-          :display-year="displayYear"
-          :display-month="displayMonth"
-          :display-day="displayDay"
-        />
-        <WeeklyTable
-          v-if="view === 'weekly'"
-          :view="view"
-          :info="info"
-          :display-year="displayYear"
-          :display-month="displayMonth"
-          :display-day="displayDay"
-        />
+      <MonthlyTable
+        v-if="view === 'monthly'"
+        :view="view"
+        :info="info"
+        :display-year="displayYear"
+        :display-month="displayMonth"
+        :display-day="displayDay"
+      />
+      <WeeklyTable
+        v-if="view === 'weekly'"
+        :view="view"
+        :info="info"
+        :display-year="displayYear"
+        :display-month="displayMonth"
+        :display-day="displayDay"
+      />
       <!-- Display for the upcoming view -->
       <Upcoming
         v-if="view === 'upcoming'"
         :view="view"
         :upcoming-events="upcomingEvents"
       />
-      <a :href="'https://www.events.brown.edu/ccv/all'" target="_blank"> View All Events </a>
+      <a :href="'https://www.events.brown.edu/ccv/all'" target="_blank">
+        View All Events
+      </a>
     </div>
   </div>
 </template>
 
 <script>
-import { ALL_MONTHS, ALL_DAYS_OF_WEEK, getStringDate } from '../../utils.js';
 import Title from '@/components/calendar/CalTitle';
 import ToggleButton from '@/components/calendar/CalToggleButton';
 import Upcoming from '@/components/calendar/CalUpcoming';
 import WeeklyTable from '@/components/calendar/CalWeeklyTable';
 import MonthlyTable from '@/components/calendar/CalMonthlyTable';
+
+import { ALL_MONTHS, ALL_DAYS_OF_WEEK, getStringDate } from '../../utils.js';
 
 export default {
   name: 'Calendar',
@@ -67,7 +70,7 @@ export default {
     MonthlyTable,
     Title,
     ToggleButton,
-    Upcoming
+    Upcoming,
   },
   props: {
     /**
@@ -77,7 +80,7 @@ export default {
     /**
      * The next five events.
      */
-    upcomingEvents: { type: Array, required: true }
+    upcomingEvents: { type: Array, required: true },
   },
   data() {
     return {
@@ -110,7 +113,7 @@ export default {
         new Date().getDate(),
         new Date().getMonth() + 1,
         new Date().getFullYear()
-      )
+      ),
     };
   },
   watch: {
@@ -125,7 +128,7 @@ export default {
         this.displayYear
       );
       this.$emit('month-change', firstOfLastMonth);
-    }
+    },
   },
   beforeMount() {
     /**
@@ -182,8 +185,8 @@ export default {
       this.displayYear = currentDate.getFullYear();
       this.displayMonth = currentDate.getMonth() + 1;
       this.displayDay = currentDate.getDate();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -205,16 +208,11 @@ a {
 
 .calendar {
   margin: auto;
-  width: 85%;
+  width: 100%;
 }
 .weekly-calendar {
   width: 87%;
   margin-left: 5.5%;
-}
-
-.control-row {
-  min-height: 32px;
-  position: relative;
 }
 
 .toggle-btn {

@@ -1,30 +1,28 @@
 <template>
-  <div :class="{ 'detail-box': true }">
-    <div class="displayed-info">
-      <div class="detail-title">
-        {{ info.title }}
-      </div>
-      <div class="detail-time">
-        <div class="teal">
-          When:
+  <portal to="calendar-detail-box">
+    <div class="detail-box" :style="location">
+      <div class="displayed-info">
+        <div class="detail-title">
+          {{ info.title }}
         </div>
-        <div> {{ info.date }}, {{ info.date_time }} </div>
-      </div>
-      <div class="detail-loc">
-        <div class="teal">
-          Where:
+        <div class="detail-time">
+          <div class="teal">When:</div>
+          <div>{{ info.date }}, {{ info.date_time }}</div>
         </div>
-        <div>{{ info.location }}</div>
-      </div>
-      <div class="detail-info">
-        <div class="teal">
-          Description:
+        <div class="detail-loc">
+          <div class="teal">Where:</div>
+          <div>{{ info.location }}</div>
         </div>
-        <div v-html="description" />
+        <div class="detail-info">
+          <div class="teal">Description:</div>
+          <div v-html="description" />
+        </div>
       </div>
+      <a :href="info.url" target="_blank" class="more-info-btn teal"
+        >More Info</a
+      >
     </div>
-    <a :href="info.url" target="_blank" class="more-info-btn teal">More Info</a>
-  </div>
+  </portal>
 </template>
 
 <script>
@@ -36,7 +34,7 @@ export default {
      */
     info: {
       type: Object,
-      required: true
+      required: true,
     },
     /**
      * The year being displayed.
@@ -45,14 +43,18 @@ export default {
     /**
      * The current view.
      */
-    view: String
+    view: String,
+    parentId: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       /**
        * Whether or not to show the detail box.
        */
-      detailedOpen: false
+      detailedOpen: false,
     };
   },
   computed: {
@@ -68,20 +70,31 @@ export default {
         str = str.replace('<a', '<a target="_blank"');
       }
       return str;
-    }
+    },
+    offsetTop() {
+      const thisEl = document
+        .getElementById(this.parentId)
+        .getBoundingClientRect();
+      const containerEl = document
+        .getElementById('calendar-detail-box-parent')
+        .getBoundingClientRect();
+      return thisEl.top - containerEl.top;
+    },
+    offsetLeft() {
+      const thisEl = document
+        .getElementById(this.parentId)
+        .getBoundingClientRect();
+      const containerEl = document
+        .getElementById('calendar-detail-box-parent')
+        .getBoundingClientRect();
+      return (
+        thisEl.left - containerEl.left + (thisEl.right - thisEl.left) / 2 - 100
+      );
+    },
+    location() {
+      return { top: this.offsetTop - 210 + 'px', left: this.offsetLeft + 'px' };
+    },
   },
-  methods: {
-    /**
-     * Computes the correct top offset for the detail box.
-     */
-    getOffsetTop(elemID) {
-      if (this.view === 'weekly') {
-        return document.getElementById(elemID).offsetTop - 215 + 'px';
-      } else {
-        return document.getElementById(elemID).offsetTop - 170 + 'px';
-      }
-    }
-  }
 };
 </script>
 
@@ -95,10 +108,11 @@ export default {
 .detail-box {
   z-index: 4;
   position: absolute;
-  min-height: 100px;
-  width: 180%;
-  top: -210px;
-  left: -45%;
+  display: block;
+  height: 200px;
+  width: 200px;
+  /* top: 20px;
+  left: -45%; */
   padding: 20px 25px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);

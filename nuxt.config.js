@@ -72,6 +72,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
+    'portal-vue/nuxt',
   ],
   markdownit: {
     injected: true,

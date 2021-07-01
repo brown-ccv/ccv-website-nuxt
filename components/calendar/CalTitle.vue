@@ -30,7 +30,7 @@ export default {
     /**
      * Whether to show the scroll buttons in the title.
      */
-    scrollButtons: Boolean
+    scrollButtons: Boolean,
   },
   methods: {
     /**
@@ -41,8 +41,8 @@ export default {
      */
     timeBtnClick(forward) {
       this.$emit('scroll-time', forward);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

@@ -33,7 +33,7 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String
+    view: String,
   },
   methods: {
     /**
@@ -42,8 +42,8 @@ export default {
      */
     viewChange(newView) {
       this.$emit('view-change', newView);
-    }
-  }
+    },
+  },
 };
 </script>
 

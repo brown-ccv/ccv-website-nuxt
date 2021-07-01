@@ -3,11 +3,11 @@
     class="day"
     :class="{
       'greyed-out': greyedOut,
-      highlighted: todaysDate === getStringDate()
+      highlighted: todaysDate === getStringDate(),
     }"
   >
     <div>
-      <div class="date">
+      <div class="has-text-left px-3">
         {{ date }}
       </div>
       <div class="events">
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import { getStringDate } from '../../utils.js';
 import Event from '@/components/calendar/CalEvent';
+import { getStringDate } from '../../utils.js';
 
 export default {
   name: 'MonthlyDay',
   components: {
-    Event
+    Event,
   },
   props: {
     /**
@@ -60,7 +60,7 @@ export default {
     /**
      * The current calendar view, "monthly", "weekly", or "upcoming".
      */
-    view: String
+    view: String,
   },
   data() {
     return {
@@ -83,7 +83,7 @@ export default {
       /**
        * Total number of half hours slots to show in each day (in weekly view).
        */
-      totalHalfHours: 48
+      totalHalfHours: 48,
     };
   },
   computed: {
@@ -103,7 +103,7 @@ export default {
         }
       }
       return newEvents;
-    }
+    },
   },
   methods: {
     /**
@@ -126,25 +126,23 @@ export default {
         const title = events[i].title;
         eventsDict[title] = events[i];
       }
-      const retEvents = Object.keys(eventsDict).map(function(k) {
+      const retEvents = Object.keys(eventsDict).map(function (k) {
         return eventsDict[k];
       });
       return retEvents;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .day {
-  position: relative;
-  padding-top: 36px;
+  padding-top: 16px;
   height: auto;
   width: 14.28%; /* 1/7 */
   border: 1px solid white;
   background-color: #efece5;
-  overflow-y: scroll;
 }
 .weekViewDay {
   padding-top: 0px;
@@ -156,18 +154,11 @@ export default {
   background-color: rgba(255, 199, 44, 0.2);
 }
 
-.date {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
 .events {
-  position: relative;
   max-height: 140px;
   min-height: 90px;
-  /* overflow-y: scroll;
-  overflow-x: hidden; */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* --- weekly view (segment into hours) ---- */
@@ -189,16 +180,5 @@ export default {
 
 .hour-line {
   border-bottom: 2px solid white !important;
-}
-
-.viewEvent {
-  padding: 4px;
-  margin: 0px;
-  max-width: 100%;
-  max-height: 100%;
-  overflow-y: scroll;
-  background-color: rgba(0, 179, 152, 0.3);
-  border-left: 0.5px solid #efece5;
-  border-right: 0.5px solid #efece5;
 }
 </style>
