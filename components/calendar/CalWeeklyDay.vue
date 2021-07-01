@@ -289,7 +289,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
   overflow-y: scroll;
-  background-color: rgba(0, 179, 152, 0.3);
+  background-color: rgba(0, 179, 152, .3);
   border-left: 0.5px solid #efece5;
   border-right: 0.5px solid #efece5;
 }

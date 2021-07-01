@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'detail-box': true, 'detail-weekly': view === 'weekly' }">
+  <div :class="{ 'detail-box': true }">
     <div class="displayed-info">
       <div class="detail-title">
         {{ info.title }}
@@ -8,7 +8,7 @@
         <div class="teal">
           When:
         </div>
-        <div>{{ info.date }}, {{ info.date_time }}</div>
+        <div> {{ info.date }}, {{ info.date_time }} </div>
       </div>
       <div class="detail-loc">
         <div class="teal">
@@ -93,7 +93,7 @@ export default {
 }
 
 .detail-box {
-  z-index: 2;
+  z-index: 4;
   position: absolute;
   min-height: 100px;
   width: 180%;

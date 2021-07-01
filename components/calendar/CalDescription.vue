@@ -1,5 +1,5 @@
 <template>
-  <div class="desc-size overflow-wrap scroll">
+  <div class="description desc-size overflow-wrap scroll">
     <span v-html="handledDesc" />
   </div>
 </template>
@@ -81,6 +81,13 @@ export default {
 </script>
 
 <style scoped>
+.description {
+  position: relative;
+  margin-bottom: 6px;
+  text-align: left;
+  padding: 2px 4px 2px 9px;
+  /*background-color: lightblue;*/
+}
 .desc-size {
   width: 100%;
   height: 80%;

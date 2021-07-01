@@ -1,5 +1,5 @@
 <template>
-  <div class="control-row">
+  <div class="control-row is-hidden-mobile">
     <div class="toggle-btn">
       <p
         id="week"

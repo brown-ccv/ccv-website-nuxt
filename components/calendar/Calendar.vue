@@ -25,28 +25,29 @@
         @view-change="changeView"
       />
       <!-- Display for the monthly or weekly views -->
-      <MonthlyTable
-        v-if="view === 'monthly'"
-        :view="view"
-        :info="info"
-        :display-year="displayYear"
-        :display-month="displayMonth"
-        :display-day="displayDay"
-      />
-      <WeeklyTable
-        v-if="view === 'weekly'"
-        :view="view"
-        :info="info"
-        :display-year="displayYear"
-        :display-month="displayMonth"
-        :display-day="displayDay"
-      />
+        <MonthlyTable
+          v-if="view === 'monthly'"
+          :view="view"
+          :info="info"
+          :display-year="displayYear"
+          :display-month="displayMonth"
+          :display-day="displayDay"
+        />
+        <WeeklyTable
+          v-if="view === 'weekly'"
+          :view="view"
+          :info="info"
+          :display-year="displayYear"
+          :display-month="displayMonth"
+          :display-day="displayDay"
+        />
       <!-- Display for the upcoming view -->
       <Upcoming
         v-if="view === 'upcoming'"
         :view="view"
         :upcoming-events="upcomingEvents"
       />
+      <a :href="'https://www.events.brown.edu/ccv/all'" target="_blank"> View All Events </a>
     </div>
   </div>
 </template>

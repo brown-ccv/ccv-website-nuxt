@@ -1,5 +1,5 @@
 <template>
-  <div id="table-scrollable">
+  <div id="table-scrollable" class="is-hidden-mobile">
     <table>
       <thead>
         <tr>

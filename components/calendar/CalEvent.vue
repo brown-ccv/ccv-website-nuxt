@@ -1,6 +1,6 @@
 <template>
   <div 
-    v-if="(view === 'upcoming') | (view === 'weekly')"
+    v-if="(view === 'upcoming')"
     class="event"
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(false)"
@@ -17,7 +17,7 @@
       {{ date }}
     </div>
     <div :class="{ title: true, 'big-font': view === 'upcoming' }">
-      {{ info.title }}
+      <a :href="info.url" target="_blank"> {{ info.title }} </a>
     </div>
     <div :class="{ datetime: true, 'weekly-datetime': view === 'weekly' }">
       {{ info.date_time }}
@@ -29,6 +29,7 @@
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(true)"
     @mouseleave="toggleDetail(false)"
+    :style="'--p-height: ' + val * 27.5 + 'px'"
   >
     <DetailBox
       v-if="detailedOpen"
@@ -69,7 +70,8 @@ export default {
   },
   data() {
     return {
-      detailedOpen: false
+      detailedOpen: false,
+      val: this.info.rowspan
     };
   },
   computed: {
@@ -106,7 +108,8 @@ export default {
   margin-bottom: 6px;
   text-align: left;
   padding: 2px 4px 2px 9px;
-  /*background-color: lightblue;*/
+  height: var(--p-height);
+  /* background-color: lightblue; */
 }
 .event * {
   margin: 0;

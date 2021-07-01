@@ -24,7 +24,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 role="heading" aria-level="1" class="d-calendar-title">
-            Upcoming Events
+            Events
           </h1>
           <Calendar
             v-if="info.length >= 0"

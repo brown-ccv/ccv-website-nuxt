@@ -144,6 +144,7 @@ export default {
   width: 14.28%; /* 1/7 */
   border: 1px solid white;
   background-color: #efece5;
+  overflow-y: scroll;
 }
 .weekViewDay {
   padding-top: 0px;
