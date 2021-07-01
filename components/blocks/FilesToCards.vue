@@ -1,10 +1,17 @@
 <template>
-  <main class="card-container-wrapper">
-    <div class="card-container">
+  <main class="card-container-wrapper is-flex is-justify-content-center">
+    <div
+      class="
+        card-container
+        is-flex
+        mt-6
+        is-justify-content-space-evenly is-flex-wrap-wrap
+      "
+    >
       <DCard
         v-for="(item, i) in filteredData"
         :key="'help-card-' + i"
-        class="help-card"
+        class="help-card my-5"
         variant="light"
         accent="warning"
         width="large"
@@ -24,9 +31,7 @@
           </div>
         </template>
         <template #content>
-          <p class="card-p">
-            {{ item.description }}
-          </p>
+          <p class="card-p is-size-5 mt-4">{{ item.description }}</p>
         </template>
         <template #footer>
           <div v-for="link in item.links" :key="link.text">
@@ -58,50 +63,30 @@
 </template>
 
 <script>
-import DCard from '@/components/base/DCard';
+import DCard from '@/components/base/DCard.vue';
 
 export default {
   components: {
-    DCard
+    DCard,
   },
   props: {
     data: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     filteredData() {
       return this.data.filter((d) => !d.hidden);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <!-- see assets/scss/_layout.scss for relevant styles -->
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
-@import '~bulma/sass/helpers/visibility';
-@import '~bulma/sass/helpers/typography';
-
-.card-container-wrapper {
-  @extend .is-flex;
-  justify-content: center;
-}
 .card-container {
-  @extend .is-flex;
-  @extend .mt-6;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
   width: 160ch;
-}
-.card-p {
-  @extend .mt-4;
-  font-size: $size-5;
-}
-.help-card {
-  @extend .my-5;
 }
 .help-card h2 {
   font-weight: bold;

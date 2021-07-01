@@ -5,7 +5,7 @@
       :title="index.title"
       :subtitle="index.description"
     />
-    <div class="storage-header">
+    <div class="storage-header py-6">
       <h2>{{ index.storage_tool_header }}</h2>
       <span>
         <DButton
@@ -15,7 +15,7 @@
           variant="light"
           @click="clearAll"
         >
-          <template v-slot:icon-right>
+          <template #icon-right>
             <span class="icon">
               <i class="mdi mdi-refresh" />
             </span>
@@ -48,7 +48,7 @@
         </a>
       </span>
     </div>
-    <div class="selection-container">
+    <div class="selection-container mt-6">
       <div class="questions-container">
         <MultipleChoice
           v-for="(q, i) in questions"
@@ -85,11 +85,11 @@
 </template>
 
 <script>
-import DHero from '@/components/base/DHero';
-import DButton from '@/components/base/DButton';
-import MultipleChoice from '@/components/base/MultipleChoice';
-import ServiceSelection from '@/components/ServiceSelection';
-import ComparisonTable from '@/components/ComparisonTable';
+import DHero from '@/components/base/DHero.vue';
+import DButton from '@/components/base/DButton.vue';
+import MultipleChoice from '@/components/base/MultipleChoice.vue';
+import ServiceSelection from '@/components/ServiceSelection.vue';
+import ComparisonTable from '@/components/ComparisonTable.vue';
 
 export default {
   components: {
@@ -97,14 +97,14 @@ export default {
     DButton,
     MultipleChoice,
     ServiceSelection,
-    ComparisonTable
+    ComparisonTable,
   },
   filters: {
     humanize(str) {
       const cleanStr = str.replace(/_/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
+    },
   },
   async asyncData({ $content }) {
     const index = await $content(
@@ -118,7 +118,7 @@ export default {
       answers: {},
       answerPayload: {},
       selectedServices: [],
-      filteredServices: []
+      filteredServices: [],
     };
   },
   computed: {
@@ -128,14 +128,14 @@ export default {
       },
       set(newVal, oldVal) {
         return newVal;
-      }
+      },
     },
     categories() {
       return this.services[0].features.map((feat) => feat.name);
     },
     questions() {
       return this.index.questions;
-    }
+    },
   },
   watch: {
     answerPayload() {
@@ -146,7 +146,7 @@ export default {
       this.filteredServices = this.services.filter((s) =>
         this.selectedServices.includes(s.service)
       );
-    }
+    },
   },
   mounted() {
     this.filteredServices = this.services;
@@ -179,14 +179,12 @@ export default {
       this.answersPayload = {};
       this.selectedServices = [];
       this.filteredServices = [];
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/_all';
-@import '~bulma/sass/helpers/spacing';
 .questions-container {
   display: flex;
   justify-content: flex-start;
@@ -194,13 +192,11 @@ export default {
   flex-direction: column;
 }
 .selection-container {
-  @extend .mt-6;
   display: flex;
   justify-content: space-around;
 }
 
 .storage-header {
-  @extend .py-6;
   display: flex;
   flex-direction: column;
   justify-content: center;

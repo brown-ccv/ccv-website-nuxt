@@ -10,33 +10,29 @@
         :key="'section' + i"
         class="content-section"
       >
-        <template>
-          <h2
-            class="section-title title has-text-dark"
-            :aria-label="'icon of ' + category.mdi.icon"
-          >
-            <span class="icon is-size-2 mr-3 has-text-white">
-              <i :class="[category.mdi.prefix, `mdi-${category.mdi.icon}`]" />
-            </span>
-            {{ category.title }}
-          </h2>
-          <CardGroup
-            :data="data.filter((a) => a.category === category.title)"
-          />
-        </template>
+        <h2
+          class="section-title title has-text-dark"
+          :aria-label="'icon of ' + category.mdi.icon"
+        >
+          <span class="icon is-size-2 mr-3 has-text-white">
+            <i :class="[category.mdi.prefix, `mdi-${category.mdi.icon}`]" />
+          </span>
+          {{ category.title }}
+        </h2>
+        <CardGroup :data="data.filter((a) => a.category === category.title)" />
       </section>
     </main>
   </div>
 </template>
 
 <script>
-import DTOC from '@/components/base/DTableOfContents';
-import CardGroup from '@/components/blocks/CardGroup';
+import DTOC from '@/components/base/DTableOfContents.vue';
+import CardGroup from '@/components/blocks/CardGroup.vue';
 
 export default {
   components: {
     DTOC,
-    CardGroup
+    CardGroup,
   },
   filters: {
     humanize(str) {
@@ -46,17 +42,17 @@ export default {
     },
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    }
+    },
   },
   props: {
     index: {
       type: Array,
-      required: true
+      required: true,
     },
     data: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     tocData() {
@@ -64,10 +60,10 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.mdi.icon, family: 'light' }
+          icon: { name: d.mdi.icon, family: 'light' },
         };
       });
-    }
+    },
   },
   methods: {
     urlize(str) {
@@ -77,8 +73,8 @@ export default {
       const cleanStr = str.replace(/-/g, ' ');
       const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
       return upperFirst;
-    }
-  }
+    },
+  },
 };
 </script>
 

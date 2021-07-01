@@ -1,10 +1,9 @@
 @charset "utf-8";
 @import 'variables';
 
-@import './node_modules/bulma/bulma.sass';
+@import '~bulma/bulma';
 
 @import 'helpers';
-
 @import 'banner';
 @import 'button';
 @import 'border';
@@ -12,9 +11,7 @@
 @import 'color';
 @import 'dialog';
 @import 'expandable';
-@import 'footer';
 @import 'hero';
 @import 'icon';
 @import 'layout';
-@import 'navbar';
 @import 'typography';
