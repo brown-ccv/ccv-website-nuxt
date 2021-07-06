@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { getStringDate } from '../../utils.js';
 import Event from '@/components/calendar/CalEvent';
+import { getStringDate } from '../../utils.js';
 
 export default {
   name: 'WeeklyDay',
@@ -289,7 +289,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
   overflow-y: scroll;
-  background-color: rgba(0, 179, 152, .3);
+  background-color: rgba(170, 222, 214, 1);
   border-left: 0.5px solid #efece5;
   border-right: 0.5px solid #efece5;
 }

@@ -27,8 +27,6 @@
     v-else
     class="event"
     @click="toggleDetail(true)"
-    @mouseover="toggleDetail(true)"
-    @mouseleave="toggleDetail(false)"
     :style="'--p-height: ' + val * 27.5 + 'px'"
   >
     <DetailBox

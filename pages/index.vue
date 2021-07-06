@@ -16,11 +16,7 @@
         </nuxt-link>
       </template>
     </DHero>
-    <section
-      role="banner"
-      class="d-hero is-medium"
-      :class="['is-' + variant, { 'is-full-height': fullHeight }]"
-    >
+    <section class="d-hero is-medium">
       <div class="hero-body">
         <div class="container">
           <h1 role="heading" aria-level="1" class="d-calendar-title">
