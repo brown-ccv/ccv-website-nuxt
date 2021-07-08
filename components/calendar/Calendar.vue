@@ -15,7 +15,7 @@
       :class="{
         calendar: true,
         'weekly-calendar': view === 'weekly',
-        'bump-margin-top': view === 'upcoming'
+        'bump-margin-top': view === 'upcoming',
       }"
     >
       <!-- Show toggle buttons if the view is not upcoming, and handle view change with the changeView method -->
@@ -25,22 +25,22 @@
         @view-change="changeView"
       />
       <!-- Display for the monthly or weekly views -->
-        <MonthlyTable
-          v-if="view === 'monthly'"
-          :view="view"
-          :info="info"
-          :display-year="displayYear"
-          :display-month="displayMonth"
-          :display-day="displayDay"
-        />
-        <WeeklyTable
-          v-if="view === 'weekly'"
-          :view="view"
-          :info="info"
-          :display-year="displayYear"
-          :display-month="displayMonth"
-          :display-day="displayDay"
-        />
+      <MonthlyTable
+        v-if="view === 'monthly'"
+        :view="view"
+        :info="info"
+        :display-year="displayYear"
+        :display-month="displayMonth"
+        :display-day="displayDay"
+      />
+      <WeeklyTable
+        v-if="view === 'weekly'"
+        :view="view"
+        :info="info"
+        :display-year="displayYear"
+        :display-month="displayMonth"
+        :display-day="displayDay"
+      />
       <!-- Display for the upcoming view -->
       <Upcoming
         v-if="view === 'upcoming'"
@@ -49,11 +49,7 @@
       />
       <div class="calendar-button">
         <a href="https://events.brown.edu/ccv/all" target="_blank">
-          <DButton
-          name="View All Events"
-          variant="dark"
-          size="medium"
-        />
+          <DButton name="View All Events" variant="dark" size="medium" />
         </a>
       </div>
     </div>
@@ -77,7 +73,7 @@ export default {
     Title,
     ToggleButton,
     Upcoming,
-    DButton
+    DButton,
   },
   props: {
     /**
@@ -87,7 +83,7 @@ export default {
     /**
      * The next five events.
      */
-    upcomingEvents: { type: Array, required: true }
+    upcomingEvents: { type: Array, required: true },
   },
   data() {
     return {
@@ -120,7 +116,7 @@ export default {
         new Date().getDate(),
         new Date().getMonth() + 1,
         new Date().getFullYear()
-      )
+      ),
     };
   },
   watch: {
@@ -135,7 +131,7 @@ export default {
         this.displayYear
       );
       this.$emit('month-change', firstOfLastMonth);
-    }
+    },
   },
   beforeMount() {
     /**
@@ -192,8 +188,8 @@ export default {
       this.displayYear = currentDate.getFullYear();
       this.displayMonth = currentDate.getMonth() + 1;
       this.displayDay = currentDate.getDate();
-    }
-  }
+    },
+  },
 };
 </script>
 

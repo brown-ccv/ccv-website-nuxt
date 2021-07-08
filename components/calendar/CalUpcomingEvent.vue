@@ -1,6 +1,13 @@
 <template>
   <div
-    class="greyed-out event-width event-height padding-1 margin-half overflow-hidden column"
+    class="
+      greyed-out
+      event-width event-height
+      padding-1
+      margin-half
+      overflow-hidden
+      column
+    "
     :class="{ today: isSoonest }"
   >
     <Event :info="event" :view="view" />
@@ -18,7 +25,7 @@ export default {
   name: 'UpcomingEvent',
   components: {
     Event,
-    Description
+    Description,
   },
   props: {
     /**
@@ -33,7 +40,7 @@ export default {
      * Whether this event is the soonest upcoming event. Defines whether to highlight this
      * event yellow.
      */
-    isSoonest: Boolean
+    isSoonest: Boolean,
   },
   data() {
     return {
@@ -44,9 +51,9 @@ export default {
       /**
        * The current year.
        */
-      displayYear: currentDate.getFullYear()
+      displayYear: currentDate.getFullYear(),
     };
-  }
+  },
 };
 </script>
 

@@ -12,7 +12,7 @@
               <p>{{ convertToTimeLabel(i / 2 - 0.5) }}</p>
             </td>
             <td v-else>
-              <br>
+              <br />
             </td>
           </tr>
         </table>
@@ -39,7 +39,7 @@ import WeeklyDay from '@/components/calendar/CalWeeklyDay';
 export default {
   name: 'Week',
   components: {
-    WeeklyDay
+    WeeklyDay,
   },
   props: {
     /**
@@ -65,19 +65,19 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String
+    view: String,
   },
   watch: {
     /**
      * When the view changes to weekly, scroll to 8 AM.
      */
     changeView() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         if (this.view === 'weekly') {
           this.scrollToHour(8.5); // scroll to 8 am
         }
       });
-    }
+    },
   },
   mounted() {
     /**
@@ -111,8 +111,8 @@ export default {
       const calendarBody = document.getElementById('table-scrollable');
       const label = document.getElementById('time-label-' + hour);
       calendarBody.scrollTop = label.offsetTop;
-    }
-  }
+    },
+  },
 };
 </script>
 

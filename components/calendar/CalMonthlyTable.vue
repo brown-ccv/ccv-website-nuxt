@@ -29,18 +29,18 @@
 </template>
 
 <script>
+import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 import {
   ALL_MONTHS,
   ALL_DAYS_OF_WEEK,
   TODAYS_DATE,
-  weeksInMonth
+  weeksInMonth,
 } from '../../utils.js';
-import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 
 export default {
   name: 'MonthlyTable',
   components: {
-    MonthlyWeek
+    MonthlyWeek,
   },
   props: {
     // Passed directly from CalendarTable
@@ -48,7 +48,7 @@ export default {
     info: { type: Array, required: true },
     displayYear: Number,
     displayMonth: Number,
-    displayDay: Number
+    displayDay: Number,
   },
   computed: {
     /**
@@ -70,7 +70,7 @@ export default {
       const year = this.displayYear;
 
       return this.monthViewDates(month, year);
-    }
+    },
   },
   created() {
     this.allMonths = ALL_MONTHS;
@@ -112,21 +112,21 @@ export default {
               month: prevMonth.getMonth() + 1,
               year: prevMonth.getFullYear(),
               date: dateToAdd,
-              greyedOut: true
+              greyedOut: true,
             });
           } else if (i > 1 && dateToAdd < 7) {
             weekDaysArr.push({
               month: nextMonth.getMonth() + 1,
               year: nextMonth.getFullYear(),
               date: dateToAdd,
-              greyedOut: true
+              greyedOut: true,
             });
           } else {
             weekDaysArr.push({
               month: month + 1,
               year,
               date: dateToAdd,
-              greyedOut: false
+              greyedOut: false,
             });
           }
 
@@ -142,8 +142,8 @@ export default {
         weekDaysArr = [];
       }
       return displayDaysArr;
-    }
-  }
+    },
+  },
 };
 </script>
 

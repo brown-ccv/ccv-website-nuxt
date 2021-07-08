@@ -1,6 +1,6 @@
 <template>
-  <div 
-    v-if="(view === 'upcoming')"
+  <div
+    v-if="view === 'upcoming'"
     class="event"
     @click="toggleDetail(true)"
     @mouseover="toggleDetail(false)"
@@ -23,11 +23,11 @@
       {{ info.date_time }}
     </div>
   </div>
-  <div 
+  <div
     v-else
     class="event"
-    @click="toggleDetail(true)"
     :style="'--p-height: ' + val * 27.5 + 'px'"
+    @click="toggleDetail(true)"
   >
     <DetailBox
       v-if="detailedOpen"
@@ -54,7 +54,7 @@ import DetailBox from '@/components/calendar/CalDetailBox';
 export default {
   name: 'Event',
   components: {
-    DetailBox
+    DetailBox,
   },
   props: {
     /**
@@ -64,12 +64,12 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String
+    view: String,
   },
   data() {
     return {
       detailedOpen: false,
-      val: this.info.rowspan
+      val: this.info.rowspan,
     };
   },
   computed: {
@@ -78,7 +78,7 @@ export default {
      * @returns {string} The date with the day of the week.
      */
     date() {
-      const dateTime = new Date(this.info.date_utc.replace(/-/g, "/"));
+      const dateTime = new Date(this.info.date_utc.replace(/-/g, '/'));
       const stringDate = this.info.date;
       return (
         new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(dateTime) +
@@ -89,13 +89,13 @@ export default {
     displayYear() {
       const d = new Date(this.date);
       return d.getFullYear();
-    }
+    },
   },
   methods: {
     toggleDetail(show) {
       this.detailedOpen = show;
-    }
-  }
+    },
+  },
 };
 </script>
 

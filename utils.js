@@ -62,7 +62,7 @@ export const ALL_MONTHS = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ];
 
 export const ALL_DAYS_OF_WEEK = [
@@ -72,7 +72,7 @@ export const ALL_DAYS_OF_WEEK = [
   'Weds',
   'Thurs',
   'Fri',
-  'Sat'
+  'Sat',
 ];
 
 export const DISPLAY_YEAR = new Date().getFullYear();

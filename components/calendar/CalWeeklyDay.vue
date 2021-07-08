@@ -36,7 +36,7 @@
           :key="'hour' + i"
           :class="{ 'hour-line': (i - 1) % 2 === 1 }"
         >
-          <td><br></td>
+          <td><br /></td>
         </tr>
       </table>
     </div>
@@ -50,7 +50,7 @@ import { getStringDate } from '../../utils.js';
 export default {
   name: 'WeeklyDay',
   components: {
-    Event
+    Event,
   },
   props: {
     /**
@@ -80,7 +80,7 @@ export default {
     /**
      * The current calendar view, "monthly", "weekly", or "upcoming".
      */
-    view: String
+    view: String,
   },
   data() {
     return {
@@ -103,7 +103,7 @@ export default {
       /**
        * Total number of half hours slots to show in each day (in weekly view).
        */
-      totalHalfHours: 48
+      totalHalfHours: 48,
     };
   },
   computed: {
@@ -123,7 +123,7 @@ export default {
         }
       }
       return newEvents;
-    }
+    },
   },
   methods: {
     /**
@@ -225,8 +225,8 @@ export default {
     },
     calcMaxWidth(numConcurrent) {
       return 60 / numConcurrent + 'px';
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -20,7 +20,7 @@ import MonthlyDay from '@/components/calendar/CalMonthlyDay';
 export default {
   name: 'MonthlyWeek',
   components: {
-    MonthlyDay
+    MonthlyDay,
   },
   props: {
     /**
@@ -46,8 +46,8 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String
-  }
+    view: String,
+  },
 };
 </script>
 

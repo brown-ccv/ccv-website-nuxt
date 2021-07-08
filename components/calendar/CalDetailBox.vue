@@ -5,21 +5,15 @@
         {{ info.title }}
       </div>
       <div class="detail-time">
-        <div class="teal">
-          When:
-        </div>
-        <div> {{ info.date }}, {{ info.date_time }} </div>
+        <div class="teal">When:</div>
+        <div>{{ info.date }}, {{ info.date_time }}</div>
       </div>
       <div class="detail-loc">
-        <div class="teal">
-          Where:
-        </div>
+        <div class="teal">Where:</div>
         <div>{{ info.location }}</div>
       </div>
       <div class="detail-info">
-        <div class="teal">
-          Description:
-        </div>
+        <div class="teal">Description:</div>
         <div v-html="description" />
       </div>
     </div>
@@ -36,7 +30,7 @@ export default {
      */
     info: {
       type: Object,
-      required: true
+      required: true,
     },
     /**
      * The year being displayed.
@@ -45,14 +39,14 @@ export default {
     /**
      * The current view.
      */
-    view: String
+    view: String,
   },
   data() {
     return {
       /**
        * Whether or not to show the detail box.
        */
-      detailedOpen: false
+      detailedOpen: false,
     };
   },
   computed: {
@@ -68,7 +62,7 @@ export default {
         str = str.replace('<a', '<a target="_blank"');
       }
       return str;
-    }
+    },
   },
   methods: {
     /**
@@ -80,8 +74,8 @@ export default {
       } else {
         return document.getElementById(elemID).offsetTop - 170 + 'px';
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

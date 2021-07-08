@@ -15,7 +15,7 @@ export default {
     /**
      * The URL to more info on the event.
      */
-    url: String
+    url: String,
   },
   computed: {
     /**
@@ -26,8 +26,9 @@ export default {
     handledDesc() {
       if (!this.desc) {
         return '';
-        }
-      else if (this.desc.includes('is inviting you to a scheduled Zoom meeting.')) {
+      } else if (
+        this.desc.includes('is inviting you to a scheduled Zoom meeting.')
+      ) {
         const zoomLink = this.desc.match(
           'https://brown.zoom.us/[a-zA-Z0-9/@:%._+~#?&/=]*'
         )[0];
@@ -50,7 +51,7 @@ export default {
           "' target='_blank'>More info</a>"
         );
       }
-    }
+    },
   },
   methods: {
     /**
@@ -75,8 +76,8 @@ export default {
       } else {
         return fullDesc;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
