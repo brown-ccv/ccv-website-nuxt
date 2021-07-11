@@ -8,11 +8,12 @@
     >
     </DHero>
     <!-- This is for directories containing subdirectories -->
-    <DirsToCardSections
+    <!-- <DirsToCardSections
       v-if="$route.params.main === 'our-work'"
       :index="list"
       :data="data"
-    />
+    /> -->
+    <FilesToCards v-if="$route.params.main === 'our-work'" :data="data" />
     <!-- This is for directories containing markdown files -->
     <FilesToSections v-else :data="data" />
   </div>
@@ -24,9 +25,10 @@ import DHero from '@/components/base/DHero.vue';
 export default {
   components: {
     DHero,
-    DirsToCardSections: () =>
-      import('@/components/blocks/DirsToCardSections.vue'),
+    // DirsToCardSections: () =>
+    //   import('@/components/blocks/DirsToCardSections.vue'),
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
+    FilesToCards: () => import('@/components/blocks/FilesToCards.vue')
   },
   filters: {
     humanize(str) {
