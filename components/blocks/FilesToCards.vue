@@ -1,7 +1,7 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
     <div
-      v-if="$route.params.main === 'help'"
+      v-if="$route.params.main === 'help' || $route.params.main === 'services'"
       class="
         card-container
         is-flex
@@ -15,14 +15,12 @@
         class="help-card my-5"
         variant="light"
         accent="warning"
-        width=large
+        width="large"
       >
         <template #header>
           <div class="px-5">
-            <span
-              class="icon is-size-1 has-text-success mb-5"
-            >
-              <i v-if="item.mdi" :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
+            <span v-if="item.mdi" class="icon is-size-1 has-text-success mb-5">
+              <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
             </span>
 
             <h2 class="title has-text-black">
@@ -69,16 +67,18 @@
       "
     >
       <div id="sort-bar">
-        <select name="searchGroup" id="select" v-model="searchGroup">
-          <option value="">Please select one to filter</option>
+        <!-- <select v-model="searchGroup" multiple>
+          <option value="">Select tags to filter by</option>
           <option value="CCV">Center for Computation and Visualization</option>
-          <option value="CBC">Computational Biology Core</option>
-        </select>
+          <option value="CBC">Computational Biology Core</option> -->
+        <!-- </select> -->
+        <multiselect v-model="searchGroup" :options="options" :close-on-select="false" :clear-on-select="false" :preserve-search="true" :multiple="true" placeholder="Select tags to filter by" label="name" track-by="name" :preselect-first="true">
+        </multiselect>
         <i class="fa fa-search"></i>
-        <select name="sortBy" id="sort" v-model="sortBy">
+        <select id="sort" v-model="sortBy" name="sortBy">
           <option value="alphabetically">Alphabetically</option>
         </select>
-        <button v-on:click="ascending = !ascending" class="sort-button">
+        <button class="sort-button" @click="ascending = !ascending">
           <i v-if="ascending" class="fa fa-sort-up"></i>
           <i v-else class="fa fa-sort-down"></i>
         </button>
@@ -158,61 +158,69 @@
 
 <script>
 import DCard from '@/components/base/DCard.vue';
+import Multiselect from 'vue-multiselect'
 
 export default {
   components: {
     DCard,
+    Multiselect
   },
-  data:() => ({
-      ascending: true,
-      sortBy: 'alphabetically',
-      searchGroup: ''
-  }),
   props: {
     data: {
       type: Array,
-      required: true,
+      required: true
     },
   },
+  data: () => ({
+    ascending: true,
+    sortBy: 'alphabetically',
+    searchGroup: [''],
+    options: [{name: 'CCV'},{name: 'CBC'}]
+  }),
   computed: {
     filteredData() {
       return this.data.filter((d) => !d.hidden);
     },
     sortedArray() {
-        let tempCards = this.data
-        
-        // Filter by group tag
-        if (this.searchGroup !== "") {
-          tempCards = tempCards.filter(item => {
-              return item.group === this.searchGroup
-            })
-        }
-        
-              
-        // Sort by alphabetical order
-          tempCards = tempCards.sort((a, b) => {
-              if (this.sortBy === 'alphabetically') {
-                  const fa = a.title.toLowerCase()
-                  const fb = b.title.toLowerCase()
-                if (fa < fb) {
-                  return -1
+      let tempCards = this.data;
+
+      // Filter by group tag
+      const filtered = [];
+      if (this.searchGroup !== '') {
+
+        for(const arr in tempCards){
+          for(const filter in this.searchGroup){
+              if(tempCards[arr].group === this.searchGroup[filter].name){
+                  filtered.push(tempCards[arr]);
                 }
-                if (fa > fb) {
-                  return 1 
-                }
-                return 0
-              } else {
-                return a.group - b.group
-            }
-          })
-          
-          // Show sorted array in descending or ascending order
-          if (!this.ascending) {
-            tempCards.reverse()
           }
-          
-          return tempCards
-    }
+        }
+      }
+
+      // Sort by alphabetical order
+      tempCards = filtered.sort((a, b) => {
+        if (this.sortBy === 'alphabetically') {
+          const fa = a.title.toLowerCase();
+          const fb = b.title.toLowerCase();
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        } else {
+          return a.group - b.group;
+        }
+      });
+
+      // Show sorted array in descending or ascending order
+      if (!this.ascending) {
+        filtered.reverse();
+      }
+
+      return filtered;
+    },
   },
 };
 </script>
@@ -226,3 +234,5 @@ export default {
   font-weight: bold;
 }
 </style>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
