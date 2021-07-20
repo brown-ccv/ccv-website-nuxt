@@ -72,7 +72,18 @@
           <option value="CCV">Center for Computation and Visualization</option>
           <option value="CBC">Computational Biology Core</option> -->
         <!-- </select> -->
-        <multiselect v-model="searchGroup" :options="options" :close-on-select="false" :clear-on-select="false" :preserve-search="true" :multiple="true" placeholder="Select tags to filter by" label="name" track-by="name" :preselect-first="true">
+        <multiselect
+          v-model="searchGroup"
+          :options="options"
+          :close-on-select="false"
+          :clear-on-select="false"
+          :preserve-search="true"
+          :multiple="true"
+          placeholder="Select tags to filter by"
+          label="name"
+          track-by="name"
+          :preselect-first="true"
+        >
         </multiselect>
         <i class="mdi mdi-search-web"></i>
         <select id="sort" v-model="sortBy" name="sortBy">
@@ -160,24 +171,24 @@
 
 <script>
 import DCard from '@/components/base/DCard.vue';
-import Multiselect from 'vue-multiselect'
+import Multiselect from 'vue-multiselect';
 
 export default {
   components: {
     DCard,
-    Multiselect
+    Multiselect,
   },
   props: {
     data: {
       type: Array,
-      required: true
+      required: true,
     },
   },
   data: () => ({
     ascending: true,
     sortBy: 'alphabetically',
     searchGroup: [''],
-    options: [{name: 'CCV'},{name: 'CBC'}]
+    options: [{ name: 'CCV' }, { name: 'CBC' }],
   }),
   computed: {
     filteredData() {
@@ -189,18 +200,17 @@ export default {
       // Filter by group tag
       const filtered = [];
       if (this.searchGroup !== '') {
-
-        for(const arr in tempCards){
-          for(const filter in this.searchGroup){
-              if(tempCards[arr].group === this.searchGroup[filter].name){
-                  filtered.push(tempCards[arr]);
-                }
+        for (const arr in tempCards) {
+          for (const filter in this.searchGroup) {
+            if (tempCards[arr].group === this.searchGroup[filter].name) {
+              filtered.push(tempCards[arr]);
+            }
           }
         }
       }
 
       // Sort by alphabetical order
-      if(this.sortBy === 'alphabetically') {
+      if (this.sortBy === 'alphabetically') {
         tempCards = filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
           const fb = b.title.toLowerCase();
@@ -212,13 +222,12 @@ export default {
           }
           return 0;
         });
-      } else if(this.sortBy === 'date') {
+      } else if (this.sortBy === 'date') {
         // Sort by date
         tempCards = filtered.sort((a, b) => {
-          return new Date(a.date) - new Date(b.date)
+          return new Date(a.date) - new Date(b.date);
         });
       }
-
 
       // Show sorted array in descending or ascending order
       if (!this.ascending) {
