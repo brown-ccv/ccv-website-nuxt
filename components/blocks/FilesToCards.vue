@@ -74,13 +74,14 @@
         <!-- </select> -->
         <multiselect v-model="searchGroup" :options="options" :close-on-select="false" :clear-on-select="false" :preserve-search="true" :multiple="true" placeholder="Select tags to filter by" label="name" track-by="name" :preselect-first="true">
         </multiselect>
-        <i class="fa fa-search"></i>
+        <i class="mdi mdi-search-web"></i>
         <select id="sort" v-model="sortBy" name="sortBy">
           <option value="alphabetically">Alphabetically</option>
+          <option value="date">Date</option>
         </select>
         <button class="sort-button" @click="ascending = !ascending">
-          <i v-if="ascending" class="fa fa-sort-up"></i>
-          <i v-else class="fa fa-sort-down"></i>
+          <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+          <i v-else class="mdi mdi-sort-descending"></i>
         </button>
       </div>
 
@@ -100,6 +101,7 @@
             </abbr></span
           >
           <h2>{{ item.title }}</h2>
+          <div>Updated: {{ item.date }}</div>
           <span v-if="item.authors" class="small has-text-link"
             >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
           >
@@ -198,8 +200,8 @@ export default {
       }
 
       // Sort by alphabetical order
-      tempCards = filtered.sort((a, b) => {
-        if (this.sortBy === 'alphabetically') {
+      if(this.sortBy === 'alphabetically') {
+        tempCards = filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
           const fb = b.title.toLowerCase();
           if (fa < fb) {
@@ -209,10 +211,14 @@ export default {
             return 1;
           }
           return 0;
-        } else {
-          return a.group - b.group;
-        }
-      });
+        });
+      } else if(this.sortBy === 'date') {
+        // Sort by date
+        tempCards = filtered.sort((a, b) => {
+          return new Date(a.date) - new Date(b.date)
+        });
+      }
+
 
       // Show sorted array in descending or ascending order
       if (!this.ascending) {
