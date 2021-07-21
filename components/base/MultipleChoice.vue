@@ -4,11 +4,11 @@
       <h2>{{ data.question }}</h2>
       <DButton
         type="button"
-        name="clear"
+        name="reset"
         size="small"
         variant="light"
         class="ml-2"
-        @click="clear(data.affected_category)"
+        @click="reset()"
       >
         <template #icon-right>
           <span class="icon">
@@ -33,13 +33,12 @@
     >
       <input
         :id="'radioinput-' + urlize(data.question) + i"
-        v-model="selected"
         class="is-checkradio"
         type="radio"
-        :name="'radioinput-' + urlize(data.question) + i"
-        checked="checked"
-        :value="[data.affected_category, a.category_classes]"
-        @change="change"
+        :name="'radioinput-' + urlize(data.question)"
+        :value="a"
+        :checked="selected === a"
+        @input="change(a)"
       />
       <label :for="'radioinput-' + urlize(data.question) + i">{{
         a.answer
@@ -60,23 +59,24 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      selected: null,
-      showModal: false,
-    };
+    selected: {
+      type: String,
+      required: true,
+    },
+    questionId: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
-    change() {
-      return this.$emit('answer', this.selected);
+    change(answer) {
+      return this.$emit('answer', { answer, id: this.questionId });
     },
     urlize(str) {
       return str.replace(/ /g, '-').replace('?', '').toLowerCase();
     },
-    clear(cat) {
-      this.$emit('clear', cat);
-      this.selected = null;
+    reset() {
+      this.change(this.data.default_answer);
     },
   },
 };

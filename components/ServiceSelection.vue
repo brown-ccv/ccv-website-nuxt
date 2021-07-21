@@ -11,11 +11,7 @@
           : 'has-background-light',
       ]"
     >
-      <button
-        class="button-nostyle mdi mdi-checkbox-marked"
-        type="button"
-        @click="change(s.service)"
-      >
+      <button class="button-nostyle" type="button" @click="change(s.service)">
         <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
           ><i class="mdi mdi-checkbox-marked"
         /></span>

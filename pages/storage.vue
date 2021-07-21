@@ -10,10 +10,10 @@
       <span>
         <DButton
           type="button"
-          name="clear all"
+          name="reset"
           class="mt-5"
           variant="light"
-          @click="clearAll"
+          @click="resetAll"
         >
           <template #icon-right>
             <span class="icon">
@@ -53,11 +53,11 @@
         <MultipleChoice
           v-for="(q, i) in questions"
           :key="'q' + i"
-          :ref="'q' + i"
           :data="q"
+          :question-id="i"
           class="mb-6"
+          :selected="answers[i]"
           @answer="recordAnswer"
-          @clear="clear"
         />
       </div>
       <ServiceSelection
@@ -111,12 +111,14 @@ export default {
       'services/file-storage-and-transfer/index'
     ).fetch();
 
-    return { index };
+    const answers = index.questions.map((q) =>
+      q.answers.find((answer) => answer.answer === q.default_answer)
+    );
+
+    return { index, answers };
   },
   data() {
     return {
-      answers: {},
-      answerPayload: {},
       selectedServices: [],
       filteredServices: [],
     };
@@ -138,14 +140,10 @@ export default {
     },
   },
   watch: {
-    answerPayload() {
-      this.answers[this.answerPayload[0]] = this.answerPayload[1];
-      this.filterServices();
-    },
     selectedServices() {
-      this.filteredServices = this.services.filter((s) =>
-        this.selectedServices.includes(s.service)
-      );
+      // this.filteredServices = this.services.filter((s) =>
+      //   this.selectedServices.includes(s.service)
+      // );
     },
   },
   mounted() {
@@ -154,29 +152,29 @@ export default {
   methods: {
     filterServices() {
       let filtered = this.services;
-      const ans = Object.keys(this.answers);
-      ans.forEach((a) => {
+      this.answers.forEach((answer, i) => {
         filtered = filtered.filter((s) => {
-          return this.answers[a].includes(
-            s.features.filter((f) => f.name === a)[0].class
+          const question = this.questions[i];
+          return answer.category_classes.includes(
+            s.features.find((f) => f.name === question.affected_category).class
           );
         });
       });
       this.selectedServices = filtered.map((s) => s.service);
     },
-    recordAnswer(payload) {
-      this.answerPayload = payload;
+    recordAnswer({ answer, id }) {
+      // copy and set due to vue mutation limitatinos
+      const newAnswers = [...this.answers];
+      newAnswers[id] = answer;
+      this.answers = newAnswers;
     },
     recordService(payload) {
       this.selectedServices = payload;
     },
-    clear(payload) {
-      delete this.answers[payload];
-      this.filterServices();
-    },
-    clearAll() {
-      this.answers = {};
-      this.answersPayload = {};
+    resetAll() {
+      this.answers = this.index.questions.map((q) =>
+        q.answers.find((answer) => answer.answer === q.default_answer)
+      );
       this.selectedServices = [];
       this.filteredServices = [];
     },
