@@ -28,7 +28,7 @@
           name="go to comparison table"
           :disabled="comparisonServices.length === 0"
         >
-          GO TO COMPARISON TABLE
+          GO TO COMPARISON
           <span class="icon ml-2">
             <i class="mdi mdi-arrow-down" />
           </span>
@@ -99,6 +99,9 @@ export default {
     const index = await $content(
       'services/file-storage-and-transfer/index'
     ).fetch();
+    index.services.forEach((service) =>
+      service.features.sort((a, b) => (a.name < b.name ? -1 : 1))
+    );
 
     const answers = index.questions.map((q) =>
       q.answers.find((answer) => answer.answer === q.default_answer)
