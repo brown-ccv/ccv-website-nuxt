@@ -58,6 +58,7 @@
           class="mb-6"
           :selected="answers[i]"
           @answer="recordAnswer"
+          @reset="resetQuestion"
         />
       </div>
       <ServiceSelection
@@ -162,14 +163,25 @@ export default {
       });
       this.selectedServices = filtered.map((s) => s.service);
     },
-    recordAnswer({ answer, id }) {
+    updateAnswer({ answer, id }) {
       // copy and set due to vue mutation limitatinos
       const newAnswers = [...this.answers];
       newAnswers[id] = answer;
       this.answers = newAnswers;
     },
+    recordAnswer(answerPayload) {
+      // copy and set due to vue mutation limitatinos
+      this.updateAnswer(answerPayload);
+    },
     recordService(payload) {
       this.selectedServices = payload;
+    },
+    resetQuestion({ id }) {
+      const question = this.questions[id];
+      const answer = question.answers.find(
+        (a) => a.answer === question.default_answer
+      );
+      this.updateAnswer({ answer, id });
     },
     resetAll() {
       this.answers = this.index.questions.map((q) =>

@@ -60,7 +60,7 @@ export default {
       required: true,
     },
     selected: {
-      type: String,
+      type: Object,
       required: true,
     },
     questionId: {
@@ -76,7 +76,7 @@ export default {
       return str.replace(/ /g, '-').replace('?', '').toLowerCase();
     },
     reset() {
-      this.change(this.data.default_answer);
+      return this.$emit('reset', { id: this.questionId });
     },
   },
 };
