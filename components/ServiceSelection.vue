@@ -1,21 +1,25 @@
 <template>
   <div class="service-selection">
     <div
-      v-for="(s, i) in data"
+      v-for="(s, i) in services"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
       class="field service-box my-1 p-4"
       :class="[
-        selectedData.includes(s.service)
-          ? 'has-background-info'
-          : 'has-background-light',
+        matchingServices[i] ? 'has-background-info' : 'has-background-light',
       ]"
     >
-      <button class="button-nostyle" type="button" @click="change(s.service)">
-        <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
-          ><i class="mdi mdi-checkbox-marked"
+      <button class="button-nostyle" type="button" @click="change(i)">
+        <span class="icon is-size-2"
+          ><i
+            :class="[
+              'mdi',
+              selectedServices[i] ||
+              (selectedServices[i] === null && matchingServices[i])
+                ? 'mdi-checkbox-marked'
+                : 'mdi-checkbox-blank',
+            ]"
         /></span>
-        <span v-else class="icon is-size-2"><i class="mdi mdi-square" /></span>
       </button>
       <button class="button-nostyle service-label" @click="toggleShowModal(s)">
         <span
@@ -58,42 +62,37 @@ export default {
     },
   },
   props: {
-    data: {
+    services: {
       type: Array,
       required: true,
     },
-    selectedData: {
+    selectedServices: {
+      type: Array,
+      required: true,
+    },
+    matchingServices: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
-      selected: [],
       showModal: false,
       modalData: '',
     };
   },
-  watch: {
-    selectedData: {
-      deep: true,
-      handler(newVal) {
-        if (newVal.length === 0) {
-          this.selected = [];
-        }
-      },
-    },
-  },
   methods: {
-    change(service) {
-      if (this.selected.includes(service)) {
-        this.selected = this.selected.filter((s) => s !== service);
+    change(id) {
+      let newVal;
+      if (this.selectedServices[id] === null) {
+        newVal = !this.matchingServices[id];
       } else {
-        this.selected.push(service);
+        newVal = !this.selectedServices[id];
       }
-      this.$emit('service', this.selected);
+      this.$emit('service', { id, newVal });
     },
     toggleShowModal(data) {
+      // TODO: modal isn't taking whole page, but rather inserting in place
       this.modalData = data;
       this.showModal = true;
     },
@@ -119,8 +118,5 @@ export default {
 .service-label {
   font-weight: bold;
   font-size: 1.1rem;
-}
-.mdi-checkbox-marked {
-  align-self: flex-end;
 }
 </style>

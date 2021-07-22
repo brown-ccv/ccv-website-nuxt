@@ -53,7 +53,7 @@
         <MultipleChoice
           v-for="(q, i) in questions"
           :key="'q' + i"
-          :data="q"
+          :question="q"
           :question-id="i"
           class="mb-6"
           :selected="answers[i]"
@@ -62,15 +62,16 @@
         />
       </div>
       <ServiceSelection
-        :data="services"
-        :selected-data="selectedServices"
+        :services="services"
+        :selected-services="selectedServices"
+        :matching-services="matchingServices"
         @service="recordService"
       />
     </div>
     <ComparisonTable
-      v-if="selectedServices.length > 0"
+      v-if="comparisonServices.length > 0"
       id="comparison-table"
-      :data="filteredServices"
+      :services="comparisonServices"
       :categories="categories"
     />
     <div v-else class="storage-section py-6 mx-6 my-6 has-background-light">
@@ -116,13 +117,9 @@ export default {
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { index, answers };
-  },
-  data() {
-    return {
-      selectedServices: [],
-      filteredServices: [],
-    };
+    const selectedServices = index.services.map((_) => null);
+
+    return { index, answers, selectedServices };
   },
   computed: {
     services: {
@@ -139,30 +136,46 @@ export default {
     questions() {
       return this.index.questions;
     },
-  },
-  watch: {
-    selectedServices() {
-      // this.filteredServices = this.services.filter((s) =>
-      //   this.selectedServices.includes(s.service)
-      // );
-    },
-  },
-  mounted() {
-    this.filteredServices = this.services;
-  },
-  methods: {
-    filterServices() {
-      let filtered = this.services;
-      this.answers.forEach((answer, i) => {
-        filtered = filtered.filter((s) => {
-          const question = this.questions[i];
-          return answer.category_classes.includes(
-            s.features.find((f) => f.name === question.affected_category).class
-          );
+    matchingServices() {
+      return this.services.map((service) => {
+        return service.features.every((feature) => {
+          return this.answers.every((answer, i) => {
+            const category = this.questions[i].affected_category;
+            return category === feature.name
+              ? answer.category_classes.includes(feature.class)
+              : true;
+          });
         });
       });
-      this.selectedServices = filtered.map((s) => s.service);
     },
+    comparisonServices() {
+      return this.services.filter(
+        (_, i) =>
+          this.selectedServices[i] ||
+          (this.selectedServices[i] === null && this.matchingServices[i])
+      );
+    },
+  },
+  // watch: {
+  //   answers() {
+  //     // if the answers update, find what services match the current answers
+  //     this.matchServices()
+  //   },
+  // },
+  // mounted() {
+  //   this.matchServices();
+  // },
+  methods: {
+    // matchServices() {
+    //   this.matchingServices = this.services.map(service => {
+    //     return service.features.every((feature) => {
+    //       return this.answers.every((answer, i) => {
+    //         const category = this.questions[i].affected_category;
+    //         return category === feature.name ? answer.category_classes.includes(feature.class) : true
+    //       })
+    //     })
+    //   })
+    // },
     updateAnswer({ answer, id }) {
       // copy and set due to vue mutation limitatinos
       const newAnswers = [...this.answers];
@@ -173,8 +186,11 @@ export default {
       // copy and set due to vue mutation limitatinos
       this.updateAnswer(answerPayload);
     },
-    recordService(payload) {
-      this.selectedServices = payload;
+    recordService({ newVal, id }) {
+      // copy and set due to vue mutation limitatinos
+      const newSelectedServices = [...this.selectedServices];
+      newSelectedServices[id] = newVal;
+      this.selectedServices = newSelectedServices;
     },
     resetQuestion({ id }) {
       const question = this.questions[id];
@@ -187,8 +203,7 @@ export default {
       this.answers = this.index.questions.map((q) =>
         q.answers.find((answer) => answer.answer === q.default_answer)
       );
-      this.selectedServices = [];
-      this.filteredServices = [];
+      this.selectedServices = this.services.map((_) => null);
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="question-header mb-1">
-      <h2>{{ data.question }}</h2>
+      <h2>{{ question.question }}</h2>
       <DButton
         type="button"
         name="reset"
@@ -17,30 +17,30 @@
         </template>
       </DButton>
     </span>
-    <details v-if="data.information" class="question-details mb-4">
+    <details v-if="question.information" class="question-details mb-4">
       <summary>
         <span class="icon has-text-info">
           <i class="mdi mdi-information-outline" />
         </span>
       </summary>
-      <p class="content" v-html="$md.render(data.information)"></p>
+      <p class="content" v-html="$md.render(question.information)"></p>
     </details>
     <div
-      v-for="(a, i) in data.answers"
-      :id="urlize(data.question) + i"
-      :key="urlize(data.question) + i"
+      v-for="(a, i) in question.answers"
+      :id="urlize(question.question) + i"
+      :key="urlize(question.question) + i"
       class="field"
     >
       <input
-        :id="'radioinput-' + urlize(data.question) + i"
+        :id="'radioinput-' + urlize(question.question) + i"
         class="is-checkradio"
         type="radio"
-        :name="'radioinput-' + urlize(data.question)"
+        :name="'radioinput-' + urlize(question.question)"
         :value="a"
         :checked="selected === a"
         @input="change(a)"
       />
-      <label :for="'radioinput-' + urlize(data.question) + i">{{
+      <label :for="'radioinput-' + urlize(question.question) + i">{{
         a.answer
       }}</label>
     </div>
@@ -55,7 +55,7 @@ export default {
     DButton,
   },
   props: {
-    data: {
+    question: {
       type: Object,
       required: true,
     },

@@ -3,9 +3,9 @@
     <div class="px-4 has-background-dark sticky">
       <div class="comparison-container">
         <ul
-          v-for="(service, index) in data"
+          v-for="(service, index) in services"
           :key="index"
-          class="comparison-item subtitle has-text-light"
+          class="comparison-item subtitle has-text-light has-text-centered"
         >
           {{
             service.service | humanize
@@ -15,72 +15,75 @@
     </div>
     <div class="comparison-wrapper">
       <div
-        v-for="(cat, ind) in categories"
-        :key="cat"
+        v-for="(category, ind) in categories"
+        :key="category"
         class="px-4 py-4"
         :class="[
           ind % 2 === 0 ? 'has-background-light' : 'has-background-white',
         ]"
       >
-        <h2 class="subtitle">{{ cat | humanize }}</h2>
+        <h2 class="subtitle">{{ category | humanize }}</h2>
         <div class="comparison-container">
           <ul
-            v-for="(service, index) in data"
+            v-for="(service, index) in services"
             :key="index"
             class="comparison-item"
           >
             <div
-              v-for="(feat, i) in service.features"
-              :key="'feat' + i"
+              v-for="(feature, i) in service.features"
+              :key="'feature' + i"
               class="class-container"
             >
-              <div v-if="feat.name === cat" class="class-item">
-                <span v-if="feat.class === 'fast'" class="title class-item"
-                  ><span class="icon is-size-3 has-text-warning"
+              <div v-if="feature.name === category" class="class-item">
+                <span
+                  v-if="
+                    typeof feature.class === 'string' &&
+                    feature.class.startsWith('fast')
+                  "
+                  class="subtitle class-item"
+                >
+                  <span
+                    :class="[
+                      'icon',
+                      'is-size-3',
+                      feature.class === 'fastest'
+                        ? 'has-text-success'
+                        : 'has-text-warning',
+                    ]"
                     ><i class="mdi mdi-speedometer" /></span
-                  >{{ feat.class }}</span
+                  >{{ feature.class }}</span
                 >
                 <span
-                  v-else-if="feat.class === 'faster'"
-                  class="title class-item"
-                  ><span class="icon is-size-3 has-text-link"
-                    ><i class="mdi mdi-speedometer" /></span
-                  >{{ feat.class }}</span
-                >
-                <span
-                  v-else-if="feat.class === 'fastest'"
-                  class="title class-item"
-                  ><span class="icon is-size-3 has-text-success"
-                    ><i class="mdi mdi-speedometer" /></span
-                  >{{ feat.class }}</span
-                >
-                <span v-else-if="feat.class === true" class="title class-item"
+                  v-else-if="feature.class === true"
+                  class="subtitle class-item"
                   ><span class="icon is-size-3 has-text-success"
                     ><i class="mdi mdi-check" /></span
                   >Yes</span
                 >
                 <span
-                  v-else-if="feat.class === 'partial'"
-                  class="title class-item"
+                  v-else-if="feature.class === 'partial'"
+                  class="subtitle class-item"
                   ><span class="icon is-size-3 has-text-success"
                     ><i class="mdi mdi-check" /></span
-                  >{{ feat.class }}</span
+                  >{{ feature.class }}</span
                 >
-                <span v-else-if="feat.class === false" class="title class-item"
+                <span
+                  v-else-if="feature.class === false"
+                  class="subtitle class-item"
                   ><span class="icon is-size-3 has-text-danger"
                     ><i class="mdi mdi-close" /></span
                   >No</span
                 >
                 <span
-                  v-else-if="[1, 2, 3].includes(feat.class)"
-                  class="title class-item"
+                  v-else-if="[1, 2, 3].includes(feature.class)"
+                  class="subtitle class-item"
                   ><span class="icon is-size-3 has-text-warning"
                     ><i class="mdi mdi-shield-half-full" /></span
-                  >{{ feat.class }}</span
+                  >{{ feature.class }}</span
                 >
-                <span v-else class="title">{{ feat.class }}</span>
+                <span v-else class="subtitle">{{ feature.class }}</span>
                 <ul>
-                  <li v-for="(note, j) in feat.notes" :key="j">
+                  <li v-for="(note, j) in feature.notes" :key="j">
                     {{ note }}
                   </li>
                 </ul>
@@ -103,8 +106,8 @@ export default {
     },
   },
   props: {
-    data: {
-      type: [Array, Object],
+    services: {
+      type: Array,
       required: true,
     },
     categories: {
@@ -133,12 +136,12 @@ export default {
   justify-content: space-evenly;
 }
 .comparison-item.subtitle {
-  width: 12rem;
-  font-size: 1.5rem;
+  width: 10rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .class-container {
-  width: 12rem;
+  width: 10rem;
   display: flex;
   justify-content: center;
 }
