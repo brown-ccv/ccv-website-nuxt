@@ -23,23 +23,10 @@
         </DButton>
 
         <a
-          v-if="selectedServices.length > 0"
           class="d-button ml-2 mt-5 has-background-dark has-text-light"
           href="#comparison-table"
           name="go to comparison table"
-        >
-          GO TO COMPARISON TABLE
-          <span class="icon ml-2">
-            <i class="mdi mdi-arrow-down" />
-          </span>
-        </a>
-
-        <a
-          v-else
-          class="d-button ml-2 mt-5 has-background-dark has-text-light"
-          href="#comparison-table"
-          name="go to comparison table"
-          disabled
+          :disabled="comparisonServices.length === 0"
         >
           GO TO COMPARISON TABLE
           <span class="icon ml-2">
@@ -117,9 +104,12 @@ export default {
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    const selectedServices = index.services.map((_) => null);
-
-    return { index, answers, selectedServices };
+    return { index, answers };
+  },
+  data() {
+    return {
+      selectedServices: [],
+    };
   },
   computed: {
     services: {
@@ -149,33 +139,19 @@ export default {
       });
     },
     comparisonServices() {
-      return this.services.filter(
-        (_, i) =>
-          this.selectedServices[i] ||
-          (this.selectedServices[i] === null && this.matchingServices[i])
-      );
+      return this.services.filter((_, i) => this.selectedServices[i]);
     },
   },
-  // watch: {
-  //   answers() {
-  //     // if the answers update, find what services match the current answers
-  //     this.matchServices()
-  //   },
-  // },
-  // mounted() {
-  //   this.matchServices();
-  // },
+  watch: {
+    matchingServices() {
+      // if the eligible services update, reset any selections
+      this.selectedServices = [...this.matchingServices];
+    },
+  },
+  mounted() {
+    this.selectedServices = [...this.matchingServices];
+  },
   methods: {
-    // matchServices() {
-    //   this.matchingServices = this.services.map(service => {
-    //     return service.features.every((feature) => {
-    //       return this.answers.every((answer, i) => {
-    //         const category = this.questions[i].affected_category;
-    //         return category === feature.name ? answer.category_classes.includes(feature.class) : true
-    //       })
-    //     })
-    //   })
-    // },
     updateAnswer({ answer, id }) {
       // copy and set due to vue mutation limitatinos
       const newAnswers = [...this.answers];
@@ -186,10 +162,10 @@ export default {
       // copy and set due to vue mutation limitatinos
       this.updateAnswer(answerPayload);
     },
-    recordService({ newVal, id }) {
+    recordService({ id }) {
       // copy and set due to vue mutation limitatinos
       const newSelectedServices = [...this.selectedServices];
-      newSelectedServices[id] = newVal;
+      newSelectedServices[id] = !newSelectedServices[id];
       this.selectedServices = newSelectedServices;
     },
     resetQuestion({ id }) {
@@ -203,7 +179,7 @@ export default {
       this.answers = this.index.questions.map((q) =>
         q.answers.find((answer) => answer.answer === q.default_answer)
       );
-      this.selectedServices = this.services.map((_) => null);
+      this.selectedServices = [...this.matchingServices];
     },
   },
 };

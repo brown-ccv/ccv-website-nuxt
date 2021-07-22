@@ -9,7 +9,12 @@
         matchingServices[i] ? 'has-background-info' : 'has-background-light',
       ]"
     >
-      <button class="button-nostyle" type="button" @click="change(i)">
+      <button
+        class="button-nostyle"
+        type="button"
+        :disabled="!matchingServices[i]"
+        @click="change(i)"
+      >
         <span class="icon is-size-2"
           ><i
             :class="[
@@ -17,7 +22,9 @@
               selectedServices[i] ||
               (selectedServices[i] === null && matchingServices[i])
                 ? 'mdi-checkbox-marked'
-                : 'mdi-checkbox-blank',
+                : matchingServices[i]
+                ? 'mdi-checkbox-blank'
+                : 'mdi-checkbox-blank-off',
             ]"
         /></span>
       </button>
@@ -83,13 +90,7 @@ export default {
   },
   methods: {
     change(id) {
-      let newVal;
-      if (this.selectedServices[id] === null) {
-        newVal = !this.matchingServices[id];
-      } else {
-        newVal = !this.selectedServices[id];
-      }
-      this.$emit('service', { id, newVal });
+      this.$emit('service', { id });
     },
     toggleShowModal(data) {
       // TODO: modal isn't taking whole page, but rather inserting in place

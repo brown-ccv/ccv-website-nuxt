@@ -14,10 +14,13 @@
 }
 
 .button-nostyle {
-  background: transparent;
+  @extend .button;
+  background: transparent !important;
   border: none;
-  cursor: pointer;
   color: var(--color-link);
+  &:disabled {
+    color: var(--color-dark);
+  }
   &:hover {
     color: var(--color-dark);
   }
