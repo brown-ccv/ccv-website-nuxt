@@ -56,10 +56,25 @@
       />
     </div>
     <ComparisonTable
+      v-if="comparisonServices.length > 1"
+      id="comparison-table"
+      :services="comparisonServices"
+      :categories="categories"
+      class="is-hidden-touch"
+    />
+    <ComparisonCards
+      v-if="comparisonServices.length === 1"
+      id="comparison-table"
+      :services="comparisonServices"
+      :categories="categories"
+      class="is-hidden-touch"
+    />
+    <ComparisonCards
       v-if="comparisonServices.length > 0"
       id="comparison-table"
       :services="comparisonServices"
       :categories="categories"
+      class="is-hidden-desktop"
     />
     <div v-else class="storage-section py-6 mx-6 my-6 has-background-light">
       <span class="icon is-size-2 has-text-warning">
@@ -76,9 +91,10 @@
 <script>
 import DHero from '@/components/base/DHero.vue';
 import DButton from '@/components/base/DButton.vue';
-import MultipleChoice from '@/components/base/MultipleChoice.vue';
-import ServiceSelection from '@/components/ServiceSelection.vue';
-import ComparisonTable from '@/components/ComparisonTable.vue';
+import MultipleChoice from '@/components/storage/MultipleChoice.vue';
+import ServiceSelection from '@/components/storage/ServiceSelection.vue';
+import ComparisonTable from '@/components/storage/ComparisonTable.vue';
+import ComparisonCards from '@/components/storage/ComparisonCards.vue';
 
 export default {
   components: {
@@ -87,6 +103,7 @@ export default {
     MultipleChoice,
     ServiceSelection,
     ComparisonTable,
+    ComparisonCards,
   },
   filters: {
     humanize(str) {
@@ -100,7 +117,9 @@ export default {
       'services/file-storage-and-transfer/index'
     ).fetch();
     index.services.forEach((service) =>
-      service.features.sort((a, b) => (a.name < b.name ? -1 : 1))
+      service.features.sort((a, b) =>
+        a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+      )
     );
 
     const answers = index.questions.map((q) =>
