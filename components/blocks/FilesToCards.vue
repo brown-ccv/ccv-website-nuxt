@@ -1,7 +1,11 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
     <div
-      v-if="$route.params.main === 'help' || $route.params.main === 'services'"
+      v-if="
+        $route.params.main === 'help' ||
+        $route.params.main === 'services' ||
+        ($route.params.main === 'our-work' && !$route.params.category)
+      "
       class="
         card-container
         is-flex
@@ -67,30 +71,33 @@
       "
     >
       <div id="sort-bar">
-        <!-- <select v-model="searchGroup" multiple>
-          <option value="">Select tags to filter by</option>
-          <option value="CCV">Center for Computation and Visualization</option>
-          <option value="CBC">Computational Biology Core</option> -->
-        <!-- </select> -->
         <multiselect
           v-model="searchGroup"
-          :options="options"
-          :close-on-select="false"
+          :options="cardTags()"
+          :close-on-select="true"
           :clear-on-select="false"
           :preserve-search="true"
           :multiple="true"
           placeholder="Select tags to filter by"
-          label="name"
-          track-by="name"
-          :preselect-first="true"
+          :allow-empty="true"
+          :preselect-first='true'
         >
         </multiselect>
-        <i class="mdi mdi-search-web"></i>
-        <select id="sort" v-model="sortBy" name="sortBy">
-          <option value="alphabetically">Alphabetically</option>
-          <option value="date">Date</option>
-        </select>
-        <button class="sort-button" @click="ascending = !ascending">
+        <multiselect
+          v-model="sortBy"
+          :options="sortOptions"
+          :close-on-select="true"
+          :clear-on-select="false"
+          :multiple="false"
+          placeholder="Sort by"
+          label="name"
+          track-by="name"
+          >\
+        </multiselect>
+        <button
+          class="sort-button button is-small"
+          @click="ascending = !ascending"
+        >
           <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
           <i v-else class="mdi mdi-sort-descending"></i>
         </button>
@@ -186,9 +193,9 @@ export default {
   },
   data: () => ({
     ascending: true,
-    sortBy: 'alphabetically',
-    searchGroup: [''],
-    options: [{ name: 'CCV' }, { name: 'CBC' }],
+    sortBy: [],
+    searchGroup: [],
+    sortOptions: [{ name: 'Title' }, { name: 'Date' }],
   }),
   computed: {
     filteredData() {
@@ -202,7 +209,7 @@ export default {
       if (this.searchGroup !== '') {
         for (const arr in tempCards) {
           for (const filter in this.searchGroup) {
-            if (tempCards[arr].group === this.searchGroup[filter].name) {
+            if (tempCards[arr].group === this.searchGroup[filter]) {
               filtered.push(tempCards[arr]);
             }
           }
@@ -210,7 +217,7 @@ export default {
       }
 
       // Sort by alphabetical order
-      if (this.sortBy === 'alphabetically') {
+      if (this.sortBy.name === 'Title') {
         tempCards = filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
           const fb = b.title.toLowerCase();
@@ -222,7 +229,7 @@ export default {
           }
           return 0;
         });
-      } else if (this.sortBy === 'date') {
+      } else if (this.sortBy.name === 'Date') {
         // Sort by date
         tempCards = filtered.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
@@ -235,6 +242,18 @@ export default {
       }
 
       return filtered;
+    },
+  },
+  methods: {
+    cardTags() {
+      const tags = [];
+      this.data.forEach(function (obj) {
+        tags.push(obj.group);
+      });
+      const uniqueTags = tags.filter(function (item, pos) {
+        return tags.indexOf(item) === pos;
+      });
+      return uniqueTags.sort();
     },
   },
 };

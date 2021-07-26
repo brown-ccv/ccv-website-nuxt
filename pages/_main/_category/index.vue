@@ -19,8 +19,6 @@ import DHero from '@/components/base/DHero.vue';
 export default {
   components: {
     DHero,
-    // DirsToCardSections: () =>
-    //   import('@/components/blocks/DirsToCardSections.vue'),
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
   },
