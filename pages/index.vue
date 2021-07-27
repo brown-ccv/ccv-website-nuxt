@@ -19,9 +19,7 @@
     <section class="d-hero is-medium">
       <div class="hero-body">
         <div class="container">
-          <h1 role="heading" aria-level="1" class="d-calendar-title">
-            Events
-          </h1>
+          <h1 role="heading" aria-level="1" class="d-calendar-title">Events</h1>
           <Calendar
             v-if="info.length >= 0"
             :info="info"
@@ -44,6 +42,19 @@ const numEvents = 4;
 
 export default {
   components: { DHero, DButton, Calendar },
+  data() {
+    return {
+      todo: {},
+      /**
+       * An array of event objects, the result of the call to the Brown events API.
+       */
+      info: [],
+      /**
+       * The next six events.
+       */
+      upcomingEvents: [],
+    };
+  },
   async fetch() {
     const currentDate = new Date();
     const firstOfLastMonth = getStringDate(
@@ -62,19 +73,6 @@ export default {
     this.upcomingEvents = await this.getData(today);
     this.upcomingEvents = this.upcomingEvents.slice(0, numEvents);
   },
-  data() {
-    return {
-      todo: {},
-      /**
-       * An array of event objects, the result of the call to the Brown events API.
-       */
-      info: [],
-      /**
-       * The next six events.
-       */
-      upcomingEvents: []
-    };
-  },
   methods: {
     /**
      * Gets the next 72 events from a given start date.
@@ -87,7 +85,7 @@ export default {
       ).then((response) => {
         return response.json();
       });
-    }
+    },
   },
   // call fetch only on client-side
   fetchOnServer: false,

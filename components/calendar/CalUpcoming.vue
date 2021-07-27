@@ -15,7 +15,7 @@ import UpcomingEvent from '@/components/calendar/CalUpcomingEvent';
 export default {
   name: 'Upcoming',
   components: {
-    UpcomingEvent
+    UpcomingEvent,
   },
   props: {
     /**
@@ -25,8 +25,8 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String
-  }
+    view: String,
+  },
 };
 </script>
 

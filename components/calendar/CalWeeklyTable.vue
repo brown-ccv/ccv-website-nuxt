@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import { ALL_MONTHS, ALL_DAYS_OF_WEEK, TODAYS_DATE } from '../../utils.js';
 import Week from '@/components/calendar/CalWeek';
+import { ALL_MONTHS, ALL_DAYS_OF_WEEK, TODAYS_DATE } from '../../utils.js';
 
 export default {
   name: 'WeeklyTable',
   components: {
-    Week
+    Week,
   },
   props: {
     // Passed directly from CalendarTable
@@ -44,7 +44,7 @@ export default {
     info: { type: Array, required: true },
     displayYear: Number,
     displayMonth: Number,
-    displayDay: Number
+    displayDay: Number,
   },
   computed: {
     /**
@@ -75,7 +75,7 @@ export default {
             month: prevMonth.getMonth() + 1,
             year: prevMonth.getFullYear(),
             date: i,
-            greyedOut: true
+            greyedOut: true,
           });
         }
         weekStart = 1;
@@ -93,7 +93,7 @@ export default {
             month: nextMonth.getMonth() + 1,
             year: nextMonth.getFullYear(),
             date: i,
-            greyedOut: true
+            greyedOut: true,
           });
         }
         weekEnd = daysInMonth;
@@ -104,18 +104,18 @@ export default {
           month: month + 1,
           year,
           date: i,
-          greyedOut: false
+          greyedOut: false,
         });
       }
       return [displayDaysArr.concat(tempArr)];
-    }
+    },
   },
   created() {
     this.weeksInDisplay = 1;
     this.allMonths = ALL_MONTHS;
     this.allDaysOfWeek = ALL_DAYS_OF_WEEK;
     this.todaysDate = TODAYS_DATE;
-  }
+  },
 };
 </script>
 

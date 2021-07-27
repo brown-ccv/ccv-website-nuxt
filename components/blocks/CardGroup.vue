@@ -13,7 +13,8 @@
             ><span class="icon"><i class="mdi mdi-account-multiple" /></span
             ><abbr :title="item.group | expandAcronym">
               {{ item.group }}
-            </abbr></span>
+            </abbr></span
+          >
 
           <h2>{{ item.title }}</h2>
           <span v-if="item.authors" class="small has-text-link"
