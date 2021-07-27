@@ -119,7 +119,7 @@
             </abbr></span
           >
           <h2>{{ item.title }}</h2>
-          <div>Updated: {{ item.date }}</div>
+          <div v-if="item.date">Updated: {{ item.date }}</div>
           <span v-if="item.authors" class="small has-text-link"
             >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
           >
