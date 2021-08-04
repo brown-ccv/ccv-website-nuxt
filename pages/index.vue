@@ -14,12 +14,18 @@
             size="medium"
           />
         </nuxt-link>
+        <DButton
+            name="Go to Events Calendar"
+            variant="dark"
+            size="medium"
+            v-scroll-to="'#scroll'"
+          />
       </template>
     </DHero>
     <section class="d-hero is-small">
       <div class="hero-body">
         <div class="container">
-          <h1 role="heading" aria-level="1" class="d-calendar-title">Events</h1>
+          <h1 role="heading" aria-level="1" class="d-calendar-title" id='scroll'>Events</h1>
         </div>
       </div>
     </section>
@@ -38,6 +44,9 @@ import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 import Calendar from '@/components/calendar/Calendar';
 import { getStringDate } from '@/utils.js';
+const Vue = require('vue')
+const VueScrollTo = require('vue-scrollto')
+Vue.use(VueScrollTo)
 
 const numEvents = 4;
 
@@ -86,6 +95,10 @@ export default {
       ).then((response) => {
         return response.json();
       });
+    },
+    scroll() {
+      const container = this.$el.querySelector("#scrollTo");
+      container.scrollTop = container.scrollHeight;
     },
   },
   // call fetch only on client-side
