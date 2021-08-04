@@ -61,117 +61,116 @@
         </template>
       </DCard>
     </div>
-    <div
-      v-else
-      class="
-        card-container
-        is-flex
-        mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
-      "
-    >
-      <div id="sort-bar">
-        <multiselect
-          v-model="searchGroup"
-          :options="cardTags()"
-          :close-on-select="true"
-          :clear-on-select="false"
-          :preserve-search="true"
-          :multiple="true"
-          placeholder="Select tags to filter by"
-          :allow-empty="true"
-          :preselect-first='true'
-        >
-        </multiselect>
-        <multiselect
-          v-model="sortBy"
-          :options="sortOptions"
-          :close-on-select="true"
-          :clear-on-select="false"
-          :multiple="false"
-          placeholder="Sort by"
-          label="name"
-          track-by="name"
-          >\
-        </multiselect>
-        <button
-          class="sort-button button is-small"
-          @click="ascending = !ascending"
-        >
-          <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-          <i v-else class="mdi mdi-sort-descending"></i>
-        </button>
+    <div v-else>
+      <div class="sort-bar">
+          <multiselect
+            v-model="searchGroup"
+            :options="cardTags()"
+            :close-on-select="true"
+            :clear-on-select="false"
+            :preserve-search="true"
+            :multiple="true"
+            placeholder="Select tags to filter by"
+            :allow-empty="true"
+          >
+          </multiselect>
+          <multiselect
+            v-model="sortBy"
+            :options="sortOptions"
+            :close-on-select="true"
+            :clear-on-select="false"
+            :multiple="false"
+            placeholder="Sort by"
+            label="name"
+            track-by="name"
+            >\
+          </multiselect>
+          <button
+            class="sort-button button is-small"
+            @click="ascending = !ascending"
+          >
+            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+            <i v-else class="mdi mdi-sort-descending"></i>
+          </button>
       </div>
-
-      <DCard
-        v-for="(item, i) in sortedArray"
-        :key="'help-card-' + i"
-        class="mx-3 my-3 px-3"
-        variant="light"
-        accent="link"
-        width="medium"
+      <div
+        class="
+          card-container
+          is-flex
+          mt-6
+          is-justify-content-space-evenly is-flex-wrap-wrap
+        "
       >
-        <template #header>
-          <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-            ><span class="icon"><i class="mdi mdi-account-multiple" /></span
-            ><abbr :title="item.group | expandAcronym">
-              {{ item.group }}
-            </abbr></span
-          >
-          <h2>{{ item.title }}</h2>
-          <div v-if="item.date">Updated: {{ item.date }}</div>
-          <span v-if="item.authors" class="small has-text-link"
-            >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
-          >
-        </template>
-        <template #content>
-          {{ item.description }}
-        </template>
-        <template #footer>
-          <div v-if="item.links" class="link-group">
-            <a
-              v-if="item.links.repository"
-              class="link-item d-button has-text-link"
-              :href="item.links.repository"
-              ><span
-                >REPOSITORY<span class="icon ml-2"
-                  ><i class="mdi mdi-code-greater-than-or-equal" /></span></span
-            ></a>
-            <a
-              v-if="item.links.website"
-              class="link-item d-button has-text-link"
-              :href="item.links.website"
-              ><span
-                >WEBSITE<span class="icon ml-2"
-                  ><i class="mdi mdi-link-variant" /></span></span
-            ></a>
-            <a
-              v-if="item.links.documentation"
-              class="link-item d-button has-text-link"
-              :href="item.links.documentation"
-              ><span
-                >DOCUMENTATION<span class="icon ml-2"
-                  ><i class="mdi mdi-book" /></span></span
-            ></a>
-            <a
-              v-if="item.links.publication"
-              class="link-item d-button has-text-link"
-              :href="item.links.publication"
-              ><span
-                >PUBLICATION<span class="icon ml-2"
-                  ><i class="mdi mdi-newspaper" /></span></span
-            ></a>
-            <a
-              v-if="item.links.doi"
-              class="link-item d-button has-text-link"
-              :href="'https://' + item.links.doi"
-              ><span
-                >PUBLICATION<span class="icon ml-2"
-                  ><i class="mdi mdi-newspaper" /></span></span
-            ></a>
-          </div>
-        </template>
-      </DCard>
+        <DCard
+          v-for="(item, i) in sortedArray"
+          :key="'help-card-' + i"
+          class="mx-3 my-3 px-3"
+          variant="light"
+          accent="link"
+          width="medium"
+        >
+          <template #header>
+            <span v-if="item.group" class="radius-0 tag is-link has-text-light"
+              ><span class="icon"><i class="mdi mdi-account-multiple" /></span
+              ><abbr :title="item.group | expandAcronym">
+                {{ item.group }}
+              </abbr></span
+            >
+            <h2>{{ item.title }}</h2>
+            <div v-if="item.date">Updated: {{ item.date }}</div>
+            <span v-if="item.authors" class="small has-text-link"
+              >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
+            >
+          </template>
+          <template #content>
+            {{ item.description }}
+          </template>
+          <template #footer>
+            <div v-if="item.links" class="link-group">
+              <a
+                v-if="item.links.repository"
+                class="link-item d-button has-text-link"
+                :href="item.links.repository"
+                ><span
+                  >REPOSITORY<span class="icon ml-2"
+                    ><i class="mdi mdi-code-greater-than-or-equal" /></span></span
+              ></a>
+              <a
+                v-if="item.links.website"
+                class="link-item d-button has-text-link"
+                :href="item.links.website"
+                ><span
+                  >WEBSITE<span class="icon ml-2"
+                    ><i class="mdi mdi-link-variant" /></span></span
+              ></a>
+              <a
+                v-if="item.links.documentation"
+                class="link-item d-button has-text-link"
+                :href="item.links.documentation"
+                ><span
+                  >DOCUMENTATION<span class="icon ml-2"
+                    ><i class="mdi mdi-book" /></span></span
+              ></a>
+              <a
+                v-if="item.links.publication"
+                class="link-item d-button has-text-link"
+                :href="item.links.publication"
+                ><span
+                  >PUBLICATION<span class="icon ml-2"
+                    ><i class="mdi mdi-newspaper" /></span></span
+              ></a>
+              <a
+                v-if="item.links.doi"
+                class="link-item d-button has-text-link"
+                :href="'https://' + item.links.doi"
+                ><span
+                  >PUBLICATION<span class="icon ml-2"
+                    ><i class="mdi mdi-newspaper" /></span></span
+              ></a>
+            </div>
+          </template>
+        </DCard>
+      </div>
     </div>
   </main>
 </template>
@@ -205,8 +204,9 @@ export default {
       let tempCards = this.data;
 
       // Filter by group tag
-      const filtered = [];
-      if (this.searchGroup !== '') {
+      let filtered = tempCards;
+      if (this.searchGroup.length > 0) {
+        filtered = []
         for (const arr in tempCards) {
           for (const filter in this.searchGroup) {
             if (tempCards[arr].group === this.searchGroup[filter]) {
@@ -264,6 +264,14 @@ export default {
 .card-container {
   width: 160ch;
 }
+
+.sort-bar {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+}
+
 .help-card h2 {
   font-weight: bold;
 }
