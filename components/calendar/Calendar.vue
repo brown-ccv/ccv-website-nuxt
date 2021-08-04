@@ -249,7 +249,7 @@ a {
 }
 
 .bump-margin-top {
-  margin-top: 6em;
+  margin-top: 1.5em;
 }
 
 .calendar-container {

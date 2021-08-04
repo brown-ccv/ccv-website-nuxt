@@ -2,9 +2,6 @@
   <div
     v-if="view === 'upcoming'"
     class="event"
-    @click="toggleDetail(true)"
-    @mouseover="toggleDetail(false)"
-    @mouseleave="toggleDetail(false)"
   >
     <div v-if="view === 'upcoming'">
       {{ date }}
@@ -20,7 +17,6 @@
     v-else
     class="event"
     :style="'--p-height: ' + val * 27.5 + 'px'"
-    @click="toggleDetail(true)"
   >
     <div v-if="view === 'upcoming'">
       {{ date }}
@@ -49,7 +45,6 @@ export default {
   },
   data() {
     return {
-      detailedOpen: false,
       val: this.info.rowspan,
     };
   },
@@ -71,12 +66,7 @@ export default {
       const d = new Date(this.date);
       return d.getFullYear();
     },
-  },
-  methods: {
-    toggleDetail(show) {
-      this.detailedOpen = show;
-    },
-  },
+  }
 };
 </script>
 
@@ -104,9 +94,6 @@ export default {
   font-size: 15px;
   font-weight: bold;
   word-wrap: break-word;
-}
-.title:hover {
-  cursor: pointer;
 }
 .big-font {
   font-size: 1.5em;

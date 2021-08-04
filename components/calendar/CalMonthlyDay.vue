@@ -166,8 +166,6 @@ export default {
   position: relative;
   max-height: 140px;
   min-height: 90px;
-  /* overflow-y: scroll;
-  overflow-x: hidden; */
 }
 
 /* --- weekly view (segment into hours) ---- */

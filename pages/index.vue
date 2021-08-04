@@ -16,19 +16,20 @@
         </nuxt-link>
       </template>
     </DHero>
-    <section class="d-hero is-medium">
+    <section class="d-hero is-small">
       <div class="hero-body">
         <div class="container">
           <h1 role="heading" aria-level="1" class="d-calendar-title">Events</h1>
-          <Calendar
+        </div>
+      </div>
+    </section>
+    <Calendar
             v-if="info.length >= 0"
             :info="info"
             :upcoming-events="upcomingEvents"
             @month-change="getData"
+            class='container pb-4'
           />
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 

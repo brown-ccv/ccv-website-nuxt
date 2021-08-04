@@ -1,5 +1,5 @@
 <template>
-  <div class="full-width flex flex-wrap center-hr">
+  <div class="is-flex is-flex-wrap-wrap is-flex-justify-content-center">
     <UpcomingEvent
       v-for="(event, index) in upcomingEvents"
       :key="'event-' + index"
@@ -29,22 +29,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.full-width {
-  width: 100%;
-}
-
-.flex {
-  display: flex;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-.center-hr {
-  justify-content: center;
-}
-.align-items {
-  align-items: center;
-}
-</style>
