@@ -1,7 +1,7 @@
 <template>
   <section
     role="banner"
-    class="d-hero is-medium"
+    class="d-hero is-medium header-image"
     :class="['is-' + variant, { 'is-full-height': fullHeight }]"
   >
     <div class="hero-body">
@@ -39,3 +39,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.header-image {
+  background-image: url('../../assets/ccv_sketch.jpg') ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+}
+</style>
