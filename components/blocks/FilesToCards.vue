@@ -88,6 +88,7 @@
           :close-on-select="true"
           :clear-on-select="false"
           :multiple="false"
+          :preselect-first="true"
           placeholder="Sort by"
           label="name"
           track-by="name"

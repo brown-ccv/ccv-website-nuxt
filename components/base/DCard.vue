@@ -11,7 +11,7 @@
     ]"
   >
     <header v-if="!person" :class="[headerRule]">
-      <slot name="header"> </slot>
+      <slot name="header" />
     </header>
     <div :class="person ? 'd-person-card-content' : 'card-content'">
       <slot name="content" />

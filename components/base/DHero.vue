@@ -12,7 +12,7 @@
         <h2 data-testid="subtitle" class="d-subtitle">
           {{ subtitle }}
         </h2>
-        <slot name="button"></slot>
+        <slot name="button" />
       </div>
     </div>
   </section>

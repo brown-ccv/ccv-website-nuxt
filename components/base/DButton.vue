@@ -12,9 +12,9 @@
     ]"
     @click="onClick"
   >
-    <slot name="icon-left"></slot>
+    <slot name="icon-left" />
     <span>{{ name | uppercase }}</span>
-    <slot name="icon-right"></slot>
+    <slot name="icon-right" />
   </button>
 </template>
 

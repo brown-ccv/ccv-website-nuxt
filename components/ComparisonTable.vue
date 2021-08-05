@@ -22,7 +22,9 @@
           ind % 2 === 0 ? 'has-background-light' : 'has-background-white',
         ]"
       >
-        <h2 class="subtitle">{{ cat | humanize }}</h2>
+        <h2 class="subtitle">
+          {{ cat | humanize }}
+        </h2>
         <div class="comparison-container">
           <ul
             v-for="(service, index) in data"
