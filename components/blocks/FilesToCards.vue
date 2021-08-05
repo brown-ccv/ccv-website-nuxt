@@ -63,35 +63,35 @@
     </div>
     <div v-else>
       <div class="sort-bar">
-          <multiselect
-            v-model="searchGroup"
-            :options="cardTags()"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :preserve-search="true"
-            :multiple="true"
-            placeholder="Select tags to filter by"
-            :allow-empty="true"
-          >
-          </multiselect>
-          <multiselect
-            v-model="sortBy"
-            :options="sortOptions"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :multiple="false"
-            placeholder="Sort by"
-            label="name"
-            track-by="name"
-            >\
-          </multiselect>
-          <button
-            class="sort-button button is-small"
-            @click="ascending = !ascending"
-          >
-            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-            <i v-else class="mdi mdi-sort-descending"></i>
-          </button>
+        <multiselect
+          v-model="searchGroup"
+          :options="cardTags()"
+          :close-on-select="true"
+          :clear-on-select="false"
+          :preserve-search="true"
+          :multiple="true"
+          placeholder="Select tags to filter by"
+          :allow-empty="true"
+        >
+        </multiselect>
+        <multiselect
+          v-model="sortBy"
+          :options="sortByOptions()"
+          :close-on-select="true"
+          :clear-on-select="false"
+          :multiple="false"
+          placeholder="Sort by"
+          label="name"
+          track-by="name"
+          >\
+        </multiselect>
+        <button
+          class="sort-button button is-small"
+          @click="ascending = !ascending"
+        >
+          <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+          <i v-else class="mdi mdi-sort-descending"></i>
+        </button>
       </div>
       <div
         class="
@@ -133,7 +133,8 @@
                 :href="item.links.repository"
                 ><span
                   >REPOSITORY<span class="icon ml-2"
-                    ><i class="mdi mdi-code-greater-than-or-equal" /></span></span
+                    ><i
+                      class="mdi mdi-code-greater-than-or-equal" /></span></span
               ></a>
               <a
                 v-if="item.links.website"
@@ -194,7 +195,7 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    sortOptions: [{ name: 'Title' }, { name: 'Date' }],
+    sortOptions: [],
   }),
   computed: {
     filteredData() {
@@ -206,7 +207,7 @@ export default {
       // Filter by group tag
       let filtered = tempCards;
       if (this.searchGroup.length > 0) {
-        filtered = []
+        filtered = [];
         for (const arr in tempCards) {
           for (const filter in this.searchGroup) {
             if (tempCards[arr].group === this.searchGroup[filter]) {
@@ -254,6 +255,23 @@ export default {
         return tags.indexOf(item) === pos;
       });
       return uniqueTags.sort();
+    },
+    sortByOptions() {
+      let condition = false;
+      for (let i = 0; i < this.data.length; i++) {
+        if("date" in this.data[i]) {
+          condition = true;
+          break;
+        }
+      }
+      const options = [];
+      if (condition) {
+        options.push({ name: 'Title' });
+        options.push({ name: 'Date' });
+      } else {
+        options.push({ name: 'Title' });
+      }
+      return options;
     },
   },
 };
