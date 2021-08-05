@@ -5,8 +5,7 @@
       variant="primary"
       :title="$route.params.category | humanize"
       :subtitle="index.description"
-    >
-    </DHero>
+    />
     <!-- This is for directories containing subdirectories -->
     <DirsToCardSections
       v-if="$route.params.main === 'our-work'"
