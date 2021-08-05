@@ -64,6 +64,7 @@
     <div v-else>
       <div class="sort-bar">
         <multiselect
+          class="item-a"
           v-model="searchGroup"
           :options="cardTags()"
           :close-on-select="true"
@@ -74,7 +75,14 @@
           :allow-empty="true"
         >
         </multiselect>
+        <button
+          class="item-b button is-normal is-warning"
+          @click="clearAll"
+        >
+          Clear All Filter Tags
+        </button>
         <multiselect
+          class="item-c"
           v-model="sortBy"
           :options="sortByOptions()"
           :close-on-select="true"
@@ -86,7 +94,7 @@
           >\
         </multiselect>
         <button
-          class="sort-button button is-small"
+          class="item-d button is-normal is-warning"
           @click="ascending = !ascending"
         >
           <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
@@ -273,6 +281,9 @@ export default {
       }
       return options;
     },
+    clearAll() {
+      this.searchGroup = []
+    }
   },
 };
 </script>
@@ -286,8 +297,33 @@ export default {
 .sort-bar {
   margin: 50px 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: [first] 300px [second] auto [third] 200px [fourth] 300px;
+  grid-template-rows: [row1-start] 50% [row1-end] 50% [row2-end];
   column-gap: 20px;
+}
+.item-a {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.item-b {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.item-c {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.item-d {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .help-card h2 {
