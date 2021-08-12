@@ -62,45 +62,50 @@
       </DCard>
     </div>
     <div v-else>
-      <div class="sort-bar">
-        <multiselect
-          class="item-a"
-          v-model="searchGroup"
-          :options="cardTags()"
-          :close-on-select="true"
-          :clear-on-select="false"
-          :preserve-search="true"
-          :multiple="true"
-          placeholder="Select tags to filter by"
-          :allow-empty="true"
-        >
-        </multiselect>
-        <button
-          class="item-b button is-normal is-warning"
-          @click="clearAll"
-        >
-          Clear All Filter Tags
-        </button>
-        <multiselect
-          class="item-c"
-          v-model="sortBy"
-          :options="sortByOptions()"
-          :close-on-select="true"
-          :clear-on-select="false"
-          :multiple="false"
-          :preselect-first="true"
-          placeholder="Sort by"
-          label="name"
-          track-by="name"
-          >\
-        </multiselect>
-        <button
-          class="item-d button is-normal is-warning"
-          @click="ascending = !ascending"
-        >
-          <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-          <i v-else class="mdi mdi-sort-descending"></i>
-        </button>
+      <div class="columns column is-8 is-offset-1">
+        <span class="column is-three-quarters">
+          <multiselect
+            v-model="searchGroup"
+            :options="cardTags()"
+            :close-on-select="true"
+            :clear-on-select="false"
+            :preserve-search="true"
+            :multiple="true"
+            placeholder="Select tags to filter by"
+            :allow-empty="true"
+          >
+          </multiselect>
+        </span>
+        <span class="column">
+          <button class="button is-normal is-warning" @click="clearAll">
+            Clear All Filter Tags
+          </button>
+        </span>
+      </div>
+      <div class="columns column is-8 is-offset-1">
+        <span class="column is-three-quarters">
+          <multiselect
+            v-model="sortBy"
+            :options="sortByOptions()"
+            :close-on-select="true"
+            :clear-on-select="false"
+            :multiple="false"
+            :preselect-first="true"
+            placeholder="Sort by"
+            label="name"
+            track-by="name"
+            >\
+          </multiselect>
+        </span>
+        <span class="column">
+          <button
+            class="button is-normal is-warning"
+            @click="ascending = !ascending"
+          >
+            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+            <i v-else class="mdi mdi-sort-descending"></i>
+          </button>
+        </span>
       </div>
       <div
         class="
@@ -211,24 +216,20 @@ export default {
       return this.data.filter((d) => !d.hidden);
     },
     sortedArray() {
-      let tempCards = this.data;
-
-      // Filter by group tag
-      let filtered = tempCards;
+      let filtered = this.data;
       if (this.searchGroup.length > 0) {
-        filtered = [];
-        for (const arr in tempCards) {
-          for (const filter in this.searchGroup) {
-            if (tempCards[arr].group === this.searchGroup[filter]) {
-              filtered.push(tempCards[arr]);
-            }
+        filtered = this.data.filter((card) => {
+          if (this.searchGroup) {
+            return this.searchGroup.includes(card.group);
+          } else {
+            return true;
           }
-        }
+        });
       }
 
       // Sort by alphabetical order
       if (this.sortBy.name === 'Title') {
-        tempCards = filtered.sort((a, b) => {
+        filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
           const fb = b.title.toLowerCase();
           if (fa < fb) {
@@ -241,7 +242,7 @@ export default {
         });
       } else if (this.sortBy.name === 'Date') {
         // Sort by date
-        tempCards = filtered.sort((a, b) => {
+        filtered.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
         });
       }
@@ -256,14 +257,10 @@ export default {
   },
   methods: {
     cardTags() {
-      const tags = [];
-      this.data.forEach(function (obj) {
-        tags.push(obj.group);
-      });
-      const uniqueTags = tags.filter(function (item, pos) {
-        return tags.indexOf(item) === pos;
-      });
-      return uniqueTags.sort();
+      const tags = this.data.map((card) => card.group);
+      return tags
+        .filter((group, index) => tags.indexOf(group) === index)
+        .sort();
     },
     sortByOptions() {
       let condition = false;
@@ -281,10 +278,18 @@ export default {
         options.push({ name: 'Title' });
       }
       return options;
+
+      // mary's way - currently not working
+      // const hasDate = this.data.some((card) => card.hasOwnProperty.call('date'));
+
+      // const options = [{ name: 'Title' }];
+      // if (hasDate) {options.push({ name: 'Date' })};
+
+      // return options;
     },
     clearAll() {
-      this.searchGroup = []
-    }
+      this.searchGroup = [];
+    },
   },
 };
 </script>
@@ -293,38 +298,6 @@ export default {
 <style lang="scss" scoped>
 .card-container {
   width: 160ch;
-}
-
-.sort-bar {
-  margin: 50px 0;
-  display: grid;
-  grid-template-columns: [first] 300px [second] auto [third] 200px [fourth] 300px;
-  grid-template-rows: [row1-start] 50% [row1-end] 50% [row2-end];
-  column-gap: 20px;
-}
-.item-a {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.item-b {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.item-c {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-.item-d {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
 }
 
 .help-card h2 {
