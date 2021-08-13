@@ -1,7 +1,7 @@
 <template>
   <div class="storage-section">
     <table class="my-6">
-      <thead class="has-background-dark">
+      <thead class="has-background-dark sticky">
         <th />
         <th
           v-for="service in services"
@@ -73,16 +73,17 @@ export default {
 //   flex-wrap: nowrap;
 //   justify-content: space-evenly;
 // }
-// .sticky {
-//   position: -webkit-sticky;
-//   position: sticky;
-//   top: 0;
-//   padding: 1rem;
-//   z-index: 10;
-// }
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  padding: 1rem;
+  z-index: 10;
+  align-self: flex-start;
+}
+
 .storage-section {
   display: flex;
-  overflow-x: auto;
   justify-content: center;
   align-items: center;
 }

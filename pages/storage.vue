@@ -229,4 +229,5 @@ export default {
     font-size: 1.6rem;
   }
 }
+
 </style>
