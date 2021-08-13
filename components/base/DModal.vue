@@ -1,8 +1,8 @@
 <template>
-  <dialog
+  <div
     aria-live="polite"
     role="dialog"
-    class="d-dialog modal"
+    class="d-modal modal"
     :class="{ 'is-active': isActive }"
     data-testid="dialog"
   >
@@ -59,7 +59,7 @@
         </d-button>
       </footer>
     </div>
-  </dialog>
+  </div>
 </template>
 
 <script>
