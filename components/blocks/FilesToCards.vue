@@ -10,7 +10,8 @@
         card-container
         is-flex
         mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
+        is-justify-content-space-evenly 
+        is-flex-wrap-wrap
       "
     >
       <DCard
@@ -263,24 +264,21 @@ export default {
         .sort();
     },
     sortByOptions() {
-      let condition = false;
+      let hasDate = false;
       for (let i = 0; i < this.data.length; i++) {
         if("date" in this.data[i]) {
-          condition = true;
+          hasDate = true;
           break;
         }
       }
-      const options = [];
-      if (condition) {
-        options.push({ name: 'Title' });
+      const options = [{ name: 'Title' }];
+      if (hasDate) {
         options.push({ name: 'Date' });
-      } else {
-        options.push({ name: 'Title' });
-      }
+      } 
       return options;
 
       // mary's way - currently not working
-      // const hasDate = this.data.some((card) => card.hasOwnProperty.call('date'));
+      // const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
 
       // const options = [{ name: 'Title' }];
       // if (hasDate) {options.push({ name: 'Date' })};
