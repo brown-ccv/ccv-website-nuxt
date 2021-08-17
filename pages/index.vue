@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <DHero
-      variant="primary"
+      variant="black"
       title="Center for Computation & Visualization"
       subtitle="Scientific and technical computing expertise to advance computational research"
       class="is-fullheight"
