@@ -79,7 +79,7 @@
         </span>
         <span class="column">
           <button class="button is-normal is-warning" @click="clearAll">
-            Clear All Filter Tags
+            Clear Filters
           </button>
         </span>
       </div>
