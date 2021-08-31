@@ -83,30 +83,32 @@
           </button>
         </span>
       </div>
-      <div class="columns column is-8 is-offset-1">
-        <span class="column is-three-quarters">
-          <multiselect
-            v-model="sortBy"
-            :options="sortByOptions()"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :multiple="false"
-            :preselect-first="true"
-            placeholder="Sort by"
-            label="name"
-            track-by="name"
-            >\
-          </multiselect>
-        </span>
-        <span class="column">
-          <button
-            class="button is-normal is-warning"
-            @click="ascending = !ascending"
-          >
-            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-            <i v-else class="mdi mdi-sort-descending"></i>
-          </button>
-        </span>
+      <div class="is-flex is-flex-wrap-wrap">
+        <div class="columns column is-8 is-offset-1">
+          <span class="column is-three-quarters">
+            <multiselect
+              v-model="sortBy"
+              :options="sortByOptions()"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :multiple="false"
+              :preselect-first="true"
+              placeholder="Sort by"
+              label="name"
+              track-by="name"
+              >\
+            </multiselect>
+          </span>
+          <span class="column">
+            <button
+              class="button is-normal is-warning"
+              @click="ascending = !ascending"
+            >
+              <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+              <i v-else class="mdi mdi-sort-descending"></i>
+            </button>
+          </span>
+        </div>
       </div>
       <div
         class="
@@ -264,26 +266,14 @@ export default {
         .sort();
     },
     sortByOptions() {
-      let hasDate = false;
-      for (let i = 0; i < this.data.length; i++) {
-        if("date" in this.data[i]) {
-          hasDate = true;
-          break;
-        }
-      }
+
+      // eslint-disable-next-line no-prototype-builtins
+      const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
+
       const options = [{ name: 'Title' }];
-      if (hasDate) {
-        options.push({ name: 'Date' });
-      } 
+      if (hasDate) {options.push({ name: 'Date' })};
+
       return options;
-
-      // mary's way - currently not working
-      // const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
-
-      // const options = [{ name: 'Title' }];
-      // if (hasDate) {options.push({ name: 'Date' })};
-
-      // return options;
     },
     clearAll() {
       this.searchGroup = [];
@@ -294,9 +284,6 @@ export default {
 
 <!-- see assets/scss/_layout.scss for relevant styles -->
 <style lang="scss" scoped>
-.card-container {
-  width: 160ch;
-}
 
 .help-card h2 {
   font-weight: bold;
