@@ -143,47 +143,13 @@
           </template>
           <template #footer>
             <div v-if="item.links" class="link-group">
-              <a
-                v-if="item.links.repository"
-                class="link-item d-button has-text-link"
-                :href="item.links.repository"
-                ><span
-                  >REPOSITORY<span class="icon ml-2"
-                    ><i
-                      class="mdi mdi-code-greater-than-or-equal" /></span></span
-              ></a>
-              <a
-                v-if="item.links.website"
-                class="link-item d-button has-text-link"
-                :href="item.links.website"
-                ><span
-                  >WEBSITE<span class="icon ml-2"
-                    ><i class="mdi mdi-link-variant" /></span></span
-              ></a>
-              <a
-                v-if="item.links.documentation"
-                class="link-item d-button has-text-link"
-                :href="item.links.documentation"
-                ><span
-                  >DOCUMENTATION<span class="icon ml-2"
-                    ><i class="mdi mdi-book" /></span></span
-              ></a>
-              <a
-                v-if="item.links.publication"
-                class="link-item d-button has-text-link"
-                :href="item.links.publication"
-                ><span
-                  >PUBLICATION<span class="icon ml-2"
-                    ><i class="mdi mdi-newspaper" /></span></span
-              ></a>
-              <a
-                v-if="item.links.doi"
-                class="link-item d-button has-text-link"
-                :href="'https://' + item.links.doi"
-                ><span
-                  >PUBLICATION<span class="icon ml-2"
-                    ><i class="mdi mdi-newspaper" /></span></span
-              ></a>
+              <a v-for="(link, type) in item.links" class="link-item d-button has-text-link" :href="link" :key="type">
+              <span>{{ type.toUpperCase() }}
+                <span class="icon ml-2">
+                  <i :class="['mdi', LINK_ICONS[type]]" />
+                  </span>
+                </span>
+              </a>
             </div>
           </template>
         </DCard>
@@ -212,6 +178,11 @@ export default {
     sortBy: [],
     searchGroup: [],
     sortOptions: [],
+    LINK_ICONS: {repository: "mdi-code-greater-than-or-equal", 
+              website: "mdi-link-variant", 
+              documentation: "mdi-book-open", 
+              publication: "mdi-newspaper",
+              doi: "mdi-book"}
   }),
   computed: {
     filteredData() {
