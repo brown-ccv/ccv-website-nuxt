@@ -78,7 +78,7 @@
               </a>
             </li>
             <li class="navbar-item">
-              <nuxt-link to="/our-work/talks" tabindex="0">
+              <nuxt-link to="/our-work/workshops-and-talks" tabindex="0">
                 Workshops and Talks
               </nuxt-link>
             </li>

@@ -63,8 +63,8 @@
       </DCard>
     </div>
     <div v-else>
-      <div class="columns column is-8 is-offset-1">
-        <span class="column is-three-quarters">
+      <div class="dropdown is-flex is-flex-wrap-wrap is-justify-content-center">
+        <span>
           <multiselect
             v-model="searchGroup"
             :options="cardTags()"
@@ -77,41 +77,40 @@
           >
           </multiselect>
         </span>
-        <span class="column">
+        <span>
           <button class="button is-normal is-warning" @click="clearAll">
             Clear Filters
           </button>
         </span>
       </div>
-      <div class="is-flex is-flex-wrap-wrap">
-        <div class="columns column is-8 is-offset-1">
-          <span class="column is-three-quarters">
-            <multiselect
-              v-model="sortBy"
-              :options="sortByOptions()"
-              :close-on-select="true"
-              :clear-on-select="false"
-              :multiple="false"
-              :preselect-first="true"
-              placeholder="Sort by"
-              label="name"
-              track-by="name"
-              >\
-            </multiselect>
-          </span>
-          <span class="column">
-            <button
-              class="button is-normal is-warning"
-              @click="ascending = !ascending"
-            >
-              <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-              <i v-else class="mdi mdi-sort-descending"></i>
-            </button>
-          </span>
-        </div>
+      <div class="dropdown container is-flex is-flex-wrap-wrap is-justify-content-center">
+        <span>
+          <multiselect
+            v-model="sortBy"
+            :options="sortByOptions()"
+            :close-on-select="true"
+            :clear-on-select="false"
+            :multiple="false"
+            :preselect-first="true"
+            placeholder="Sort by"
+            label="name"
+            track-by="name"
+            >\
+          </multiselect>
+        </span>
+        <span>
+          <button
+            class="button is-normal is-warning"
+            @click="ascending = !ascending"
+          >
+            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+            <i v-else class="mdi mdi-sort-descending"></i>
+          </button>
+        </span>
       </div>
       <div
         class="
+          container
           card-container
           is-flex
           mt-6
@@ -288,6 +287,11 @@ export default {
 .help-card h2 {
   font-weight: bold;
 }
+
+.dropdown {
+  margin-top: 30px;
+}
+
 </style>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
