@@ -15,7 +15,7 @@
           />
         </nuxt-link>
         <DButton
-          v-scroll-to="'#scroll'"
+          v-scroll-to="'#events'"
           name="Go to Events Calendar"
           variant="dark"
           size="medium"
@@ -26,7 +26,7 @@
       <div class="hero-body">
         <div class="container">
           <h1
-            id="scroll"
+            id="events"
             role="heading"
             aria-level="1"
             class="d-calendar-title"

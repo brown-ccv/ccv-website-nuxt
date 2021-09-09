@@ -78,12 +78,11 @@
           </multiselect>
         </span>
         <span>
-          <button class="button is-normal is-warning" @click="clearAll">
+          <button class="ml-1 button is-normal is-warning" @click="clearAll">
             Clear Filters
           </button>
         </span>
-      </div>
-      <div class="dropdown container is-flex is-flex-wrap-wrap is-justify-content-center">
+        <div class="horizontalgap" style="width:60px"></div>
         <span>
           <multiselect
             v-model="sortBy"
@@ -100,7 +99,7 @@
         </span>
         <span>
           <button
-            class="button is-normal is-warning"
+            class="ml-1 button is-normal is-warning"
             @click="ascending = !ascending"
           >
             <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
@@ -114,7 +113,8 @@
           card-container
           is-flex
           mt-6
-          is-justify-content-space-evenly is-flex-wrap-wrap
+          is-justify-content-space-evenly 
+          is-flex-wrap-wrap
         "
       >
         <DCard
@@ -132,7 +132,7 @@
                 {{ item.group }}
               </abbr></span
             >
-            <h2>{{ item.title }}</h2>
+            <h2 class="card-title">{{item.title}}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <span v-if="item.authors" class="small has-text-link"
               >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
@@ -143,7 +143,7 @@
           </template>
           <template #footer>
             <div v-if="item.links" class="link-group">
-              <a v-for="(link, type) in item.links" class="link-item d-button has-text-link" :href="link" :key="type">
+              <a v-for="(link, type) in item.links" class="m-1 link-item d-button has-text-link" :href="link" :key="type">
               <span>{{ type.toUpperCase() }}
                 <span class="icon ml-2">
                   <i :class="['mdi', LINK_ICONS[type]]" />
@@ -182,16 +182,17 @@ export default {
               website: "mdi-link-variant", 
               documentation: "mdi-book-open", 
               publication: "mdi-newspaper",
-              doi: "mdi-book"}
+              doi: "mdi-book",
+              other: "mdi-dots-horizontal"}
   }),
   computed: {
     filteredData() {
       return this.data.filter((d) => !d.hidden);
     },
     sortedArray() {
-      let filtered = this.data;
+      let filtered = this.filteredData
       if (this.searchGroup.length > 0) {
-        filtered = this.data.filter((card) => {
+        filtered = filtered.filter((card) => {
           if (this.searchGroup) {
             return this.searchGroup.includes(card.group);
           } else {
@@ -261,6 +262,11 @@ export default {
 
 .dropdown {
   margin-top: 30px;
+}
+
+.card-title {
+  font-size: x-large;
+  // font-weight: bold;
 }
 
 </style>
