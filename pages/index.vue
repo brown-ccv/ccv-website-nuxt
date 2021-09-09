@@ -51,8 +51,8 @@ import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 import Calendar from '@/components/calendar/Calendar';
 import { getStringDate } from '@/utils.js';
-const Vue = require('vue');
-const VueScrollTo = require('vue-scrollto');
+import Vue from 'vue';
+import VueScrollTo from 'vue-scrollto';
 Vue.use(VueScrollTo);
 
 const numEvents = 4;
