@@ -62,54 +62,48 @@
         </template>
       </DCard>
     </div>
-    <div v-else>
-      <div class="dropdown is-flex is-flex-wrap-wrap is-justify-content-center">
-        <span>
-          <multiselect
-            v-model="searchGroup"
-            :options="cardTags"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :preserve-search="true"
-            :multiple="true"
-            placeholder="Select tags to filter by"
-            :allow-empty="true"
-          >
-          </multiselect>
-        </span>
-        <span>
-          <button class="ml-1 button is-normal is-warning" @click="clearAll">
-            Clear Filters
-          </button>
-        </span>
-        <div class="horizontalgap" style="width:60px"></div>
-        <span>
-          <multiselect
-            v-model="sortBy"
-            :options="sortByOptions"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :multiple="false"
-            :preselect-first="true"
-            placeholder="Sort by"
-            label="name"
-            track-by="name"
-            >\
-          </multiselect>
-        </span>
-        <span>
-          <button
-            class="ml-1 button is-normal is-warning"
-            @click="ascending = !ascending"
-          >
-            <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
-            <i v-else class="mdi mdi-sort-descending"></i>
-          </button>
-        </span>
+    <div v-else class='container'>
+      <div class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+        <div class="mb-1 is-flex">
+            <multiselect
+              v-model="searchGroup"
+              :options="cardTags"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :multiple="true"
+              placeholder="Select tags to filter by"
+              :allow-empty="true"
+            >
+            </multiselect>
+            <button class="ml-1 button is-normal is-warning" @click="clearAll">
+              Clear Filters
+            </button>
+        </div>
+        <div class="mb-1 is-flex">
+            <multiselect
+              v-model="sortBy"
+              :options="sortByOptions"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :multiple="false"
+              :preselect-first="true"
+              placeholder="Sort by"
+              label="name"
+              track-by="name"
+              >\
+            </multiselect>
+            <button
+              class="ml-1 button is-normal is-warning"
+              @click="ascending = !ascending"
+            >
+              <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+              <i v-else class="mdi mdi-sort-descending"></i>
+            </button>
+        </div>
       </div>
       <div
         class="
-          container
           card-container
           is-flex
           mt-6
@@ -267,6 +261,10 @@ export default {
 .card-title {
   font-size: x-large;
   // font-weight: bold;
+}
+
+.multiselect {
+  min-width: 225px;
 }
 
 </style>
