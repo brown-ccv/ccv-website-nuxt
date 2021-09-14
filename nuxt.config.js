@@ -52,7 +52,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/lunr'],
+  plugins: [
+    '~/plugins/lunr', 
+    {src:'~/plugins/v-scroll-to.js', mode:'client'},
+  ],
   /*
    ** Nuxt.js dev-modules
    */

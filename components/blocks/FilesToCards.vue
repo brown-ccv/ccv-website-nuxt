@@ -67,7 +67,7 @@
         <span>
           <multiselect
             v-model="searchGroup"
-            :options="cardTags()"
+            :options="cardTags"
             :close-on-select="true"
             :clear-on-select="false"
             :preserve-search="true"
@@ -86,7 +86,7 @@
         <span>
           <multiselect
             v-model="sortBy"
-            :options="sortByOptions()"
+            :options="sortByOptions"
             :close-on-select="true"
             :clear-on-select="false"
             :multiple="false"
@@ -186,6 +186,22 @@ export default {
               other: "mdi-dots-horizontal"}
   }),
   computed: {
+    cardTags() {
+      const tags = this.data.map((card) => card.group);
+      return tags
+        .filter((group, index) => tags.indexOf(group) === index)
+        .sort();
+    },
+    sortByOptions() {
+
+      // eslint-disable-next-line no-prototype-builtins
+      const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
+
+      const options = [{ name: 'Title' }];
+      if (hasDate) {options.push({ name: 'Date' })};
+
+      return options;
+    },
     filteredData() {
       return this.data.filter((d) => !d.hidden);
     },
@@ -230,25 +246,9 @@ export default {
     },
   },
   methods: {
-    cardTags() {
-      const tags = this.data.map((card) => card.group);
-      return tags
-        .filter((group, index) => tags.indexOf(group) === index)
-        .sort();
-    },
-    sortByOptions() {
-
-      // eslint-disable-next-line no-prototype-builtins
-      const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
-
-      const options = [{ name: 'Title' }];
-      if (hasDate) {options.push({ name: 'Date' })};
-
-      return options;
-    },
     clearAll() {
       this.searchGroup = [];
-    },
+    }
   },
 };
 </script>
