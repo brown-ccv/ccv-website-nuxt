@@ -15,27 +15,34 @@
           />
         </nuxt-link>
         <DButton
-            name="Go to Events Calendar"
-            variant="dark"
-            size="medium"
-            v-scroll-to="'#scroll'"
-          />
+          v-scroll-to="'#events'"
+          name="Go to Events Calendar"
+          variant="dark"
+          size="medium"
+        />
       </template>
     </DHero>
     <section class="d-hero is-small">
       <div class="hero-body">
         <div class="container">
-          <h1 role="heading" aria-level="1" class="d-calendar-title" id='scroll'>Events</h1>
+          <h1
+            id="events"
+            role="heading"
+            aria-level="1"
+            class="d-calendar-title"
+          >
+            Events
+          </h1>
         </div>
       </div>
     </section>
     <Calendar
-            v-if="info.length >= 0"
-            :info="info"
-            :upcoming-events="upcomingEvents"
-            @month-change="getData"
-            class='container pb-4'
-          />
+      v-if="info.length >= 0"
+      :info="info"
+      :upcoming-events="upcomingEvents"
+      class="container pb-4"
+      @month-change="getData"
+    />
   </div>
 </template>
 
@@ -44,9 +51,6 @@ import DButton from '@/components/base/DButton';
 import DHero from '@/components/base/DHero';
 import Calendar from '@/components/calendar/Calendar';
 import { getStringDate } from '@/utils.js';
-const Vue = require('vue')
-const VueScrollTo = require('vue-scrollto')
-Vue.use(VueScrollTo)
 
 const numEvents = 4;
 
@@ -97,7 +101,7 @@ export default {
       });
     },
     scroll() {
-      const container = this.$el.querySelector("#scrollTo");
+      const container = this.$el.querySelector('#scrollTo');
       container.scrollTop = container.scrollHeight;
     },
   },
