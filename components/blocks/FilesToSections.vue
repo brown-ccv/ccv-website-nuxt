@@ -20,7 +20,11 @@
           {{ item.title }}
         </h2>
         <!-- General markdown content pages -->
-        <nuxt-content class="content" v-if="item.extension === '.md'" :document="item" />
+        <nuxt-content
+          v-if="item.extension === '.md'"
+          class="content"
+          :document="item"
+        />
       </section>
     </main>
   </div>

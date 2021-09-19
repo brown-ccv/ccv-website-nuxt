@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="view === 'upcoming'"
-    class="event"
-  >
+  <div v-if="view === 'upcoming'" class="event">
     <div v-if="view === 'upcoming'">
       {{ date }}
     </div>
@@ -13,11 +10,7 @@
       {{ info.date_time }}
     </div>
   </div>
-  <div
-    v-else
-    class="event"
-    :style="'--p-height: ' + val * 27.5 + 'px'"
-  >
+  <div v-else class="event" :style="'--p-height: ' + val * 27.5 + 'px'">
     <div v-if="view === 'upcoming'">
       {{ date }}
     </div>
@@ -66,7 +59,7 @@ export default {
       const d = new Date(this.date);
       return d.getFullYear();
     },
-  }
+  },
 };
 </script>
 
