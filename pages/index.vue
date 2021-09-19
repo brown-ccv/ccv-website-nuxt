@@ -10,14 +10,14 @@
         <nuxt-link to="/services/">
           <DButton
             name="Learn about CCV's services"
-            variant="dark"
+            variant="light"
             size="medium"
           />
         </nuxt-link>
         <DButton
           v-scroll-to="'#events'"
           name="Go to Events Calendar"
-          variant="dark"
+          variant="light"
           size="medium"
         />
       </template>
