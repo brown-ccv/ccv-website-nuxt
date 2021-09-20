@@ -30,84 +30,84 @@
       :class="{ 'is-active': expanded }"
       @click="expanded = !expanded"
     >
-      <ul class="navbar-start" data-testid="navbar-start">
-        <li class="navbar-item has-dropdown is-hoverable">
+      <div class="navbar-start" data-testid="navbar-start">
+        <div class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/services"> Services </nuxt-link>
-          <ul class="navbar-dropdown">
-            <li class="navbar-item">
+          <div class="navbar-dropdown">
+            <div class="navbar-item">
               <nuxt-link to="/services/classroom" tabindex="0">
                 Classroom
               </nuxt-link>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link to="/services/computing" tabindex="0">
                 Computing
               </nuxt-link>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
                 File Storage and Transfer
               </nuxt-link>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link to="/services/visualization" tabindex="0">
                 Visualization Systems
               </nuxt-link>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link
                 to="/services/consulting/advanced-research-computing"
                 tabindex="0"
               >
                 Consulting
               </nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/our-work"> Our Work </nuxt-link>
-          <ul class="navbar-dropdown">
-            <li class="navbar-item">
+          <div class="navbar-dropdown">
+            <div class="navbar-item">
               <nuxt-link to="/our-work/software" tabindex="0">
                 Software
               </nuxt-link>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <a href="https://publications.ccv.brown.edu" tabindex="0">
                 Publications
               </a>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link to="/our-work/workshops-and-talks" tabindex="0">
                 Workshops and Talks
               </nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li tabindex="0" class="navbar-item has-dropdown is-hoverable">
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/help"> Help </nuxt-link>
-          <ul class="navbar-dropdown">
-            <li class="navbar-item">
+          <div class="navbar-dropdown">
+            <div class="navbar-item">
               <a href="mailto:support@ccv.brown.edu" tabindex="0">
                 Submit a Ticket
               </a>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <a href="https://docs.ccv.brown.edu" tabindex="0">
                 Documentation
               </a>
-            </li>
-            <li class="navbar-item">
+            </div>
+            <div class="navbar-item">
               <nuxt-link to="/help"> More Help Options </nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li class="navbar-item">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item">
           <nuxt-link to="/about"> About </nuxt-link>
-        </li>
-      </ul>
-      <ul class="navbar-end" data-testid="navbar-end">
-        <li class="navbar-item">
+        </div>
+      </div>
+      <div class="navbar-end" data-testid="navbar-end">
+        <div class="navbar-item">
           <a
             href="https://docs.ccv.brown.edu"
             class="d-button is-white has-text-link"
@@ -117,18 +117,17 @@
               <i class="ml-1 mdi mdi-file-document-box" />
             </span>
           </a>
-        </li>
-        <li class="navbar-item">
+        </div>
+        <div class="navbar-item">
           <a
             href="https://medium.com/brown-ccv"
             class="d-button is-white has-text-link"
             aria-label="CCV's Medium Blog"
             >Blog<span class="icon"> <i class="ml-1 mdi mdi-medium" /> </span
           ></a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
-
     <div class="navbar-item">
       <Search />
     </div>
