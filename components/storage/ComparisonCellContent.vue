@@ -1,6 +1,13 @@
 <template>
-  <div class="class-container">
-    <span class="class-item">
+  <div class="class-container" :class="{ 'py-2': padding, 'px-1': padding }">
+    <div
+      class="class-item"
+      :class="[
+        `is-size-${fontSize}`,
+        `is-flex-direction-${flexDirection}`,
+        padding ? 'mb-2' : '',
+      ]"
+    >
       <!-- add icons -->
       <span
         v-if="
@@ -8,36 +15,40 @@
         "
         :class="[
           'icon',
-          'is-size-3',
+          `is-size-${iconSize}`,
           feature.class === 'fastest' ? 'has-text-success' : 'has-text-warning',
         ]"
         ><i class="mdi mdi-speedometer"
       /></span>
       <span
         v-else-if="feature.class === true"
-        class="icon is-size-3 has-text-success"
+        class="icon has-text-success"
+        :class="[`is-size-${iconSize}`]"
         ><i class="mdi mdi-check"
       /></span>
       <span
         v-else-if="feature.class === 'partial'"
-        class="icon is-size-3 has-text-success"
+        class="icon has-text-success"
+        :class="[`is-size-${iconSize}`]"
         ><i class="mdi mdi-check"
       /></span>
       <span
         v-else-if="feature.class === false"
-        class="icon is-size-3 has-text-danger"
+        class="icon has-text-danger"
+        :class="[`is-size-${iconSize}`]"
         ><i class="mdi mdi-close"
       /></span>
       <span
         v-else-if="[1, 2, 3].includes(feature.class)"
-        class="icon is-size-3 has-text-warning"
+        class="icon has-text-warning"
+        :class="[`is-size-${iconSize}`]"
         ><i class="mdi mdi-shield-half-full"
       /></span>
 
       {{ classText }}
-    </span>
+    </div>
 
-    <ul>
+    <ul v-if="includeNotes">
       <li v-for="(note, j) in feature.notes" :key="j" class="note">
         {{ note }}
       </li>
@@ -51,6 +62,26 @@ export default {
     feature: {
       type: Object,
       required: true,
+    },
+    iconSize: {
+      type: Number,
+      default: 3,
+    },
+    fontSize: {
+      type: Number,
+      defualt: 5,
+    },
+    includeNotes: {
+      type: Boolean,
+      default: true,
+    },
+    flexDirection: {
+      type: String,
+      default: 'column',
+    },
+    padding: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -73,19 +104,23 @@ export default {
 
 <style lang="scss" scoped>
 .class-container {
-  @extend .py-2;
-  @extend .px-1;
   width: 10rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  @include mobile {
+    max-width: 10rem;
+    width: auto;
+  }
 }
 
 .class-item {
-  @extend .mb-2;
-  @extend .is-size-5;
   @extend .has-text-weight-bold;
+  @include mobile {
+    margin-bottom: 0 !important;
+  }
   display: flex;
   justify-content: center;
   flex-direction: column;

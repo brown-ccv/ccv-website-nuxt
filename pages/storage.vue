@@ -5,7 +5,7 @@
       :title="index.title"
       :subtitle="index.description"
     />
-    <div class="storage-header py-6">
+    <div class="storage-header py-6 px-2">
       <h2>{{ index.storage_tool_header }}</h2>
       <span>
         <DButton
@@ -35,8 +35,14 @@
         </a>
       </span>
     </div>
-    <div class="selection-container mt-6">
-      <div class="questions-container">
+    <div
+      class="
+        container
+        mt-6
+        is-flex is-flex-wrap-wrap is-justify-content-space-between
+      "
+    >
+      <div class="is-flex is-flex-direction-column is-align-items-start">
         <MultipleChoice
           v-for="(q, i) in questions"
           :key="'q' + i"
@@ -214,10 +220,6 @@ export default {
   align-items: flex-start;
   flex-direction: column;
 }
-.selection-container {
-  display: flex;
-  justify-content: space-around;
-}
 
 .storage-header {
   display: flex;
@@ -225,9 +227,8 @@ export default {
   justify-content: center;
   align-items: center;
   h2 {
-    width: 80ch;
+    max-width: 80ch;
     font-size: 1.6rem;
   }
 }
-
 </style>

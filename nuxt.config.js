@@ -54,7 +54,7 @@ export default {
    */
   plugins: [
     '~/plugins/lunr',
-    {src:'~/plugins/v-scroll-to.js', mode:'client'},
+    { src: '~/plugins/v-scroll-to.js', mode: 'client' },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -70,11 +70,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxt/content',
-    'nuxt-svg-loader',
-    '@nuxtjs/markdownit',
-  ],
+  modules: ['@nuxt/content', 'nuxt-svg-loader', '@nuxtjs/markdownit'],
   markdownit: {
     injected: true,
     breaks: false,

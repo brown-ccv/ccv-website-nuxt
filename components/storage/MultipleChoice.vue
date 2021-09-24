@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-2">
     <span class="question-header mb-1">
       <h2>{{ question.question }}</h2>
       <DButton
@@ -98,6 +98,6 @@ export default {
 }
 .question-details {
   cursor: pointer;
-  width: 50ch;
+  max-width: 50ch;
 }
 </style>

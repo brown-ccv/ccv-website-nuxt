@@ -1,5 +1,5 @@
 <template>
-  <div class="service-selection">
+  <div class="service-selection px-2">
     <div
       v-for="(s, i) in services"
       :id="'field' + s.service + i"
@@ -28,12 +28,10 @@
             ]"
         /></span>
       </button>
-      <button class="button-nostyle service-label" @click="toggleShowModal(s)">
-        <span
-          >{{ s.service | humanize }}
-          <span class="icon"><i class="mdi mdi-information" /></span>
-        </span>
-      </button>
+      <p class="is-size-5 has-text-bold">{{ s.service | humanize }}</p>
+      <span class="icon is-clickable" @click="toggleShowModal(s)"
+        ><i class="mdi mdi-information"
+      /></span>
     </div>
     <DModal
       v-if="showModal"
@@ -95,7 +93,6 @@ export default {
       this.$emit('service', { id });
     },
     toggleShowModal(data) {
-      // TODO: modal isn't taking whole page, but rather inserting in place
       this.modalData = data;
       this.showModal = true;
     },
@@ -108,7 +105,12 @@ export default {
   display: flex;
   flex-basis: 30%;
   flex-wrap: wrap;
+  flex-grow: 2;
   align-content: flex-start;
+  max-width: 500px;
+  @include mobile {
+    width: 100%;
+  }
 }
 .service-box {
   width: 100%;
@@ -116,7 +118,9 @@ export default {
   border: none;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  min-width: 300px;
 }
 .service-label {
   font-weight: bold;

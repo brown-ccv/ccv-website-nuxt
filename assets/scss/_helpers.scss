@@ -10,6 +10,12 @@
     width: 60vw;
   }
 }
+.is-width-medium-small {
+  width: 50ex;
+  @include mobile {
+      width: 75vw;
+  }
+}
 .is-width-medium {
   width: 60ex;
   @include mobile {
