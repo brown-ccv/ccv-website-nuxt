@@ -10,14 +10,14 @@
       aria-label="dismiss"
       data-testid="dismiss"
       @click="dismiss()"
-    ></button>
+    />
     <div class="subtitle" :class="[tagTextColor(variant)]" data-testid="text">
       <span
         v-if="$slots.badge"
         class="tag"
         :class="['is-' + accent, tagTextColor(accent), 'is-' + tagSize]"
       >
-        <slot name="badge"></slot>
+        <slot name="badge" />
       </span>
       {{ text }}
     </div>

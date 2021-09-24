@@ -46,8 +46,10 @@
     >
       <template #content>
         <div class="content">
-          <h2 class="title">{{ modalData.service | humanize }}</h2>
-          <p v-html="$md.render(modalData.description || '')"></p>
+          <h2 class="title">
+            {{ modalData.service | humanize }}
+          </h2>
+          <p v-html="$md.render(modalData.description || '')" />
         </div>
       </template>
     </DModal>

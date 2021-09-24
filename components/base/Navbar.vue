@@ -18,9 +18,9 @@
         data-target="navbar-main"
         @click="expanded = !expanded"
       >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
       </a>
     </div>
 
@@ -68,11 +68,6 @@
           <nuxt-link class="navbar-link" to="/our-work"> Our Work </nuxt-link>
           <ul class="navbar-dropdown">
             <li class="navbar-item">
-              <nuxt-link to="/our-work/workshops" tabindex="0">
-                Workshops
-              </nuxt-link>
-            </li>
-            <li class="navbar-item">
               <nuxt-link to="/our-work/software" tabindex="0">
                 Software
               </nuxt-link>
@@ -83,8 +78,8 @@
               </a>
             </li>
             <li class="navbar-item">
-              <nuxt-link to="/our-work/talks" tabindex="0">
-                Talks and Conferences
+              <nuxt-link to="/our-work/workshops-and-talks" tabindex="0">
+                Workshops and Talks
               </nuxt-link>
             </li>
           </ul>

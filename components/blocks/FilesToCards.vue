@@ -1,11 +1,17 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
     <div
+      v-if="
+        $route.params.main === 'help' ||
+        $route.params.main === 'services' ||
+        ($route.params.main === 'our-work' && !$route.params.category)
+      "
       class="
         card-container
         is-flex
         mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
+        is-justify-content-space-evenly 
+        is-flex-wrap-wrap
       "
     >
       <DCard
@@ -18,10 +24,7 @@
       >
         <template #header>
           <div class="px-5">
-            <span
-              class="icon is-size-1 has-text-success mb-5"
-              :aria-label="'icon of ' + item.mdi.icon"
-            >
+            <span v-if="item.mdi" class="icon is-size-1 has-text-success mb-5">
               <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
             </span>
 
@@ -42,7 +45,7 @@
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
-                <i class="mdi mdi-menu-rightt" />
+                <i class="mdi mdi-menu-right" />
               </span>
             </a>
             <nuxt-link
@@ -59,15 +62,104 @@
         </template>
       </DCard>
     </div>
+    <div v-else class='container'>
+      <div class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+        <div class="mb-1 is-flex">
+            <multiselect
+              v-model="searchGroup"
+              :options="cardTags"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :multiple="true"
+              placeholder="Select tags to filter by"
+              :allow-empty="true"
+            >
+            </multiselect>
+            <button class="ml-1 button is-normal is-warning" @click="clearAll">
+              Clear Filters
+            </button>
+        </div>
+        <div class="mb-1 is-flex">
+            <multiselect
+              v-model="sortBy"
+              :options="sortByOptions"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :multiple="false"
+              :preselect-first="true"
+              placeholder="Sort by"
+              label="name"
+              track-by="name"
+              >\
+            </multiselect>
+            <button
+              class="ml-1 button is-normal is-warning"
+              @click="ascending = !ascending"
+            >
+              <i v-if="ascending" class="mdi mdi-sort-ascending"></i>
+              <i v-else class="mdi mdi-sort-descending"></i>
+            </button>
+        </div>
+      </div>
+      <div
+        class="
+          card-container
+          is-flex
+          mt-6
+          is-justify-content-space-evenly 
+          is-flex-wrap-wrap
+        "
+      >
+        <DCard
+          v-for="(item, i) in sortedArray"
+          :key="'help-card-' + i"
+          class="mx-3 my-3 px-3"
+          variant="light"
+          accent="link"
+          width="medium"
+        >
+          <template #header>
+            <span v-if="item.group" class="radius-0 tag is-link has-text-light"
+              ><span class="icon"><i class="mdi mdi-account-multiple" /></span
+              ><abbr :title="item.group | expandAcronym">
+                {{ item.group }}
+              </abbr></span
+            >
+            <h2 class="card-title">{{item.title}}</h2>
+            <div v-if="item.date">Updated: {{ item.date }}</div>
+            <span v-if="item.authors" class="small has-text-link"
+              >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
+            >
+          </template>
+          <template #content>
+            {{ item.description }}
+          </template>
+          <template #footer>
+            <div v-if="item.links" class="link-group">
+              <a v-for="(link, type) in item.links" class="m-1 link-item d-button has-text-link" :href="link" :key="type">
+              <span>{{ type.toUpperCase() }}
+                <span class="icon ml-2">
+                  <i :class="['mdi', LINK_ICONS[type]]" />
+                  </span>
+                </span>
+              </a>
+            </div>
+          </template>
+        </DCard>
+      </div>
+    </div>
   </main>
 </template>
 
 <script>
 import DCard from '@/components/base/DCard.vue';
+import Multiselect from 'vue-multiselect';
 
 export default {
   components: {
     DCard,
+    Multiselect,
   },
   props: {
     data: {
@@ -75,20 +167,106 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    ascending: true,
+    sortBy: [],
+    searchGroup: [],
+    sortOptions: [],
+    LINK_ICONS: {repository: "mdi-code-greater-than-or-equal", 
+              website: "mdi-link-variant", 
+              documentation: "mdi-book-open", 
+              publication: "mdi-newspaper",
+              doi: "mdi-book",
+              other: "mdi-dots-horizontal"}
+  }),
   computed: {
+    cardTags() {
+      const tags = this.data.map((card) => card.group);
+      return tags
+        .filter((group, index) => tags.indexOf(group) === index)
+        .sort();
+    },
+    sortByOptions() {
+
+      // eslint-disable-next-line no-prototype-builtins
+      const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
+
+      const options = [{ name: 'Title' }];
+      if (hasDate) {options.push({ name: 'Date' })};
+
+      return options;
+    },
     filteredData() {
       return this.data.filter((d) => !d.hidden);
     },
+    sortedArray() {
+      let filtered = this.filteredData
+      if (this.searchGroup.length > 0) {
+        filtered = filtered.filter((card) => {
+          if (this.searchGroup) {
+            return this.searchGroup.includes(card.group);
+          } else {
+            return true;
+          }
+        });
+      }
+
+      // Sort by alphabetical order
+      if (this.sortBy.name === 'Title') {
+        filtered.sort((a, b) => {
+          const fa = a.title.toLowerCase();
+          const fb = b.title.toLowerCase();
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        });
+      } else if (this.sortBy.name === 'Date') {
+        // Sort by date
+        filtered.sort((a, b) => {
+          return new Date(a.date) - new Date(b.date);
+        });
+      }
+
+      // Show sorted array in descending or ascending order
+      if (!this.ascending) {
+        filtered.reverse();
+      }
+
+      return filtered;
+    },
+  },
+  methods: {
+    clearAll() {
+      this.searchGroup = [];
+    }
   },
 };
 </script>
 
 <!-- see assets/scss/_layout.scss for relevant styles -->
 <style lang="scss" scoped>
-.card-container {
-  width: 160ch;
-}
+
 .help-card h2 {
   font-weight: bold;
 }
+
+.dropdown {
+  margin-top: 30px;
+}
+
+.card-title {
+  font-size: x-large;
+  // font-weight: bold;
+}
+
+.multiselect {
+  min-width: 225px;
+}
+
 </style>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -32,7 +32,7 @@
         <p data-testid="title-team">
           {{ title }} <small>| {{ team }}</small>
         </p>
-        <slot name="icons"> </slot>
+        <slot name="icons" />
       </footer>
     </template>
   </DCard>

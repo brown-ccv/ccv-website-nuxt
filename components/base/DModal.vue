@@ -7,7 +7,7 @@
     data-testid="dialog"
   >
     <!-- area surrounding modal -->
-    <div class="modal-background"></div>
+    <div class="modal-background" />
 
     <!-- main modal area -->
     <div
@@ -28,7 +28,7 @@
           class="d-button-delete is-pulled-right"
           aria-label="close"
           @click="onClose"
-        ></button>
+        />
       </header>
 
       <!-- modal content -->
@@ -40,7 +40,7 @@
         tabindex="0"
         :class="[textColor, 'has-background-' + variant]"
       >
-        <slot name="content"> </slot>
+        <slot name="content" />
       </div>
 
       <!-- modal footer with close button -->
@@ -55,8 +55,7 @@
           :name="closeButtonText"
           :variant="accent"
           @click="onClose"
-        >
-        </d-button>
+        />
       </footer>
     </div>
   </div>

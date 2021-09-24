@@ -31,7 +31,9 @@
     "fibers": "^5.0.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-    "nuxt": "^2.15.6"
+    "nuxt": "^2.15.6",
+    "vue-multiselect": "^2.1.6",
+    "vue-scrollto": "^2.20.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.1",
