@@ -130,7 +130,7 @@
             >
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <span v-if="item.authors" class="small has-text-black"
+            <span v-if="item.authors" class="subtitle has-text-black"
               ><i class="mdi mdi-account-multiple p-1 m-1"></i
               >{{ item.authors.map((a) => a.name).join(', ') }}</span
             >
@@ -139,7 +139,7 @@
             {{ item.description }}
           </template>
           <template #footer>
-            <div v-if="item.links" class="link-group">
+            <section v-if="item.links" class="link-group">
               <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
                 v-for="(link, type) in item.links"
@@ -150,12 +150,13 @@
                   d-button
                   has-background-link has-text-white has-text-weight-semibold
                   is-size-5
+                  link-button
                 "
                 :href="link"
               >
                 <span>{{ type.toUpperCase() }} </span>
               </a>
-            </div>
+            </section>
           </template>
         </DCard>
       </div>
@@ -264,6 +265,10 @@ export default {
 
 .multiselect {
   min-width: 225px;
+}
+
+.link-button {
+  width: 75%;
 }
 </style>
 
