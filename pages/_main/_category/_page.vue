@@ -1,7 +1,7 @@
 <template>
   <div>
     <DHero
-      variant="primary"
+      variant="link"
       :title="$route.params.page | humanize"
       :subtitle="$route.params.category | humanize"
     >

@@ -123,7 +123,7 @@
           width="medium"
         >
           <template #header>
-            <span v-if="item.group" class="radius-0 tag is-link has-text-light"
+            <span v-if="item.group" class="radius-0 tag has-text-light" :style="{'background-color': tagColors[item.group]}"
               ><abbr :title="item.group | expandAcronym">
                 {{ item.group }}
               </abbr></span
@@ -183,6 +183,7 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
+    tagColors: {},
   }),
   computed: {
     cardTags() {
@@ -245,10 +246,29 @@ export default {
       return filtered;
     },
   },
+  created() {
+    this.generateTagColors();
+  },
   methods: {
     clearAll() {
       this.searchGroup = [];
     },
+    generateTagColors() {
+      const tags = [...new Set(this.data.map((card) => card.group))];
+      const tagsLength = tags.length
+
+      const colors = [];
+      while (colors.length < tagsLength) {
+          colors.push(`rgb(${rand(0, 155)}, ${rand(0, 155)}, ${rand(0, 155)})`);
+      }
+
+      function rand(min, max) {
+          return ~~(Math.random() * (max - min)) + min;
+      }
+
+      const tagColors = Object.assign({}, ...tags.map((n, index) => ({[n]: colors[index]})))
+      this.tagColors = tagColors
+    }
   },
 };
 </script>

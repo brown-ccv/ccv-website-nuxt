@@ -10,7 +10,7 @@
         :key="'about-section' + i"
         class="content-section"
       >
-        <h2 class="section-title title">
+        <h2 class="section-title title has-text-white">
           <span
             class="icon mr-3 has-text-white is-size-2"
             :aria-label="'icon of ' + item.mdi.icon"
