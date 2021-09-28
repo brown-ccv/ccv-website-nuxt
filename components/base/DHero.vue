@@ -4,7 +4,7 @@
     class="d-hero is-medium"
     :class="[
       'is-' + variant,
-      { 'is-full-height': fullHeight, 'header-image': !$route.params.main },
+      { 'is-full-height': fullHeight, 'header-image': !$route.params.main, 'header-image-alt': $route.params.main },
     ]"
   >
     <div class="hero-body">
@@ -55,7 +55,20 @@ export default {
   background-color: #999;
 
   .hero-text {
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 0, 0.35);
+  }
+}
+
+.header-image-alt {
+  background-image: url('@/assets/stone_hero.jpeg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999;
+
+    .hero-text {
+    background-color: rgb(0, 0, 0, 0.35);
   }
 }
 </style>
