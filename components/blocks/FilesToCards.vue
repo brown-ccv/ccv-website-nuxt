@@ -47,6 +47,14 @@
                 <i class="mdi mdi-menu-right" />
               </span>
             </a>
+            <a v-else-if="link.target.startsWith('mailto')"
+              :href="link.target"
+              class="d-button is-dark has-text-light mx-5 mb-5">
+              {{ link.text.toUpperCase() }}
+              <span class="icon ml-2">
+                <i class="mdi mdi-menu-right" />
+              </span> 
+            </a>
             <nuxt-link
               v-else
               :to="link.target"
