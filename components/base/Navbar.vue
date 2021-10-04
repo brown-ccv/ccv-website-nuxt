@@ -31,9 +31,9 @@
       @click="expanded = !expanded"
     >
       <div class="navbar-start" data-testid="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div @mouseover="toggleDropdown(true)" @mouseleave="toggleDropdown(false)" class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/services"> Services </nuxt-link>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown" :style="{display: showDropdown ? 'block' : 'none' }">
             <div class="navbar-item">
               <nuxt-link to="/services/classroom" tabindex="0">
                 Classroom
@@ -64,9 +64,9 @@
             </div>
           </div>
         </div>
-        <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
+        <div tabindex="0" @mouseover="toggleDropdown(true)" @mouseleave="toggleDropdown(false)" class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/our-work"> Our Work </nuxt-link>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown" :style="{display: showDropdown ? 'block' : 'none' }">
             <div class="navbar-item">
               <nuxt-link to="/our-work/software" tabindex="0">
                 Software
@@ -84,9 +84,9 @@
             </div>
           </div>
         </div>
-        <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
+        <div tabindex="0" @mouseover="toggleDropdown(true)" @mouseleave="toggleDropdown(false)" class="navbar-item has-dropdown is-hoverable">
           <nuxt-link class="navbar-link" to="/help"> Help </nuxt-link>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown" :style="{display: showDropdown ? 'block' : 'none' }">
             <div class="navbar-item">
               <a href="mailto:support@ccv.brown.edu" tabindex="0">
                 Submit a Ticket
@@ -146,10 +146,26 @@ export default {
     BrownLogo,
     Search,
   },
+  watch: {
+    $route() {
+      this.routeChange = true;
+      this.showDropdown = false;
+    }
+  },
+  methods: {
+    toggleDropdown(payload) {
+      if (this.showDropdown !== payload) this.routeChange = false;
+      if (!this.routeChange) {
+        this.showDropdown = payload;
+      }
+    },
+  },
   mixins: [discoBaseMixin],
   data() {
     return {
       expanded: false,
+      routeChange: false,
+      showDropdown: false
     };
   },
 };
