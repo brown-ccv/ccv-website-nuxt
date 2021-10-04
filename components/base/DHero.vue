@@ -60,7 +60,7 @@ export default {
 }
 
 .header-image-alt {
-  background-image: url('@/assets/stone_hero.jpeg');
+  background-image: url('@/assets/pawel-czerwinski-HfP_N01Orhk-unsplash.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -68,7 +68,11 @@ export default {
   background-color: #999;
 
     .hero-text {
-    background-color: rgb(0, 0, 0, 0.35);
+    background-color: rgb(0, 0, 0, 0.3);
   }
+}
+
+.subtitle {
+  font-weight: 600;
 }
 </style>
