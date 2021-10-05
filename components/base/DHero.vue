@@ -4,7 +4,12 @@
     class="d-hero is-medium"
     :class="[
       'is-' + variant,
-      { 'is-full-height': fullHeight, 'header-image': !$route.params.main, 'header-image-alt': $route.params.main },
+      {
+        'is-full-height': fullHeight,
+        'header-image': $route.params,
+        'image-home': !$route.params.main,
+        'image-alt': $route.params.main
+      },
     ]"
   >
     <div class="hero-body">
@@ -47,28 +52,26 @@ export default {
 
 <style lang="scss" scoped>
 .header-image {
-  background-image: url('@/assets/ccv-original.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #999;
+}
+
+.image-home {
+  background-image: url('@/assets/ccv-original.jpg');
 
   .hero-text {
-    background-color: rgb(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
-.header-image-alt {
+.image-alt {
   background-image: url('@/assets/pawel-czerwinski-HfP_N01Orhk-unsplash.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #999;
 
-    .hero-text {
-    background-color: rgb(0, 0, 0, 0.3);
+  .hero-text {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 

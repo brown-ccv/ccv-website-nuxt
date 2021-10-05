@@ -10,7 +10,8 @@
         card-container
         is-flex
         mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
+        is-justify-content-space-evenly 
+        is-flex-wrap-wrap
       "
     >
       <DCard
@@ -65,7 +66,8 @@
       <div
         class="
           dropdown
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+          is-flex is-flex-wrap-wrap 
+          is-justify-content-space-evenly
         "
       >
         <div class="mb-1 is-flex">
@@ -111,7 +113,8 @@
           card-container
           is-flex
           mt-6
-          is-justify-content-space-evenly is-flex-wrap-wrap
+          is-justify-content-space-evenly 
+          is-flex-wrap-wrap
         "
       >
         <DCard
@@ -148,7 +151,9 @@
                   m-1
                   link-item
                   d-button
-                  has-background-link has-text-white has-text-weight-semibold
+                  has-background-link 
+                  has-text-white 
+                  has-text-weight-semibold
                   is-size-5
                   link-button
                 "
@@ -182,7 +187,7 @@ export default {
   data: () => ({
     ascending: true,
     sortBy: [],
-    searchGroup: []
+    searchGroup: [],
   }),
   computed: {
     cardTags() {
