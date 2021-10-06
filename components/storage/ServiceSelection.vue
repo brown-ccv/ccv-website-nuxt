@@ -1,32 +1,37 @@
 <template>
-  <div class="service-selection">
+  <div class="service-selection px-2">
     <div
-      v-for="(s, i) in data"
+      v-for="(s, i) in services"
       :id="'field' + s.service + i"
       :key="'field' + s.service + i"
       class="field service-box my-1 p-4"
       :class="[
-        selectedData.includes(s.service)
-          ? 'has-background-info'
-          : 'has-background-light',
+        matchingServices[i] ? 'has-background-info' : 'has-background-light',
       ]"
     >
       <button
-        class="button-nostyle mdi mdi-checkbox-marked"
+        class="button-nostyle"
         type="button"
-        @click="change(s.service)"
+        :disabled="!matchingServices[i]"
+        @click="change(i)"
       >
-        <span v-if="selectedData.includes(s.service)" class="icon is-size-2"
-          ><i class="mdi mdi-checkbox-marked"
+        <span class="icon is-size-2"
+          ><i
+            :class="[
+              'mdi',
+              selectedServices[i] ||
+              (selectedServices[i] === null && matchingServices[i])
+                ? 'mdi-checkbox-marked'
+                : matchingServices[i]
+                ? 'mdi-checkbox-blank'
+                : 'mdi-checkbox-blank-off',
+            ]"
         /></span>
-        <span v-else class="icon is-size-2"><i class="mdi mdi-square" /></span>
       </button>
-      <button class="button-nostyle service-label" @click="toggleShowModal(s)">
-        <span
-          >{{ s.service | humanize }}
-          <span class="icon"><i class="mdi mdi-information" /></span>
-        </span>
-      </button>
+      <p class="is-size-5 has-text-bold">{{ s.service | humanize }}</p>
+      <span class="icon is-clickable" @click="toggleShowModal(s)"
+        ><i class="mdi mdi-information"
+      /></span>
     </div>
     <DModal
       v-if="showModal"
@@ -64,40 +69,28 @@ export default {
     },
   },
   props: {
-    data: {
+    services: {
       type: Array,
       required: true,
     },
-    selectedData: {
+    selectedServices: {
+      type: Array,
+      required: true,
+    },
+    matchingServices: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
-      selected: [],
       showModal: false,
       modalData: '',
     };
   },
-  watch: {
-    selectedData: {
-      deep: true,
-      handler(newVal) {
-        if (newVal.length === 0) {
-          this.selected = [];
-        }
-      },
-    },
-  },
   methods: {
-    change(service) {
-      if (this.selected.includes(service)) {
-        this.selected = this.selected.filter((s) => s !== service);
-      } else {
-        this.selected.push(service);
-      }
-      this.$emit('service', this.selected);
+    change(id) {
+      this.$emit('service', { id });
     },
     toggleShowModal(data) {
       this.modalData = data;
@@ -112,7 +105,12 @@ export default {
   display: flex;
   flex-basis: 30%;
   flex-wrap: wrap;
+  flex-grow: 2;
   align-content: flex-start;
+  max-width: 500px;
+  @include mobile {
+    width: 100%;
+  }
 }
 .service-box {
   width: 100%;
@@ -120,13 +118,12 @@ export default {
   border: none;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  min-width: 300px;
 }
 .service-label {
   font-weight: bold;
   font-size: 1.1rem;
-}
-.mdi-checkbox-marked {
-  align-self: flex-end;
 }
 </style>

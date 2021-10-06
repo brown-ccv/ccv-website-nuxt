@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="px-2">
     <span class="question-header mb-1">
-      <h2>{{ data.question }}</h2>
+      <h2>{{ question.question }}</h2>
       <DButton
         type="button"
-        name="clear"
+        name="reset"
         size="small"
         variant="light"
         class="ml-2"
-        @click="clear(data.affected_category)"
+        @click="reset()"
       >
         <template #icon-right>
           <span class="icon">
@@ -17,31 +17,30 @@
         </template>
       </DButton>
     </span>
-    <details v-if="data.information" class="question-details mb-4">
+    <details v-if="question.information" class="question-details mb-4">
       <summary>
         <span class="icon has-text-info">
           <i class="mdi mdi-information-outline" />
         </span>
       </summary>
-      <p class="content" v-html="$md.render(data.information)" />
+      <p class="content" v-html="$md.render(question.information)"></p>
     </details>
     <div
-      v-for="(a, i) in data.answers"
-      :id="urlize(data.question) + i"
-      :key="urlize(data.question) + i"
+      v-for="(a, i) in question.answers"
+      :id="urlize(question.question) + i"
+      :key="urlize(question.question) + i"
       class="field"
     >
       <input
-        :id="'radioinput-' + urlize(data.question) + i"
-        v-model="selected"
+        :id="'radioinput-' + urlize(question.question) + i"
         class="is-checkradio"
         type="radio"
-        :name="'radioinput-' + urlize(data.question) + i"
-        checked="checked"
-        :value="[data.affected_category, a.category_classes]"
-        @change="change"
+        :name="'radioinput-' + urlize(question.question)"
+        :value="a"
+        :checked="selected === a"
+        @input="change(a)"
       />
-      <label :for="'radioinput-' + urlize(data.question) + i">{{
+      <label :for="'radioinput-' + urlize(question.question) + i">{{
         a.answer
       }}</label>
     </div>
@@ -56,27 +55,28 @@ export default {
     DButton,
   },
   props: {
-    data: {
+    question: {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      selected: null,
-      showModal: false,
-    };
+    selected: {
+      type: Object,
+      required: true,
+    },
+    questionId: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
-    change() {
-      return this.$emit('answer', this.selected);
+    change(answer) {
+      return this.$emit('answer', { answer, id: this.questionId });
     },
     urlize(str) {
       return str.replace(/ /g, '-').replace('?', '').toLowerCase();
     },
-    clear(cat) {
-      this.$emit('clear', cat);
-      this.selected = null;
+    reset() {
+      return this.$emit('reset', { id: this.questionId });
     },
   },
 };
@@ -98,6 +98,6 @@ export default {
 }
 .question-details {
   cursor: pointer;
-  width: 50ch;
+  max-width: 50ch;
 }
 </style>

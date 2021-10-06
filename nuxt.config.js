@@ -53,8 +53,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/lunr', 
-    {src:'~/plugins/v-scroll-to.js', mode:'client'},
+    '~/plugins/lunr',
+    { src: '~/plugins/v-scroll-to.js', mode: 'client' },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -70,12 +70,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxt/content',
-    // Doc: https://axios.nuxtjs.org/usage
-    'nuxt-svg-loader',
-    '@nuxtjs/markdownit',
-  ],
+  modules: ['@nuxt/content', 'nuxt-svg-loader', '@nuxtjs/markdownit'],
   markdownit: {
     injected: true,
     breaks: false,
