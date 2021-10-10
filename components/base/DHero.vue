@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 .header-image {
-  background-position: center center;
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -68,7 +68,7 @@ export default {
 }
 
 .image-alt {
-  background-image: url('@/assets/pawel-czerwinski-HfP_N01Orhk-unsplash.jpg');
+  background-image: url('@/assets/bharath-g-s-aLGiPJ4XRO4-unsplash.jpg');
 
   .hero-text {
     background-color: rgba(0, 0, 0, 0.3);
