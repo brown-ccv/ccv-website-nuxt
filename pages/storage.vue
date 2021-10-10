@@ -5,15 +5,15 @@
       :title="index.title"
       :subtitle="index.description"
     />
-    <div class="storage-header py-6">
+    <div class="storage-header py-6 px-2">
       <h2>{{ index.storage_tool_header }}</h2>
       <span>
         <DButton
           type="button"
-          name="clear all"
+          name="reset"
           class="mt-5"
           variant="light"
-          @click="clearAll"
+          @click="resetAll"
         >
           <template #icon-right>
             <span class="icon">
@@ -23,54 +23,64 @@
         </DButton>
 
         <a
-          v-if="selectedServices.length > 0"
           class="d-button ml-2 mt-5 has-background-dark has-text-light"
           href="#comparison-table"
           name="go to comparison table"
+          :disabled="comparisonServices.length === 0"
         >
-          GO TO COMPARISON TABLE
-          <span class="icon ml-2">
-            <i class="mdi mdi-arrow-down" />
-          </span>
-        </a>
-
-        <a
-          v-else
-          class="d-button ml-2 mt-5 has-background-dark has-text-light"
-          href="#comparison-table"
-          name="go to comparison table"
-          disabled
-        >
-          GO TO COMPARISON TABLE
+          GO TO COMPARISON
           <span class="icon ml-2">
             <i class="mdi mdi-arrow-down" />
           </span>
         </a>
       </span>
     </div>
-    <div class="selection-container mt-6">
-      <div class="questions-container">
+    <div
+      class="
+        container
+        mt-6
+        is-flex is-flex-wrap-wrap is-justify-content-space-between
+      "
+    >
+      <div class="is-flex is-flex-direction-column is-align-items-start">
         <MultipleChoice
           v-for="(q, i) in questions"
           :key="'q' + i"
-          :ref="'q' + i"
-          :data="q"
+          :question="q"
+          :question-id="i"
           class="mb-6"
+          :selected="answers[i]"
           @answer="recordAnswer"
-          @clear="clear"
+          @reset="resetQuestion"
         />
       </div>
       <ServiceSelection
-        :data="services"
-        :selected-data="selectedServices"
+        :services="services"
+        :selected-services="selectedServices"
+        :matching-services="matchingServices"
         @service="recordService"
       />
     </div>
     <ComparisonTable
-      v-if="selectedServices.length > 0"
+      v-if="comparisonServices.length > 1"
       id="comparison-table"
-      :data="filteredServices"
+      :services="comparisonServices"
       :categories="categories"
+      class="is-hidden-touch"
+    />
+    <ComparisonCards
+      v-if="comparisonServices.length === 1"
+      id="comparison-table"
+      :services="comparisonServices"
+      :categories="categories"
+      class="is-hidden-touch"
+    />
+    <ComparisonCards
+      v-if="comparisonServices.length > 0"
+      id="comparison-table"
+      :services="comparisonServices"
+      :categories="categories"
+      class="is-hidden-desktop"
     />
     <div v-else class="storage-section py-6 mx-6 my-6 has-background-light">
       <span class="icon is-size-2 has-text-warning">
@@ -87,9 +97,10 @@
 <script>
 import DHero from '@/components/base/DHero.vue';
 import DButton from '@/components/base/DButton.vue';
-import MultipleChoice from '@/components/base/MultipleChoice.vue';
-import ServiceSelection from '@/components/ServiceSelection.vue';
-import ComparisonTable from '@/components/ComparisonTable.vue';
+import MultipleChoice from '@/components/storage/MultipleChoice.vue';
+import ServiceSelection from '@/components/storage/ServiceSelection.vue';
+import ComparisonTable from '@/components/storage/ComparisonTable.vue';
+import ComparisonCards from '@/components/storage/ComparisonCards.vue';
 
 export default {
   components: {
@@ -98,6 +109,7 @@ export default {
     MultipleChoice,
     ServiceSelection,
     ComparisonTable,
+    ComparisonCards,
   },
   filters: {
     humanize(str) {
@@ -110,15 +122,21 @@ export default {
     const index = await $content(
       'services/file-storage-and-transfer/index'
     ).fetch();
+    index.services.forEach((service) =>
+      service.features.sort((a, b) =>
+        a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+      )
+    );
 
-    return { index };
+    const answers = index.questions.map((q) =>
+      q.answers.find((answer) => answer.answer === q.default_answer)
+    );
+
+    return { index, answers };
   },
   data() {
     return {
-      answers: {},
-      answerPayload: {},
       selectedServices: [],
-      filteredServices: [],
     };
   },
   computed: {
@@ -136,49 +154,60 @@ export default {
     questions() {
       return this.index.questions;
     },
+    matchingServices() {
+      return this.services.map((service) => {
+        return service.features.every((feature) => {
+          return this.answers.every((answer, i) => {
+            const category = this.questions[i].affected_category;
+            return category === feature.name
+              ? answer.category_classes.includes(feature.class)
+              : true;
+          });
+        });
+      });
+    },
+    comparisonServices() {
+      return this.services.filter((_, i) => this.selectedServices[i]);
+    },
   },
   watch: {
-    answerPayload() {
-      this.answers[this.answerPayload[0]] = this.answerPayload[1];
-      this.filterServices();
-    },
-    selectedServices() {
-      this.filteredServices = this.services.filter((s) =>
-        this.selectedServices.includes(s.service)
-      );
+    matchingServices() {
+      // if the eligible services update, reset any selections
+      this.selectedServices = [...this.matchingServices];
     },
   },
   mounted() {
-    this.filteredServices = this.services;
+    this.selectedServices = [...this.matchingServices];
   },
   methods: {
-    filterServices() {
-      let filtered = this.services;
-      const ans = Object.keys(this.answers);
-      ans.forEach((a) => {
-        filtered = filtered.filter((s) => {
-          return this.answers[a].includes(
-            s.features.filter((f) => f.name === a)[0].class
-          );
-        });
-      });
-      this.selectedServices = filtered.map((s) => s.service);
+    updateAnswer({ answer, id }) {
+      // copy and set due to vue mutation limitatinos
+      const newAnswers = [...this.answers];
+      newAnswers[id] = answer;
+      this.answers = newAnswers;
     },
-    recordAnswer(payload) {
-      this.answerPayload = payload;
+    recordAnswer(answerPayload) {
+      // copy and set due to vue mutation limitatinos
+      this.updateAnswer(answerPayload);
     },
-    recordService(payload) {
-      this.selectedServices = payload;
+    recordService({ id }) {
+      // copy and set due to vue mutation limitatinos
+      const newSelectedServices = [...this.selectedServices];
+      newSelectedServices[id] = !newSelectedServices[id];
+      this.selectedServices = newSelectedServices;
     },
-    clear(payload) {
-      delete this.answers[payload];
-      this.filterServices();
+    resetQuestion({ id }) {
+      const question = this.questions[id];
+      const answer = question.answers.find(
+        (a) => a.answer === question.default_answer
+      );
+      this.updateAnswer({ answer, id });
     },
-    clearAll() {
-      this.answers = {};
-      this.answersPayload = {};
-      this.selectedServices = [];
-      this.filteredServices = [];
+    resetAll() {
+      this.answers = this.index.questions.map((q) =>
+        q.answers.find((answer) => answer.answer === q.default_answer)
+      );
+      this.selectedServices = [...this.matchingServices];
     },
   },
 };
@@ -191,10 +220,6 @@ export default {
   align-items: flex-start;
   flex-direction: column;
 }
-.selection-container {
-  display: flex;
-  justify-content: space-around;
-}
 
 .storage-header {
   display: flex;
@@ -202,7 +227,7 @@ export default {
   justify-content: center;
   align-items: center;
   h2 {
-    width: 80ch;
+    max-width: 80ch;
     font-size: 1.6rem;
   }
 }

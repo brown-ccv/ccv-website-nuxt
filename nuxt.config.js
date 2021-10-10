@@ -70,12 +70,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxt/content',
-    // Doc: https://axios.nuxtjs.org/usage
-    'nuxt-svg-loader',
-    '@nuxtjs/markdownit',
-  ],
+  modules: ['@nuxt/content', 'nuxt-svg-loader', '@nuxtjs/markdownit'],
   markdownit: {
     injected: true,
     breaks: false,

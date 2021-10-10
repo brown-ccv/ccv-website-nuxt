@@ -10,8 +10,7 @@
         card-container
         is-flex
         mt-6
-        is-justify-content-space-evenly 
-        is-flex-wrap-wrap
+        is-justify-content-space-evenly is-flex-wrap-wrap
       "
     >
       <DCard
@@ -121,8 +120,7 @@
           card-container
           is-flex
           mt-6
-          is-justify-content-space-evenly 
-          is-flex-wrap-wrap
+          is-justify-content-space-evenly is-flex-wrap-wrap
         "
       >
         <DCard
