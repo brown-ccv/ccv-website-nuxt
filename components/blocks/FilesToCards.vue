@@ -47,13 +47,15 @@
                 <i class="mdi mdi-menu-right" />
               </span>
             </a>
-            <a v-else-if="link.target.startsWith('mailto')"
+            <a
+              v-else-if="link.target.startsWith('mailto')"
               :href="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5">
+              class="d-button is-dark has-text-light mx-5 mb-5"
+            >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
                 <i class="mdi mdi-menu-right" />
-              </span> 
+              </span>
             </a>
             <nuxt-link
               v-else
@@ -73,8 +75,7 @@
       <div
         class="
           dropdown
-          is-flex is-flex-wrap-wrap 
-          is-justify-content-space-evenly
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
         <div class="mb-1 is-flex">
@@ -140,9 +141,16 @@
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <span v-if="item.authors" class="subtitle has-text-black"
-              ><i class="mdi mdi-account-multiple p-1 m-1"></i
-              >{{ item.authors.map((a) => a.name).join(', ') }}</span
-            >
+              ><i class="mdi mdi-account-multiple p-1 m-1"></i>
+              <span
+                v-for="(author, index) in item.authors"
+                :key="author.github_user"
+                ><a :href="'https://github.com/' + author.github_user">{{
+                  author.name
+                }}</a
+                ><span v-if="index + 1 < item.authors.length">, </span></span
+              >
+            </span>
           </template>
           <template #content>
             {{ item.description }}
@@ -157,9 +165,7 @@
                   m-1
                   link-item
                   d-button
-                  has-background-link 
-                  has-text-white 
-                  has-text-weight-semibold
+                  has-background-link has-text-white has-text-weight-semibold
                   is-size-5
                   link-button
                 "

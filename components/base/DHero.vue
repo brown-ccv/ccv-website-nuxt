@@ -8,7 +8,7 @@
         'is-full-height': fullHeight,
         'header-image': $route.params,
         'image-home': !$route.params.main,
-        'image-alt': $route.params.main
+        'image-alt': $route.params.main,
       },
     ]"
   >
@@ -71,7 +71,7 @@ export default {
   background-image: url('@/assets/bharath-g-s-aLGiPJ4XRO4-unsplash.jpg');
 
   .hero-text {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.35);
   }
 }
 
