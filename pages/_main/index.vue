@@ -2,7 +2,7 @@
   <!-- General template for main routes i.e. about, services, help...  -->
   <div>
     <DHero
-      variant="link"
+      variant="light"
       :title="index.title"
       :subtitle="index.description"
       class="hero"

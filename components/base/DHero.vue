@@ -56,7 +56,6 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #999;
 }
 
 .image-home {
@@ -71,7 +70,8 @@ export default {
   background-image: url('@/assets/bharath-g-s-aLGiPJ4XRO4-unsplash.jpg');
 
   .hero-text {
-    background-color: rgba(0, 0, 0, 0.35);
+    color: hsla(0, 0, 20%, 0.9);
+    background-color: hsla(0, 0, 100%, 0.2);
   }
 }
 
