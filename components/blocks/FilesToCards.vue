@@ -142,14 +142,14 @@
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <span v-if="item.authors" class="subtitle has-text-black"
               ><i class="mdi mdi-account-multiple p-1 m-1"></i>
-              <span
-                v-for="(author, index) in item.authors"
-                :key="author.github_user"
-                ><a :href="'https://github.com/' + author.github_user">{{
-                  author.name
-                }}</a
-                ><span v-if="index + 1 < item.authors.length">, </span></span
-              >
+              <span v-for="(author, index) in item.authors" :key="author.name"
+                ><a
+                  v-if="author.github_user"
+                  :href="'https://github.com/' + author.github_user"
+                  >{{ author.name }}</a
+                >{{ author.github_user ? '' : author.name
+                }}<span v-if="index + 1 < item.authors.length">, </span>
+              </span>
             </span>
           </template>
           <template #content>

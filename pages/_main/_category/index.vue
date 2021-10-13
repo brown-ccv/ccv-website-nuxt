@@ -2,7 +2,7 @@
   <!-- General template for sub-routes i.e. our-work/software  -->
   <div>
     <DHero
-      variant="link"
+      variant="light"
       :title="$route.params.category | humanize"
       :subtitle="index.description"
     >
