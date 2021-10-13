@@ -10,7 +10,7 @@
         :key="'about-section' + i"
         class="content-section"
       >
-        <h2 class="section-title title">
+        <h2 class="section-title title has-text-white">
           <span
             class="icon is-size-3 mr-3 has-text-white"
             :aria-label="'icon of ' + item.mdi.icon"
@@ -20,7 +20,11 @@
           {{ item.title }}
         </h2>
         <!-- General markdown content pages -->
-        <nuxt-content v-if="item.extension === '.md'" :document="item" />
+        <nuxt-content
+          v-if="item.extension === '.md'"
+          class="content"
+          :document="item"
+        />
       </section>
     </main>
   </div>

@@ -11,7 +11,7 @@
         class="content-section"
       >
         <h2
-          class="section-title title has-text-dark"
+          class="section-title title has-text-white"
           :aria-label="'icon of ' + category.mdi.icon"
         >
           <span class="icon is-size-2 mr-3 has-text-white">

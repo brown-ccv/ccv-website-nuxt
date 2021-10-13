@@ -17,7 +17,7 @@
       :key="'banner' + i"
       :text="banner.tagDescription"
       variant="dark"
-      accent="primary"
+      accent="link"
     >
       <template #badge>
         <nuxt-link

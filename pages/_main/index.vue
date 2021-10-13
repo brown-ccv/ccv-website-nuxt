@@ -2,7 +2,7 @@
   <!-- General template for main routes i.e. about, services, help...  -->
   <div>
     <DHero
-      variant="primary"
+      variant="light"
       :title="index.title"
       :subtitle="index.description"
       class="hero"
@@ -10,7 +10,7 @@
       <!-- Add a button to the Hero when index.yml includes call for action -->
       <template v-if="index['call-for-action']" #button>
         <nuxt-link
-          class="d-button is-dark has-text-light"
+          class="d-button is-warning has-text-dark"
           :to="index['call-for-action'].href"
         >
           {{ index['call-for-action'].text.toUpperCase() }}

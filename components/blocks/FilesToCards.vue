@@ -47,6 +47,16 @@
                 <i class="mdi mdi-menu-right" />
               </span>
             </a>
+            <a
+              v-else-if="link.target.startsWith('mailto')"
+              :href="link.target"
+              class="d-button is-dark has-text-light mx-5 mb-5"
+            >
+              {{ link.text.toUpperCase() }}
+              <span class="icon ml-2">
+                <i class="mdi mdi-menu-right" />
+              </span>
+            </a>
             <nuxt-link
               v-else
               :to="link.target"
@@ -119,41 +129,51 @@
           :key="'help-card-' + i"
           class="mx-3 my-3 px-3"
           variant="light"
-          accent="link"
+          accent="warning"
           width="medium"
         >
           <template #header>
             <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-              ><span class="icon"><i class="mdi mdi-account-multiple" /></span
               ><abbr :title="item.group | expandAcronym">
                 {{ item.group }}
               </abbr></span
             >
-            <h2 class="card-title">{{ item.title }}</h2>
+            <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <span v-if="item.authors" class="small has-text-link"
-              >Authors: {{ item.authors.map((a) => a.name).join(', ') }}</span
-            >
+            <span v-if="item.authors" class="subtitle has-text-black"
+              ><i class="mdi mdi-account-multiple p-1 m-1"></i>
+              <span v-for="(author, index) in item.authors" :key="author.name"
+                ><a
+                  v-if="author.github_user"
+                  :href="'https://github.com/' + author.github_user"
+                  >{{ author.name }}</a
+                >{{ author.github_user ? '' : author.name
+                }}<span v-if="index + 1 < item.authors.length">, </span>
+              </span>
+            </span>
           </template>
           <template #content>
             {{ item.description }}
           </template>
           <template #footer>
-            <div v-if="item.links" class="link-group">
+            <section v-if="item.links" class="link-group">
+              <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
                 v-for="(link, type) in item.links"
                 :key="type"
-                class="m-1 link-item d-button has-text-link"
+                class="
+                  m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button
+                "
                 :href="link"
               >
-                <span
-                  >{{ type.toUpperCase() }}
-                  <span class="icon ml-2">
-                    <i :class="['mdi', LINK_ICONS[type]]" />
-                  </span>
-                </span>
+                <span>{{ type.toUpperCase() }} </span>
               </a>
-            </div>
+            </section>
           </template>
         </DCard>
       </div>
@@ -180,15 +200,6 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    sortOptions: [],
-    LINK_ICONS: {
-      repository: 'mdi-code-greater-than-or-equal',
-      website: 'mdi-link-variant',
-      documentation: 'mdi-book-open',
-      publication: 'mdi-newspaper',
-      doi: 'mdi-book',
-      other: 'mdi-dots-horizontal',
-    },
   }),
   computed: {
     cardTags() {
@@ -269,13 +280,12 @@ export default {
   margin-top: 30px;
 }
 
-.card-title {
-  font-size: x-large;
-  // font-weight: bold;
-}
-
 .multiselect {
   min-width: 225px;
+}
+
+.link-button {
+  width: 75%;
 }
 </style>
 

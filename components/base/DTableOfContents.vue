@@ -12,7 +12,7 @@
           :class="[textColor]"
           tabindex="0"
         >
-          <span v-if="entry.icon" class="icon">
+          <span v-if="entry.icon" class="icon mt-2">
             <i :class="['d-toc-icon mdi', `mdi-${entry.icon.name}`]" />
           </span>
           <span class="d-toc-start">
