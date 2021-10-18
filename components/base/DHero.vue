@@ -8,7 +8,7 @@
         'is-full-height': fullHeight,
       },
       'header-image',
-      $route.path === '/' ? 'image-home' : 'image-alt'
+      $route.path === '/' ? 'image-home' : 'image-alt',
     ]"
   >
     <div class="hero-body px-0">

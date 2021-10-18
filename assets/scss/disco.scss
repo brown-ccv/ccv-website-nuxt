@@ -14,3 +14,9 @@
 @import 'icon';
 @import 'layout';
 @import 'typography';
+
+// makes the storage table scrolling work with sticky headers in row and column directions
+html {
+  overflow-x: visible;
+  overflow-y: visible;
+}
