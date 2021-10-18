@@ -1,11 +1,12 @@
 <template>
-  <div class="is-flex is-flex-wrap-wrap is-flex-justify-content-center">
+  <div
+    class="is-flex is-flex-wrap-wrap is-justify-content-space-between gapped"
+  >
     <UpcomingEvent
       v-for="(event, index) in upcomingEvents"
       :key="'event-' + index"
       :event="event"
       :view="view"
-      :is-soonest="i === 1"
     />
   </div>
 </template>
@@ -29,3 +30,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.gapped {
+  gap: 1em;
+}
+</style>

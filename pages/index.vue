@@ -22,27 +22,20 @@
         />
       </template>
     </DHero>
-    <section class="d-hero is-small">
-      <div class="hero-body">
-        <div class="container">
-          <h1
-            id="events"
-            role="heading"
-            aria-level="1"
-            class="d-calendar-title"
-          >
-            Events
-          </h1>
-        </div>
+    <section class="container px-2 my-6">
+      <div>
+        <h1 id="events" role="heading" aria-level="1" class="d-calendar-title">
+          Events
+        </h1>
       </div>
+      <Calendar
+        v-if="info.length >= 0"
+        :info="info"
+        :upcoming-events="upcomingEvents"
+        class="container pb-4"
+        @month-change="getData"
+      />
     </section>
-    <Calendar
-      v-if="info.length >= 0"
-      :info="info"
-      :upcoming-events="upcomingEvents"
-      class="container pb-4"
-      @month-change="getData"
-    />
   </div>
 </template>
 

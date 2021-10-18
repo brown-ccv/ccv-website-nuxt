@@ -1,20 +1,19 @@
 <template>
   <section
     role="banner"
-    class="d-hero is-medium"
+    class="hero is-medium"
     :class="[
       'is-' + variant,
       {
         'is-full-height': fullHeight,
-        'header-image': $route.params,
-        'image-home': !$route.params.main,
-        'image-alt': $route.params.main,
       },
+      'header-image',
+      $route.path === '/' ? 'image-home' : 'image-alt'
     ]"
   >
-    <div class="hero-body">
-      <div class="container">
-        <div class="hero-text p-4 mb-2">
+    <div class="hero-body px-0">
+      <div class="container px-2">
+        <div class="hero-text">
           <h1 role="heading" aria-level="1" class="d-title">
             {{ title }}
           </h1>
@@ -63,6 +62,8 @@ export default {
 
   .hero-text {
     background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin: 0 -1rem;
   }
 }
 
@@ -72,6 +73,8 @@ export default {
   .hero-text {
     color: hsla(0, 0, 20%, 0.9);
     background-color: hsla(0, 0, 100%, 0.2);
+    padding: 1rem;
+    margin: 0 -1rem 0.5rem;
   }
 }
 

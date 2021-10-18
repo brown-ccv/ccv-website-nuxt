@@ -77,3 +77,6 @@ $light-invert: findColorInvert(var(--color-danger));
 $dark-invert: findColorInvert(var(--color-danger));
 
 $scheme-main: var(--color-white);
+
+// otherwise navbar overflows
+$desktop: 1120px;

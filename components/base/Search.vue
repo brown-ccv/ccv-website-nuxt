@@ -190,22 +190,15 @@ export default {
 .lunr-search {
   position: relative;
   display: inline-block;
-
-  @include mobile {
-    width: 93vw;
-  }
+  width: 100%;
 }
 
 .lunr-results {
   display: block;
   position: absolute;
   right: 0;
-  width: 20rem;
+  width: calc(max(100%, 20rem));
   z-index: 100;
-
-  @include mobile {
-    width: 93vw;
-  }
 }
 
 .lunr-result {

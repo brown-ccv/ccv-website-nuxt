@@ -6,15 +6,21 @@
     :class="'has-background-light'"
   >
     <div class="navbar-brand">
-      <nuxt-link class="navbar-item" to="/" aria-label="Back to Home">
+      <nuxt-link
+        class="navbar-item"
+        to="/"
+        aria-label="Back to Home"
+        @click.native="handleClick"
+      >
         <BrownLogo class="d-nav-brand pr-3" size="s" />
         <CCVLogo size="s" />
       </nuxt-link>
       <a
         role="button"
-        class="navbar-burger burger"
+        class="navbar-burger"
         aria-label="menu"
         :aria-expanded="expanded"
+        :class="{ 'is-active': expanded }"
         data-target="navbar-main"
         @click="expanded = !expanded"
       >
@@ -28,29 +34,50 @@
       id="navbar-main"
       class="navbar-menu"
       :class="{ 'is-active': expanded }"
-      @click="expanded = !expanded"
     >
       <div class="navbar-start" data-testid="navbar-start">
         <div class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/services"> Services </nuxt-link>
+          <nuxt-link
+            class="navbar-link"
+            to="/services"
+            @click.native="handleClick"
+          >
+            Services
+          </nuxt-link>
           <div class="navbar-dropdown">
             <div class="navbar-item">
-              <nuxt-link to="/services/classroom" tabindex="0">
+              <nuxt-link
+                to="/services/classroom"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Classroom
               </nuxt-link>
             </div>
             <div class="navbar-item">
-              <nuxt-link to="/services/computing" tabindex="0">
+              <nuxt-link
+                to="/services/computing"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Computing
               </nuxt-link>
             </div>
             <div class="navbar-item">
-              <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
+              <nuxt-link
+                to="/services/file-storage-and-transfer"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 File Storage and Transfer
               </nuxt-link>
             </div>
             <div class="navbar-item">
-              <nuxt-link to="/services/visualization" tabindex="0">
+              <nuxt-link
+                to="/services/visualization"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Visualization Systems
               </nuxt-link>
             </div>
@@ -58,6 +85,7 @@
               <nuxt-link
                 to="/services/consulting/advanced-research-computing"
                 tabindex="0"
+                @click.native="handleClick"
               >
                 Consulting
               </nuxt-link>
@@ -65,10 +93,20 @@
           </div>
         </div>
         <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/our-work"> Our Work </nuxt-link>
+          <nuxt-link
+            class="navbar-link"
+            to="/our-work"
+            @click.native="handleClick"
+          >
+            Our Work
+          </nuxt-link>
           <div class="navbar-dropdown">
             <div class="navbar-item">
-              <nuxt-link to="/our-work/software" tabindex="0">
+              <nuxt-link
+                to="/our-work/software"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Software
               </nuxt-link>
             </div>
@@ -78,14 +116,20 @@
               </a>
             </div>
             <div class="navbar-item">
-              <nuxt-link to="/our-work/workshops-and-talks" tabindex="0">
+              <nuxt-link
+                to="/our-work/workshops-and-talks"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Workshops and Talks
               </nuxt-link>
             </div>
           </div>
         </div>
         <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
-          <nuxt-link class="navbar-link" to="/help"> Help </nuxt-link>
+          <nuxt-link class="navbar-link" to="/help" @click.native="handleClick">
+            Help
+          </nuxt-link>
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <a href="mailto:support@ccv.brown.edu" tabindex="0">
@@ -98,12 +142,14 @@
               </a>
             </div>
             <div class="navbar-item">
-              <nuxt-link to="/help"> More Help Options </nuxt-link>
+              <nuxt-link to="/help" @click.native="handleClick">
+                More Help Options
+              </nuxt-link>
             </div>
           </div>
         </div>
         <div class="navbar-item">
-          <nuxt-link to="/about"> About </nuxt-link>
+          <nuxt-link to="/about" @click.native="handleClick"> About </nuxt-link>
         </div>
       </div>
       <div class="navbar-end" data-testid="navbar-end">
@@ -113,9 +159,7 @@
             class="d-button is-white has-text-link"
             aria-label="CCV Services' Documentation"
             >Docs
-            <span class="icon">
-              <i class="ml-1 mdi mdi-file-document-box" />
-            </span>
+            <span class="mx-0 icon"><i class="mdi mdi-file-document" /></span>
           </a>
         </div>
         <div class="navbar-item">
@@ -123,7 +167,7 @@
             href="https://medium.com/brown-ccv"
             class="d-button is-white has-text-link"
             aria-label="CCV's Medium Blog"
-            >Blog<span class="icon"> <i class="ml-1 mdi mdi-medium" /> </span
+            >Blog <span class="mx-0 icon"><i class="mdi mdi-notebook" /></span
           ></a>
         </div>
       </div>
@@ -151,6 +195,13 @@ export default {
     return {
       expanded: false,
     };
+  },
+  methods: {
+    handleClick() {
+      // collapse the hamburger bar and un-focus the navbar
+      this.expanded = false;
+      document.activeElement.blur();
+    },
   },
 };
 </script>
