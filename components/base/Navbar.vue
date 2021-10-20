@@ -111,7 +111,11 @@
               </nuxt-link>
             </div>
             <div class="navbar-item">
-              <a href="https://publications.ccv.brown.edu" tabindex="0">
+              <a
+                href="https://publications.ccv.brown.edu"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Publications
               </a>
             </div>
@@ -132,12 +136,20 @@
           </nuxt-link>
           <div class="navbar-dropdown">
             <div class="navbar-item">
-              <a href="mailto:support@ccv.brown.edu" tabindex="0">
+              <a
+                href="mailto:support@ccv.brown.edu"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Submit a Ticket
               </a>
             </div>
             <div class="navbar-item">
-              <a href="https://docs.ccv.brown.edu" tabindex="0">
+              <a
+                href="https://docs.ccv.brown.edu"
+                tabindex="0"
+                @click.native="handleClick"
+              >
                 Documentation
               </a>
             </div>
