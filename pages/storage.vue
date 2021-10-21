@@ -38,6 +38,7 @@
     <div
       class="
         container
+        px-2
         mt-6
         is-flex is-flex-wrap-wrap is-justify-content-space-between
       "

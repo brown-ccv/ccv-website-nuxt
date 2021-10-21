@@ -33,21 +33,11 @@ blockquote {
   align-items: center;
 }
 .content-section {
-  @include mobile {
-    padding: 3ch;
-    width: 55ch;
-  }
-  @include tablet {
-    width: 100ch;
-  }
-  @include desktop {
-    width: 130ch;
-  }
-  p {
-    font-size: $size-4;
-  }
+  @extend .container;
+  @extend .px-2;
+  @extend .mb-6;
+  font-size: $size-5;
   h2 {
-    @extend .mt-6;
     font-size: $size-3;
   }
   h3 {

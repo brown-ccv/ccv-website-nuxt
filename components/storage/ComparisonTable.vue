@@ -1,19 +1,21 @@
 <template>
-  <div class="storage-section">
-    <table class="my-6">
+  <div class="storage-section my-6">
+    <table class="centered">
       <thead class="has-background-dark sticky">
-        <th />
-        <th
-          v-for="service in services"
-          :key="'header-' + service.service"
-          class="header-cell"
-        >
-          {{ service.service | humanize }}
-        </th>
+        <tr>
+          <th />
+          <th
+            v-for="service in services"
+            :key="'header-' + service.service"
+            class="header-cell"
+          >
+            {{ service.service | humanize }}
+          </th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="(category, ind) in categories" :key="'row-' + category">
-          <th class="header-cell has-background-dark">
+          <th class="header-cell has-background-dark sticky-left">
             {{ category | humanize }}
           </th>
           <td
@@ -61,31 +63,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .comparison-wrapper {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-// }
-// .comparison-container {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-//   justify-content: space-evenly;
-// }
 .sticky {
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
-  padding: 1rem;
   z-index: 10;
-  align-self: flex-start;
+}
+.sticky-left {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 9;
+}
+.centered {
+  margin: 0 auto;
 }
 
 .storage-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 100vw;
 }
 
 .header-cell {
