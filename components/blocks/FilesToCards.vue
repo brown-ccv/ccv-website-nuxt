@@ -75,7 +75,6 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div>{{ sortedArray }}</div>
       <div
         class="
           dropdown
