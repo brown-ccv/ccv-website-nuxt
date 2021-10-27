@@ -13,9 +13,9 @@
         <h2 class="section-title title has-text-white">
           <span
             class="icon is-size-3 mr-3 has-text-white"
-            :aria-label="'icon of ' + item.mdi.icon"
+            :aria-label="'icon of ' + item.icon"
           >
-            <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
+            <i :class="[`mdi mdi-${item.icon}`]" />
           </span>
           {{ item.title }}
         </h2>
@@ -59,7 +59,7 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.mdi.icon, family: 'light' },
+          icon: { name: d.icon, family: 'light' },
         };
       });
     },

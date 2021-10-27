@@ -23,8 +23,11 @@
       >
         <template #header>
           <div class="px-5">
-            <span v-if="item.mdi" class="icon is-size-1 has-text-success mb-5">
-              <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
+            <span
+              v-if="item.icon"
+              class="icon is-size-1 has-text-success mb-5 mt-5"
+            >
+              <i :class="[`mdi mdi-${item.icon}`]" />
             </span>
 
             <h2 class="title has-text-black">
@@ -171,7 +174,7 @@
                 "
                 :href="link"
               >
-                <span>{{ type.toUpperCase() }} </span>
+                <span>{{ type.toString().toUpperCase() }} </span>
               </a>
             </section>
           </template>

@@ -35,7 +35,7 @@ export default {
   },
   async asyncData({ $content, params }) {
     const data = await $content(params.main, params.category, params.page)
-      .where({ slug: { $ne: 'index' } })
+      // .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
       .fetch();
 
