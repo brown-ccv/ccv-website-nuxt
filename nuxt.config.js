@@ -77,6 +77,14 @@ export default {
   },
   content: {
     dir: 'content',
+    markdown: {
+      remarkPlugins: () => [
+        'remark-squeeze-paragraphs',
+        'remark-slug',
+        'remark-external-links',
+        'remark-footnotes',
+      ],
+    },
   },
   buildDir: '.nuxt',
   /*

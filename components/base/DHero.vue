@@ -1,18 +1,27 @@
 <template>
   <section
     role="banner"
-    class="d-hero is-medium"
-    :class="['is-' + variant, { 'is-full-height': fullHeight }]"
+    class="hero is-medium"
+    :class="[
+      'is-' + variant,
+      {
+        'is-full-height': fullHeight,
+      },
+      'header-image',
+      $route.path === '/' ? 'image-home' : 'image-alt',
+    ]"
   >
-    <div class="hero-body">
-      <div class="container">
-        <h1 role="heading" aria-level="1" class="d-title">
-          {{ title }}
-        </h1>
-        <h2 data-testid="subtitle" class="d-subtitle">
-          {{ subtitle }}
-        </h2>
-        <slot name="button" />
+    <div class="hero-body px-0">
+      <div class="container px-2">
+        <div class="hero-text">
+          <h1 role="heading" aria-level="1" class="d-title">
+            {{ title }}
+          </h1>
+          <h2 data-testid="subtitle" class="d-subtitle">
+            {{ subtitle }}
+          </h2>
+          <slot name="button" />
+        </div>
       </div>
     </div>
   </section>
@@ -39,3 +48,37 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.header-image {
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.image-home {
+  background-image: url('@/assets/ccv-original.jpg');
+
+  .hero-text {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin: 0 -1rem;
+  }
+}
+
+.image-alt {
+  background-image: url('@/assets/bharath-g-s-aLGiPJ4XRO4-unsplash.jpg');
+
+  .hero-text {
+    color: hsla(0, 0, 20%, 0.9);
+    background-color: hsla(0, 0, 100%, 0.2);
+    padding: 1rem;
+    margin: 0 -1rem 0.5rem;
+  }
+}
+
+.subtitle {
+  font-weight: 600;
+}
+</style>

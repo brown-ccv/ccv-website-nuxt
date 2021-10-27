@@ -14,7 +14,6 @@
     <div
       :class="{
         calendar: true,
-        'weekly-calendar': view === 'weekly',
         'bump-margin-top': view === 'upcoming',
       }"
     >
@@ -193,7 +192,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   margin: 0px 0 0;
 }
@@ -212,10 +211,6 @@ a {
 .calendar {
   margin: auto;
   width: 100%;
-}
-.weekly-calendar {
-  width: 87%;
-  margin-left: 5.5%;
 }
 
 .control-row {
@@ -253,6 +248,7 @@ a {
 }
 
 .calendar-container {
+  @extend .container;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

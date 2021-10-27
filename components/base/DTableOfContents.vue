@@ -12,7 +12,7 @@
           :class="[textColor]"
           tabindex="0"
         >
-          <span v-if="entry.icon" class="icon">
+          <span v-if="entry.icon" class="icon mt-2">
             <i :class="['d-toc-icon mdi', `mdi-${entry.icon.name}`]" />
           </span>
           <span class="d-toc-start">
@@ -56,15 +56,16 @@ export default {
 }
 .d-toc-content {
   display: grid;
-  grid-template-columns: 1fr 10fr 10fr 1fr;
+  grid-template-columns: 1fr 20fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 'icon start . end';
+  grid-template-areas: 'icon start end';
   &:hover {
     background-color: hsl(0, 0%, 96%);
   }
 }
 .d-toc-start {
   grid-area: start;
+  padding: 0 1rem;
 }
 .d-toc-end {
   grid-area: end;

@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <DHero
-      variant="primary"
+      variant="black"
       title="Center for Computation & Visualization"
       subtitle="Scientific and technical computing expertise to advance computational research"
       class="is-fullheight"
@@ -10,39 +10,32 @@
         <nuxt-link to="/services/">
           <DButton
             name="Learn about CCV's services"
-            variant="dark"
+            variant="light"
             size="medium"
           />
         </nuxt-link>
         <DButton
           v-scroll-to="'#events'"
           name="Go to Events Calendar"
-          variant="dark"
+          variant="light"
           size="medium"
         />
       </template>
     </DHero>
-    <section class="d-hero is-small">
-      <div class="hero-body">
-        <div class="container">
-          <h1
-            id="events"
-            role="heading"
-            aria-level="1"
-            class="d-calendar-title"
-          >
-            Events
-          </h1>
-        </div>
+    <section class="container px-2 my-6">
+      <div>
+        <h1 id="events" role="heading" aria-level="1" class="d-calendar-title">
+          Events
+        </h1>
       </div>
+      <Calendar
+        v-if="info.length >= 0"
+        :info="info"
+        :upcoming-events="upcomingEvents"
+        class="container pb-4"
+        @month-change="getData"
+      />
     </section>
-    <Calendar
-      v-if="info.length >= 0"
-      :info="info"
-      :upcoming-events="upcomingEvents"
-      class="container pb-4"
-      @month-change="getData"
-    />
   </div>
 </template>
 
