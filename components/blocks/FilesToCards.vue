@@ -43,7 +43,12 @@
             <a
               v-if="link.target.startsWith('http')"
               :href="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -53,7 +58,12 @@
             <a
               v-else-if="link.target.startsWith('mailto')"
               :href="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -63,7 +73,12 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">

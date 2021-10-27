@@ -10,7 +10,7 @@
         :key="'about-section' + i"
         class="content-section"
       >
-        <h2 class="section-title title has-text-white">
+        <h2 class="section-title title has-text-white has-background-success">
           <span
             class="icon is-size-3 mr-3 has-text-white"
             :aria-label="'icon of ' + item.icon"
