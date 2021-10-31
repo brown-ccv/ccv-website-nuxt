@@ -90,7 +90,6 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div>{{ this.data }}</div>
       <div
         class="
           dropdown
@@ -304,7 +303,7 @@ export default {
 }
 
 .link-button {
-  width: 75%;
+  width: 65%;
 }
 </style>
 
