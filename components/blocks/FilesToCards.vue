@@ -90,6 +90,7 @@
       </DCard>
     </div>
     <div v-else class="container">
+      <div>{{ this.data }}</div>
       <div
         class="
           dropdown
@@ -174,11 +175,11 @@
             {{ item.description }}
           </template>
           <template #footer>
-            <section v-if="item.links" class="link-group">
+            <section v-if="Array.isArray(item.links)" class="link-group">
               <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
-                v-for="(link, type) in item.links"
-                :key="type"
+                v-for="link in item.links"
+                :key="link.category"
                 class="
                   m-1
                   link-item
@@ -187,9 +188,9 @@
                   is-size-5
                   link-button
                 "
-                :href="link"
+                :href="link.url"
               >
-                <span>{{ type.toString().toUpperCase() }} </span>
+                <span>{{ link.category.toUpperCase() }} </span>
               </a>
             </section>
           </template>
