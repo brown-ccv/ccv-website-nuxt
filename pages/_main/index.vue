@@ -66,7 +66,8 @@ export default {
       }
     )
       .sortBy('title', 'desc')
-      .fetch();
+      .fetch()
+      .catch(() => []);
 
     return {
       index,
