@@ -50,8 +50,7 @@ export default {
     ).fetch();
 
     // get the content for directories that are only one level deep
-    const data = await $content(`${params.main}`, params.slug, { deep: true })
-      .where({ slug: { $ne: 'README' } })
+    const data = await $content(`${params.main}`, params.slug)
       .sortBy('title', 'desc')
       .fetch();
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>{{ data }}</div>
     <div class="toc-container">
       <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
@@ -13,9 +14,9 @@
         <h2 class="section-title title has-text-white">
           <span
             class="icon mr-3 has-text-white is-size-2"
-            :aria-label="'icon of ' + item.mdi.icon"
+            :aria-label="'icon of ' + item.icon"
           >
-            <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
+            <i :class="[`mdi mdi-${item.icon}`]" />
           </span>
           {{ item.title }}
         </h2>
@@ -117,7 +118,7 @@ export default {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
-          icon: { name: d.mdi.icon, family: 'light' },
+          icon: { name: d.icon, family: 'light' },
         };
       });
     },
