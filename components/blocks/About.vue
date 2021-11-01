@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div>{{ data }}</div>
-    <div class="toc-container">
+     <div class="toc-container">
       <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
     <main class="main-content">
@@ -11,7 +10,7 @@
         :key="'about-section' + i"
         class="content-section"
       >
-        <h2 class="section-title title has-text-white">
+        <h2 class="section-title title has-text-white has-background-success">
           <span
             class="icon mr-3 has-text-white is-size-2"
             :aria-label="'icon of ' + item.icon"
@@ -64,7 +63,7 @@
             variant="white"
             accent="warning"
             width="small"
-            class="mx-1 my-1"
+            class="mx-1 my-1 test"
             :name="person.name"
             :title="person.title"
             :team="person.team"
@@ -114,7 +113,10 @@ export default {
   },
   computed: {
     tocData() {
-      return this.data.map((d, i) => {
+      const ogData = this.data;
+      const SortOrder = ['mission','people','opportunities','facilities','diversity'];
+      const SortedData = ogData.sort(function(a, b){return SortOrder.indexOf(a.slug) - SortOrder.indexOf(b.slug)});
+      return SortedData.map((d, i) => {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
@@ -132,3 +134,8 @@ export default {
 </script>
 
 <!-- see assets/scss/_layout.scss for relevant styles -->
+<style lang="scss" scoped>
+.test{
+  width: 20%;
+}
+</style>
