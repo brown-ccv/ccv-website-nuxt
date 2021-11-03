@@ -40,24 +40,34 @@ export default {
     About: () => import('@/components/blocks/About.vue'),
   },
   async asyncData({ $content, params }) {
-    // get the index files of top content directories.
+    // get the files of top content directories.
     // this provides title and subtitle for banners
-    const index = await $content(params.main, 'index').fetch();
+    const index = await $content(
+      'meta',
+      'main',
+      params.main,
+      params.slug
+    ).fetch();
 
     // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)
-      .where({ slug: { $ne: 'index' } })
       .sortBy('title', 'desc')
       .fetch();
 
-    // for directories that have subdirectories, gather index.yml files
+    // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
-    const list = await $content(`${params.main}`, params.slug, {
-      deep: true,
-    })
-      .where({ path: { $regex: '^/+[^/]+/+[^/]+/+index' } })
+    const list = await $content(
+      'meta',
+      'category',
+      params.main,
+      params.slug,
+      {
+        deep: true,
+      }
+    )
       .sortBy('title', 'desc')
-      .fetch();
+      .fetch()
+      .catch(() => []);
 
     return {
       index,

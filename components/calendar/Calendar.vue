@@ -48,7 +48,7 @@
       />
       <div class="calendar-button">
         <a href="https://events.brown.edu/ccv/all" target="_blank">
-          <DButton name="View All Events" variant="dark" size="medium" />
+          <DButton name="View All Events" variant="link" size="medium" />
         </a>
       </div>
     </div>

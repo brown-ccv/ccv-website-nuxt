@@ -33,25 +33,32 @@ export default {
     },
   },
   async asyncData({ $content, params }) {
-    // get the index files of content subdirectories directories
-    // such as /our-work/software.
+    // get the files of top content directories.
     // this provides title and subtitle for banners
-    const index = await $content(params.main, params.category, 'index').fetch();
+    const index = await $content(
+      'meta',
+      'main',
+      params.main,
+      params.slug
+    ).fetch();
 
-    // get the content for all sub-directories {deep:true}
-    const data = await $content(params.main, params.category, {
-      deep: true,
-    })
-      .where({ slug: { $ne: 'index' } })
+    // get the content for directories that are only one level deep
+    const data = await $content(params.main, params.category, { deep: true })
+      .where({ slug: { $ne: 'README' } })
       .sortBy('title', 'desc')
       .fetch();
 
-    // for directories that have subdirectories, gather index.yml files
+    // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
-    const list = await $content(params.main, params.category, {
-      deep: true,
-    })
-      .where({ path: { $regex: '^/+[^/]+/+[^/]+/+[^/]+/+index' } })
+    const list = await $content(
+      'meta',
+      'category',
+      params.main,
+      params.slug,
+      {
+        deep: true,
+      }
+    )
       .sortBy('title', 'desc')
       .fetch();
 

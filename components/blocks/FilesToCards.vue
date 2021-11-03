@@ -23,8 +23,11 @@
       >
         <template #header>
           <div class="px-5">
-            <span v-if="item.mdi" class="icon is-size-1 has-text-success mb-5">
-              <i :class="[item.mdi.prefix, `mdi-${item.mdi.icon}`]" />
+            <span
+              v-if="item.icon"
+              class="icon is-size-1 has-text-success mb-5 mt-5"
+            >
+              <i :class="[`mdi mdi-${item.icon}`]" />
             </span>
 
             <h2 class="title has-text-black">
@@ -40,7 +43,12 @@
             <a
               v-if="link.target.startsWith('http')"
               :href="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -50,7 +58,12 @@
             <a
               v-else-if="link.target.startsWith('mailto')"
               :href="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -60,7 +73,12 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="d-button is-dark has-text-light mx-5 mb-5"
+              class="m-1
+                  link-item
+                  d-button
+                  has-background-link has-text-white has-text-weight-semibold
+                  is-size-5
+                  link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -159,8 +177,8 @@
             <section v-if="item.links" class="link-group">
               <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
-                v-for="(link, type) in item.links"
-                :key="type"
+                v-for="link in item.links"
+                :key="link.category"
                 class="
                   m-1
                   link-item
@@ -169,9 +187,9 @@
                   is-size-5
                   link-button
                 "
-                :href="link"
+                :href="link.url"
               >
-                <span>{{ type.toUpperCase() }} </span>
+                <span>{{ link.category.toUpperCase() }} </span>
               </a>
             </section>
           </template>
@@ -285,7 +303,7 @@ export default {
 }
 
 .link-button {
-  width: 75%;
+  width: 65%;
 }
 </style>
 
