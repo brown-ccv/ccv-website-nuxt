@@ -45,7 +45,7 @@ export default {
     const index = await $content(
       'meta',
       'main',
-      `${params.main}`,
+      params.main,
       params.slug
     ).fetch();
 
@@ -59,7 +59,7 @@ export default {
     const list = await $content(
       'meta',
       'category',
-      `${params.main}`,
+      params.main,
       params.slug,
       {
         deep: true,

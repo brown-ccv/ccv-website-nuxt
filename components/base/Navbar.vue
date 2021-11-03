@@ -103,11 +103,29 @@
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <nuxt-link
+                to="/our-work/collaborations"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Collaborations
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
                 to="/our-work/software"
                 tabindex="0"
                 @click.native="handleClick"
               >
                 Software
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/our-work/workshops-and-talks"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Workshops and Talks
               </nuxt-link>
             </div>
             <div class="navbar-item">
@@ -118,15 +136,6 @@
               >
                 Publications
               </a>
-            </div>
-            <div class="navbar-item">
-              <nuxt-link
-                to="/our-work/workshops-and-talks"
-                tabindex="0"
-                @click.native="handleClick"
-              >
-                Workshops and Talks
-              </nuxt-link>
             </div>
           </div>
         </div>

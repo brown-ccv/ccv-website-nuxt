@@ -63,7 +63,7 @@
             variant="white"
             accent="warning"
             width="small"
-            class="mx-1 my-1 test"
+            class="mx-1 my-1"
             :name="person.name"
             :title="person.title"
             :team="person.team"
@@ -114,9 +114,9 @@ export default {
   computed: {
     tocData() {
       const ogData = this.data;
-      const SortOrder = ['mission','people','opportunities','facilities','diversity'];
-      const SortedData = ogData.sort(function(a, b){return SortOrder.indexOf(a.slug) - SortOrder.indexOf(b.slug)});
-      return SortedData.map((d, i) => {
+      const sortOrder = ['mission','people','opportunities','facilities','diversity'];
+      const sortedData = ogData.sort(function(a, b){return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug)});
+      return sortedData.map((d, i) => {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
@@ -134,8 +134,3 @@ export default {
 </script>
 
 <!-- see assets/scss/_layout.scss for relevant styles -->
-<style lang="scss" scoped>
-.test{
-  width: 20%;
-}
-</style>

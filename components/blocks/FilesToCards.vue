@@ -174,7 +174,7 @@
             {{ item.description }}
           </template>
           <template #footer>
-            <section v-if="Array.isArray(item.links)" class="link-group">
+            <section v-if="item.links" class="link-group">
               <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
                 v-for="link in item.links"
