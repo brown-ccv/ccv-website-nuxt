@@ -151,24 +151,39 @@
           width="medium"
         >
           <template #header>
-            <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-              ><abbr :title="item.group | expandAcronym">
-                {{ item.group }}
+            <span v-if="item.tags"
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.tags" :key="tag" :title="tag | expandAcronym">
+                {{ tag }}
               </abbr></span
             >
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <span v-if="item.authors" class="subtitle has-text-black"
-              ><i class="mdi mdi-account-multiple p-1 m-1"></i>
-              <span v-for="(author, index) in item.authors" :key="author.name"
-                ><a
-                  v-if="author.github_user"
-                  :href="'https://github.com/' + author.github_user"
-                  >{{ author.name }}</a
-                >{{ author.github_user ? '' : author.name
-                }}<span v-if="index + 1 < item.authors.length">, </span>
+            <div>
+              <span v-if="item.people" class="subtitle has-text-black"
+                ><div><i class="mdi mdi-account-multiple p-1 m-1"></i></div>
+                <span v-for="(author, index) in item.people" :key="author.name"
+                  ><a
+                    v-if="author.github_user"
+                    :href="'https://github.com/' + author.github_user"
+                    >{{ author.name }}</a
+                  >{{ author.github_user ? '' : author.name
+                  }}<span v-if="index + 1 < item.people.length">, </span>
+                </span>
               </span>
-            </span>
+            </div>
+            <div>
+              <span v-if="item.investigators" class="subtitle has-text-black"
+                ><div><i class="mdi mdi-account-search p-1 m-1"></i></div>
+                <span v-for="(author, index) in item.investigators" :key="author.name"
+                  ><a
+                    v-if="author.link"
+                    :href="author.link"
+                    >{{ author.name }}</a
+                  >{{ author.link ? '' : author.name
+                  }}<span v-if="index + 1 < item.investigators.length">, </span>
+                </span>
+              </span>
+            </div>
           </template>
           <template #content>
             {{ item.description }}
@@ -221,9 +236,10 @@ export default {
   }),
   computed: {
     cardTags() {
-      const tags = this.data.map((card) => card.group);
+      let tags = this.data.map((card) => card.tags);
+      tags = tags.flat()
       return tags
-        .filter((group, index) => tags.indexOf(group) === index)
+        .filter((tag, index) => tags.indexOf(tag) === index)
         .sort();
     },
     sortByOptions() {
@@ -245,7 +261,8 @@ export default {
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           if (this.searchGroup) {
-            return this.searchGroup.includes(card.group);
+            // return this.searchGroup.includes(card.tags);
+            return this.searchGroup.some(r => card.tags.includes(r) >= 0)
           } else {
             return true;
           }
