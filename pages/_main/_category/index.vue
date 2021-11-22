@@ -57,7 +57,7 @@ export default {
     // get the content for directories that are only one level deep
     const data = await $content(params.main, params.category, { deep: true })
       .where({ slug: { $ne: 'README' } })
-      .sortBy('title')
+      .sortBy('title', 'asc')
       .fetch();
 
     // for directories that have subdirectories, gather files
@@ -71,7 +71,7 @@ export default {
         deep: true,
       }
     )
-      .sortBy('title')
+      .sortBy('title', 'asc')
       .fetch();
 
     return {

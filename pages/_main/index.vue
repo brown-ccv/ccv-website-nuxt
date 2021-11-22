@@ -51,7 +51,7 @@ export default {
 
     // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)
-      .sortBy('title')
+      .sortBy('title', 'asc')
       .fetch();
 
     // for directories that have subdirectories, gather files
@@ -65,7 +65,7 @@ export default {
         deep: true,
       }
     )
-      .sortBy('title')
+      .sortBy('title', 'asc')
       .fetch()
       .catch(() => []);
 

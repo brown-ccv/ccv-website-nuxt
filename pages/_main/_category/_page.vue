@@ -35,7 +35,7 @@ export default {
   },
   async asyncData({ $content, params }) {
     const data = await $content(params.main, params.category, params.page)
-      .sortBy('title')
+      .sortBy('title', 'asc')
       .fetch();
 
     return {
