@@ -4,7 +4,7 @@
     <DHero
       variant="light"
       :title="$route.params.category | humanize"
-      :subtitle="index.description"
+      :subtitle="list.find(x => x.slug === $route.params.category).description"
     >
     </DHero>
     <FilesToCards v-if="$route.params.main === 'our-work'" :data="data" />
