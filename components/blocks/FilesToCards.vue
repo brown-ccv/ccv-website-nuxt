@@ -151,10 +151,20 @@
           width="medium"
         >
           <template #header>
-            <span v-if="item.tags"
+            <div v-if="item.tags"
               ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.tags" :key="tag" :title="tag | expandAcronym">
                 {{ tag }}
-              </abbr></span
+              </abbr></div
+            >
+            <div v-if="item.groups"
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.groups" :key="tag" :title="tag | expandAcronym">
+                {{ tag }}
+              </abbr></div
+            >
+            <div v-if="item.languages"
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.languages" :key="tag" :title="tag | expandAcronym">
+                {{ tag }}
+              </abbr></div
             >
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
@@ -237,7 +247,9 @@ export default {
   computed: {
     cardTags() {
       let tags = this.data.map((card) => card.tags);
-      tags = tags.flat()
+      const groups = this.data.map((card) => card.groups);
+      const languages = this.data.map((card) => card.languages);
+      tags = tags.concat(groups, languages).flat()
       return tags
         .filter((tag, index) => tags.indexOf(tag) === index)
         .sort();
@@ -259,10 +271,9 @@ export default {
     sortedArray() {
       let filtered = this.filteredData;
       if (this.searchGroup.length > 0) {
-        filtered = filtered.filter((card) => {
+        filtered = filtered.filter(() => {
           if (this.searchGroup) {
-            // return this.searchGroup.includes(card.tags);
-            return this.searchGroup.some(r => card.tags.includes(r) >= 0)
+            return this.searchGroup.some(r => this.cardTags.includes(r))
           } else {
             return true;
           }
