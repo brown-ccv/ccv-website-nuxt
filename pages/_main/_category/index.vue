@@ -6,6 +6,18 @@
       :title="$route.params.category | humanize"
       :subtitle="list.find(x => x.slug === $route.params.category).description"
     >
+      <!-- Add a button to the Hero when index.yml includes call for action -->
+      <template v-if="list.find(x => x.slug === $route.params.category)['call-for-action']" #button>
+        <nuxt-link
+          class="d-button is-warning has-text-dark"
+          :to="list.find(x => x.slug === $route.params.category)['call-for-action'].href"
+        >
+          {{ list.find(x => x.slug === $route.params.category)['call-for-action'].text.toUpperCase() }}
+          <span class="icon ml-2">
+            <i class="mdi mdi-menu-right" />
+          </span>
+        </nuxt-link>
+      </template>
     </DHero>
     <FilesToCards v-if="$route.params.main === 'our-work'" :data="data" />
     <!-- This is for directories containing markdown files -->
