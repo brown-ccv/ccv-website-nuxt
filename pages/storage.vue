@@ -6,7 +6,7 @@
       :subtitle="index.description"
     />
     <div class="storage-header py-6 px-2">
-      <h2>{{ index.storage_tool_header }}</h2>
+      <h2>{{ tool.storage_tool_header }}</h2>
       <span>
         <DButton
           type="button"
@@ -121,19 +121,23 @@ export default {
   },
   async asyncData({ $content }) {
     const index = await $content(
-      'services/file-storage-and-transfer/index'
+      'meta', 'category', 'services', 'file-storage-and-transfer'
+    );
+
+    const tool = await $content(
+      'storage-tool'
     ).fetch();
-    index.services.forEach((service) =>
+    tool.services.forEach((service) =>
       service.features.sort((a, b) =>
         a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
       )
     );
 
-    const answers = index.questions.map((q) =>
+    const answers = tool.questions.map((q) =>
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { index, answers };
+    return { index, tool, answers };
   },
   data() {
     return {
