@@ -122,7 +122,7 @@ export default {
   async asyncData({ $content }) {
     const index = await $content(
       'meta', 'category', 'services', 'file-storage-and-transfer'
-    );
+    ).fetch();
 
     const tool = await $content(
       'storage-tool'
@@ -147,7 +147,7 @@ export default {
   computed: {
     services: {
       get() {
-        return this.index.services;
+        return this.tool.services;
       },
       set(newVal, oldVal) {
         return newVal;
@@ -157,7 +157,7 @@ export default {
       return this.services[0].features.map((feat) => feat.name);
     },
     questions() {
-      return this.index.questions;
+      return this.tool.questions;
     },
     matchingServices() {
       return this.services.map((service) => {
@@ -209,7 +209,7 @@ export default {
       this.updateAnswer({ answer, id });
     },
     resetAll() {
-      this.answers = this.index.questions.map((q) =>
+      this.answers = this.tool.questions.map((q) =>
         q.answers.find((answer) => answer.answer === q.default_answer)
       );
       this.selectedServices = [...this.matchingServices];
