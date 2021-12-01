@@ -63,9 +63,11 @@ export default {
   },
   filters: {
     humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
+      if (typeof str !== 'undefined') {
+        const cleanStr = str.replace(/_/g, ' ');
+        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
+        return upperFirst;
+      }
     },
   },
   props: {

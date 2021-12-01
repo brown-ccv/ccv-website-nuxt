@@ -16,7 +16,7 @@
       class="mx-3 my-3 px-3"
     >
       <template #header>
-        <h2 class="title is-size-4">{{ service.service | humanize }}</h2>
+        <h2 class="title is-size-4">{{ service.service }}</h2>
       </template>
 
       <template #content>
@@ -28,7 +28,7 @@
                 is-flex is-justify-content-space-between is-align-items-center
               "
             >
-              <p>{{ feature.name | humanize }}</p>
+              <p>{{ feature.name }}</p>
               <ComparisonCellContent
                 :feature="feature"
                 :icon-size="6"
