@@ -152,20 +152,23 @@
         >
           <template #header>
             <div v-if="item.tags"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.tags" :key="tag" :title="tag | expandAcronym">
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.tags" :key="tag" :title="tag">
                 {{ tag }}
               </abbr></div
             >
             <div v-if="item.groups"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.groups" :key="tag" :title="tag | expandAcronym">
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.groups" :key="tag" :title="tag">
                 {{ tag }}
               </abbr></div
             >
             <div v-if="item.languages"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.languages" :key="tag" :title="tag | expandAcronym">
+              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.languages" :key="tag" :title="tag">
                 {{ tag }}
               </abbr></div
             >
+            <!-- <abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in cardTags" :key="tag" :title="tag">
+                {{ tag }}
+              </abbr> -->
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <div>
@@ -249,7 +252,7 @@ export default {
       let tags = this.data.map((card) => card.tags);
       const groups = this.data.map((card) => card.groups);
       const languages = this.data.map((card) => card.languages);
-      tags = tags.concat(groups, languages).flat()
+      tags = tags.concat(groups, languages).flat().filter(e => e)
       return tags
         .filter((tag, index) => tags.indexOf(tag) === index)
         .sort();

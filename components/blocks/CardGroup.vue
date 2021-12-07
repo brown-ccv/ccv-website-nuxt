@@ -11,7 +11,7 @@
         <template #header>
           <span v-if="item.group" class="radius-0 tag is-link has-text-light"
             ><span class="icon"><i class="mdi mdi-account-multiple" /></span
-            ><abbr :title="item.group | expandAcronym">
+            ><abbr :title="expandAcronym(item.group)">
               {{ item.group }}
             </abbr></span
           >
@@ -80,7 +80,7 @@ export default {
   components: {
     DCard,
   },
-  filters: {
+  methods: {
     expandAcronym(str) {
       const abbrMap = {
         CBC: 'Computational Biology Core',
