@@ -274,9 +274,9 @@ export default {
     sortedArray() {
       let filtered = this.filteredData;
       if (this.searchGroup.length > 0) {
-        filtered = filtered.filter(() => {
+        filtered = filtered.filter((card) => {
           if (this.searchGroup) {
-            return this.searchGroup.some(r => this.cardTags.includes(r))
+            return this.searchGroup.some(tag => ['tags', 'groups', 'languages'].some((tagType) => card[tagType].includes(tag)))
           } else {
             return true;
           }

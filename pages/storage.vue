@@ -2,8 +2,8 @@
   <div>
     <DHero
       variant="primary"
-      :title="index.title"
-      :subtitle="index.description"
+      :title="tool.title"
+      :subtitle="tool.description"
     />
     <div class="storage-header py-6 px-2">
       <h2>{{ tool.storage_tool_header }}</h2>
@@ -113,10 +113,6 @@ export default {
     ComparisonCards,
   },
   async asyncData({ $content }) {
-    const index = await $content(
-      'meta', 'category', 'services', 'file-storage-and-transfer'
-    ).fetch();
-
     const tool = await $content(
       'storage-tool'
     ).fetch();
@@ -130,7 +126,7 @@ export default {
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { index, tool, answers };
+    return { tool, answers };
   },
   data() {
     return {
