@@ -112,13 +112,6 @@ export default {
     ComparisonTable,
     ComparisonCards,
   },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
-  },
   async asyncData({ $content }) {
     const index = await $content(
       'meta', 'category', 'services', 'file-storage-and-transfer'

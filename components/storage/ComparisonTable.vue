@@ -9,14 +9,14 @@
             :key="'header-' + service.service"
             class="header-cell"
           >
-            {{ service.service | humanize }}
+            {{ humanize(service.service) }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(category, ind) in categories" :key="'row-' + category">
           <th class="header-cell has-background-dark sticky-left">
-            {{ category | humanize }}
+            {{ humanize(category) }}
           </th>
           <td
             v-for="(service, index) in services"
@@ -41,15 +41,6 @@ import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vu
 export default {
   components: {
     ComparisonCellContent,
-  },
-  filters: {
-    humanize(str) {
-      if (typeof str !== 'undefined') {
-        const cleanStr = str.replace(/_/g, ' ');
-        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-        return upperFirst;
-      }   
-    },
   },
   props: {
     services: {

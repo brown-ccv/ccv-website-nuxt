@@ -2,8 +2,8 @@
   <div>
     <DHero
       variant="light"
-      :title="$route.params.page | humanize"
-      :subtitle="$route.params.category | humanize"
+      :title="humanizeHero($route.params.page)"
+      :subtitle="humanizeHero($route.params.category)"
     >
     </DHero>
     <main class="content-wrapper mt-6">
@@ -24,8 +24,8 @@ export default {
   components: {
     DHero,
   },
-  filters: {
-    humanize(str) {
+  methods: {
+    humanizeHero(str) {
       const cleanStr = str.split('-');
       const upperFirst = cleanStr.map(
         (str) => str.charAt(0).toUpperCase() + str.slice(1)

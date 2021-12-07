@@ -3,7 +3,7 @@
   <div>
     <DHero
       variant="light"
-      :title="$route.params.category | humanize"
+      :title="humanize($route.params.category)"
       :subtitle="list.find(x => x.slug === $route.params.category).description"
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
@@ -35,14 +35,18 @@ export default {
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
   },
   filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
     },
+  },
+  methods: {
+    humanize(str) {
+      if (typeof str === 'string') {
+        const cleanStr = str.replace(/_/g, ' ');
+        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
+        return upperFirst;
+      }
+    }
   },
   async asyncData({ $content, params }) {
     // get the files of top content directories.

@@ -22,7 +22,6 @@
       <template #content>
         <ul class="has-text-left">
           <li v-for="(feature, k) in service.features" :key="k">
-            <!-- {{ feature.name | humanize }} -->
             <div
               class="
                 is-flex is-justify-content-space-between is-align-items-center
@@ -53,13 +52,6 @@ export default {
   components: {
     DCard,
     ComparisonCellContent,
-  },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
   },
   props: {
     services: {

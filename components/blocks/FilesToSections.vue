@@ -38,11 +38,6 @@ export default {
     DTOC,
   },
   filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
     },
@@ -67,11 +62,6 @@ export default {
   methods: {
     urlize(str) {
       return str.toLowerCase().replace(/ /g, '-');
-    },
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
     },
   },
 };

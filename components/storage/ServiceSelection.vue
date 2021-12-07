@@ -28,7 +28,7 @@
             ]"
         /></span>
       </button>
-      <p class="is-size-5 has-text-bold">{{ s.service | humanize }}</p>
+      <p class="is-size-5 has-text-bold">{{ humanize(s.service) }}</p>
       <span class="icon is-clickable" @click="toggleShowModal(s)"
         ><i class="mdi mdi-information"
       /></span>
@@ -45,7 +45,7 @@
       <template #content>
         <div class="content">
           <h2 class="title">
-            {{ modalData.service | humanize }}
+            {{ humanize(modalData.service) }}
           </h2>
           <p v-html="$md.render(modalData.description || '')" />
         </div>
@@ -60,15 +60,6 @@ import DModal from '@/components/base/DModal.vue';
 export default {
   components: {
     DModal,
-  },
-  filters: {
-    humanize(str) {
-      if (typeof str !== 'undefined') {
-        const cleanStr = str.replace(/_/g, ' ');
-        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-        return upperFirst;
-      }
-    },
   },
   props: {
     services: {
