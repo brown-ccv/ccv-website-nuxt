@@ -1,10 +1,6 @@
 <template>
   <div>
-    <DHero
-      variant="primary"
-      :title="tool.title"
-      :subtitle="tool.description"
-    />
+    <DHero variant="primary" :title="tool.title" :subtitle="tool.description" />
     <div class="storage-header py-6 px-2">
       <h2>{{ tool.storage_tool_header }}</h2>
       <span>
@@ -113,9 +109,7 @@ export default {
     ComparisonCards,
   },
   async asyncData({ $content }) {
-    const tool = await $content(
-      'storage-tool'
-    ).fetch();
+    const tool = await $content('storage-tool').fetch();
     tool.services.forEach((service) =>
       service.features.sort((a, b) =>
         a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1

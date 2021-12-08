@@ -1,6 +1,6 @@
 <template>
   <div>
-     <div class="toc-container">
+    <div class="toc-container">
       <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
     <main class="main-content">
@@ -114,8 +114,16 @@ export default {
   computed: {
     tocData() {
       const ogData = this.data;
-      const sortOrder = ['mission','people','opportunities','facilities','diversity'];
-      const sortedData = ogData.sort(function(a, b){return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug)});
+      const sortOrder = [
+        'mission',
+        'people',
+        'opportunities',
+        'facilities',
+        'diversity',
+      ];
+      const sortedData = ogData.sort(function (a, b) {
+        return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
+      });
       return sortedData.map((d, i) => {
         return {
           name: d.title,

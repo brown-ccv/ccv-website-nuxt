@@ -95,7 +95,7 @@ export default {
         const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
         return upperFirst;
       }
-    }
+    },
   },
 };
 </script>

@@ -23,13 +23,10 @@ export default {
   components: {
     DHero,
   },
-  async asyncData({ $content}) {
+  async asyncData({ $content }) {
+    const index = await $content('rates').fetch();
 
-    const index = await $content(
-      'rates'
-    ).fetch();
-
-    return { index};
+    return { index };
   },
 };
 </script>

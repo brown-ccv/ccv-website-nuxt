@@ -43,12 +43,14 @@
             <a
               v-if="link.target.startsWith('http')"
               :href="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
+              class="
+                m-1
+                link-item
+                d-button
+                has-background-link has-text-white has-text-weight-semibold
+                is-size-5
+                link-button
+              "
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -58,12 +60,14 @@
             <a
               v-else-if="link.target.startsWith('mailto')"
               :href="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
+              class="
+                m-1
+                link-item
+                d-button
+                has-background-link has-text-white has-text-weight-semibold
+                is-size-5
+                link-button
+              "
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -73,12 +77,14 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
+              class="
+                m-1
+                link-item
+                d-button
+                has-background-link has-text-white has-text-weight-semibold
+                is-size-5
+                link-button
+              "
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -151,24 +157,36 @@
           width="medium"
         >
           <template #header>
-            <div v-if="item.tags"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.tags" :key="tag" :title="tag">
+            <div v-if="item.tags">
+              <abbr
+                v-for="tag in item.tags"
+                :key="tag"
+                class="radius-0 tag is-link has-text-light m-1"
+                :title="tag"
+              >
                 {{ tag }}
-              </abbr></div
-            >
-            <div v-if="item.groups"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.groups" :key="tag" :title="tag">
+              </abbr>
+            </div>
+            <div v-if="item.groups">
+              <abbr
+                v-for="tag in item.groups"
+                :key="tag"
+                class="radius-0 tag is-yellow has-text-dark m-1"
+                :title="tag"
+              >
                 {{ tag }}
-              </abbr></div
-            >
-            <div v-if="item.languages"
-              ><abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in item.languages" :key="tag" :title="tag">
+              </abbr>
+            </div>
+            <div v-if="item.languages">
+              <abbr
+                v-for="tag in item.languages"
+                :key="tag"
+                class="radius-0 tag is-info has-text-dark m-1"
+                :title="tag"
+              >
                 {{ tag }}
-              </abbr></div
-            >
-            <!-- <abbr class="radius-0 tag is-link has-text-light m-1" v-for="tag in cardTags" :key="tag" :title="tag">
-                {{ tag }}
-              </abbr> -->
+              </abbr>
+            </div>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <div>
@@ -187,11 +205,12 @@
             <div>
               <span v-if="item.investigators" class="subtitle has-text-black"
                 ><div><i class="mdi mdi-account-search p-1 m-1"></i></div>
-                <span v-for="(author, index) in item.investigators" :key="author.name"
-                  ><a
-                    v-if="author.link"
-                    :href="author.link"
-                    >{{ author.name }}</a
+                <span
+                  v-for="(author, index) in item.investigators"
+                  :key="author.name"
+                  ><a v-if="author.link" :href="author.link">{{
+                    author.name
+                  }}</a
                   >{{ author.link ? '' : author.name
                   }}<span v-if="index + 1 < item.investigators.length">, </span>
                 </span>
@@ -252,10 +271,11 @@ export default {
       let tags = this.data.map((card) => card.tags);
       const groups = this.data.map((card) => card.groups);
       const languages = this.data.map((card) => card.languages);
-      tags = tags.concat(groups, languages).flat().filter(e => e)
-      return tags
-        .filter((tag, index) => tags.indexOf(tag) === index)
-        .sort();
+      tags = tags
+        .concat(groups, languages)
+        .flat()
+        .filter((e) => e);
+      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
     },
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
@@ -276,7 +296,11 @@ export default {
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           if (this.searchGroup) {
-            return this.searchGroup.some(tag => ['tags', 'groups', 'languages'].some((tagType) => card[tagType].includes(tag)))
+            return this.searchGroup.some((tag) =>
+              ['tags', 'groups', 'languages'].some((tagType) =>
+                card[tagType].includes(tag)
+              )
+            );
           } else {
             return true;
           }

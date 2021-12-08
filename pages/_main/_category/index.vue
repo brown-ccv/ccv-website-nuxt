@@ -4,15 +4,30 @@
     <DHero
       variant="light"
       :title="humanize($route.params.category)"
-      :subtitle="list.find(x => x.slug === $route.params.category).description"
+      :subtitle="
+        list.find((x) => x.slug === $route.params.category).description
+      "
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
-      <template v-if="list.find(x => x.slug === $route.params.category)['call-for-action']" #button>
+      <template
+        v-if="
+          list.find((x) => x.slug === $route.params.category)['call-for-action']
+        "
+        #button
+      >
         <nuxt-link
           class="d-button is-warning has-text-dark"
-          :to="list.find(x => x.slug === $route.params.category)['call-for-action'].href"
+          :to="
+            list.find((x) => x.slug === $route.params.category)[
+              'call-for-action'
+            ].href
+          "
         >
-          {{ list.find(x => x.slug === $route.params.category)['call-for-action'].text.toUpperCase() }}
+          {{
+            list
+              .find((x) => x.slug === $route.params.category)
+              ['call-for-action'].text.toUpperCase()
+          }}
           <span class="icon ml-2">
             <i class="mdi mdi-menu-right" />
           </span>
@@ -39,15 +54,6 @@ export default {
       return str.toLowerCase().replace(/ /g, '-');
     },
   },
-  methods: {
-    humanize(str) {
-      if (typeof str === 'string') {
-        const cleanStr = str.replace(/_/g, ' ');
-        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-        return upperFirst;
-      }
-    }
-  },
   async asyncData({ $content, params }) {
     // get the files of top content directories.
     // this provides title and subtitle for banners
@@ -66,15 +72,9 @@ export default {
 
     // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
-    const list = await $content(
-      'meta',
-      'category',
-      params.main,
-      params.slug,
-      {
-        deep: true,
-      }
-    )
+    const list = await $content('meta', 'category', params.main, params.slug, {
+      deep: true,
+    })
       .sortBy('title', 'asc')
       .fetch();
 
@@ -83,6 +83,15 @@ export default {
       data,
       list,
     };
+  },
+  methods: {
+    humanize(str) {
+      if (typeof str === 'string') {
+        const cleanStr = str.replace(/_/g, ' ');
+        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
+        return upperFirst;
+      }
+    },
   },
 };
 </script>

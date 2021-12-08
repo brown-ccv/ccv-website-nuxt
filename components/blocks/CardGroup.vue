@@ -80,6 +80,12 @@ export default {
   components: {
     DCard,
   },
+  props: {
+    data: {
+      type: Array,
+      required: true,
+    },
+  },
   methods: {
     expandAcronym(str) {
       const abbrMap = {
@@ -88,12 +94,6 @@ export default {
         DSCOV: 'Data Science, Computing and Visualization Series',
       };
       return abbrMap[str];
-    },
-  },
-  props: {
-    data: {
-      type: Array,
-      required: true,
     },
   },
 };

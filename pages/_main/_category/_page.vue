@@ -24,15 +24,6 @@ export default {
   components: {
     DHero,
   },
-  methods: {
-    humanizeHero(str) {
-      const cleanStr = str.split('-');
-      const upperFirst = cleanStr.map(
-        (str) => str.charAt(0).toUpperCase() + str.slice(1)
-      );
-      return upperFirst.join(' ');
-    },
-  },
   async asyncData({ $content, params }) {
     const data = await $content(params.main, params.category, params.page)
       .sortBy('title', 'asc')
@@ -41,6 +32,15 @@ export default {
     return {
       data,
     };
+  },
+  methods: {
+    humanizeHero(str) {
+      const cleanStr = str.split('-');
+      const upperFirst = cleanStr.map(
+        (str) => str.charAt(0).toUpperCase() + str.slice(1)
+      );
+      return upperFirst.join(' ');
+    },
   },
 };
 </script>
