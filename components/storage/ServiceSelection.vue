@@ -2,8 +2,8 @@
   <div class="service-selection px-2">
     <div
       v-for="(s, i) in services"
-      :id="'field' + s.service + i"
-      :key="'field' + s.service + i"
+      :id="'field' + s.name + i"
+      :key="'field' + s.name + i"
       class="field service-box my-1 p-4"
       :class="[
         matchingServices[i] ? 'has-background-info' : 'has-background-light',
@@ -28,7 +28,7 @@
             ]"
         /></span>
       </button>
-      <p class="is-size-5 has-text-bold">{{ humanize(s.service) }}</p>
+      <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
       <span class="icon is-clickable" @click="toggleShowModal(s)"
         ><i class="mdi mdi-information"
       /></span>

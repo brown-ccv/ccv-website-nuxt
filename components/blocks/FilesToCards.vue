@@ -157,54 +157,26 @@
           width="medium"
         >
           <template #header>
-            <div v-if="item.tags">
-              <abbr
-                v-for="tag in item.tags"
-                :key="tag"
-                class="radius-0 tag is-link has-text-light m-1"
-                :title="tag"
-              >
+            <span v-if="item.tags" class="m-0">
+              <span v-for="tag in item.tags" :key=tag class="radius-0 tag is-link has-text-light m-1">
                 {{ tag }}
-              </abbr>
-            </div>
-            <div v-if="item.groups">
-              <abbr
-                v-for="tag in item.groups"
-                :key="tag"
-                class="radius-0 tag is-yellow has-text-dark m-1"
-                :title="tag"
-              >
+              </span>
+            </span>
+            <span v-if="item.groups" class="m-0">
+              <span v-for="tag in item.groups" :key=tag class="radius-0 tag is-yellow has-text-black m-1">
                 {{ tag }}
-              </abbr>
-            </div>
-            <div v-if="item.languages">
-              <abbr
-                v-for="tag in item.languages"
-                :key="tag"
-                class="radius-0 tag is-info has-text-dark m-1"
-                :title="tag"
-              >
+              </span>
+            </span>
+            <span v-if="item.languages" class="m-0">
+              <span v-for="tag in item.languages" :key=tag class="radius-0 tag is-info has-text-black m-1">
                 {{ tag }}
-              </abbr>
-            </div>
+              </span>
+            </span>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <div>
-              <span v-if="item.people" class="subtitle has-text-black"
-                ><div><i class="mdi mdi-account-multiple p-1 m-1"></i></div>
-                <span v-for="(author, index) in item.people" :key="author.name"
-                  ><a
-                    v-if="author.github_user"
-                    :href="'https://github.com/' + author.github_user"
-                    >{{ author.name }}</a
-                  >{{ author.github_user ? '' : author.name
-                  }}<span v-if="index + 1 < item.people.length">, </span>
-                </span>
-              </span>
-            </div>
-            <div>
-              <span v-if="item.investigators" class="subtitle has-text-black"
-                ><div><i class="mdi mdi-account-search p-1 m-1"></i></div>
+            <div v-if="item.investigators" >
+              <span class="subtitle has-text-black"
+                ><div><i class="mdi mdi-brain p-1 m-1"></i></div>
                 <span
                   v-for="(author, index) in item.investigators"
                   :key="author.name"
@@ -213,6 +185,19 @@
                   }}</a
                   >{{ author.link ? '' : author.name
                   }}<span v-if="index + 1 < item.investigators.length">, </span>
+                </span>
+              </span>
+            </div>
+            <div v-if="item.people" >
+              <span class="subtitle has-text-black"
+                ><div><i class="mdi mdi-account-multiple p-1 m-1"></i></div>
+                <span v-for="(author, index) in item.people" :key="author.name"
+                  ><a
+                    v-if="author.github_user"
+                    :href="'https://github.com/' + author.github_user"
+                    >{{ author.name }}</a
+                  >{{ author.github_user ? '' : author.name
+                  }}<span v-if="index + 1 < item.people.length">, </span>
                 </span>
               </span>
             </div>
