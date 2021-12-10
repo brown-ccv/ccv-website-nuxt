@@ -157,18 +157,8 @@
           width="medium"
         >
           <template #header>
-            <span v-if="item.tags" class="m-0">
-              <span v-for="tag in item.tags" :key=tag class="radius-0 tag is-link has-text-light m-1">
-                {{ tag }}
-              </span>
-            </span>
-            <span v-if="item.groups" class="m-0">
-              <span v-for="tag in item.groups" :key=tag class="radius-0 tag is-yellow has-text-black m-1">
-                {{ tag }}
-              </span>
-            </span>
-            <span v-if="item.languages" class="m-0">
-              <span v-for="tag in item.languages" :key=tag class="radius-0 tag is-info has-text-black m-1">
+            <span v-for="tagArray in subsetCardTags[i]" :key=tagArray>
+              <span v-for="tag in tagArray" :key=tag class="radius-0 tag m-1" :class="tagColors[cardColors[tag]]">
                 {{ tag }}
               </span>
             </span>
@@ -250,6 +240,7 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
+    tagColors: {'tags': 'is-link', 'groups': 'is-yellow', 'languages': 'is-info'}
   }),
   computed: {
     cardTags() {
@@ -275,6 +266,20 @@ export default {
     },
     filteredData() {
       return this.data.filter((d) => !d.hidden);
+    },
+    cardColors() {
+      const tags = this.filteredData.map((card) => card.tags).flat();
+      const groups = this.filteredData.map((card) => card.groups).flat();
+      const languages = this.filteredData.map((card) => card.languages).flat();
+      let tagsObject = tags.reduce(function(obj, v) {obj[v] = 'tags'; return obj;}, {})
+      const groupsObject = groups.reduce(function(obj, v) {obj[v] = 'groups'; return obj;}, {})
+      const languagesObject = languages.reduce(function(obj, v) {obj[v] = 'languages'; return obj;}, {})
+      tagsObject = {
+        ...tagsObject,
+        ...groupsObject,
+        ...languagesObject
+      }
+      return tagsObject;
     },
     sortedArray() {
       let filtered = this.filteredData;
@@ -318,6 +323,11 @@ export default {
       }
 
       return filtered;
+    },
+    subsetCardTags() {
+      const subset = [];
+      for (let i=0; i < this.sortedArray.length; i++) {subset.push((({tags, groups, languages}) => ({tags, groups, languages}))(this.sortedArray[i]))}
+      return subset
     },
   },
   methods: {
