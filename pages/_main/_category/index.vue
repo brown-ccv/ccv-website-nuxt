@@ -5,20 +5,20 @@
       variant="light"
       :title="humanize($route.params.category)"
       :subtitle="
-        list.find((x) => x.slug === $route.params.category).description
+        lookup.description
       "
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
       <template
         v-if="
-          list.find((x) => x.slug === $route.params.category)['call-for-action']
+          lookup['call-for-action']
         "
         #button
       >
         <nuxt-link
           class="d-button is-warning has-text-dark"
           :to="
-            list.find((x) => x.slug === $route.params.category)[
+            lookup[
               'call-for-action'
             ].href
           "
@@ -42,6 +42,8 @@
 
 <script>
 import DHero from '@/components/base/DHero.vue';
+import urlize from '@/utils';
+import humanize from '@/utils';
 
 export default {
   components: {
@@ -84,14 +86,13 @@ export default {
       list,
     };
   },
+  computed: {
+    lookup() {
+      return this.list.find((x) => x.slug === this.$route.params.category)
+    }
+  },
   methods: {
-    humanize(str) {
-      if (typeof str === 'string') {
-        const cleanStr = str.replace(/_/g, ' ');
-        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-        return upperFirst;
-      }
-    },
+    humanize, urlize
   },
 };
 </script>

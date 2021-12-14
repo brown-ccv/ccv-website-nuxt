@@ -26,6 +26,10 @@ export function humanize(str) {
   }
 }
 
+export function urlize(str) {
+  return str.toLowerCase().replace(/ /g, '-');
+}
+
 //
 // Calendar Utils
 //

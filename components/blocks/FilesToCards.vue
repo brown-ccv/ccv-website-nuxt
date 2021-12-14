@@ -41,24 +41,7 @@
         <template #footer>
           <div v-for="link in item.links" :key="link.text">
             <a
-              v-if="link.target.startsWith('http')"
-              :href="link.target"
-              class="
-                m-1
-                link-item
-                d-button
-                has-background-link has-text-white has-text-weight-semibold
-                is-size-5
-                link-button
-              "
-            >
-              {{ link.text.toUpperCase() }}
-              <span class="icon ml-2">
-                <i class="mdi mdi-menu-right" />
-              </span>
-            </a>
-            <a
-              v-else-if="link.target.startsWith('mailto')"
+              v-if="link.target.startsWith('http') || link.target.startsWith('mailto')"
               :href="link.target"
               class="
                 m-1
@@ -157,40 +140,21 @@
           width="medium"
         >
           <template #header>
-            <span v-for="tagArray in subsetCardTags[i]" :key=tagArray>
-              <span v-for="tag in tagArray" :key=tag class="radius-0 tag m-1" :class="tagColors[cardColors[tag]]">
+            <template v-for="(tagClass, tagType) in tagColors">
+              <span v-for="tag in item[tagType]" :key="tag" class="radius-0 tag m-1" :class="tagClass">
                 {{ tag }}
               </span>
-            </span>
+            </template>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <div v-if="item.investigators" >
-              <span class="subtitle has-text-black"
-                ><div><i class="mdi mdi-brain p-1 m-1"></i></div>
-                <span
-                  v-for="(author, index) in item.investigators"
-                  :key="author.name"
-                  ><a v-if="author.link" :href="author.link">{{
-                    author.name
-                  }}</a
-                  >{{ author.link ? '' : author.name
-                  }}<span v-if="index + 1 < item.investigators.length">, </span>
+            <template><span>
+              <div v-for="(contributorArray, contributorType) in contributors(item)" :key=contributorType>
+                <div><i :class="['mdi', contributorIcon(contributorType)]"></i></div>
+                <span v-for="(entry, index) in contributorArray" :key=entry>
+                  <a :href="contributorLink(entry)">{{ entry.name }}</a><span v-if="index + 1 < contributorArray.length">, </span>
                 </span>
-              </span>
-            </div>
-            <div v-if="item.people" >
-              <span class="subtitle has-text-black"
-                ><div><i class="mdi mdi-account-multiple p-1 m-1"></i></div>
-                <span v-for="(author, index) in item.people" :key="author.name"
-                  ><a
-                    v-if="author.github_user"
-                    :href="'https://github.com/' + author.github_user"
-                    >{{ author.name }}</a
-                  >{{ author.github_user ? '' : author.name
-                  }}<span v-if="index + 1 < item.people.length">, </span>
-                </span>
-              </span>
-            </div>
+              </div>
+            </span></template>
           </template>
           <template #content>
             {{ item.description }}
@@ -240,7 +204,7 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tagColors: {'tags': 'is-link', 'groups': 'is-yellow', 'languages': 'is-info'}
+    tagColors: {'tags': 'is-link', 'groups': 'is-yellow', 'languages': 'is-info'},
   }),
   computed: {
     cardTags() {
@@ -266,20 +230,6 @@ export default {
     },
     filteredData() {
       return this.data.filter((d) => !d.hidden);
-    },
-    cardColors() {
-      const tags = this.filteredData.map((card) => card.tags).flat();
-      const groups = this.filteredData.map((card) => card.groups).flat();
-      const languages = this.filteredData.map((card) => card.languages).flat();
-      let tagsObject = tags.reduce(function(obj, v) {obj[v] = 'tags'; return obj;}, {})
-      const groupsObject = groups.reduce(function(obj, v) {obj[v] = 'groups'; return obj;}, {})
-      const languagesObject = languages.reduce(function(obj, v) {obj[v] = 'languages'; return obj;}, {})
-      tagsObject = {
-        ...tagsObject,
-        ...groupsObject,
-        ...languagesObject
-      }
-      return tagsObject;
     },
     sortedArray() {
       let filtered = this.filteredData;
@@ -324,16 +274,28 @@ export default {
 
       return filtered;
     },
-    subsetCardTags() {
-      const subset = [];
-      for (let i=0; i < this.sortedArray.length; i++) {subset.push((({tags, groups, languages}) => ({tags, groups, languages}))(this.sortedArray[i]))}
-      return subset
-    },
   },
   methods: {
     clearAll() {
       this.searchGroup = [];
     },
+    contributors(card) {
+      const subset = (({investigators, people}) => ({investigators, people}))(card)
+      return subset
+    },
+    contributorLink(contributor) {
+      if ('link' in contributor) {
+        return contributor.link
+      } else if ('github_user' in contributor) {
+        return 'https://github.com/' + contributor.github_user
+      } else {
+        return undefined
+      }
+    },
+    contributorIcon(contributorType) {
+      const icons = {'investigators': 'mdi-brain', 'people': 'mdi-account-multiple'};
+      return icons[contributorType];
+    }
   },
 };
 </script>

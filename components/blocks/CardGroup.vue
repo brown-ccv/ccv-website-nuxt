@@ -11,9 +11,7 @@
         <template #header>
           <span v-if="item.group" class="radius-0 tag is-link has-text-light"
             ><span class="icon"><i class="mdi mdi-account-multiple" /></span
-            ><abbr :title="expandAcronym(item.group)">
-              {{ item.group }}
-            </abbr></span
+            >{{ item.group }}</span
           >
 
           <h2>{{ item.title }}</h2>
@@ -84,16 +82,6 @@ export default {
     data: {
       type: Array,
       required: true,
-    },
-  },
-  methods: {
-    expandAcronym(str) {
-      const abbrMap = {
-        CBC: 'Computational Biology Core',
-        CCV: 'Center for Computation and Visualization',
-        DSCOV: 'Data Science, Computing and Visualization Series',
-      };
-      return abbrMap[str];
     },
   },
 };

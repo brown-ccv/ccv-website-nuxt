@@ -38,6 +38,8 @@
 
 <script>
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
+import humanize from '@/utils'; 
+
 export default {
   components: {
     ComparisonCellContent,
@@ -53,13 +55,7 @@ export default {
     },
   },
   methods: {
-    humanize(str) {
-      if (typeof str === 'string') {
-        const cleanStr = str.replace(/_/g, ' ');
-        const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-        return upperFirst;
-      }
-    },
+    humanize
   },
 };
 </script>

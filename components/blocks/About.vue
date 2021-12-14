@@ -94,16 +94,12 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import DPersonCard from '@/components/base/DPersonCard.vue';
+import urlize from '@/utils';
 
 export default {
   components: {
     DTOC,
     DPersonCard,
-  },
-  filters: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   props: {
     data: {
@@ -134,9 +130,7 @@ export default {
     },
   },
   methods: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
+    urlize
   },
 };
 </script>
