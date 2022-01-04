@@ -94,7 +94,7 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import DPersonCard from '@/components/base/DPersonCard.vue';
-import urlize from '@/utils';
+import { urlize } from '@/utils';
 
 export default {
   components: {

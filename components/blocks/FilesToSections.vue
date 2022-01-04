@@ -32,7 +32,7 @@
 
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
-import urlize from '@/utils'
+import { urlize } from '@/utils'
 
 export default {
   components: {
