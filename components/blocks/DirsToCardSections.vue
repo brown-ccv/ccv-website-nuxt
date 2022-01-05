@@ -6,7 +6,7 @@
     <main class="main-content">
       <section
         v-for="(category, i) in index"
-        :id="category.title"
+        :id="urlize(category.title)"
         :key="'section' + i"
         class="content-section"
       >
@@ -34,11 +34,6 @@ export default {
   components: {
     DTOC,
     CardGroup,
-  },
-  filters: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   props: {
     index: {

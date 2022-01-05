@@ -6,7 +6,7 @@
     <main class="main-content">
       <section
         v-for="(item, i) in data"
-        :id="item.title"
+        :id="urlize(item.title)"
         :key="'about-section' + i"
         class="content-section"
       >
@@ -34,14 +34,10 @@
 import DTOC from '@/components/base/DTableOfContents.vue';
 import { urlize } from '@/utils'
 
+
 export default {
   components: {
     DTOC,
-  },
-  filters: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   props: {
     data: {
@@ -61,7 +57,9 @@ export default {
     },
   },
   methods: {
-    urlize,
+    urlize(str) {
+      return str.toLowerCase().replace(/ /g, '-');
+    }
   },
 };
 </script>

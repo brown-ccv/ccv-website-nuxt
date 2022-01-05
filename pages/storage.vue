@@ -128,14 +128,9 @@ export default {
     };
   },
   computed: {
-    services: {
-      get() {
-        return this.tool.services;
-      },
-      set(newVal, oldVal) {
-        return newVal;
-      },
-    },
+    services() {
+      return this.tool.services;
+    }, 
     categories() {
       return this.services[0].features.map((feat) => feat.name);
     },

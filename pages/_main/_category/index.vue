@@ -3,31 +3,27 @@
   <div>
     <DHero
       variant="light"
-      :title="humanize($route.params.category)"
+      :title="humanizeHero($route.params.category)"
       :subtitle="
-        lookup.description
+        categoryMeta.description
       "
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
       <template
         v-if="
-          lookup['call-for-action']
+          categoryMeta['call-for-action']
         "
         #button
       >
         <nuxt-link
           class="d-button is-warning has-text-dark"
           :to="
-            lookup[
+            categoryMeta[
               'call-for-action'
             ].href
           "
         >
-          {{
-            list
-              .find((x) => x.slug === $route.params.category)
-              ['call-for-action'].text.toUpperCase()
-          }}
+          {{ categoryMeta['call-for-action'].text.toUpperCase() }}
           <span class="icon ml-2">
             <i class="mdi mdi-menu-right" />
           </span>
@@ -49,11 +45,6 @@ export default {
     DHero,
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
-  },
-  filters: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   async asyncData({ $content, params }) {
     // get the files of top content directories.
@@ -86,11 +77,18 @@ export default {
     };
   },
   computed: {
-    lookup() {
+    categoryMeta() {
       return this.list.find((x) => x.slug === this.$route.params.category)
     }
   },
   methods: {
+    humanizeHero(str) {
+      const cleanStr = str.split('-');
+      const upperFirst = cleanStr.map(
+        (str) => str.charAt(0).toUpperCase() + str.slice(1)
+      );
+      return upperFirst.join(' ');
+    },
     humanize, urlize
   },
 };
