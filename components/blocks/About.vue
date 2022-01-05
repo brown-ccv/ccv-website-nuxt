@@ -117,7 +117,7 @@ export default {
         'facilities',
         'diversity',
       ];
-      const sortedData = ogData.sort(function (a, b) {
+      const sortedData = ogData.sort((a, b) => {
         return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
       });
       return sortedData.map((d, i) => {

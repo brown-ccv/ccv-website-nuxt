@@ -148,9 +148,9 @@
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
             <template><span>
-              <div v-for="(contributorArray, contributorType) in contributors(item)" :key=contributorType>
-                <div><i :class="['mdi', contributorIcon(contributorType)]"></i></div>
-                <span v-for="(entry, index) in contributorArray" :key=entry>
+              <div v-for="(contributorArray, contributorType) in contributors(item)" :key="contributorType">
+                <div><i :class="['mdi', contributorIcon[contributorType], 'mdi-24px']"></i></div>
+                <span v-for="(entry, index) in contributorArray" :key="entry">
                   <a :href="contributorLink(entry)">{{ entry.name }}</a><span v-if="index + 1 < contributorArray.length">, </span>
                 </span>
               </div>
@@ -205,16 +205,11 @@ export default {
     sortBy: [],
     searchGroup: [],
     tagColors: {'tags': 'is-link', 'groups': 'is-yellow', 'languages': 'is-info'},
+    contributorIcon: {'investigators': 'mdi-brain', 'people': 'mdi-account-multiple'}
   }),
   computed: {
     cardTags() {
-      let tags = this.data.map((card) => card.tags);
-      const groups = this.data.map((card) => card.groups);
-      const languages = this.data.map((card) => card.languages);
-      tags = tags
-        .concat(groups, languages)
-        .flat()
-        .filter((e) => e);
+      const tags = ['tags', 'groups', 'languages'].map((tagType) => this.data.map((card) => card[tagType])).flat().flat().filter((e) => e);
       return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
     },
     sortByOptions() {
@@ -292,10 +287,6 @@ export default {
         return undefined
       }
     },
-    contributorIcon(contributorType) {
-      const icons = {'investigators': 'mdi-brain', 'people': 'mdi-account-multiple'};
-      return icons[contributorType];
-    }
   },
 };
 </script>

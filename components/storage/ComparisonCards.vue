@@ -16,7 +16,7 @@
       class="mx-3 my-3 px-3"
     >
       <template #header>
-        <h2 class="title is-size-4">{{ service.service }}</h2>
+        <h2 class="title is-size-4">{{ humanize(service.service) }}</h2>
       </template>
 
       <template #content>
@@ -27,7 +27,7 @@
                 is-flex is-justify-content-space-between is-align-items-center
               "
             >
-              <p>{{ feature.name }}</p>
+              <p>{{ humanize(feature.name) }}</p>
               <ComparisonCellContent
                 :feature="feature"
                 :icon-size="6"
@@ -47,6 +47,7 @@
 <script>
 import DCard from '@/components/base/DCard.vue';
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
+import humanize from '@/utils';
 
 export default {
   components: {
@@ -63,5 +64,8 @@ export default {
       required: true,
     },
   },
+  methods: {
+     humanize
+  }
 };
 </script>
