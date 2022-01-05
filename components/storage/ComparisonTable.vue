@@ -6,10 +6,10 @@
           <th />
           <th
             v-for="service in services"
-            :key="'header-' + service.service"
+            :key="'header-' + service.name"
             class="header-cell"
           >
-            {{ humanize(service.service) }}
+            {{ humanize(service.name) }}
           </th>
         </tr>
       </thead>
@@ -38,7 +38,7 @@
 
 <script>
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
-import humanize from '@/utils'; 
+import { humanize } from '@/utils'; 
 
 export default {
   components: {

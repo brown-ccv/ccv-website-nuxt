@@ -16,7 +16,7 @@
       class="mx-3 my-3 px-3"
     >
       <template #header>
-        <h2 class="title is-size-4">{{ humanize(service.service) }}</h2>
+        <h2 class="title is-size-4">{{ service.name }}</h2>
       </template>
 
       <template #content>

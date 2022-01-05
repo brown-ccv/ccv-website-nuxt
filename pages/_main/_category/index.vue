@@ -38,8 +38,7 @@
 
 <script>
 import DHero from '@/components/base/DHero.vue';
-import urlize from '@/utils';
-import humanize from '@/utils';
+import { humanize, urlize } from '@/utils';
 
 export default {
   components: {

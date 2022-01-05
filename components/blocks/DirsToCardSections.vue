@@ -28,7 +28,7 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import CardGroup from '@/components/blocks/CardGroup.vue';
-import urlize from '@/utils';
+import { urlize } from '@/utils';
 
 export default {
   components: {

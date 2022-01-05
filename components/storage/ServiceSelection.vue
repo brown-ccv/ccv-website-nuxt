@@ -56,7 +56,7 @@
 
 <script>
 import DModal from '@/components/base/DModal.vue';
-import humanize from '@/utils';
+import { humanize } from '@/utils';
 
 export default {
   components: {
