@@ -4,24 +4,13 @@
     <DHero
       variant="light"
       :title="humanizeHero($route.params.category)"
-      :subtitle="
-        categoryMeta.description
-      "
+      :subtitle="categoryMeta.description"
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
-      <template
-        v-if="
-          categoryMeta['call-for-action']
-        "
-        #button
-      >
+      <template v-if="categoryMeta['call-for-action']" #button>
         <nuxt-link
           class="d-button is-warning has-text-dark"
-          :to="
-            categoryMeta[
-              'call-for-action'
-            ].href
-          "
+          :to="categoryMeta['call-for-action'].href"
         >
           {{ categoryMeta['call-for-action'].text.toUpperCase() }}
           <span class="icon ml-2">
@@ -78,11 +67,13 @@ export default {
   },
   computed: {
     categoryMeta() {
-      return this.list.find((x) => x.slug === this.$route.params.category)
-    }
+      return this.list.find((x) => x.slug === this.$route.params.category);
+    },
   },
   methods: {
-    humanize, humanizeHero, urlize
+    humanize,
+    humanizeHero,
+    urlize,
   },
 };
 </script>

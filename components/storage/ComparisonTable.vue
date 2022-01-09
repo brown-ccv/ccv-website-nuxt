@@ -38,7 +38,7 @@
 
 <script>
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
-import { humanize } from '@/utils'; 
+import { humanize } from '@/utils';
 
 export default {
   components: {
@@ -55,7 +55,7 @@ export default {
     },
   },
   methods: {
-    humanize
+    humanize,
   },
 };
 </script>

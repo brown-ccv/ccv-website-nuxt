@@ -57,7 +57,7 @@ export default {
     },
   },
   methods: {
-    urlize
+    urlize,
   },
 };
 </script>

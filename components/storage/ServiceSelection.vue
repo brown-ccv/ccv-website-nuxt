@@ -90,7 +90,7 @@ export default {
       this.modalData = data;
       this.showModal = true;
     },
-    humanize
+    humanize,
   },
 };
 </script>

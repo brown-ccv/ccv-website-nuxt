@@ -130,7 +130,7 @@ export default {
   computed: {
     services() {
       return this.tool.services;
-    }, 
+    },
     categories() {
       return this.services[0].features.map((feat) => feat.name);
     },

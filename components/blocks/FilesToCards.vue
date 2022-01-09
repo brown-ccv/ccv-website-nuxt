@@ -41,7 +41,10 @@
         <template #footer>
           <div v-for="link in item.links" :key="link.text">
             <a
-              v-if="link.target.startsWith('http') || link.target.startsWith('mailto')"
+              v-if="
+                link.target.startsWith('http') ||
+                link.target.startsWith('mailto')
+              "
               :href="link.target"
               class="
                 m-1
@@ -141,20 +144,41 @@
         >
           <template #header>
             <template v-for="(tagClass, tagType) in tagColors">
-              <span v-for="tag in item[tagType]" :key="tag" class="radius-0 tag m-1" :class="tagClass">
+              <span
+                v-for="tag in item[tagType]"
+                :key="tag"
+                class="radius-0 tag m-1"
+                :class="tagClass"
+              >
                 {{ tag }}
               </span>
             </template>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <template><span>
-              <div v-for="(contributorArray, contributorType) in contributors(item)" :key="contributorType">
-                <div><i :class="['mdi', contributorIcon[contributorType], 'mdi-24px']"></i></div>
-                <span v-for="(entry, index) in contributorArray" :key="entry">
-                  <a :href="contributorLink(entry)">{{ entry.name }}</a><span v-if="index + 1 < contributorArray.length">, </span>
-                </span>
-              </div>
-            </span></template>
+            <template
+              ><span>
+                <div
+                  v-for="(contributorArray, contributorType) in contributors(
+                    item
+                  )"
+                  :key="contributorType"
+                >
+                  <div>
+                    <i
+                      :class="[
+                        'mdi',
+                        contributorIcon[contributorType],
+                        'mdi-24px',
+                      ]"
+                    ></i>
+                  </div>
+                  <span v-for="(entry, index) in contributorArray" :key="entry">
+                    <a :href="contributorLink(entry)">{{ entry.name }}</a
+                    ><span v-if="index + 1 < contributorArray.length">, </span>
+                  </span>
+                </div>
+              </span></template
+            >
           </template>
           <template #content>
             {{ item.description }}
@@ -204,12 +228,18 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tagColors: {'tags': 'is-link', 'groups': 'is-yellow', 'languages': 'is-info'},
-    contributorIcon: {'investigators': 'mdi-brain', 'people': 'mdi-account-multiple'}
+    tagColors: { tags: 'is-link', groups: 'is-yellow', languages: 'is-info' },
+    contributorIcon: {
+      investigators: 'mdi-brain',
+      people: 'mdi-account-multiple',
+    },
   }),
   computed: {
     cardTags() {
-      const tags = ['tags', 'groups', 'languages'].map((tagType) => this.data.map((card) => card[tagType])).flat(2).filter((e) => e);
+      const tags = ['tags', 'groups', 'languages']
+        .map((tagType) => this.data.map((card) => card[tagType]))
+        .flat(2)
+        .filter((e) => e);
       return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
     },
     sortByOptions() {
@@ -275,16 +305,19 @@ export default {
       this.searchGroup = [];
     },
     contributors(card) {
-      const subset = (({investigators, people}) => ({investigators, people}))(card)
-      return subset
+      const subset = (({ investigators, people }) => ({
+        investigators,
+        people,
+      }))(card);
+      return subset;
     },
     contributorLink(contributor) {
       if ('link' in contributor) {
-        return contributor.link
+        return contributor.link;
       } else if ('github_user' in contributor) {
-        return 'https://github.com/' + contributor.github_user
+        return 'https://github.com/' + contributor.github_user;
       } else {
-        return undefined
+        return undefined;
       }
     },
   },
