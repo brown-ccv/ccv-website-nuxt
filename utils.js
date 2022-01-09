@@ -26,6 +26,14 @@ export function humanize(str) {
   }
 }
 
+export function humanizeHero(str) {
+  const cleanStr = str.split('-');
+  const upperFirst = cleanStr.map(
+    (str) => str.charAt(0).toUpperCase() + str.slice(1)
+  );
+  return upperFirst.join(' ');
+}
+
 export function urlize(str) {
   return str.toLowerCase().replace(/ /g, '-');
 }

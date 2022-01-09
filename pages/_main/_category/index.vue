@@ -38,7 +38,7 @@
 
 <script>
 import DHero from '@/components/base/DHero.vue';
-import { humanize, urlize } from '@/utils';
+import { humanize, urlize, humanizeHero } from '@/utils';
 
 export default {
   components: {
@@ -82,14 +82,7 @@ export default {
     }
   },
   methods: {
-    humanizeHero(str) {
-      const cleanStr = str.split('-');
-      const upperFirst = cleanStr.map(
-        (str) => str.charAt(0).toUpperCase() + str.slice(1)
-      );
-      return upperFirst.join(' ');
-    },
-    humanize, urlize
+    humanize, humanizeHero, urlize
   },
 };
 </script>

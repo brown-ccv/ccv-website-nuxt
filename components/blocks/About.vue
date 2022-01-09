@@ -6,7 +6,7 @@
     <main class="main-content">
       <section
         v-for="(item, i) in data"
-        :id="item.title | urlize"
+        :id="urlize(item.title)"
         :key="'about-section' + i"
         class="content-section"
       >
@@ -59,7 +59,7 @@
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
             v-for="person in item.data"
-            :key="person.name | urlize"
+            :key="urlize(person.name)"
             variant="white"
             accent="warning"
             width="small"

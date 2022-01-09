@@ -47,7 +47,7 @@
 <script>
 import DCard from '@/components/base/DCard.vue';
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
-import humanize from '@/utils';
+import { humanize } from '@/utils';
 
 export default {
   components: {

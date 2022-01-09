@@ -57,10 +57,8 @@ export default {
     },
   },
   methods: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    }
-  },
+    urlize
+  }
 };
 </script>
 

@@ -209,7 +209,7 @@ export default {
   }),
   computed: {
     cardTags() {
-      const tags = ['tags', 'groups', 'languages'].map((tagType) => this.data.map((card) => card[tagType])).flat().flat().filter((e) => e);
+      const tags = ['tags', 'groups', 'languages'].map((tagType) => this.data.map((card) => card[tagType])).flat(2).filter((e) => e);
       return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
     },
     sortByOptions() {
