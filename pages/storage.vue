@@ -1,12 +1,8 @@
 <template>
   <div>
-    <DHero
-      variant="primary"
-      :title="index.title"
-      :subtitle="index.description"
-    />
+    <DHero variant="primary" :title="tool.title" :subtitle="tool.description" />
     <div class="storage-header py-6 px-2">
-      <h2>{{ index.storage_tool_header }}</h2>
+      <h2>{{ tool.storage_tool_header }}</h2>
       <span>
         <DButton
           type="button"
@@ -112,28 +108,19 @@ export default {
     ComparisonTable,
     ComparisonCards,
   },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
-  },
   async asyncData({ $content }) {
-    const index = await $content(
-      'services/file-storage-and-transfer/index'
-    ).fetch();
-    index.services.forEach((service) =>
+    const tool = await $content('storage-tool').fetch();
+    tool.services.forEach((service) =>
       service.features.sort((a, b) =>
         a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
       )
     );
 
-    const answers = index.questions.map((q) =>
+    const answers = tool.questions.map((q) =>
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { index, answers };
+    return { tool, answers };
   },
   data() {
     return {
@@ -141,19 +128,14 @@ export default {
     };
   },
   computed: {
-    services: {
-      get() {
-        return this.index.services;
-      },
-      set(newVal, oldVal) {
-        return newVal;
-      },
+    services() {
+      return this.tool.services;
     },
     categories() {
       return this.services[0].features.map((feat) => feat.name);
     },
     questions() {
-      return this.index.questions;
+      return this.tool.questions;
     },
     matchingServices() {
       return this.services.map((service) => {
@@ -205,7 +187,7 @@ export default {
       this.updateAnswer({ answer, id });
     },
     resetAll() {
-      this.answers = this.index.questions.map((q) =>
+      this.answers = this.tool.questions.map((q) =>
         q.answers.find((answer) => answer.answer === q.default_answer)
       );
       this.selectedServices = [...this.matchingServices];

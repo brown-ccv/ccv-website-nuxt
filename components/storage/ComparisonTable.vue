@@ -6,17 +6,17 @@
           <th />
           <th
             v-for="service in services"
-            :key="'header-' + service.service"
+            :key="'header-' + service.name"
             class="header-cell"
           >
-            {{ service.service | humanize }}
+            {{ humanize(service.name) }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(category, ind) in categories" :key="'row-' + category">
           <th class="header-cell has-background-dark sticky-left">
-            {{ category | humanize }}
+            {{ humanize(category) }}
           </th>
           <td
             v-for="(service, index) in services"
@@ -38,16 +38,11 @@
 
 <script>
 import ComparisonCellContent from '@/components/storage/ComparisonCellContent.vue';
+import { humanize } from '@/utils';
+
 export default {
   components: {
     ComparisonCellContent,
-  },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
   },
   props: {
     services: {
@@ -58,6 +53,9 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  methods: {
+    humanize,
   },
 };
 </script>

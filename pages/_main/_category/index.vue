@@ -3,9 +3,21 @@
   <div>
     <DHero
       variant="light"
-      :title="$route.params.category | humanize"
-      :subtitle="index.description"
+      :title="humanizeHero($route.params.category)"
+      :subtitle="categoryMeta.description"
     >
+      <!-- Add a button to the Hero when index.yml includes call for action -->
+      <template v-if="categoryMeta['call-for-action']" #button>
+        <nuxt-link
+          class="d-button is-warning has-text-dark"
+          :to="categoryMeta['call-for-action'].href"
+        >
+          {{ categoryMeta['call-for-action'].text.toUpperCase() }}
+          <span class="icon ml-2">
+            <i class="mdi mdi-menu-right" />
+          </span>
+        </nuxt-link>
+      </template>
     </DHero>
     <FilesToCards v-if="$route.params.main === 'our-work'" :data="data" />
     <!-- This is for directories containing markdown files -->
@@ -15,22 +27,13 @@
 
 <script>
 import DHero from '@/components/base/DHero.vue';
+import { humanize, urlize, humanizeHero } from '@/utils';
 
 export default {
   components: {
     DHero,
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
-  },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   async asyncData({ $content, params }) {
     // get the files of top content directories.
@@ -45,21 +48,15 @@ export default {
     // get the content for directories that are only one level deep
     const data = await $content(params.main, params.category, { deep: true })
       .where({ slug: { $ne: 'README' } })
-      .sortBy('title', 'desc')
+      .sortBy('title', 'asc')
       .fetch();
 
     // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
-    const list = await $content(
-      'meta',
-      'category',
-      params.main,
-      params.slug,
-      {
-        deep: true,
-      }
-    )
-      .sortBy('title', 'desc')
+    const list = await $content('meta', 'category', params.main, params.slug, {
+      deep: true,
+    })
+      .sortBy('title', 'asc')
       .fetch();
 
     return {
@@ -67,6 +64,16 @@ export default {
       data,
       list,
     };
+  },
+  computed: {
+    categoryMeta() {
+      return this.list.find((x) => x.slug === this.$route.params.category);
+    },
+  },
+  methods: {
+    humanize,
+    humanizeHero,
+    urlize,
   },
 };
 </script>

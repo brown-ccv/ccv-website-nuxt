@@ -1,16 +1,15 @@
 <template>
   <div>
     <DHero
-      variant="light"
-      :title="humanizeHero($route.params.page)"
-      :subtitle="humanizeHero($route.params.category)"
-    >
-    </DHero>
+      variant="primary"
+      :title="index.title"
+      :subtitle="index.lead"
+    ></DHero>
     <main class="content-wrapper mt-6">
       <!-- General markdown content pages -->
       <nuxt-content
-        v-if="data.extension === '.md'"
-        :document="data"
+        v-if="index.extension === '.md'"
+        :document="index"
         class="content content-section"
       />
     </main>
@@ -19,23 +18,15 @@
 
 <script>
 import DHero from '@/components/base/DHero.vue';
-import { humanizeHero } from '@/utils';
 
 export default {
   components: {
     DHero,
   },
-  async asyncData({ $content, params }) {
-    const data = await $content(params.main, params.category, params.page)
-      .sortBy('title', 'asc')
-      .fetch();
+  async asyncData({ $content }) {
+    const index = await $content('rates').fetch();
 
-    return {
-      data,
-    };
-  },
-  methods: {
-    humanizeHero,
+    return { index };
   },
 };
 </script>

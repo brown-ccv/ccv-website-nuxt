@@ -18,6 +18,26 @@ export const variantValidator = (variant) => {
   return COLOR_VARIANTS.includes(variant) !== -1;
 };
 
+export function humanize(str) {
+  if (typeof str === 'string') {
+    const cleanStr = str.replace(/_/g, ' ');
+    const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
+    return upperFirst;
+  }
+}
+
+export function humanizeHero(str) {
+  const cleanStr = str.split('-');
+  const upperFirst = cleanStr.map(
+    (str) => str.charAt(0).toUpperCase() + str.slice(1)
+  );
+  return upperFirst.join(' ');
+}
+
+export function urlize(str) {
+  return str.toLowerCase().replace(/ /g, '-');
+}
+
 //
 // Calendar Utils
 //

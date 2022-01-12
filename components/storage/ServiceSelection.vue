@@ -2,8 +2,8 @@
   <div class="service-selection px-2">
     <div
       v-for="(s, i) in services"
-      :id="'field' + s.service + i"
-      :key="'field' + s.service + i"
+      :id="'field' + s.name + i"
+      :key="'field' + s.name + i"
       class="field service-box my-1 p-4"
       :class="[
         matchingServices[i] ? 'has-background-info' : 'has-background-light',
@@ -28,7 +28,7 @@
             ]"
         /></span>
       </button>
-      <p class="is-size-5 has-text-bold">{{ s.service | humanize }}</p>
+      <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
       <span class="icon is-clickable" @click="toggleShowModal(s)"
         ><i class="mdi mdi-information"
       /></span>
@@ -45,7 +45,7 @@
       <template #content>
         <div class="content">
           <h2 class="title">
-            {{ modalData.service | humanize }}
+            {{ humanize(modalData.service) }}
           </h2>
           <p v-html="$md.render(modalData.description || '')" />
         </div>
@@ -56,17 +56,11 @@
 
 <script>
 import DModal from '@/components/base/DModal.vue';
+import { humanize } from '@/utils';
 
 export default {
   components: {
     DModal,
-  },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/_/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
   },
   props: {
     services: {
@@ -96,6 +90,7 @@ export default {
       this.modalData = data;
       this.showModal = true;
     },
+    humanize,
   },
 };
 </script>

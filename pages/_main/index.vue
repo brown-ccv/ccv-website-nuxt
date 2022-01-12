@@ -51,21 +51,15 @@ export default {
 
     // get the content for directories that are only one level deep
     const data = await $content(`${params.main}`, params.slug)
-      .sortBy('title', 'desc')
+      .sortBy('title', 'asc')
       .fetch();
 
     // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
-    const list = await $content(
-      'meta',
-      'category',
-      params.main,
-      params.slug,
-      {
-        deep: true,
-      }
-    )
-      .sortBy('title', 'desc')
+    const list = await $content('meta', 'category', params.main, params.slug, {
+      deep: true,
+    })
+      .sortBy('title', 'asc')
       .fetch()
       .catch(() => []);
 

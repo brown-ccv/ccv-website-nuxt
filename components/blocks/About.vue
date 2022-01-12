@@ -1,12 +1,12 @@
 <template>
   <div>
-     <div class="toc-container">
+    <div class="toc-container">
       <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
     <main class="main-content">
       <section
         v-for="(item, i) in data"
-        :id="item.title | urlize"
+        :id="urlize(item.title)"
         :key="'about-section' + i"
         class="content-section"
       >
@@ -59,7 +59,7 @@
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
             v-for="person in item.data"
-            :key="person.name | urlize"
+            :key="urlize(person.name)"
             variant="white"
             accent="warning"
             width="small"
@@ -94,16 +94,12 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import DPersonCard from '@/components/base/DPersonCard.vue';
+import { urlize } from '@/utils';
 
 export default {
   components: {
     DTOC,
     DPersonCard,
-  },
-  filters: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   props: {
     data: {
@@ -114,8 +110,16 @@ export default {
   computed: {
     tocData() {
       const ogData = this.data;
-      const sortOrder = ['mission','people','opportunities','facilities','diversity'];
-      const sortedData = ogData.sort(function(a, b){return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug)});
+      const sortOrder = [
+        'mission',
+        'people',
+        'opportunities',
+        'facilities',
+        'diversity',
+      ];
+      const sortedData = ogData.sort((a, b) => {
+        return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
+      });
       return sortedData.map((d, i) => {
         return {
           name: d.title,
@@ -126,9 +130,7 @@ export default {
     },
   },
   methods: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
+    urlize,
   },
 };
 </script>

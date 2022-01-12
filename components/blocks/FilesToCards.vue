@@ -41,29 +41,19 @@
         <template #footer>
           <div v-for="link in item.links" :key="link.text">
             <a
-              v-if="link.target.startsWith('http')"
+              v-if="
+                link.target.startsWith('http') ||
+                link.target.startsWith('mailto')
+              "
               :href="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
-            >
-              {{ link.text.toUpperCase() }}
-              <span class="icon ml-2">
-                <i class="mdi mdi-menu-right" />
-              </span>
-            </a>
-            <a
-              v-else-if="link.target.startsWith('mailto')"
-              :href="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
+              class="
+                m-1
+                link-item
+                d-button
+                has-background-link has-text-white has-text-weight-semibold
+                is-size-5
+                link-button
+              "
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -73,12 +63,14 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button"
+              class="
+                m-1
+                link-item
+                d-button
+                has-background-link has-text-white has-text-weight-semibold
+                is-size-5
+                link-button
+              "
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -151,24 +143,42 @@
           width="medium"
         >
           <template #header>
-            <span v-if="item.group" class="radius-0 tag is-link has-text-light"
-              ><abbr :title="item.group | expandAcronym">
-                {{ item.group }}
-              </abbr></span
-            >
+            <template v-for="(tagClass, tagType) in tagColors">
+              <span
+                v-for="tag in item[tagType]"
+                :key="tag"
+                class="radius-0 tag m-1"
+                :class="tagClass"
+              >
+                {{ tag }}
+              </span>
+            </template>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <span v-if="item.authors" class="subtitle has-text-black"
-              ><i class="mdi mdi-account-multiple p-1 m-1"></i>
-              <span v-for="(author, index) in item.authors" :key="author.name"
-                ><a
-                  v-if="author.github_user"
-                  :href="'https://github.com/' + author.github_user"
-                  >{{ author.name }}</a
-                >{{ author.github_user ? '' : author.name
-                }}<span v-if="index + 1 < item.authors.length">, </span>
-              </span>
-            </span>
+            <template
+              ><span>
+                <div
+                  v-for="(contributorArray, contributorType) in contributors(
+                    item
+                  )"
+                  :key="contributorType"
+                >
+                  <div>
+                    <i
+                      :class="[
+                        'mdi',
+                        contributorIcon[contributorType],
+                        'mdi-24px',
+                      ]"
+                    ></i>
+                  </div>
+                  <span v-for="(entry, index) in contributorArray" :key="entry">
+                    <a :href="contributorLink(entry)">{{ entry.name }}</a
+                    ><span v-if="index + 1 < contributorArray.length">, </span>
+                  </span>
+                </div>
+              </span></template
+            >
           </template>
           <template #content>
             {{ item.description }}
@@ -218,13 +228,19 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
+    tagColors: { tags: 'is-link', groups: 'is-yellow', languages: 'is-info' },
+    contributorIcon: {
+      investigators: 'mdi-brain',
+      people: 'mdi-account-multiple',
+    },
   }),
   computed: {
     cardTags() {
-      const tags = this.data.map((card) => card.group);
-      return tags
-        .filter((group, index) => tags.indexOf(group) === index)
-        .sort();
+      const tags = ['tags', 'groups', 'languages']
+        .map((tagType) => this.data.map((card) => card[tagType]))
+        .flat(2)
+        .filter((e) => e);
+      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
     },
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
@@ -245,7 +261,11 @@ export default {
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           if (this.searchGroup) {
-            return this.searchGroup.includes(card.group);
+            return this.searchGroup.some((tag) =>
+              ['tags', 'groups', 'languages'].some((tagType) =>
+                card[tagType].includes(tag)
+              )
+            );
           } else {
             return true;
           }
@@ -283,6 +303,22 @@ export default {
   methods: {
     clearAll() {
       this.searchGroup = [];
+    },
+    contributors(card) {
+      const subset = (({ investigators, people }) => ({
+        investigators,
+        people,
+      }))(card);
+      return subset;
+    },
+    contributorLink(contributor) {
+      if ('link' in contributor) {
+        return contributor.link;
+      } else if ('github_user' in contributor) {
+        return 'https://github.com/' + contributor.github_user;
+      } else {
+        return undefined;
+      }
     },
   },
 };

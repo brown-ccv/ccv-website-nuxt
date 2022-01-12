@@ -6,7 +6,7 @@
     <main class="main-content">
       <section
         v-for="(category, i) in index"
-        :id="category.title | urlize"
+        :id="urlize(category.title)"
         :key="'section' + i"
         class="content-section"
       >
@@ -28,21 +28,12 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import CardGroup from '@/components/blocks/CardGroup.vue';
+import { urlize } from '@/utils';
 
 export default {
   components: {
     DTOC,
     CardGroup,
-  },
-  filters: {
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
   },
   props: {
     index: {
@@ -66,14 +57,7 @@ export default {
     },
   },
   methods: {
-    urlize(str) {
-      return str.toLowerCase().replace(/ /g, '-');
-    },
-    humanize(str) {
-      const cleanStr = str.replace(/-/g, ' ');
-      const upperFirst = cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1);
-      return upperFirst;
-    },
+    urlize,
   },
 };
 </script>

@@ -73,6 +73,11 @@
               </nuxt-link>
             </div>
             <div class="navbar-item">
+              <nuxt-link to="/rates" tabindex="0" @click.native="handleClick">
+                Rates
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
               <nuxt-link
                 to="/services/visualization"
                 tabindex="0"
