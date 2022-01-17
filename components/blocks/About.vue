@@ -21,6 +21,7 @@
         </h2>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
+          <div>{{ opportunities }}</div>
           <template v-if="item.data.length > 0">
             <a
               v-for="(position, ind) in item.data"
@@ -107,6 +108,9 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    opportunities: {},
+  }),
   computed: {
     tocData() {
       const ogData = this.data;
@@ -131,6 +135,25 @@ export default {
   },
   methods: {
     urlize,
+    async getOpportunities() {
+      const res = await fetch(
+        'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            limit: 20,
+            offset: 0,
+            appliedFacets: {},
+            searchText: '180 George Street',
+          }),
+        }
+      );
+      const data = await res.json();
+      this.opportunities = data;
+    },
   },
 };
 </script>
