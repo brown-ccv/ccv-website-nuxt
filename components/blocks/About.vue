@@ -21,13 +21,15 @@
         </h2>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
-          <div>{{ opportunities }}</div>
-          <template v-if="item.data.length > 0">
+          <template v-if="opportunitiesData.length > 0">
             <a
-              v-for="(position, ind) in item.data"
+              v-for="(position, ind) in opportunitiesData"
               :key="'position' + ind"
               class="position-block"
-              :href="position.link"
+              :href="
+                'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
+                position.externalPath
+              "
             >
               <div>
                 <span>
@@ -37,7 +39,7 @@
                   Providence, RI - United States</span
                 >
                 <p class="has-text-dark">
-                  {{ position.title }} – {{ position.subteam }}
+                  {{ position.title }}
                 </p>
               </div>
               <div>
@@ -109,8 +111,23 @@ export default {
     },
   },
   data: () => ({
-    opportunities: {},
+    opportunities: [],
   }),
+  async fetch() {
+    this.opportunities = await fetch(
+      'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
+      {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          limit: 20,
+          offset: 0,
+          appliedFacets: {},
+          searchText: '180 George Street',
+        }),
+      }
+    ).then((res) => res.json());
+  },
   computed: {
     tocData() {
       const ogData = this.data;
@@ -132,28 +149,13 @@ export default {
         };
       });
     },
+    opportunitiesData() {
+      const data = JSON.parse(JSON.stringify(this.opportunities)).jobPostings;
+      return data;
+    },
   },
   methods: {
     urlize,
-    async getOpportunities() {
-      const res = await fetch(
-        'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            limit: 20,
-            offset: 0,
-            appliedFacets: {},
-            searchText: '180 George Street',
-          }),
-        }
-      );
-      const data = await res.json();
-      this.opportunities = data;
-    },
   },
 };
 </script>
