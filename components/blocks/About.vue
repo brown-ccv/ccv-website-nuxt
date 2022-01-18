@@ -20,11 +20,14 @@
           {{ item.title }}
         </h2>
         <!-- Opportunities -->
-        <div v-if="item.title === 'Opportunities'" class="card-group">
-          <template v-if="opportunitiesData.length > 0">
+        <div
+          v-if="item.title === 'Opportunities' && opportunitiesData.length > 0"
+          class="card-group"
+        >
+          <template v-for="position in opportunitiesData">
             <a
-              v-for="(position, ind) in opportunitiesData"
-              :key="'position' + ind"
+              v-if="position.locationsText === '180 George Street'"
+              :key="position"
               class="position-block"
               :href="
                 'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
@@ -51,12 +54,16 @@
               </div>
             </a>
           </template>
-          <div v-else>
-            <p>
-              There are no positions open at the moment Check back with us in
-              the future. We appreciate your interest!
-            </p>
-          </div>
+        </div>
+        <div
+          v-else-if="
+            item.title === 'Opportunities' && opportunitiesData.length === 0
+          "
+        >
+          <p>
+            There are no positions open at the moment Check back with us in
+            future. We appreciate your interest!
+          </p>
         </div>
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
