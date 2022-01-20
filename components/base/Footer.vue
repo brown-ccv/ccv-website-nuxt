@@ -87,10 +87,15 @@
       <ul class="mr-6">
         <li><h2>Our Work</h2></li>
         <li class="">
-          <a href="/our-work/workshops" tabindex="0"> Workshops </a>
+          <a href="/our-work/collaborations" tabindex="0"> Collaborations </a>
         </li>
         <li class="">
           <a href="/our-work/software" tabindex="0"> Software </a>
+        </li>
+        <li class="">
+          <a href="/our-work/workshops-and-talks" tabindex="0">
+            Workshops and Talks
+          </a>
         </li>
         <li class="">
           <a href="https://publications.ccv.brown.edu" tabindex="0">

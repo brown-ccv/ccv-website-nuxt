@@ -120,6 +120,7 @@ export default {
     opportunities: [],
   }),
   async fetch() {
+    const location = '180 George Street';
     const res = await fetch(
       'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
       {
@@ -129,13 +130,13 @@ export default {
           limit: 20,
           offset: 0,
           appliedFacets: {},
-          searchText: '180 George Street',
+          searchText: location,
         }),
       }
     );
     const data = await res.json();
     this.opportunities = data.jobPostings.filter(
-      (j) => j.locationsText === '180 George Street'
+      (j) => j.locationsText === location
     );
   },
   computed: {
