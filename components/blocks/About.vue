@@ -60,7 +60,7 @@
           "
         >
           <p>
-            There are no positions open at the moment Check back with us in
+            There are no positions open at the moment. Check back with us in
             future. We appreciate your interest!
           </p>
         </div>

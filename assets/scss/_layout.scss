@@ -36,6 +36,7 @@ blockquote {
   @extend .container;
   @extend .px-2;
   @extend .mb-6;
+  width: 100%;
   font-size: $size-5;
   h2 {
     font-size: $size-3;
