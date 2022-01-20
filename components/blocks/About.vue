@@ -21,12 +21,11 @@
         </h2>
         <!-- Opportunities -->
         <div
-          v-if="item.title === 'Opportunities' && opportunitiesData.length > 0"
+          v-if="item.title === 'Opportunities' && opportunities.length > 0"
           class="card-group"
         >
-          <template v-for="position in opportunitiesData">
+          <template v-for="position in opportunities">
             <a
-              v-if="position.locationsText === '180 George Street'"
               :key="position"
               class="position-block"
               :href="
@@ -57,7 +56,7 @@
         </div>
         <div
           v-else-if="
-            item.title === 'Opportunities' && opportunitiesData.length === 0
+            item.title === 'Opportunities' && opportunities.length === 0
           "
         >
           <p>
@@ -121,7 +120,7 @@ export default {
     opportunities: [],
   }),
   async fetch() {
-    this.opportunities = await fetch(
+    const res = await fetch(
       'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
       {
         method: 'post',
@@ -133,7 +132,11 @@ export default {
           searchText: '180 George Street',
         }),
       }
-    ).then((res) => res.json());
+    );
+    const data = await res.json();
+    this.opportunities = data.jobPostings.filter(
+      (j) => j.locationsText === '180 George Street'
+    );
   },
   computed: {
     tocData() {
@@ -155,10 +158,6 @@ export default {
           icon: { name: d.icon, family: 'light' },
         };
       });
-    },
-    opportunitiesData() {
-      const data = JSON.parse(JSON.stringify(this.opportunities)).jobPostings;
-      return data;
     },
   },
   methods: {
