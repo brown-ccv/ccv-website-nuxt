@@ -79,13 +79,17 @@
               <a
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-github" /></span>
+                ><span class="icon"><i class="mdi mdi-github"/></span>
               </a>
             </template>
           </DPersonCard>
         </div>
         <!-- General markdown content pages -->
-        <nuxt-content v-if="item.extension === '.md'" :document="item" />
+        <nuxt-content
+          v-if="item.extension === '.md'"
+          :document="item"
+          class="content content-section"
+        />
       </section>
     </main>
   </div>
