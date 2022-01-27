@@ -88,7 +88,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/services/consulting/advanced-research-computing"
+                to="/services/consulting"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -185,7 +185,7 @@
             class="d-button is-white has-text-link"
             aria-label="CCV Services' Documentation"
             >Docs
-            <span class="mx-0 icon"><i class="mdi mdi-file-document" /></span>
+            <span class="mx-0 icon"><i class="mdi mdi-file-document"/></span>
           </a>
         </div>
         <div class="navbar-item">
@@ -193,7 +193,7 @@
             href="https://medium.com/brown-ccv"
             class="d-button is-white has-text-link"
             aria-label="CCV's Medium Blog"
-            >Blog <span class="mx-0 icon"><i class="mdi mdi-notebook" /></span
+            >Blog <span class="mx-0 icon"><i class="mdi mdi-notebook"/></span
           ></a>
         </div>
       </div>
