@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>{{ orderedPeople }}</div>
     <div class="toc-container">
       <DTOC :data="tocData" name="about-toc" variant="white" class="toc" />
     </div>
@@ -90,9 +89,7 @@
                   person.brown_directory_uuid
                 "
                 aria-label="information icon"
-                ><span class="icon"
-                  ><i class="mdi mdi-information"
-                /></span>
+                ><span class="icon"><i class="mdi mdi-information" /></span>
               </a>
             </template>
           </DPersonCard>
