@@ -58,7 +58,7 @@
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
-            v-for="person in item.data"
+            v-for="person in orderedPeople"
             :key="urlize(person.name)"
             variant="white"
             accent="warning"
@@ -112,6 +112,7 @@ export default {
       const ogData = this.data;
       const sortOrder = [
         'mission',
+        'teams',
         'people',
         'opportunities',
         'facilities',
@@ -127,6 +128,12 @@ export default {
           icon: { name: d.icon, family: 'light' },
         };
       });
+    },
+    orderedPeople() {
+      const d = this.data;
+      const people = d.find((d) => d.title === 'People').data;
+      people.sort((a, b) => (a.name > b.name ? 1 : -1));
+      return people;
     },
   },
   methods: {
