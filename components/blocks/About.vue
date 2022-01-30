@@ -67,12 +67,9 @@
             :name="person.name"
             :title="person.title"
             :team="person.team"
-            :main-image="
-              'https://ccv.brown.edu/images/people/JPEG/' + person.image
-            "
+            :main-image="'/static/images/people/' + person.image"
             :hover-image="
-              'https://ccv.brown.edu/images/people/JPEG/' +
-              person.image.replace('main', 'hover')
+              '/static/images/people/' + person.image.replace('main', 'hover')
             "
           >
             <template #icons>
