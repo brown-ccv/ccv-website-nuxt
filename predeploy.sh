@@ -20,4 +20,5 @@ cp nuxt.config.js functions
 cp -r .nuxt functions
 
 # people images
+mkdir -p static/images/people
 cp -r static/images/people content/images/people
