@@ -12,7 +12,7 @@ export const COLOR_VARIANTS = [
 
 export const SIZES_ABBR = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
 
-export const SIZES = ['small', 'medium', 'large'];
+export const SIZES = ['xsmall', 'small', 'medium', 'large'];
 
 export const variantValidator = (variant) => {
   return COLOR_VARIANTS.includes(variant) !== -1;

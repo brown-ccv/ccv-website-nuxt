@@ -62,14 +62,14 @@
             :key="urlize(person.name)"
             variant="white"
             accent="warning"
-            width="small"
+            width="xsmall"
             class="mx-1 my-1"
             :name="person.name"
             :title="person.title"
             :team="person.team"
-            :main-image="'/static/images/people/' + person.image"
+            :main-image="'/images/people/' + person.image"
             :hover-image="
-              '/static/images/people/' + person.image.replace('main', 'hover')
+              '/images/people/' + person.image.replace('main', 'hover')
             "
           >
             <template #icons>

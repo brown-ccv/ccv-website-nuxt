@@ -8,7 +8,7 @@ rm -rf functions/server-middleware
 rm -rf functions/hooks
 
 # people images
-rm -rf content/images/people
+rm -rf static/images/people
 
 # === set up new state ===
 
@@ -21,4 +21,4 @@ cp -r .nuxt functions
 
 # people images
 mkdir -p static/images/people
-cp -r static/images/people content/images/people
+cp -r content/images/people static/images/people

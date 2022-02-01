@@ -27,8 +27,8 @@
       </figure>
     </template>
     <template #footer>
-      <footer class="py-3 px-3">
-        <p class="person-subtitle">{{ name }}</p>
+      <footer class="content py-3 px-3">
+        <h5>{{ name }}</h5>
         <p data-testid="title-team">
           <small>{{ title }} | {{ team }}</small>
         </p>
