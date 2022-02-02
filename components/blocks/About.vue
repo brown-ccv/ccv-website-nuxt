@@ -20,50 +20,52 @@
           {{ item.title }}
         </h2>
         <!-- Opportunities -->
-        <div
-          v-if="item.title === 'Opportunities' && opportunities.length > 0"
-          class="card-group"
-        >
-          <template v-for="position in opportunities">
-            <a
-              :key="position"
-              class="position-block"
-              :href="
-                'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
-                position.externalPath
-              "
-            >
-              <div>
-                <span>
-                  <span class="icon mr-3">
-                    <i class="mdi mdi-map-marker mdi-24px" />
-                  </span>
-                  Providence, RI - United States</span
-                >
-                <p class="has-text-dark">
-                  {{ position.title }}
-                </p>
-              </div>
-              <div>
-                <p>
-                  Learn More<span class="icon ml-3">
-                    <i class="mdi mdi-arrow-right" />
-                  </span>
-                </p>
-              </div>
-            </a>
-          </template>
-        </div>
-        <div
-          v-else-if="
-            item.title === 'Opportunities' && opportunities.length === 0
-          "
-        >
-          <p>
-            There are no positions open at the moment. Check back with us in
-            future. We appreciate your interest!
-          </p>
-        </div>
+        <client-only>
+          <div
+            v-if="item.title === 'Opportunities' && opportunities.length > 0"
+            class="card-group"
+          >
+            <template v-for="position in opportunities">
+              <a
+                :key="position"
+                class="position-block"
+                :href="
+                  'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
+                  position.externalPath
+                "
+              >
+                <div>
+                  <span>
+                    <span class="icon mr-3">
+                      <i class="mdi mdi-map-marker mdi-24px" />
+                    </span>
+                    Providence, RI - United States</span
+                  >
+                  <p class="has-text-dark">
+                    {{ position.title }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Learn More<span class="icon ml-3">
+                      <i class="mdi mdi-arrow-right" />
+                    </span>
+                  </p>
+                </div>
+              </a>
+            </template>
+          </div>
+          <div
+            v-else-if="
+              item.title === 'Opportunities' && opportunities.length === 0
+            "
+          >
+            <p>
+              There are no positions open at the moment. Check back with us in
+              future. We appreciate your interest!
+            </p>
+          </div>
+        </client-only>
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
@@ -139,6 +141,7 @@ export default {
       (j) => j.locationsText === location
     );
   },
+  fetchOnServer: false,
   computed: {
     tocData() {
       const ogData = this.data;
