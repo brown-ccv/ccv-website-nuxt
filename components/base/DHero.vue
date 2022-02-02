@@ -10,6 +10,7 @@
       'header-image',
       $route.path === '/' ? 'image-home' : 'image-alt',
     ]"
+    :style="['--ccv-image': isWinter ? '@/assets/ccv-winter.jpg' : '@/assets/ccv-original.jpg']"
   >
     <div class="hero-body px-0">
       <div class="container px-2">
@@ -46,6 +47,11 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      isWinter: new Date().getMonth() <= 2 || new Date() >= 10
+    }
+  }
 };
 </script>
 
@@ -58,7 +64,7 @@ export default {
 }
 
 .image-home {
-  background-image: url('@/assets/ccv-winter.jpg');
+  background-image: url(var(--ccv-image));
 
   .hero-text {
     background-color: rgba(0, 0, 0, 0.3);
