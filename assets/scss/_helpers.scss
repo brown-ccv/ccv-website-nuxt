@@ -4,6 +4,12 @@
 }
 
 // Width
+.is-width-xsmall {
+  width: 30ex;
+  @include mobile {
+    width: 50vw;
+  }
+}
 .is-width-small {
   width: 40ex;
   @include mobile {

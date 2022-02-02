@@ -21,7 +21,7 @@
         </h2>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
-          <template v-if="item.data.length > 0">
+          <template v-if="item.data && item.data.length > 0">
             <a
               v-for="(position, ind) in item.data"
               :key="'position' + ind"
@@ -58,28 +58,35 @@
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
-            v-for="person in item.data"
+            v-for="person in orderedPeople"
             :key="urlize(person.name)"
             variant="white"
             accent="warning"
-            width="small"
+            width="xsmall"
             class="mx-1 my-1"
             :name="person.name"
             :title="person.title"
             :team="person.team"
-            :main-image="
-              'https://ccv.brown.edu/images/people/JPEG/' + person.image
-            "
+            :main-image="'/images/people/' + person.image"
             :hover-image="
-              'https://ccv.brown.edu/images/people/JPEG/' +
-              person.image.replace('main', 'hover')
+              '/images/people/' + person.image.replace('main', 'hover')
             "
           >
             <template #icons>
               <a
+                v-if="person.github_username"
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
                 ><span class="icon"><i class="mdi mdi-github"/></span>
+              </a>
+              <a
+                v-if="person.brown_directory_uuid"
+                :href="
+                  'https://directory.brown.edu/uuid/' +
+                  person.brown_directory_uuid
+                "
+                aria-label="information icon"
+                ><span class="icon"><i class="mdi mdi-information" /></span>
               </a>
             </template>
           </DPersonCard>
@@ -116,6 +123,7 @@ export default {
       const ogData = this.data;
       const sortOrder = [
         'mission',
+        'teams',
         'people',
         'opportunities',
         'facilities',
@@ -131,6 +139,12 @@ export default {
           icon: { name: d.icon, family: 'light' },
         };
       });
+    },
+    orderedPeople() {
+      const d = this.data;
+      const people = d.find((d) => d.title === 'People').data;
+      people.sort((a, b) => (a.name > b.name ? 1 : -1));
+      return people;
     },
   },
   methods: {

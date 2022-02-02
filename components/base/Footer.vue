@@ -84,7 +84,7 @@
       <ul class="mr-6">
         <li><h2>Our Work</h2></li>
         <li class="">
-          <a href="/our-work/workshops" tabindex="0"> Workshops </a>
+          <a href="/our-work/workshops-and-talks" tabindex="0"> Workshops </a>
         </li>
         <li class="">
           <a href="/our-work/software" tabindex="0"> Software </a>

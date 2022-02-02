@@ -7,6 +7,9 @@ rm -rf functions/.nuxt/*
 rm -rf functions/server-middleware
 rm -rf functions/hooks
 
+# people images
+rm -rf static/images/people
+
 # === set up new state ===
 
 # server-side
@@ -15,3 +18,7 @@ cp -r server-middleware functions/server-middleware
 cp -r hooks functions/hooks
 cp nuxt.config.js functions
 cp -r .nuxt functions
+
+# people images
+mkdir -p static/images/people
+cp -r content/images/people static/images

@@ -27,10 +27,10 @@
       </figure>
     </template>
     <template #footer>
-      <footer class="py-3 px-3">
-        <h2>{{ name }}</h2>
+      <footer class="content py-3 px-3">
+        <h5>{{ name }}</h5>
         <p data-testid="title-team">
-          {{ title }} <small>| {{ team }}</small>
+          <small>{{ title }} | {{ team }}</small>
         </p>
         <slot name="icons" />
       </footer>
