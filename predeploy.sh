@@ -21,4 +21,4 @@ cp -r .nuxt functions
 
 # people images
 mkdir -p static/images/people
-cp -r content/images/people static/images/people
+cp -r content/images/people static/images

@@ -21,7 +21,7 @@
         </h2>
         <!-- Opportunities -->
         <div v-if="item.title === 'Opportunities'" class="card-group">
-          <template v-if="item.data.length > 0">
+          <template v-if="item.data && item.data.length > 0">
             <a
               v-for="(position, ind) in item.data"
               :key="'position' + ind"
