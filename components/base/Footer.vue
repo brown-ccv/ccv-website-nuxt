@@ -54,9 +54,7 @@
           </a>
         </li>
         <li class="">
-          <a href="/services/consulting" tabindex="0">
-            Consulting
-          </a>
+          <a href="/services/consulting" tabindex="0"> Consulting </a>
         </li>
       </ul>
       <ul class="mr-6">

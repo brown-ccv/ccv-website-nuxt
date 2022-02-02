@@ -79,7 +79,7 @@
               <a
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-github"/></span>
+                ><span class="icon"><i class="mdi mdi-github" /></span>
               </a>
             </template>
           </DPersonCard>
