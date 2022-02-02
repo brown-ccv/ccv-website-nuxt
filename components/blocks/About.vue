@@ -141,7 +141,6 @@ export default {
       (j) => j.locationsText === location
     );
   },
-  fetchOnServer: false,
   computed: {
     tocData() {
       const ogData = this.data;
