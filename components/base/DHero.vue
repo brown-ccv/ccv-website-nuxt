@@ -58,7 +58,7 @@ export default {
 }
 
 .image-home {
-  background-image: url('@/assets/ccv-original.jpg');
+  background-image: url('@/assets/ccv-winter.jpg');
 
   .hero-text {
     background-color: rgba(0, 0, 0, 0.3);
