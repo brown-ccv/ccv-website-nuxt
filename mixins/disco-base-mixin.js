@@ -20,7 +20,7 @@ const discoBase = {
       type: String,
       default: 'medium',
       validator(value) {
-        return ['small', 'medium', 'large'].includes(value);
+        return ['xsmall', 'small', 'medium', 'large'].includes(value);
       },
     },
   },
