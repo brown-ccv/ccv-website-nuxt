@@ -52,7 +52,7 @@ export default {
     };
   },
   async fetch() {
-    this.banners = await this.$content('home', 'banners').fetch();
+    this.banners = await this.$content('banners').fetch();
     const res = await fetch('/_ghapi/status');
     this.status = await res.json();
   },

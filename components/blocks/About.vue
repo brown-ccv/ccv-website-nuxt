@@ -27,7 +27,7 @@
           >
             <template v-for="position in opportunities">
               <a
-                :key="position"
+                :key="position.externalPath"
                 class="position-block"
                 :href="
                   'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
@@ -122,25 +122,10 @@ export default {
     opportunities: [],
   }),
   async fetch() {
-    const location = '180 George Street';
-    const res = await fetch(
-      'https://brown.wd5.myworkdayjobs.com/wday/cxs/brown/staff-careers-brown/jobs',
-      {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          limit: 20,
-          offset: 0,
-          appliedFacets: {},
-          searchText: location,
-        }),
-      }
-    );
-    const data = await res.json();
-    this.opportunities = data.jobPostings.filter(
-      (j) => j.locationsText === location
-    );
+    const res = await fetch('/_workday/opportunities');
+    this.opportunities = await res.json();
   },
+  fetchOnServer: false,
   computed: {
     tocData() {
       const ogData = this.data;

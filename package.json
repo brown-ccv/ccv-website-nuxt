@@ -40,6 +40,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.1.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "axios": "^0.25.0",
     "babel-eslint": "^10.0.1",
     "cheerio": "^1.0.0-rc.9",
     "dotenv": "^10.0.0",
