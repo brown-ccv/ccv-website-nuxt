@@ -77,7 +77,7 @@
                 v-if="person.github_username"
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-github" /></span>
+                ><span class="icon"><i class="mdi mdi-github"/></span>
               </a>
               <a
                 v-if="person.brown_directory_uuid"
@@ -92,7 +92,11 @@
           </DPersonCard>
         </div>
         <!-- General markdown content pages -->
-        <nuxt-content v-if="item.extension === '.md'" :document="item" />
+        <nuxt-content
+          v-if="item.extension === '.md'"
+          :document="item"
+          class="content content-section"
+        />
       </section>
     </main>
   </div>

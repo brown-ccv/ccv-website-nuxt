@@ -164,7 +164,7 @@
                   :key="contributorType"
                 >
                   <div>
-                    <i
+                    <i v-if="contributorArray"
                       :class="[
                         'mdi',
                         contributorIcon[contributorType],
