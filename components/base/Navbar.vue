@@ -296,18 +296,6 @@ export default {
       this.expanded = false;
       document.activeElement.blur();
     },
-    scrollToSection(section) {
-      if (this.$nuxt.$route.name === 'index') {
-        // const navHeight = document.getElementById('navigation').offsetHeight;
-        console.log(section);
-        console.log(document.getElementById('navigation'));
-        console.log(document.querySelector(section));
-        window.scrollTo({
-          top: document.querySelector(section).offsetTop,
-          behavior: 'smooth',
-        });
-      }
-    },
   },
 };
 </script>
