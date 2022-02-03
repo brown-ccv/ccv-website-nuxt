@@ -71,7 +71,7 @@ export default {
   background-image: var(--ccv-image);
 
   .hero-text {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.45);
     padding: 1rem;
     margin: 0 -1rem;
   }
