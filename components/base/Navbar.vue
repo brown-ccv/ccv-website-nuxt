@@ -185,7 +185,8 @@
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <nuxt-link
-                to="/about#mission"
+                :to="{ path: '/about', hash: 'mission' }"
+                v-scroll-to="{ el: '#mission' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -194,7 +195,8 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/about#our-teams"
+                :to="{ path: '/about', hash: 'our-teams' }"
+                v-scroll-to="{ el: '#our-teams' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -203,7 +205,8 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/about#people"
+                :to="{ path: '/about', hash: 'people' }"
+                v-scroll-to="{ el: '#people' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -212,7 +215,8 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/about#opportunities"
+                :to="{ path: '/about', hash: 'opportunities' }"
+                v-scroll-to="{ el: '#opportunities' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -221,7 +225,8 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/about#facilities-statement"
+                :to="{ path: '/about', hash: 'facilities-statement' }"
+                v-scroll-to="{ el: '#facilities-statement' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -230,7 +235,8 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/about#diversity-statement"
+                :to="{ path: '/about', hash: 'diversity-statement' }"
+                v-scroll-to="{ el: '#diversity-statement' }"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -289,6 +295,18 @@ export default {
       // collapse the hamburger bar and un-focus the navbar
       this.expanded = false;
       document.activeElement.blur();
+    },
+    scrollToSection(section) {
+      if (this.$nuxt.$route.name === 'index') {
+        // const navHeight = document.getElementById('navigation').offsetHeight;
+        console.log(section);
+        console.log(document.getElementById('navigation'));
+        console.log(document.querySelector(section));
+        window.scrollTo({
+          top: document.querySelector(section).offsetTop,
+          behavior: 'smooth',
+        });
+      }
     },
   },
 };
