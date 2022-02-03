@@ -61,8 +61,8 @@
             "
           >
             <p>
-              There are no positions open at the moment. Check back with us in the
-              future. We appreciate your interest!
+              There are no positions open at the moment. Check back with us in
+              the future. We appreciate your interest!
             </p>
           </div>
         </client-only>
@@ -78,9 +78,9 @@
             :name="person.name"
             :title="person.title"
             :team="person.team"
-            :main-image="'/images/people/' + person.image"
+            :main-image="'/content/images/people/' + person.image"
             :hover-image="
-              '/images/people/' + person.image.replace('main', 'hover')
+              '/content/images/people/' + person.image.replace('main', 'hover')
             "
           >
             <template #icons>

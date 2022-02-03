@@ -2,11 +2,11 @@
 
 # === clean up old state ===
 
-# people images
-rm -rf static/images/people
+# images that come from content repository
+rm -rf static/content/images
 
 # === copy ===
 
-# people images
-mkdir -p static/images/people
-cp -r content/images/people static/images
+# images that come from content repository
+mkdir -p static/content/images
+cp -r content/images static/content/
