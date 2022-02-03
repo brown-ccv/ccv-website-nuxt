@@ -1,4 +1,3 @@
-content/
 # node details for functions potentially containing secrets
 functions/.npmrc
 
