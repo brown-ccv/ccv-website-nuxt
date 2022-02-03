@@ -12,7 +12,7 @@
       >
         <h2 class="section-title title has-text-white has-background-success">
           <span
-            class="icon mr-3 has-text-white is-size-2"
+            class="icon mr-3 has-text-white is-size-3"
             :aria-label="'icon of ' + item.icon"
           >
             <i :class="[`mdi mdi-${item.icon}`]" />
@@ -61,8 +61,8 @@
             "
           >
             <p>
-              There are no positions open at the moment. Check back with us in the
-              future. We appreciate your interest!
+              There are no positions open at the moment. Check back with us in
+              the future. We appreciate your interest!
             </p>
           </div>
         </client-only>
