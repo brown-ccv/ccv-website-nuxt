@@ -185,8 +185,7 @@
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'mission' }"
-                v-scroll-to="{ el: '#mission' }"
+                to="/about#mission"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -195,8 +194,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'our-teams' }"
-                v-scroll-to="{ el: '#our-teams' }"
+                to="/about#our-teams"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -205,8 +203,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'people' }"
-                v-scroll-to="{ el: '#people' }"
+                to="/about#people"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -215,8 +212,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'opportunities' }"
-                v-scroll-to="{ el: '#opportunities' }"
+                to="/about#opportunities"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -225,8 +221,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'facilities-statement' }"
-                v-scroll-to="{ el: '#facilities-statement' }"
+                to="/about#facilities-statement"
                 tabindex="0"
                 @click.native="handleClick"
               >
@@ -235,8 +230,7 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                :to="{ path: '/about', hash: 'diversity-statement' }"
-                v-scroll-to="{ el: '#diversity-statement' }"
+                to="/about#diversity-statement"
                 tabindex="0"
                 @click.native="handleClick"
               >
