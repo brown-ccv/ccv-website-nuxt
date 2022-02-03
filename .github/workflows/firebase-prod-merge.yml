@@ -33,6 +33,7 @@ jobs:
       - name: Build
         # Make sure content is tracking main and up-to date, then builds and deploys
         run: |
+          git submodule update --init
           git submodule set-branch -b main content
           git submodule update --remote
           npm run generate
