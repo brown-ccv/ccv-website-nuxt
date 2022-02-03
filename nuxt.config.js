@@ -101,6 +101,7 @@ export default {
   },
   serverMiddleware: [
     { path: '/_ghapi', handler: '~/server-middleware/gh-api.js' },
+    { path: '/_workday', handler: '~/server-middleware/workday-api.js' },
   ],
   hooks: {
     async ready(nuxt) {
