@@ -20,41 +20,52 @@
           {{ item.title }}
         </h2>
         <!-- Opportunities -->
-        <div v-if="item.title === 'Opportunities'" class="card-group">
-          <template v-if="item.data && item.data.length > 0">
-            <a
-              v-for="(position, ind) in item.data"
-              :key="'position' + ind"
-              class="position-block"
-              :href="position.link"
-            >
-              <div>
-                <span>
-                  <span class="icon mr-3">
-                    <i class="mdi mdi-map-marker mdi-24px" />
-                  </span>
-                  Providence, RI - United States</span
-                >
-                <p class="has-text-dark">
-                  {{ position.title }} – {{ position.subteam }}
-                </p>
-              </div>
-              <div>
-                <p>
-                  Learn More<span class="icon ml-3">
-                    <i class="mdi mdi-arrow-right" />
-                  </span>
-                </p>
-              </div>
-            </a>
-          </template>
-          <div v-else>
+        <client-only>
+          <div
+            v-if="item.title === 'Opportunities' && opportunities.length > 0"
+            class="card-group"
+          >
+            <template v-for="position in opportunities">
+              <a
+                :key="position.externalPath"
+                class="position-block"
+                :href="
+                  'https://brown.wd5.myworkdayjobs.com/en-US/staff-careers-brown' +
+                  position.externalPath
+                "
+              >
+                <div>
+                  <span>
+                    <span class="icon mr-3">
+                      <i class="mdi mdi-map-marker mdi-24px" />
+                    </span>
+                    Providence, RI - United States</span
+                  >
+                  <p class="has-text-dark">
+                    {{ position.title }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Learn More<span class="icon ml-3">
+                      <i class="mdi mdi-arrow-right" />
+                    </span>
+                  </p>
+                </div>
+              </a>
+            </template>
+          </div>
+          <div
+            v-else-if="
+              item.title === 'Opportunities' && opportunities.length === 0
+            "
+          >
             <p>
-              There are no positions open at the moment Check back with us in
-              the future. We appreciate your interest!
+              There are no positions open at the moment. Check back with us in the
+              future. We appreciate your interest!
             </p>
           </div>
-        </div>
+        </client-only>
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
@@ -118,6 +129,14 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    opportunities: [],
+  }),
+  async fetch() {
+    const res = await fetch('/_workday/opportunities');
+    this.opportunities = await res.json();
+  },
+  fetchOnServer: false,
   computed: {
     tocData() {
       const ogData = this.data;
