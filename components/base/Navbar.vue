@@ -174,8 +174,70 @@
             </div>
           </div>
         </div>
-        <div class="navbar-item">
-          <nuxt-link to="/about" @click.native="handleClick"> About </nuxt-link>
+        <div tabindex="0" class="navbar-item has-dropdown is-hoverable">
+          <nuxt-link
+            class="navbar-link"
+            to="/about"
+            @click.native="handleClick"
+          >
+            About
+          </nuxt-link>
+          <div class="navbar-dropdown">
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#mission"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Mission
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#our-teams"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Our Teams
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#people"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                People
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#opportunities"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Opportunities
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#facilities-statement"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Facilities Statement
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
+                to="/about#diversity-statement"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Diversity Statement
+              </nuxt-link>
+            </div>
+          </div>
         </div>
       </div>
       <div class="navbar-end" data-testid="navbar-end">
