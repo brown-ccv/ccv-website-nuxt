@@ -24,10 +24,13 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm ci
-      - name: Build
+      - name: Init submodule
         run: |
           git submodule update --init
           git submodule update --remote
+          ls -la
+      - name: Build
+        run: |
           npm run generate
           npm run build
           npm run predeploy
