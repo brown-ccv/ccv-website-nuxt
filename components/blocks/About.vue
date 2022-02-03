@@ -88,7 +88,7 @@
                 v-if="person.github_username"
                 :href="'https://github.com/' + person.github_username"
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-github"/></span>
+                ><span class="icon"><i class="mdi mdi-github" /></span>
               </a>
               <a
                 v-if="person.brown_directory_uuid"
