@@ -82,6 +82,8 @@
       </DCard>
     </div>
     <div v-else class="container">
+      <div>{{ cardTags }}</div>
+      <div>{{ searchGroup }}</div>
       <div
         class="
           dropdown
@@ -155,8 +157,8 @@
             </template>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <template
-              ><span>
+            <div>
+              <span>
                 <div
                   v-for="(contributorArray, contributorType) in contributors(
                     item
@@ -178,8 +180,8 @@
                     ><span v-if="index + 1 < contributorArray.length">, </span>
                   </span>
                 </div>
-              </span></template
-            >
+              </span>
+            </div>
           </template>
           <template #content>
             {{ item.description }}
@@ -246,10 +248,15 @@ export default {
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
       const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
+      const hasActiveTag = this.data.some((card) =>
+        card.tags.includes('active')
+      );
 
       const options = [{ name: 'Title' }];
       if (hasDate) {
         options.push({ name: 'Date' });
+      } else if (hasActiveTag) {
+        options.push({ name: 'Active' });
       }
 
       return options;
@@ -273,7 +280,7 @@ export default {
         });
       }
 
-      // Sort by alphabetical order
+      // Sort by title alphabetical order
       if (this.sortBy.name === 'Title') {
         filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
@@ -290,6 +297,19 @@ export default {
         // Sort by date
         filtered.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
+        });
+      } else if (this.sortBy.name === 'Active') {
+        // Sort by tags alphabetical order
+        filtered.sort((a, b) => {
+          const fa = a.tags;
+          const fb = b.tags;
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
         });
       }
 

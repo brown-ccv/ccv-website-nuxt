@@ -33,7 +33,7 @@ export default {
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String,
+    view: { type: String, default: 'upcoming' },
   },
   methods: {
     /**

@@ -40,27 +40,27 @@ export default {
     /**
      * The day of the month for this day.
      */
-    date: Number,
+    date: { type: Number, default: 1 },
     /**
      * Whether or not the day should have the grey background color.
      */
-    greyedOut: Boolean,
+    greyedOut: { type: Boolean, default: true },
     /**
      * The displayed year.
      */
-    displayYear: Number,
+    displayYear: { type: Number, default: 2022 },
     /**
      * The displaed month.
      */
-    displayMonth: Number,
+    displayMonth: { type: Number, default: 1 },
     /**
      * Today's date, used to determine if this day should be highlighted yellow.
      */
-    todaysDate: String,
+    todaysDate: { type: String, default: '' },
     /**
      * The current calendar view, "monthly", "weekly", or "upcoming".
      */
-    view: String,
+    view: { type: String, default: 'upcoming' },
   },
   data() {
     return {

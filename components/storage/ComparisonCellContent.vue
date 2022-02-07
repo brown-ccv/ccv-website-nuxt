@@ -69,7 +69,7 @@ export default {
     },
     fontSize: {
       type: Number,
-      defualt: 5,
+      default: 5,
     },
     includeNotes: {
       type: Boolean,
@@ -88,12 +88,12 @@ export default {
     classText() {
       let message = this.feature.class;
       switch (this.feature.class) {
-        case false:
-          message = 'No';
-          break;
-        case true:
-          message = 'Yes';
-          break;
+      case false:
+        message = 'No';
+        break;
+      case true:
+        message = 'Yes';
+        break;
       }
 
       return message;

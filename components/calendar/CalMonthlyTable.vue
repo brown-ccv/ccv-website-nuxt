@@ -44,11 +44,11 @@ export default {
   },
   props: {
     // Passed directly from CalendarTable
-    view: String,
+    view: { type: String, default: 'upcoming' },
     info: { type: Array, required: true },
-    displayYear: Number,
-    displayMonth: Number,
-    displayDay: Number,
+    displayYear: { type: Number, default: 2022 },
+    displayMonth: { type: Number, default: 1 },
+    displayDay: { type: Number, default: 1 },
   },
   computed: {
     /**
