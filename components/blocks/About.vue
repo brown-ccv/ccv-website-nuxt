@@ -5,7 +5,7 @@
     </div>
     <main class="main-content">
       <section
-        v-for="(item, i) in data"
+        v-for="(item, i) in sortedData"
         :id="urlize(item.title)"
         :key="'about-section' + i"
         class="content-section"
@@ -138,8 +138,8 @@ export default {
   },
   fetchOnServer: false,
   computed: {
-    tocData() {
-      const ogData = this.data;
+    sortedData() {
+      const ogData = [...this.data];
       const sortOrder = [
         'mission',
         'teams',
@@ -148,10 +148,13 @@ export default {
         'facilities',
         'diversity',
       ];
-      const sortedData = ogData.sort((a, b) => {
+      return ogData.sort((a, b) => {
         return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
       });
-      return sortedData.map((d, i) => {
+    },
+
+    tocData() {
+      return this.sortedData.map((d, i) => {
         return {
           name: d.title,
           link: `#${this.urlize(d.title)}`,
@@ -159,9 +162,10 @@ export default {
         };
       });
     },
+
     orderedPeople() {
       const d = this.data;
-      const people = d.find((d) => d.title === 'People').data;
+      const people = [...d.find((d) => d.title === 'People').data];
       people.sort((a, b) => (a.name > b.name ? 1 : -1));
       return people;
     },
