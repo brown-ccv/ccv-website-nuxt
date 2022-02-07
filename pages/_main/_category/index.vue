@@ -57,7 +57,8 @@ export default {
       deep: true,
     })
       .sortBy('title', 'asc')
-      .fetch();
+      .fetch()
+      .catch(() => []);
 
     return {
       index,
