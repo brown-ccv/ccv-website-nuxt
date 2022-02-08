@@ -23,7 +23,7 @@
           <i class="mdi mdi-information-outline" />
         </span>
       </summary>
-      <p class="content" v-html="$md.render(question.information)"></p>
+      <div class="content" v-html="$md.render(question.information)"></div>
     </details>
     <div
       v-for="(a, i) in question.answers"
