@@ -141,6 +141,7 @@ export default {
     sortedData() {
       const ogData = [...this.data];
       const sortOrder = [
+        'oit',
         'mission',
         'teams',
         'people',
