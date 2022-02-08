@@ -185,11 +185,11 @@
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <nuxt-link
-                to="/about#oit"
+                to="/about#office-of-information-technology"
                 tabindex="0"
                 @click.native="handleClick"
               >
-                Office of Information Techology
+                Office of Information Technology
               </nuxt-link>
             </div>
             <div class="navbar-item">

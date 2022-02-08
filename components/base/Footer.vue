@@ -131,6 +131,9 @@
           <h2 class="">About</h2>
         </li>
         <li class="">
+          <a href="/about#office-of-information-technology" tabindex="0"> Office of Information Technology </a>
+        </li>
+        <li class="">
           <a href="/about#mission" tabindex="0"> Mission </a>
         </li>
         <li class="">
