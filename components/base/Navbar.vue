@@ -185,6 +185,15 @@
           <div class="navbar-dropdown">
             <div class="navbar-item">
               <nuxt-link
+                to="/about#oit"
+                tabindex="0"
+                @click.native="handleClick"
+              >
+                Office of Information Techology
+              </nuxt-link>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link
                 to="/about#mission"
                 tabindex="0"
                 @click.native="handleClick"
