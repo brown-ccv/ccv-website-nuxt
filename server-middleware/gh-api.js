@@ -5,6 +5,7 @@ const GraphQLClient = require('graphql-request').GraphQLClient;
 const endpoint = 'https://api.github.com/graphql';
 let client;
 if (process.env.NODE_ENV !== 'production' && !process.env.GITHUB_TOKEN) {
+  // eslint-disable-next-line no-console
   console.log('Skipping connecting to gh api');
 } else {
   client = new GraphQLClient(endpoint, {
@@ -83,6 +84,7 @@ app.all('/status', async (req, res, next) => {
 
     res.json(status);
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     next(err);
   }

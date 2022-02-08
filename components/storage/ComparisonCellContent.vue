@@ -87,13 +87,15 @@ export default {
   computed: {
     classText() {
       let message = this.feature.class;
+      /* eslint-disable indent */
       switch (this.feature.class) {
-      case false:
-        message = 'No';
-        break;
-      case true:
-        message = 'Yes';
-        break;
+        case false:
+          message = 'No';
+          break;
+        case true:
+          message = 'Yes';
+          break;
+        /* eslint-enable indent */
       }
 
       return message;
