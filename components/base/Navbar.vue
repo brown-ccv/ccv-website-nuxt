@@ -137,7 +137,7 @@
               <a
                 href="https://publications.ccv.brown.edu"
                 tabindex="0"
-                @click.native="handleClick"
+                @click="handleClick"
               >
                 Publications
               </a>
@@ -153,7 +153,7 @@
               <a
                 href="mailto:support@ccv.brown.edu"
                 tabindex="0"
-                @click.native="handleClick"
+                @click="handleClick"
               >
                 Submit a Ticket
               </a>
@@ -162,7 +162,7 @@
               <a
                 href="https://docs.ccv.brown.edu"
                 tabindex="0"
-                @click.native="handleClick"
+                @click="handleClick"
               >
                 Documentation
               </a>

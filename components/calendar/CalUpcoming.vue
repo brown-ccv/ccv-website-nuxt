@@ -22,11 +22,11 @@ export default {
     /**
      * An array of the next six event objects.
      */
-    upcomingEvents: Array,
+    upcomingEvents: { type: Array, default: () => [] },
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String,
+    view: { type: String, default: 'upcoming' },
   },
 };
 </script>

@@ -35,79 +35,95 @@
       style="display: flex; flex-wrap: wrap; justify-content: space-between"
       class="my-5 d-footer-content-second"
     >
-      <ul class="mr-6">
+      <ul class="mr-6 mb-4">
         <li><h2>Services</h2></li>
-        <li class="">
-          <a href="/services/classroom" tabindex="0"> Classroom </a>
+        <li>
+          <nuxt-link to="/services/classroom" tabindex="0">
+            Classroom
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/computing" tabindex="0"> Computing </a>
+        <li>
+          <nuxt-link to="/services/computing" tabindex="0">
+            Computing
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/file-storage-and-transfer" tabindex="0">
+        <li>
+          <nuxt-link to="/services/file-storage-and-transfer" tabindex="0">
             File Storage and Transfer
-          </a>
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/visualization" tabindex="0">
+        <li>
+          <nuxt-link to="/rates" tabindex="0"> Rates </nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/services/visualization" tabindex="0">
             Visualization Systems
-          </a>
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/consulting" tabindex="0"> Consulting </a>
+        <li>
+          <nuxt-link to="/services/consulting" tabindex="0">
+            Consulting
+          </nuxt-link>
         </li>
       </ul>
-      <ul class="mr-6">
+      <ul class="mr-6 mb-4">
         <li><h2>Documentation</h2></li>
-        <li class="">
+        <li>
           <a href="https://docs.ccv.brown.edu" tabindex="0"> Oscar </a>
         </li>
-        <li class="">
-          <a
-            href="/services/computing#data-risk-level-3-computing-(stronghold)"
+        <li>
+          <nuxt-link
+            to="/services/computing#data-risk-level-3-computing-(stronghold)"
             tabindex="0"
           >
             Stronghold
-          </a>
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/file-storage-and-transfer#globus" tabindex="0">
+        <li>
+          <nuxt-link
+            to="/services/file-storage-and-transfer#globus"
+            tabindex="0"
+          >
             Globus
-          </a>
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/services/classroom#jupyterhub" tabindex="0"> Jupyterhub </a>
+        <li>
+          <nuxt-link to="/services/classroom#jupyterhub" tabindex="0">
+            Jupyterhub
+          </nuxt-link>
         </li>
       </ul>
-      <ul class="mr-6">
+      <ul class="mr-6 mb-4">
         <li><h2>Our Work</h2></li>
-        <li class="">
-          <a href="/our-work/collaborations" tabindex="0"> Collaborations </a>
+        <li>
+          <nuxt-link to="/our-work/collaborations" tabindex="0">
+            Collaborations
+          </nuxt-link>
         </li>
-        <li class="">
-          <a href="/our-work/software" tabindex="0"> Software </a>
+        <li>
+          <nuxt-link to="/our-work/software" tabindex="0"> Software </nuxt-link>
         </li>
-        <li class="">
-          <a href="/our-work/workshops-and-talks" tabindex="0">
+        <li>
+          <nuxt-link to="/our-work/workshops-and-talks" tabindex="0">
             Workshops and Talks
-          </a>
+          </nuxt-link>
         </li>
-        <li class="">
+        <li>
           <a href="https://publications.ccv.brown.edu" tabindex="0">
             Publications
           </a>
         </li>
       </ul>
-      <ul class="mr-6">
+      <ul class="mr-6 mb-4">
         <li>
-          <h2 class="">Help</h2>
+          <h2>Help</h2>
         </li>
-        <li class="">
+        <li>
           <a href="mailto:support@ccv.brown.edu" tabindex="0">
             Submit a Ticket
           </a>
         </li>
-        <li class="">
+        <li>
           <a
             href="https://ask.cyberinfrastructure.org/c/brown-research-computing/37"
             tabindex="0"
@@ -115,40 +131,50 @@
             Discourse
           </a>
         </li>
-        <li class="">
+        <li>
           <a href="https://ccv-share.slack.com/signup#/" tabindex="0">
             Slack
           </a>
         </li>
-        <li class="">
+        <li>
           <a href="https://events.brown.edu/ccv/month" tabindex="0">
             Office Hours
           </a>
         </li>
       </ul>
-      <ul class="mr-6">
+      <ul class="mr-6 mb-4">
         <li>
-          <h2 class="">About</h2>
+          <h2>About</h2>
         </li>
-        <li class="">
-          <a href="/about#office-of-information-technology" tabindex="0"> Office of Information Technology </a>
+        <li>
+          <nuxt-link to="/about#mission" tabindex="0"> Mission </nuxt-link>
         </li>
-        <li class="">
-          <a href="/about#mission" tabindex="0"> Mission </a>
+        <li>
+          <nuxt-link to="/about#office-of-information-technology" tabindex="0"> Office of Information Technology </nuxt-link>
         </li>
-        <li class="">
-          <a href="/about#people" tabindex="0"> People </a>
+        <li>
+          <nuxt-link to="/about#our-teams" tabindex="0"> Our Teams </nuxt-link>
         </li>
-        <li class="">
-          <a href="/about#opportunities" tabindex="0"> Opportunities </a>
+        <li>
+          <nuxt-link to="/about#people" tabindex="0"> People </nuxt-link>
         </li>
-        <li class="">
+        <li>
+          <nuxt-link to="/about#opportunities" tabindex="0">
+            Opportunities
+          </nuxt-link>
+        </li>
+        <li>
           <a href="https://events.brown.edu/ccv/month" tabindex="0"> Events </a>
         </li>
-        <li class="">
-          <a href="/about#facilities-statement" tabindex="0">
-            How To Cite CCV
-          </a>
+        <li>
+          <nuxt-link to="/about#facilities-statement" tabindex="0">
+            Facilities Statement
+          </nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/about#diversity-statement" tabindex="0">
+            Diversity Statement
+          </nuxt-link>
         </li>
       </ul>
     </section>

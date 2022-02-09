@@ -30,23 +30,23 @@ export default {
     /**
      * Array with days visible in this week.
      */
-    displayWeek: Array,
+    displayWeek: { type: Array, default: () => [] },
     /**
      * The current year.
      */
-    displayYear: Number,
+    displayYear: { type: Number, default: 2022 },
     /**
      * The current month.
      */
-    displayMonth: Number,
+    displayMonth: { type: Number, default: 1 },
     /**
      * Today's date as a string.
      */
-    todaysDate: String,
+    todaysDate: { type: String, default: '' },
     /**
      * The current calendar view, either "monthly", "weekly", or "upcoming".
      */
-    view: String,
+    view: { type: String, default: 'upcoming' },
   },
 };
 </script>

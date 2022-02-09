@@ -69,7 +69,7 @@ export default {
     },
     fontSize: {
       type: Number,
-      defualt: 5,
+      default: 5,
     },
     includeNotes: {
       type: Boolean,
@@ -87,6 +87,7 @@ export default {
   computed: {
     classText() {
       let message = this.feature.class;
+      /* eslint-disable indent */
       switch (this.feature.class) {
         case false:
           message = 'No';
@@ -94,6 +95,7 @@ export default {
         case true:
           message = 'Yes';
           break;
+        /* eslint-enable indent */
       }
 
       return message;

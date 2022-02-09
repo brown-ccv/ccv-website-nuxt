@@ -15,7 +15,7 @@ export default {
     /**
      * The URL to more info on the event.
      */
-    url: String,
+    url: { type: String, default: '' },
   },
   computed: {
     /**
@@ -36,9 +36,9 @@ export default {
           '<p>' +
           '<p>' +
           'Zoom link: <br><br>' +
-          "<a href='" +
+          '<a href="' +
           zoomLink +
-          "'>" +
+          '">' +
           zoomLink +
           '</a>' +
           '</p>'
@@ -46,9 +46,9 @@ export default {
       } else {
         return (
           this.trimDesc(this.desc) +
-          " <a href='" +
+          ' <a href="' +
           this.url +
-          "' target='_blank'>More info</a>"
+          '" target="_blank">More info</a>'
         );
       }
     },

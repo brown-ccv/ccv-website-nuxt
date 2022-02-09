@@ -45,7 +45,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/scss/disco.scss', 'bulma-checkradio'],
+  css: [
+    '@/assets/scss/disco.scss',
+    'bulma-checkradio',
+    'vue-multiselect/dist/vue-multiselect.min.css',
+  ],
   styleResources: {
     scss: '~assets/scss/disco.scss',
   },
