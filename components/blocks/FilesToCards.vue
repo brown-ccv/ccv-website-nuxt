@@ -82,8 +82,6 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div>{{ cardTags }}</div>
-      <div>{{ searchGroup }}</div>
       <div
         class="
           dropdown
