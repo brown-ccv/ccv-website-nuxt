@@ -20,6 +20,7 @@ module.exports = {
     indent: ['warn', 2],
     'no-multi-spaces': ['warn'],
     'vue/comment-directive': 'off',
+    'vue/no-v-html': 'off',
     'prettier/prettier': 'warn',
   },
 };

@@ -155,31 +155,32 @@
             </template>
             <h2 class="title has-text-black pt-3">{{ item.title }}</h2>
             <div v-if="item.date">Updated: {{ item.date }}</div>
-            <template
-              ><span>
-                <div
-                  v-for="(contributorArray, contributorType) in contributors(
-                    item
-                  )"
-                  :key="contributorType"
-                >
-                  <div>
-                    <i
-                      v-if="contributorArray"
-                      :class="[
-                        'mdi',
-                        contributorIcon[contributorType],
-                        'mdi-24px',
-                      ]"
-                    ></i>
-                  </div>
-                  <span v-for="(entry, index) in contributorArray" :key="entry">
-                    <a :href="contributorLink(entry)">{{ entry.name }}</a
-                    ><span v-if="index + 1 < contributorArray.length">, </span>
-                  </span>
+            <span>
+              <div
+                v-for="(contributorArray, contributorType) in contributors(
+                  item
+                )"
+                :key="contributorType"
+              >
+                <div>
+                  <i
+                    v-if="contributorArray"
+                    :class="[
+                      'mdi',
+                      contributorIcon[contributorType],
+                      'mdi-24px',
+                    ]"
+                  ></i>
                 </div>
-              </span></template
-            >
+                <span
+                  v-for="(entry, index) in contributorArray"
+                  :key="entry.name"
+                >
+                  <a :href="contributorLink(entry)">{{ entry.name }}</a
+                  ><span v-if="index + 1 < contributorArray.length">, </span>
+                </span>
+              </div>
+            </span>
           </template>
           <template #content>
             {{ item.description }}
@@ -189,7 +190,7 @@
               <div><i class="mdi mdi-link p-1 title"></i></div>
               <a
                 v-for="link in item.links"
-                :key="link.category"
+                :key="link.url"
                 class="
                   m-1
                   link-item
@@ -246,10 +247,15 @@ export default {
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
       const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
+      const hasActiveTag = this.data.some((card) =>
+        card.tags.includes('active')
+      );
 
       const options = [{ name: 'Title' }];
       if (hasDate) {
         options.push({ name: 'Date' });
+      } else if (hasActiveTag) {
+        options.push({ name: 'Active' });
       }
 
       return options;
@@ -261,19 +267,16 @@ export default {
       let filtered = this.filteredData;
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
-          if (this.searchGroup) {
-            return this.searchGroup.some((tag) =>
-              ['tags', 'groups', 'languages'].some((tagType) =>
-                card[tagType].includes(tag)
-              )
-            );
-          } else {
-            return true;
-          }
+          return this.searchGroup.some((tag) =>
+            ['tags', 'groups', 'languages'].some((tagType) => {
+              const tags = card[tagType] ?? [];
+              return tags.includes(tag);
+            })
+          );
         });
       }
 
-      // Sort by alphabetical order
+      // Sort by title alphabetical order
       if (this.sortBy.name === 'Title') {
         filtered.sort((a, b) => {
           const fa = a.title.toLowerCase();
@@ -290,6 +293,19 @@ export default {
         // Sort by date
         filtered.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
+        });
+      } else if (this.sortBy.name === 'Active') {
+        // Sort by tags alphabetical order
+        filtered.sort((a, b) => {
+          const fa = a.tags.includes('active') ? 0 : 1;
+          const fb = b.tags.includes('active') ? 0 : 1;
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
         });
       }
 
@@ -343,5 +359,3 @@ export default {
   width: 65%;
 }
 </style>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

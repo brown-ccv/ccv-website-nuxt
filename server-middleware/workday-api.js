@@ -21,6 +21,7 @@ app.all('/opportunities', async (req, res, next) => {
 
     res.json(opportunities);
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     next(err);
   }
