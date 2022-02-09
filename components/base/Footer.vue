@@ -150,6 +150,9 @@
           <nuxt-link to="/about#mission" tabindex="0"> Mission </nuxt-link>
         </li>
         <li>
+          <nuxt-link to="/about#office-of-information-technology" tabindex="0"> Office of Information Technology </nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/about#our-teams" tabindex="0"> Our Teams </nuxt-link>
         </li>
         <li>
