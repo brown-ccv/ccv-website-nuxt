@@ -70,7 +70,12 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://www.npmjs.com/package/@nuxtjs/style-resources
     '@nuxtjs/style-resources',
+    // https://google-analytics.nuxtjs.org
+    '@nuxtjs/google-analytics'
   ],
+  googleAnalytics: {
+    id: 'UA-136333978-7'
+  },
   /*
    ** Nuxt.js modules
    */
