@@ -1,8 +1,8 @@
 {
-  "name": "ccv-website-experimental",
+  "name": "ccv-website",
   "version": "1.0.0",
   "private": true,
-  "description": "CCV Website Experimental in Nuxt.js",
+  "description": "Brown University Center for Computation and Visualization",
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
