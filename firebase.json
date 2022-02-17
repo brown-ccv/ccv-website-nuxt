@@ -11,6 +11,16 @@
           "source": "**",
           "function": "ssrapp"
         }
+      ],
+      "headers": [ {
+        "source": "**/*.@(jpg|jpeg|gif|png)",
+        "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=604800"
+            }
+          ]
+        }
       ]
     },
     "emulators": {
