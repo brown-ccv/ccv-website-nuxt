@@ -1,14 +1,17 @@
 <template>
   <div>
-    <h1>{{ error }}</h1>
+    <h1 v-if="error.statusCode === 404">
+      Woof... You are lost!
+      <img src="/assets/riggins404.jpeg" alt="" />
+    </h1>
+    <h1 v-else>An error occurred - {{ error.statusCode }}</h1>
+    <NuxtLink to="/">Home page</NuxtLink>
   </div>
 </template>
 
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
+  layout: 'error',
   props: ['error'],
 };
 </script>
-
-<style lang="scss" scoped></style>
