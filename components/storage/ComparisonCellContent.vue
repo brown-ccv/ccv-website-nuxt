@@ -21,9 +21,7 @@
         ><i class="mdi mdi-speedometer"
       /></span>
       <span
-        v-else-if="
-          typeof feature.class === 'string' && feature.class === 'slow'
-        "
+        v-else-if="feature.class === 'slow'"
         :class="[
           'icon',
           `is-size-${iconSize}`,
