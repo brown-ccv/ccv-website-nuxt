@@ -22,7 +22,7 @@
       /></span>
       <span
         v-else-if="
-          typeof feature.class === 'string' && feature.class.startsWith('slow')
+          typeof feature.class === 'string' && feature.class === 'slow'
         "
         :class="[
           'icon',
