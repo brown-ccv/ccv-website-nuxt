@@ -31,11 +31,8 @@
         ]"
         ><i class="mdi mdi-speedometer-slow"
       /></span>
-
       <span
-        v-else-if="
-          typeof feature.class === 'string' && feature.class === 'hot'
-        "
+        v-else-if="feature.class === 'hot'"
         :class="[
           'icon',
           `is-size-${iconSize}`,
@@ -45,9 +42,7 @@
       /></span>
 
       <span
-        v-else-if="
-          typeof feature.class === 'string' && feature.class === 'warm'
-        "
+        v-else-if="feature.class === 'warm'"
         :class="[
           'icon',
           `is-size-${iconSize}`,
@@ -56,9 +51,7 @@
         ><i class="mdi mdi-thermometer"
       /></span>
       <span
-        v-else-if="
-          typeof feature.class === 'string' && feature.class === 'cold'
-        "
+        v-else-if="feature.class === 'cold'"
         :class="[
           'icon',
           `is-size-${iconSize}`,
