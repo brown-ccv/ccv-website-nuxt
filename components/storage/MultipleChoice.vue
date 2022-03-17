@@ -29,7 +29,7 @@
       v-for="(a, i) in question.answers"
       :id="urlize(question.question) + i"
       :key="urlize(question.question) + i"
-      class="field"
+      class="field mb-1"
     >
       <input
         :id="'radioinput-' + urlize(question.question) + i"

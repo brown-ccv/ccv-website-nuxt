@@ -45,7 +45,10 @@
         ><i class="mdi mdi-shield-half-full"
       /></span>
 
-      {{ classText }}
+      <!--If this is a row, add some margin to the classText if there's a preceding icon -->
+      <span :class="{ 'class-text': flexDirection === 'row' }">{{
+        classText
+      }}</span>
     </div>
 
     <ul v-if="includeNotes">
@@ -105,6 +108,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  width: auto;
+}
+.class-text:not(:first-child) {
+  margin-left: 0.25rem;
+}
+
 .class-container {
   width: 10rem;
   display: flex;
