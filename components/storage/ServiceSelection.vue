@@ -1,56 +1,58 @@
 <template>
-  <div class="service-selection px-2">
-    <div
-      v-for="(s, i) in services"
-      :id="'field' + s.name + i"
-      :key="'field' + s.name + i"
-      class="field service-box my-1 p-4"
-      :class="[
-        matchingServices[i] ? 'has-background-info' : 'has-background-light',
-      ]"
-    >
-      <button
-        class="button-nostyle"
-        type="button"
-        :disabled="!matchingServices[i]"
-        @click="change(i)"
+  <div class="sticky-container">
+    <div class="service-selection px-2 sticky">
+      <div
+        v-for="(s, i) in services"
+        :id="'field' + s.name + i"
+        :key="'field' + s.name + i"
+        class="field service-box my-1 p-4"
+        :class="[
+          matchingServices[i] ? 'has-background-info' : 'has-background-light',
+        ]"
       >
-        <span class="icon is-size-2"
-          ><i
-            :class="[
-              'mdi',
-              selectedServices[i] ||
-              (selectedServices[i] === null && matchingServices[i])
-                ? 'mdi-checkbox-marked'
-                : matchingServices[i]
-                ? 'mdi-checkbox-blank'
-                : 'mdi-checkbox-blank-off',
-            ]"
+        <button
+          class="button-nostyle"
+          type="button"
+          :disabled="!matchingServices[i]"
+          @click="change(i)"
+        >
+          <span class="icon is-size-2"
+            ><i
+              :class="[
+                'mdi',
+                selectedServices[i] ||
+                (selectedServices[i] === null && matchingServices[i])
+                  ? 'mdi-checkbox-marked'
+                  : matchingServices[i]
+                  ? 'mdi-checkbox-blank'
+                  : 'mdi-checkbox-blank-off',
+              ]"
+          /></span>
+        </button>
+        <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
+        <span class="icon is-clickable" @click="toggleShowModal(s)"
+          ><i class="mdi mdi-information"
         /></span>
-      </button>
-      <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
-      <span class="icon is-clickable" @click="toggleShowModal(s)"
-        ><i class="mdi mdi-information"
-      /></span>
+      </div>
+      <DModal
+        v-if="showModal"
+        variant="white"
+        accent="info"
+        width="large"
+        close-options="both"
+        close-button-text="Dismiss"
+        @close="showModal = !showModal"
+      >
+        <template #content>
+          <div class="content">
+            <h2 class="title">
+              {{ humanize(modalData.service) }}
+            </h2>
+            <p v-html="$md.render(modalData.description || '')" />
+          </div>
+        </template>
+      </DModal>
     </div>
-    <DModal
-      v-if="showModal"
-      variant="white"
-      accent="info"
-      width="large"
-      close-options="both"
-      close-button-text="Dismiss"
-      @close="showModal = !showModal"
-    >
-      <template #content>
-        <div class="content">
-          <h2 class="title">
-            {{ humanize(modalData.service) }}
-          </h2>
-          <p v-html="$md.render(modalData.description || '')" />
-        </div>
-      </template>
-    </DModal>
   </div>
 </template>
 
@@ -96,6 +98,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sticky-container {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 10px;
+}
+
 .service-selection {
   display: flex;
   flex-basis: 30%;

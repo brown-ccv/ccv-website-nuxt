@@ -45,7 +45,7 @@
           :key="'q' + i"
           :question="q"
           :question-id="i"
-          class="mb-6"
+          class="mb-4"
           :selected="answers[i]"
           @answer="recordAnswer"
           @reset="resetQuestion"
