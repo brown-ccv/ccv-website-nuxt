@@ -108,7 +108,7 @@ export default {
     ComparisonTable,
     ComparisonCards,
   },
-  async asyncData({ $content }) {
+  async asyncData({ $content, error }) {
     const tool = await $content('storage-tool').fetch();
     tool.services.forEach((service) =>
       service.features.sort((a, b) =>
@@ -120,7 +120,8 @@ export default {
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { tool, answers };
+    return { tool, answers }
+    .catch(e => error({statusCode:404, message:"Page not found"}));
   },
   data() {
     return {
