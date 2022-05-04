@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="container bg-block">
     <h1 class="main-text" v-if="error.statusCode === 404">
       404
       <p class="body-text">Woof... this page does not exist!</p>
     </h1>
     <h1 v-else>An error occurred - {{ error.statusCode }}</h1>
-    <img class="header-image" src="@/assets/riggins404nobg.jpg" alt="" />
+    <img class="header-image" src="@/assets/riggins404nobg.png" alt="" />
     <div class="home-button">
       <nuxtLink to="/" @click.native="handleClick">
-        <DButton name="Return Home" variant="link" size="medium" />
+        <DButton name="Return Home" variant="warning" size="medium" />
       </nuxtLink>
     </div>
   </div>
@@ -27,21 +27,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg-block {
+  background-color: hsl(208, 100%, 22%);
+  border-radius: 5px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 .header-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .main-text {
+  font-family: var($font-family-bold);
+  color: white;
   text-align: center;
-  font-size: 150px;
-  padding: 2rem;
-  margin: 0 -1rem;
+  font-size: 100px;
 }
 
 .body-text {
+  font-family: var($font-family-bold);
   text-align: center;
   font-size: 30px;
 }
@@ -49,6 +58,6 @@ export default {
 .home-button {
   @extend .container;
   text-align: center;
-  margin-bottom: 50px;
+  padding-bottom: 2.5em;
 }
 </style>
