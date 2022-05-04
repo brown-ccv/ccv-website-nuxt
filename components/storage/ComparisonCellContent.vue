@@ -21,6 +21,43 @@
         ><i class="mdi mdi-speedometer"
       /></span>
       <span
+        v-else-if="feature.class === 'slow'"
+        :class="[
+          'icon',
+          `is-size-${iconSize}`,
+          'has-text-danger',
+        ]"
+        ><i class="mdi mdi-speedometer-slow"
+      /></span>
+      <span
+        v-else-if="feature.class === 'hot'"
+        :class="[
+          'icon',
+          `is-size-${iconSize}`,
+          'has-text-danger',
+        ]"
+        ><i class="mdi mdi-thermometer-high"
+      /></span>
+
+      <span
+        v-else-if="feature.class === 'warm'"
+        :class="[
+          'icon',
+          `is-size-${iconSize}`,
+          'has-text-warning',
+        ]"
+        ><i class="mdi mdi-thermometer"
+      /></span>
+      <span
+        v-else-if="feature.class === 'cold'"
+        :class="[
+          'icon',
+          `is-size-${iconSize}`,
+          'has-text-info',
+        ]"
+        ><i class="mdi mdi-thermometer-low"
+      /></span>
+      <span
         v-else-if="feature.class === true"
         class="icon has-text-success"
         :class="[`is-size-${iconSize}`]"
@@ -45,7 +82,10 @@
         ><i class="mdi mdi-shield-half-full"
       /></span>
 
-      {{ classText }}
+      <!--If this is a row, add some margin to the classText if there's a preceding icon -->
+      <span :class="{ 'class-text': flexDirection === 'row' }">{{
+        classText
+      }}</span>
     </div>
 
     <ul v-if="includeNotes">
@@ -105,6 +145,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  width: auto;
+}
+.class-text:not(:first-child) {
+  margin-left: 0.25rem;
+}
+
 .class-container {
   width: 10rem;
   display: flex;
