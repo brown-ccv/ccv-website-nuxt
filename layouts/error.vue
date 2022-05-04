@@ -2,12 +2,12 @@
   <div class="container bg-block">
     <h1 class="main-text" v-if="error.statusCode === 404">
       404
-      <p class="body-text">Woof... this page does not exist!</p>
+      <p class="body-text">Woof... Sorry, this page does not exist!</p>
     </h1>
-    <h1 v-else>An error occurred - {{ error.statusCode }}</h1>
+    <h1 class="body-text" v-else>An error occurred - {{ error.statusCode }}</h1>
     <img class="header-image" src="@/assets/riggins404nobg.png" alt="" />
     <div class="home-button">
-      <nuxtLink to="/" @click.native="handleClick">
+      <nuxtLink to="/">
         <DButton name="Return Home" variant="warning" size="medium" />
       </nuxtLink>
     </div>
@@ -51,6 +51,7 @@ export default {
 
 .body-text {
   font-family: var($font-family-bold);
+  color: white;
   text-align: center;
   font-size: 30px;
 }
