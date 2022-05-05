@@ -29,7 +29,7 @@ export default {
     const data = await $content(params.main, params.category, params.page)
       .sortBy('title', 'asc')
       .fetch()
-      .catch(e => error({statusCode:404, message:"Page not found"}));
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
     return {
       data,

@@ -1,14 +1,14 @@
 <template>
   <div class="container bg-block">
-    <h1 class="main-text" v-if="error.statusCode === 404">
+    <h1 v-if="error.statusCode === 404" class="main-text">
       404
       <p class="body-text">Woof... Sorry, this page does not exist!</p>
     </h1>
-    <h1 class="body-text" v-else>An error occurred - {{ error.statusCode }}</h1>
+    <h1 v-else class="body-text">An error occurred - {{ error.statusCode }}</h1>
     <img class="header-image" src="@/assets/riggins404nobg.png" alt="" />
     <div class="home-button">
       <nuxtLink to="/">
-        <DButton name="Return Home" variant="warning" size="medium" />
+        <DButton name="Home" variant="warning" size="medium" />
       </nuxtLink>
     </div>
   </div>
@@ -18,17 +18,16 @@
 import DButton from '@/components/base/DButton.vue';
 
 export default {
-  layout: 'error',
-  props: ['error'],
   components: {
     DButton,
   },
+  layout: 'error',
+  props: ['error'],
 };
 </script>
 
 <style lang="scss" scoped>
 .bg-block {
-  background-color: hsl(208, 100%, 22%);
   border-radius: 5px;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -38,20 +37,24 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-bottom: 3.5em;
+  margin-top: 2em;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 4px 4px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 8px 8px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 16px 16px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 25px 25px rgba(0, 0, 0, 0.5));
 }
 
 .main-text {
   font-family: var($font-family-bold);
-  color: white;
   text-align: center;
   font-size: 100px;
 }
 
 .body-text {
   font-family: var($font-family-bold);
-  color: white;
   text-align: center;
   font-size: 30px;
 }
