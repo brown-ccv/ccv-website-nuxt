@@ -117,7 +117,4 @@ export default {
       await addSearch(nuxt);
     },
   },
-  generate: {
-    fallback: true,
-  },
 };

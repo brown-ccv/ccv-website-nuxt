@@ -1,16 +1,14 @@
 <template>
-  <div class="container bg-block">
-    <h1 v-if="error.statusCode === 404" class="main-text">
-      404
-      <p class="body-text">Woof... Sorry, this page does not exist!</p>
-    </h1>
-    <h1 v-else class="body-text">An error occurred - {{ error.statusCode }}</h1>
-    <img class="header-image" src="@/assets/riggins404nobg.png" alt="" />
-    <div class="home-button">
-      <nuxtLink to="/">
-        <DButton name="Home" variant="warning" size="medium" />
-      </nuxtLink>
+  <div class="container my-6 px-2 is-flex is-flex-direction-column is-align-items-center has-text-centered">
+    <div v-if="error.statusCode === 404">
+      <h1 class="is-size-1 has-text-weight-bold">404</h1>
+      <p class="is-size-3">Woof... Sorry, this page does not exist!</p>
     </div>
+    <h1 v-else class="is-size-3 has-text-weight-bold">An error occurred - {{ error.statusCode }}</h1>
+    <img class="header-image" src="@/assets/riggins404nobg.png" alt="" />
+    <nuxtLink to="/">
+      <DButton name="Home" variant="warning" size="medium" />
+    </nuxtLink>
   </div>
 </template>
 
@@ -27,11 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-block {
-  border-radius: 5px;
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
 
 .header-image {
   display: block;
@@ -47,21 +40,4 @@ export default {
     drop-shadow(0 25px 25px rgba(0, 0, 0, 0.5));
 }
 
-.main-text {
-  font-family: var($font-family-bold);
-  text-align: center;
-  font-size: 100px;
-}
-
-.body-text {
-  font-family: var($font-family-bold);
-  text-align: center;
-  font-size: 30px;
-}
-
-.home-button {
-  @extend .container;
-  text-align: center;
-  padding-bottom: 2.5em;
-}
 </style>

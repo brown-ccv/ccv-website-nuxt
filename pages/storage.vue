@@ -120,9 +120,7 @@ export default {
       q.answers.find((answer) => answer.answer === q.default_answer)
     );
 
-    return { tool, answers }.catch((e) =>
-      error({ statusCode: 404, message: 'Page not found' })
-    );
+    return { tool, answers };
   },
   data() {
     return {
