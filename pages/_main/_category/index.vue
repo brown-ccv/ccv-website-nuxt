@@ -35,21 +35,19 @@ export default {
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
   },
-  async asyncData({ $content, params }) {
+  async asyncData({ $content, params, error }) {
     // get the files of top content directories.
     // this provides title and subtitle for banners
-    const index = await $content(
-      'meta',
-      'main',
-      params.main,
-      params.slug
-    ).fetch();
+    const index = await $content('meta', 'main', params.main, params.slug)
+      .fetch()
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
     // get the content for directories that are only one level deep
     const data = await $content(params.main, params.category, { deep: true })
       .where({ slug: { $ne: 'README' } })
       .sortBy('title', 'asc')
-      .fetch();
+      .fetch()
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
     // for directories that have subdirectories, gather files
     // which will be feed the content in the cards
