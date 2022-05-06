@@ -108,7 +108,7 @@ export default {
     ComparisonTable,
     ComparisonCards,
   },
-  async asyncData({ $content, error }) {
+  async asyncData({ $content }) {
     const tool = await $content('storage-tool').fetch();
     tool.services.forEach((service) =>
       service.features.sort((a, b) =>
