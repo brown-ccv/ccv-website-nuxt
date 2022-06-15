@@ -9,7 +9,8 @@
       "rewrites": [
         {
           "source": "**",
-          "function": "ssrapp"
+          "function": "ssrapp",
+          "destination": "/404.html"
         }
       ],
       "headers": [ {
