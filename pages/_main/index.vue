@@ -39,10 +39,14 @@ export default {
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
     About: () => import('@/components/blocks/About.vue'),
   },
-  validate({ params }) {
-    // Must be a number
-    console.log('validating');
-    return /^\d+$/.test(params.id);
+  async validate({ $content, params, error }) {
+    const data = await $content(params.main)
+        .sortBy('title', 'asc')
+        .fetch()
+        .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
+    console.log('vallidddate');
+    console.log(data);
+    return true;
   },
   async asyncData({ $content, params, error }) {
     // get the files of top content directories.

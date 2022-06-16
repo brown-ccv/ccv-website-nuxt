@@ -25,8 +25,14 @@ export default {
   components: {
     DHero,
   },
-  validate({ params }) {
-    return /^\d+$/.test(params.id);
+  async validate({ $content, params, error }) {
+    const data = await $content(params.main, params.category, params.page)
+        .sortBy('title', 'asc')
+        .fetch()
+        .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
+    console.log('vallidddate - page');
+    console.log(data);
+    return true;
   },
   async asyncData({ $content, params, error }) {
     const data = await $content(params.main, params.category, params.page)
