@@ -39,6 +39,11 @@ export default {
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
     About: () => import('@/components/blocks/About.vue'),
   },
+  validate({ params }) {
+    // Must be a number
+    console.log('validating');
+    return /^\d+$/.test(params.id);
+  },
   async asyncData({ $content, params, error }) {
     // get the files of top content directories.
     // this provides title and subtitle for banners

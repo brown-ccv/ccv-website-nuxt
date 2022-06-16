@@ -32,6 +32,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Testing build set up
 
 ```
+npm install -g firebase-tools #if needed
 npm run fn-install # if needed
 npm run local-deploy
 ```

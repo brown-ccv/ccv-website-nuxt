@@ -25,6 +25,9 @@ export default {
   components: {
     DHero,
   },
+  validate({ params }) {
+    return /^\d+$/.test(params.id);
+  },
   async asyncData({ $content, params, error }) {
     const data = await $content(params.main, params.category, params.page)
       .sortBy('title', 'asc')
