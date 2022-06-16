@@ -23,6 +23,7 @@ async function handleRequest(req, res) {
   } catch (error) {
     res.set('X-Cascade', 'PASS')
     res.status(404).redirect('404.html')
+    console.log("function error");
     console.log(error);
     process.exit(1);
   }
