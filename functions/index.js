@@ -18,9 +18,11 @@ async function handleRequest(req, res) {
       isReady = true;
     }
     console.log(req.path);
-    res.set('Cache-Control', 'public, max-age=3600, s-maxage=7200');
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=120');
     await nuxt.server.app.handle(req, res, (out) => console.log(out));
   } catch (error) {
+    res.set('X-Cascade', 'PASS')
+    res.status(404).redirect('404.html')
     console.log(error);
     process.exit(1);
   }
