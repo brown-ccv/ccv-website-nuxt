@@ -11,6 +11,8 @@ let isReady = false;
 
 let nuxt = loadNuxt('start');
 
+let dynamicRoutes = ['/_ghapi/status', '/_workday/opportunities']
+
 async function handleRequest(req, res) {
   try {
     if (!isReady) {
@@ -19,11 +21,16 @@ async function handleRequest(req, res) {
     }
     console.log(req.path);
     res.set('Cache-Control', 'public, max-age=60, s-maxage=120');
-    await nuxt.server.app.handle(req, res, (out) => console.log(out));
+    if(dynamicRoutes.includes(req.path)){
+      await nuxt.server.app.handle(req, res);
+    }
+    else{
+      console.log('Redirect to 404 page');
+      res.set('X-Cascade', 'PASS')
+      res.status(404).redirect('/404.html')
+    }
+
   } catch (error) {
-    res.set('X-Cascade', 'PASS')
-    res.status(404).redirect('404.html')
-    console.log("function error");
     console.log(error);
     process.exit(1);
   }
