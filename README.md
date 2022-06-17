@@ -1,6 +1,6 @@
 # ccv-website-experimental
 
-> CCV Website Experimental in Nuxt.js
+> CCV Website Experimental in Nuxt.js and deployed in firebase
 
 ## Dev Setup
 
