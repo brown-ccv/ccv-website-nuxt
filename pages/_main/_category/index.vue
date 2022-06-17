@@ -35,15 +35,6 @@ export default {
     FilesToSections: () => import('@/components/blocks/FilesToSections.vue'),
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
   },
-  async validate({ $content, params, error }) {
-    const data = await $content(params.main, params.category)
-        .sortBy('title', 'asc')
-        .fetch()
-        .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
-    console.log('vallidddate - category');
-    console.log(data);
-    return true;
-  },
   async asyncData({ $content, params, error }) {
     // get the files of top content directories.
     // this provides title and subtitle for banners
