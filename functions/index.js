@@ -20,8 +20,8 @@ async function handleRequest(req, res) {
       isReady = true;
     }
     console.log(req.path);
-    res.set('Cache-Control', 'public, max-age=60, s-maxage=120');
-    if(dynamicRoutes.includes(req.path)){
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=7200');
+    if(dynamicRoutes.includes(req.path)){ 
       await nuxt.server.app.handle(req, res);
     }
     else{
