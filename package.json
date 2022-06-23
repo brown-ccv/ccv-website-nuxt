@@ -6,8 +6,8 @@
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
-    "preserve": "cd functions && firebase functions:config:get > .runtimeconfig.json && cd ..",
-    "serve": "firebase serve -P qa --only functions,hosting",
+    "preserve": "cd functions && firebase -P qa functions:config:get > .runtimeconfig.json && cd ..",
+    "serve": "firebase -P qa serve --only functions,hosting",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern '/functions/' .",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore --ignore-pattern '/functions/' .",
     "commit": "git-cz",

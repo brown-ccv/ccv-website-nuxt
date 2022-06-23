@@ -42,9 +42,24 @@ jobs:
           expires: 7d
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+      - name: clear cj envs to access status org
+        uses: w9jds/firebase-action@master
+        with:
+          args: functions:config:unset gh.token gh.user
+        env:
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QA_CCV_BROWN_EDU }}'
+          PROJECT_ID: qa-ccv-brown-edu
+      - name: set cj envs to access status org
+        uses: w9jds/firebase-action@master
+        with:
+          args: functions:config:set env=\"$(cat functions/env.json)\"
+        env:
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QA_CCV_BROWN_EDU }}'
+          PROJECT_ID: qa-ccv-brown-edu
       - name: Deploy to Firebase
         run: npm run qa-deploy
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QA_CCV_BROWN_EDU }}'
+          PROJECT_ID: qa-ccv-brown-edu
       - name: Remove content folder (extra git module instance confuses gh)
         run: rm -rf functions/content
