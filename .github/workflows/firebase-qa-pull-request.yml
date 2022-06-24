@@ -52,7 +52,7 @@ jobs:
       - name: set cj envs to access status org
         uses: w9jds/firebase-action@master
         with:
-          args: functions:config:set env=\"$(cat functions/env.json)\"
+          args: functions:config:set gh.token='${{ secrets.CJ_GH_REPO_TOKEN }}' gh.user='${{ secrets.CJ_GH_USER }}'
         env:
           FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
           PROJECT_ID: qa-ccv-brown-edu
