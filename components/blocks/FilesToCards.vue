@@ -230,16 +230,29 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tagColors: { tags: 'is-link', groups: 'is-yellow', languages: 'is-info' },
+    tagColors: { tags: 'is-link', groups: 'is-yellow', languages: 'is-info', department: 'is-yellow', active: 'is-info' },
     contributorIcon: {
       investigators: 'mdi-brain',
       people: 'mdi-account-multiple',
     },
   }),
   computed: {
+    filteredData() {
+      const f = this.data.filter((d) => !d.hidden);
+      f.forEach(function(obj) {
+        for (const key in obj) {
+          if (obj[key] === false) {
+            delete obj[key];
+          } else if (obj[key] === true) {
+            obj[key] = ['active'];
+          }
+        }
+      })
+      return f
+    },
     cardTags() {
-      const tags = ['tags', 'groups', 'languages']
-        .map((tagType) => this.data.map((card) => card[tagType]))
+      const tags = ['tags', 'groups', 'languages', 'department', 'active']
+        .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
       return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
@@ -247,9 +260,8 @@ export default {
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
       const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
-      const hasActiveTag = this.data.some((card) =>
-        card.tags.includes('active')
-      );
+      // eslint-disable-next-line no-prototype-builtins
+      const hasActiveTag = this.filteredData.some((card) => card.hasOwnProperty('active'));
 
       const options = [{ name: 'Title' }];
       if (hasDate) {
@@ -257,18 +269,16 @@ export default {
       } else if (hasActiveTag) {
         options.push({ name: 'Active' });
       }
+      options.sort().reverse();
 
       return options;
-    },
-    filteredData() {
-      return this.data.filter((d) => !d.hidden);
     },
     sortedArray() {
       let filtered = this.filteredData;
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           return this.searchGroup.some((tag) =>
-            ['tags', 'groups', 'languages'].some((tagType) => {
+            ['tags', 'groups', 'languages', 'department', 'active'].some((tagType) => {
               const tags = card[tagType] ?? [];
               return tags.includes(tag);
             })
@@ -295,17 +305,10 @@ export default {
           return new Date(a.date) - new Date(b.date);
         });
       } else if (this.sortBy.name === 'Active') {
-        // Sort by tags alphabetical order
+        // Sort by active
         filtered.sort((a, b) => {
-          const fa = a.tags.includes('active') ? 0 : 1;
-          const fb = b.tags.includes('active') ? 0 : 1;
-          if (fa < fb) {
-            return -1;
-          }
-          if (fa > fb) {
-            return 1;
-          }
-          return 0;
+          // eslint-disable-next-line no-prototype-builtins
+          return a.hasOwnProperty('active') ? -1 : b.hasOwnProperty('active') ? 1 : 0
         });
       }
 
