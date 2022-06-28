@@ -9,7 +9,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -42,9 +42,23 @@ jobs:
           expires: 7d
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+      - name: clear cj envs to access status org
+        uses: w9jds/firebase-action@master
+        with:
+          args: functions:config:unset gh.token gh.user
+        env:
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
+          PROJECT_ID: qa-ccv-brown-edu
+      - name: set cj envs to access status org
+        uses: w9jds/firebase-action@master
+        with:
+          args: functions:config:set gh.token='${{ secrets.CJ_GH_REPO_TOKEN }}' gh.user='${{ secrets.CJ_GH_USER }}'
+        env:
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
+          PROJECT_ID: qa-ccv-brown-edu
       - name: Deploy to Firebase
         run: npm run qa-deploy
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
       - name: Remove content folder (extra git module instance confuses gh)
         run: rm -rf functions/content

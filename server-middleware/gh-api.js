@@ -66,6 +66,9 @@ app.all('/status', async (req, res, next) => {
 
   try {
     const response = await client.request(statusQuery('ccv-status', 'OPEN'));
+    // eslint-disable-next-line no-console
+    console.log('GH Response')
+    console.log(response);
     const status = [];
 
     // individual status
