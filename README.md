@@ -4,9 +4,9 @@ Developed in Nuxt.js, deployed to firebase.
 
 ## General Set Up
 
-Our website is partly static and partly dynamic. The static content is mostly handled via [Nuxt Content](https://content.nuxtjs.org) and it lives in the [ccv-website-content repository](https://github.com/brown-ccv/ccv-website-content). Generally, our members will contribute to the content repository. Only structural contributions are handled in this repo. The content repo is included here as a git sibmodule for development/deployments purposes only. Content should not be modified within here (except for testing purposes).
+Our website is partly static and partly dynamic. The static content is mostly handled via [Nuxt Content](https://content.nuxtjs.org) and it lives in the [ccv-website-content repository](https://github.com/brown-ccv/ccv-website-content). Generally, our members will contribute to the content repository. Only structural contributions are handled in this repo. The content repo is included here as a git submodule for development/deployments purposes only. Content should not be modified within here (except for testing purposes).
 
-We use `nuxt generate` in conjuction with Firebase static hosting to serve our static content. During the build process `nuxt generate` places all static html pages into the `dist` folder. If a route is found in the `dist` folder, Firebase serves that, if a route is not found, we rely on cloud functions to handle the reminder of the routes.
+We use `nuxt generate` in conjunction with Firebase static hosting to serve our static content. During the build process `nuxt generate` places all static html pages into the `dist` folder. If a route is found in the `dist` folder, Firebase serves that, if a route is not found, we rely on cloud functions to handle the reminder of the routes.
 
 The part of [Firebase's configuration](firebase.json) that makes this happen is 
 
@@ -25,7 +25,7 @@ In order to handle our 404 page correctly, we control which routes are served dy
 let dynamicRoutes = ['/_ghapi/status', '/_workday/opportunities']
 ```
 
-All other routes that are not included on that list or in the `dist` folder are redirected to a pre-generated `404.html`. By default, Nuxt does not generate a `404.html` (only a 404.vue), to get the html page, he added the following block in the config.
+All other routes that are not included on that list or in the `dist` folder are redirected to a pre-generated `404.html`. By default, Nuxt does not generate a `404.html` (only a 404.vue), to get the html page, we added the following block in the config.
 
 ```
   generate: {
@@ -38,8 +38,8 @@ All other routes that are not included on that list or in the `dist` folder are 
 There are two main workflows:
 
 1. When a PR is opened against the main branch, we deploy to qa-ccv-brown-edu live and preview channels.
-   There is no such thing as "preview" functions, so if the changes include changes to the functions, one needs to check qa-ccv-brown-edu.web.app (main channel). If the changes are only to static pages, then the preview channel will reflec the changes appropiately.
-2. When a PR is merged to the main branch, we deploy to ccv-brown-edu (live channel and fuctions)
+   There is no such thing as "preview" functions, so if the changes include changes to the functions, one needs to check qa-ccv-brown-edu.web.app (main channel). If the changes are only to static pages, then the preview channel will reflect the changes appropriately.
+2. When a PR is merged to the main branch, we deploy to ccv-brown-edu (live channel and functions)
 
 ![GitHub Actions Flow](actions-flow.png)
 
@@ -70,7 +70,7 @@ GITHUB_TOKEN=
 
 ## Testing build set up
 
-In deployment, the dynamic routes are served by Firebase fuctions. To simulate this behavior, we need to run through the entire build process, which asks Nuxt to generate the static routes and firebase to emulate the functions
+In deployment, the dynamic routes are served by Firebase functions. To simulate this behavior, we need to run through the entire build process, which asks Nuxt to generate the static routes and firebase to emulate the functions
 
 ```
 npm install -g firebase-tools #if needed
@@ -79,7 +79,7 @@ npm run local-deploy
 ```
 
 **Note:**
-* 2022-06-23 (MIR): Our local-deploy uses `firebase serve` which seems to not be recommended anymore. We'll probably need to run teh fuctions emulator instead. 
+* 2022-06-23 (MIR): Our local-deploy uses `firebase serve` which seems to not be recommended anymore. We'll probably need to run the functions emulator instead. 
 
 ## Useful guides
 
