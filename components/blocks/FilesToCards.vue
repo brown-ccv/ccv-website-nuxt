@@ -230,7 +230,13 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tagColors: { tags: 'is-link', groups: 'is-yellow', languages: 'is-info', department: 'is-yellow', active: 'is-info' },
+    tagColors: {
+      tags: 'is-link',
+      groups: 'is-yellow',
+      languages: 'is-info',
+      department: 'is-yellow',
+      active: 'is-info',
+    },
     contributorIcon: {
       investigators: 'mdi-brain',
       people: 'mdi-account-multiple',
@@ -239,7 +245,7 @@ export default {
   computed: {
     filteredData() {
       const f = this.data.filter((d) => !d.hidden);
-      f.forEach(function(obj) {
+      f.forEach(function (obj) {
         for (const key in obj) {
           if (obj[key] === false) {
             delete obj[key];
@@ -247,8 +253,8 @@ export default {
             obj[key] = ['active'];
           }
         }
-      })
-      return f
+      });
+      return f;
     },
     cardTags() {
       const tags = ['tags', 'groups', 'languages', 'department', 'active']
@@ -261,7 +267,10 @@ export default {
       // eslint-disable-next-line no-prototype-builtins
       const hasDate = this.data.some((card) => card.hasOwnProperty('date'));
       // eslint-disable-next-line no-prototype-builtins
-      const hasActiveTag = this.filteredData.some((card) => card.hasOwnProperty('active'));
+      const hasActiveTag = this.filteredData.some((card) =>
+        // eslint-disable-next-line no-prototype-builtins
+        card.hasOwnProperty('active')
+      );
 
       const options = [{ name: 'Title' }];
       if (hasDate) {
@@ -278,10 +287,12 @@ export default {
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           return this.searchGroup.some((tag) =>
-            ['tags', 'groups', 'languages', 'department', 'active'].some((tagType) => {
-              const tags = card[tagType] ?? [];
-              return tags.includes(tag);
-            })
+            ['tags', 'groups', 'languages', 'department', 'active'].some(
+              (tagType) => {
+                const tags = card[tagType] ?? [];
+                return tags.includes(tag);
+              }
+            )
           );
         });
       }
@@ -308,7 +319,12 @@ export default {
         // Sort by active
         filtered.sort((a, b) => {
           // eslint-disable-next-line no-prototype-builtins
-          return a.hasOwnProperty('active') ? -1 : b.hasOwnProperty('active') ? 1 : 0
+          return a.hasOwnProperty('active')
+            ? -1
+            : // eslint-disable-next-line no-prototype-builtins
+            b.hasOwnProperty('active')
+              ? 1
+              : 0;
         });
       }
 
