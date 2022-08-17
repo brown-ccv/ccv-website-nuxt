@@ -230,6 +230,7 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
+    tags: ['tags', 'groups', 'languages', 'department', 'active'],
     tagColors: {
       tags: 'is-link',
       groups: 'is-yellow',
@@ -257,7 +258,7 @@ export default {
       return f;
     },
     cardTags() {
-      const tags = ['tags', 'groups', 'languages', 'department', 'active']
+      const tags = this.tags
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
@@ -287,12 +288,10 @@ export default {
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
           return this.searchGroup.some((tag) =>
-            ['tags', 'groups', 'languages', 'department', 'active'].some(
-              (tagType) => {
-                const tags = card[tagType] ?? [];
-                return tags.includes(tag);
-              }
-            )
+            this.tags.some((tagType) => {
+              const tags = card[tagType] ?? [];
+              return tags.includes(tag);
+            })
           );
         });
       }
