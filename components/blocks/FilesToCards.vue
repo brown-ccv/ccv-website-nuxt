@@ -89,21 +89,34 @@
         "
       >
         <div class="mb-1 is-flex">
-          <multiselect
-            v-model="searchGroup"
-            :options="cardTags"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :preserve-search="true"
-            :multiple="true"
-            placeholder="Select tags to filter by"
-            :allow-empty="true"
+          <div
+            v-for="cat in tagCategories"
+            :key="cat"
+            class="mb-1 mr-4 is-flex"
           >
-          </multiselect>
-          <button class="ml-1 button is-normal is-warning" @click="clearAll">
-            Clear Filters
-          </button>
+            <multiselect
+              v-model="searchGroup"
+              :options="cardTags(cat)"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :multiple="true"
+              placeholder="Select tags to filter by"
+              :allow-empty="true"
+            >
+            </multiselect>
+            <button class="ml-1 button is-normal is-warning" @click="clearAll">
+              Clear Filters
+            </button>
+          </div>
         </div>
+      </div>
+      <div
+        class="
+          dropdown
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
         <div class="mb-1 is-flex">
           <multiselect
             v-model="sortBy"
@@ -257,12 +270,19 @@ export default {
       });
       return f;
     },
-    cardTags() {
-      const tags = this.tags
-        .map((tagType) => this.filteredData.map((card) => card[tagType]))
-        .flat(2)
-        .filter((e) => e);
-      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+    tagCategories() {
+      // create array of tag categories (tags, departments, languages, etc. for each our work type)
+      const tagCats = [];
+      for (let i = 0; i < this.tags.length; i++) {
+        const catExists = this.filteredData.some((o) => {
+          // eslint-disable-next-line no-prototype-builtins
+          return o.hasOwnProperty(this.tags[i]);
+        });
+        if (catExists) {
+          tagCats.push(this.tags[i]);
+        }
+      }
+      return tagCats;
     },
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
@@ -336,6 +356,13 @@ export default {
     },
   },
   methods: {
+    cardTags(category) {
+      const tags = [category]
+        .map((tagType) => this.filteredData.map((card) => card[tagType]))
+        .flat(2)
+        .filter((e) => e);
+      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+    },
     clearAll() {
       this.searchGroup = [];
     },
