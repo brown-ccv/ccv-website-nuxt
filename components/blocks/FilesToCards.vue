@@ -338,13 +338,6 @@ export default {
       } else if (this.sortBy.name === 'Active') {
         // Sort by active
         filtered.sort((a, b) => {
-          // // eslint-disable-next-line no-prototype-builtins
-          // return a.hasOwnProperty('active')
-          //   ? -1
-          //   : // eslint-disable-next-line no-prototype-builtins
-          //   b.hasOwnProperty('active')
-          //     ? 1
-          //     : 0;
           const fa = a.active;
           const fb = b.active;
           if (fa < fb) {
