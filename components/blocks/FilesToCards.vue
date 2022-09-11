@@ -82,6 +82,9 @@
       </DCard>
     </div>
     <div v-else class="container">
+      <div class="multiselect-header mt-4 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+        Filter cards by:
+      </div>
       <div
         class="
           dropdown
@@ -101,7 +104,7 @@
               :clear-on-select="false"
               :preserve-search="true"
               :multiple="true"
-              placeholder="Select tags to filter by"
+              :placeholder="cat"
               :allow-empty="true"
             >
             </multiselect>
@@ -110,6 +113,9 @@
             </button>
           </div>
         </div>
+      </div>
+      <div class="multiselect-header mt-3 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+        Sort cards by:
       </div>
       <div
         class="
@@ -404,6 +410,10 @@ export default {
 
 .multiselect {
   min-width: 225px;
+}
+
+.multiselect-header {
+  font-weight: bold;
 }
 
 .link-button {
