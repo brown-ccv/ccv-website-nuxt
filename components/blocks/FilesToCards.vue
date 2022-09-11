@@ -90,12 +90,12 @@
       >
         <div class="mb-1 is-flex">
           <div
-            v-for="cat in tagCategories"
+            v-for="(cat, index) in tagCategories"
             :key="cat"
             class="mb-1 mr-4 is-flex"
           >
             <multiselect
-              v-model="searchGroup"
+              v-model="searchGroup[index]"
               :options="cardTags(cat)"
               :close-on-select="true"
               :clear-on-select="false"
@@ -305,9 +305,10 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      if (this.searchGroup.length > 0) {
+      const flatSearchGroup = this.searchGroup.flat();
+      if (flatSearchGroup.length > 0) {
         filtered = filtered.filter((card) => {
-          return this.searchGroup.some((tag) =>
+          return flatSearchGroup.some((tag) =>
             this.tags.some((tagType) => {
               const tags = card[tagType] ?? [];
               return tags.includes(tag);
@@ -382,6 +383,9 @@ export default {
         return undefined;
       }
     },
+    // populateSearchGroup(cat) {
+    //   return this.searchGroup.push(this.searchGroup[cat])
+    // }
   },
 };
 </script>
