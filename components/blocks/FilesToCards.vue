@@ -82,7 +82,15 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div class="multiselect-header mt-4 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+      <div>{{ searchGroup }}</div>
+      <div
+        class="
+          multiselect-header
+          mt-4
+          mb-1
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
         Filter cards by:
       </div>
       <div
@@ -95,8 +103,9 @@
           <div
             v-for="(cat, index) in tagCategories"
             :key="cat"
-            class="mb-1 mr-4 is-flex"
+            class="mb-1 mr-4"
           >
+            <div class="multiselect-header">{{cat[0].toUpperCase() + cat.substring(1)}}</div>
             <multiselect
               v-model="searchGroup[index]"
               :options="cardTags(cat)"
@@ -104,7 +113,7 @@
               :clear-on-select="false"
               :preserve-search="true"
               :multiple="true"
-              :placeholder="cat"
+              placeholder="Select one or more filters"
               :allow-empty="true"
             >
             </multiselect>
@@ -114,7 +123,14 @@
           </div>
         </div>
       </div>
-      <div class="multiselect-header mt-3 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly">
+      <div
+        class="
+          multiselect-header
+          mt-5
+          mb-1
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
         Sort cards by:
       </div>
       <div
@@ -312,7 +328,7 @@ export default {
     sortedArray() {
       let filtered = this.filteredData;
       const flatSearchGroup = this.searchGroup.flat();
-      if (flatSearchGroup.length > 0) {
+      if (this.searchGroup.length === 1) {
         filtered = filtered.filter((card) => {
           return flatSearchGroup.some((tag) =>
             this.tags.some((tagType) => {
@@ -321,6 +337,18 @@ export default {
             })
           );
         });
+      } else if (this.searchGroup.length > 1) {
+        for (let i = 0; i < this.searchGroup.length; i++) {
+          filtered = filtered.filter((card) => {
+            return this.searchGroup[i].some((tag) =>
+              this.tags.some((tagType) => {
+                const tags = card[tagType] ?? [];
+                return tags.includes(tag);
+              })
+            );
+          });
+        }
+        this.searchGroup.reduce(this.common);
       }
 
       // Sort by title alphabetical order
@@ -391,9 +419,9 @@ export default {
         return undefined;
       }
     },
-    // populateSearchGroup(cat) {
-    //   return this.searchGroup.push(this.searchGroup[cat])
-    // }
+    common(a, b) {
+      return b.filter(Set.prototype.has.bind(new Set(a)));
+    },
   },
 };
 </script>
