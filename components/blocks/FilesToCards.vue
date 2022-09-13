@@ -251,6 +251,7 @@
 <script>
 import DCard from '@/components/base/DCard.vue';
 import Multiselect from 'vue-multiselect';
+import { humanizeHero } from '@/utils';
 
 export default {
   components: {
@@ -395,12 +396,14 @@ export default {
     },
   },
   methods: {
+    humanizeHero,
     cardTags(category) {
       const tags = [category]
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
-      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+      const res = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+      return res.map(item => humanizeHero(item))
     },
     clearAll() {
       this.searchGroup = [];
