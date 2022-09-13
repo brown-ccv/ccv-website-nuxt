@@ -82,7 +82,7 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div>{{ searchGroup }}</div>
+      <div>{{ searchGroup}}</div>
       <div
         class="
           multiselect-header
@@ -110,6 +110,8 @@
             </div>
             <multiselect
               v-model="searchGroup[index]"
+              label="name"
+              track-by="tagCode"
               :options="cardTags(cat)"
               :close-on-select="true"
               :clear-on-select="false"
@@ -119,12 +121,14 @@
               :allow-empty="true"
             >
             </multiselect>
-            <button class="ml-1 button is-normal is-warning" @click="clearAll">
-              Clear Filters
-            </button>
           </div>
         </div>
       </div>
+      <div class="has-text-centered">
+        <button class="ml-1 button is-normal is-warning" @click="clearAll">
+          Clear Filters
+        </button>
+    </div>
       <div
         class="
           multiselect-header
@@ -330,28 +334,27 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      const flatSearchGroup = this.searchGroup.flat();
       if (this.searchGroup.length === 1) {
         filtered = filtered.filter((card) => {
-          return flatSearchGroup.some((tag) =>
+          return this.searchGroup.flat().map(name => name.tagCode).some((tag) =>
             this.tags.some((tagType) => {
               const tags = card[tagType] ?? [];
               return tags.includes(tag);
-            })
-          );
+              })
+            );
         });
       } else if (this.searchGroup.length > 1) {
         for (let i = 0; i < this.searchGroup.length; i++) {
           filtered = filtered.filter((card) => {
-            return this.searchGroup[i].some((tag) =>
+            return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
               this.tags.some((tagType) => {
                 const tags = card[tagType] ?? [];
                 return tags.includes(tag);
-              })
-            );
+                })
+              );
           });
         }
-        this.searchGroup.reduce(this.common);
+        this.searchGroup.reduce(this.common).flat();
       }
 
       // Sort by title alphabetical order
@@ -402,8 +405,14 @@ export default {
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
-      const res = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
-      return res.map(item => humanizeHero(item))
+      const names = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+      const tagCodes = names.map(item => humanizeHero(item))
+      const res = []
+      names.forEach((n, index) => {
+        const code = tagCodes[index];
+        res.push({name: code, tagCode: n})
+      });
+      return res;
     },
     clearAll() {
       this.searchGroup = [];
