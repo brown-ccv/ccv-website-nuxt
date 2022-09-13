@@ -105,7 +105,9 @@
             :key="cat"
             class="mb-1 mr-4"
           >
-            <div class="multiselect-header">{{cat[0].toUpperCase() + cat.substring(1)}}</div>
+            <div class="multiselect-header">
+              {{ cat[0].toUpperCase() + cat.substring(1) }}
+            </div>
             <multiselect
               v-model="searchGroup[index]"
               :options="cardTags(cat)"
@@ -113,7 +115,7 @@
               :clear-on-select="false"
               :preserve-search="true"
               :multiple="true"
-              placeholder="Select one or more filters"
+              placeholder="Select one or more"
               :allow-empty="true"
             >
             </multiselect>
@@ -265,12 +267,12 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tags: ['tags', 'groups', 'languages', 'department', 'active'],
+    tags: ['department', 'groups', 'tags', 'languages', 'active'],
     tagColors: {
-      tags: 'is-link',
-      groups: 'is-yellow',
-      languages: 'is-info',
       department: 'is-yellow',
+      groups: 'is-yellow',
+      tags: 'is-link',
+      languages: 'is-info',
       active: 'is-info',
     },
     contributorIcon: {
