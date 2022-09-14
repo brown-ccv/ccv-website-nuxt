@@ -98,7 +98,7 @@
           is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
-        <div class="mb-1 is-flex">
+        <div class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap">
           <div
             v-for="(cat, index) in tagCategories"
             :key="cat"
