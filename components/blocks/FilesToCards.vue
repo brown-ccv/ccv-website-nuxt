@@ -82,7 +82,6 @@
       </DCard>
     </div>
     <div v-else class="container">
-      <div>{{ searchGroup}}</div>
       <div
         class="
           multiselect-header
@@ -334,17 +333,8 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      if (this.searchGroup.length === 1) {
-        filtered = filtered.filter((card) => {
-          return this.searchGroup.flat().map(name => name.tagCode).some((tag) =>
-            this.tags.some((tagType) => {
-              const tags = card[tagType] ?? [];
-              return tags.includes(tag);
-              })
-            );
-        });
-      } else if (this.searchGroup.length > 1) {
-        for (let i = 0; i < this.searchGroup.length; i++) {
+      for (let i=0; i < this.searchGroup.length; i++) {
+        if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
           filtered = filtered.filter((card) => {
             return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
               this.tags.some((tagType) => {
@@ -353,8 +343,7 @@ export default {
                 })
               );
           });
-        }
-        this.searchGroup.reduce(this.common).flat();
+        };
       }
 
       // Sort by title alphabetical order
