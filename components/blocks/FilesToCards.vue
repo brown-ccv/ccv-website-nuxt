@@ -84,26 +84,66 @@
     <div v-else class="container">
       <div
         class="
+          multiselect-header
+          mt-4
+          mb-1
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
+        Filter cards by:
+      </div>
+      <div
+        class="
           dropdown
           is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
-        <div class="mb-1 is-flex">
-          <multiselect
-            v-model="searchGroup"
-            :options="cardTags"
-            :close-on-select="true"
-            :clear-on-select="false"
-            :preserve-search="true"
-            :multiple="true"
-            placeholder="Select tags to filter by"
-            :allow-empty="true"
+        <div class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap">
+          <div
+            v-for="(cat, index) in tagCategories"
+            :key="cat"
+            class="mb-1 mr-4"
           >
-          </multiselect>
-          <button class="ml-1 button is-normal is-warning" @click="clearAll">
-            Clear Filters
-          </button>
+            <div class="multiselect-header">
+              {{ cat[0].toUpperCase() + cat.substring(1) }}
+            </div>
+            <multiselect
+              v-model="searchGroup[index]"
+              label="name"
+              track-by="tagCode"
+              :options="cardTags(cat)"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :multiple="true"
+              placeholder="Select one or more"
+              :allow-empty="true"
+            >
+            </multiselect>
+          </div>
         </div>
+      </div>
+      <div class="has-text-centered">
+        <button class="ml-1 button is-normal is-warning" @click="clearAll">
+          Clear Filters
+        </button>
+    </div>
+      <div
+        class="
+          multiselect-header
+          mt-5
+          mb-1
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
+        Sort cards by:
+      </div>
+      <div
+        class="
+          dropdown
+          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
+        "
+      >
         <div class="mb-1 is-flex">
           <multiselect
             v-model="sortBy"
@@ -214,6 +254,7 @@
 <script>
 import DCard from '@/components/base/DCard.vue';
 import Multiselect from 'vue-multiselect';
+import { humanizeHero } from '@/utils';
 
 export default {
   components: {
@@ -230,12 +271,12 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tags: ['tags', 'groups', 'languages', 'department', 'active'],
+    tags: ['department', 'groups', 'tags', 'languages', 'active'],
     tagColors: {
-      tags: 'is-link',
-      groups: 'is-yellow',
-      languages: 'is-info',
       department: 'is-yellow',
+      groups: 'is-yellow',
+      tags: 'is-link',
+      languages: 'is-info',
       active: 'is-info',
     },
     contributorIcon: {
@@ -249,7 +290,7 @@ export default {
       f.forEach(function (obj) {
         for (const key in obj) {
           if (obj[key] === false) {
-            delete obj[key];
+            obj[key] = ['inactive'];
           } else if (obj[key] === true) {
             obj[key] = ['active'];
           }
@@ -257,12 +298,19 @@ export default {
       });
       return f;
     },
-    cardTags() {
-      const tags = this.tags
-        .map((tagType) => this.filteredData.map((card) => card[tagType]))
-        .flat(2)
-        .filter((e) => e);
-      return tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+    tagCategories() {
+      // create array of tag categories (tags, departments, languages, etc. for each our work type)
+      const tagCats = [];
+      for (let i = 0; i < this.tags.length; i++) {
+        const catExists = this.filteredData.some((o) => {
+          // eslint-disable-next-line no-prototype-builtins
+          return o.hasOwnProperty(this.tags[i]);
+        });
+        if (catExists) {
+          tagCats.push(this.tags[i]);
+        }
+      }
+      return tagCats;
     },
     sortByOptions() {
       // eslint-disable-next-line no-prototype-builtins
@@ -285,15 +333,17 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      if (this.searchGroup.length > 0) {
-        filtered = filtered.filter((card) => {
-          return this.searchGroup.some((tag) =>
-            this.tags.some((tagType) => {
-              const tags = card[tagType] ?? [];
-              return tags.includes(tag);
-            })
-          );
-        });
+      for (let i=0; i < this.searchGroup.length; i++) {
+        if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
+          filtered = filtered.filter((card) => {
+            return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
+              this.tags.some((tagType) => {
+                const tags = card[tagType] ?? [];
+                return tags.includes(tag);
+                })
+              );
+          });
+        };
       }
 
       // Sort by title alphabetical order
@@ -317,13 +367,15 @@ export default {
       } else if (this.sortBy.name === 'Active') {
         // Sort by active
         filtered.sort((a, b) => {
-          // eslint-disable-next-line no-prototype-builtins
-          return a.hasOwnProperty('active')
-            ? -1
-            : // eslint-disable-next-line no-prototype-builtins
-            b.hasOwnProperty('active')
-              ? 1
-              : 0;
+          const fa = a.active;
+          const fb = b.active;
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
         });
       }
 
@@ -336,6 +388,21 @@ export default {
     },
   },
   methods: {
+    humanizeHero,
+    cardTags(category) {
+      const tags = [category]
+        .map((tagType) => this.filteredData.map((card) => card[tagType]))
+        .flat(2)
+        .filter((e) => e);
+      const names = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
+      const tagCodes = names.map(item => humanizeHero(item))
+      const res = []
+      names.forEach((n, index) => {
+        const code = tagCodes[index];
+        res.push({name: code, tagCode: n})
+      });
+      return res;
+    },
     clearAll() {
       this.searchGroup = [];
     },
@@ -355,6 +422,9 @@ export default {
         return undefined;
       }
     },
+    common(a, b) {
+      return b.filter(Set.prototype.has.bind(new Set(a)));
+    },
   },
 };
 </script>
@@ -371,6 +441,10 @@ export default {
 
 .multiselect {
   min-width: 225px;
+}
+
+.multiselect-header {
+  font-weight: bold;
 }
 
 .link-button {
