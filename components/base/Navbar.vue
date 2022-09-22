@@ -249,11 +249,7 @@
           </div>
         </div>
         <div tabindex="0" class="navbar-item pl-0">
-          <nuxt-link
-            class="navbar-item"
-            to="/blog"
-            @click.native="handleClick"
-          >
+          <nuxt-link class="navbar-item" to="/blog" @click.native="handleClick">
             Blog
           </nuxt-link>
         </div>

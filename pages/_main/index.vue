@@ -24,6 +24,8 @@
     <FilesToCards v-if="$route.params.main === 'help'" :data="data" />
     <!-- The about page is a made of sections, informed by .md files -->
     <About v-else-if="$route.params.main === 'about'" :data="data" />
+    <!-- The about page is a made of sections, informed by .md files -->
+    <MarkdownToCards v-else-if="$route.params.main === 'blog'" :data="data" />
     <!-- This is for pages with subdirectories. They are a list of categories -->
     <FilesToCards v-else :data="list" />
   </div>
@@ -37,6 +39,7 @@ export default {
   components: {
     DHero,
     FilesToCards: () => import('@/components/blocks/FilesToCards.vue'),
+    MarkdownToCards: () => import('@/components/blocks/MarkdownToCards.vue'),
     About: () => import('@/components/blocks/About.vue'),
   },
   async asyncData({ $content, params, error }) {

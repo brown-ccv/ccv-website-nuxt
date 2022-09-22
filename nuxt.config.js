@@ -118,6 +118,6 @@ export default {
     },
   },
   generate: {
-    fallback: "404.html"
+    fallback: '404.html',
   },
 };
