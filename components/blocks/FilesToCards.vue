@@ -98,7 +98,9 @@
           is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
-        <div class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap">
+        <div
+          class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap"
+        >
           <div
             v-for="(cat, index) in tagCategories"
             :key="cat"
@@ -127,7 +129,7 @@
         <button class="ml-1 button is-normal is-warning" @click="clearAll">
           Clear Filters
         </button>
-    </div>
+      </div>
       <div
         class="
           multiselect-header
@@ -333,17 +335,19 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      for (let i=0; i < this.searchGroup.length; i++) {
+      for (let i = 0; i < this.searchGroup.length; i++) {
         if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
           filtered = filtered.filter((card) => {
-            return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
-              this.tags.some((tagType) => {
-                const tags = card[tagType] ?? [];
-                return tags.includes(tag);
+            return this.searchGroup[i]
+              .map((name) => name.tagCode)
+              .some((tag) =>
+                this.tags.some((tagType) => {
+                  const tags = card[tagType] ?? [];
+                  return tags.includes(tag);
                 })
               );
           });
-        };
+        }
       }
 
       // Sort by title alphabetical order
@@ -394,12 +398,14 @@ export default {
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
-      const names = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
-      const tagCodes = names.map(item => humanizeHero(item))
-      const res = []
+      const names = tags
+        .filter((tag, index) => tags.indexOf(tag) === index)
+        .sort();
+      const tagCodes = names.map((item) => humanizeHero(item));
+      const res = [];
       names.forEach((n, index) => {
         const code = tagCodes[index];
-        res.push({name: code, tagCode: n})
+        res.push({ name: code, tagCode: n });
       });
       return res;
     },

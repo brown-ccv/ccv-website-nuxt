@@ -17,7 +17,9 @@
           is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
-        <div class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap">
+        <div
+          class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap"
+        >
           <div
             v-for="(cat, index) in tagCategories"
             :key="cat"
@@ -115,23 +117,18 @@
               <h2 class="title has-text-black">
                 {{ item.title }}
               </h2>
-              <h2 class="subtitle has-text-black">
-                Author: {{ item.author }}
-              </h2>
+              <h2 class="subtitle has-text-black">Author: {{ item.author }}</h2>
               <h2 class="subtitle has-text-black">
                 {{ new Date(item.date).toDateString() }}
               </h2>
               <h2 class="has-text-black">
-                Blog Snippet Placeholder. Will replace this with first 140 characters of item.toc.
+                {{ item.toc }}
               </h2>
             </div>
           </template>
-          <template #content>
-            <p class="card-p is-size-5 mt-4">{{ item.description }}</p>
-          </template>
           <template #footer>
             <nuxt-link
-              to="/rates"
+              :to="`/blog/${item.slug}`"
               class="
                 m-1
                 link-item
@@ -208,17 +205,19 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      for (let i=0; i < this.searchGroup.length; i++) {
+      for (let i = 0; i < this.searchGroup.length; i++) {
         if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
           filtered = filtered.filter((card) => {
-            return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
-              this.tags.some((tagType) => {
-                const tags = card[tagType] ?? [];
-                return tags.includes(tag);
+            return this.searchGroup[i]
+              .map((name) => name.tagCode)
+              .some((tag) =>
+                this.tags.some((tagType) => {
+                  const tags = card[tagType] ?? [];
+                  return tags.includes(tag);
                 })
               );
           });
-        };
+        }
       }
 
       // Sort by title alphabetical order
@@ -269,12 +268,14 @@ export default {
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
-      const names = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
-      const tagCodes = names.map(item => humanizeHero(item))
-      const res = []
+      const names = tags
+        .filter((tag, index) => tags.indexOf(tag) === index)
+        .sort();
+      const tagCodes = names.map((item) => humanizeHero(item));
+      const res = [];
       names.forEach((n, index) => {
         const code = tagCodes[index];
-        res.push({name: code, tagCode: n})
+        res.push({ name: code, tagCode: n });
       });
       return res;
     },
