@@ -26,6 +26,7 @@ jobs:
         run: npm ci
       - name: Init submodule
         run: |
+          git submodule sync
           git submodule update --remote
           ls -la
       - name: Build
