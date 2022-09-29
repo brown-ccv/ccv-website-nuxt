@@ -28,26 +28,26 @@
             <div class="multiselect-header">
               {{ cat[0].toUpperCase() + cat.substring(1) }}
             </div>
-            <multiselect
-              v-model="searchGroup[index]"
-              label="name"
-              track-by="tagCode"
-              :options="cardTags(cat)"
-              :close-on-select="true"
-              :clear-on-select="false"
-              :preserve-search="true"
-              :multiple="true"
-              placeholder="Select one or more"
-              :allow-empty="true"
-            >
-            </multiselect>
+            <div class="is-flex">
+              <multiselect
+                v-model="searchGroup[index]"
+                label="name"
+                track-by="tagCode"
+                :options="cardTags(cat)"
+                :close-on-select="true"
+                :clear-on-select="false"
+                :preserve-search="true"
+                :multiple="true"
+                placeholder="Select one or more"
+                :allow-empty="true"
+              >
+              </multiselect>
+              <button class="ml-1 button is-normal is-warning" @click="clearAll">
+                Clear Filters
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="has-text-centered">
-        <button class="ml-1 button is-normal is-warning" @click="clearAll">
-          Clear Filters
-        </button>
       </div>
       <div
         class="
