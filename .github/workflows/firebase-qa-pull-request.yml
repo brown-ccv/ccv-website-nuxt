@@ -34,6 +34,9 @@ jobs:
           npm run generate
           npm run build
           npm run predeploy
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - name: Get preview url for hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
