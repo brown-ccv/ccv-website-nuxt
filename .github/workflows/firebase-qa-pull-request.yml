@@ -26,7 +26,7 @@ jobs:
         run: npm ci
       - name: Init submodule
         run: |
-          git submodule set-branch -b main feat-blog
+          git submodule set-branch -b feat-blog content
           git submodule update --remote
           ls -la
       - name: Build
