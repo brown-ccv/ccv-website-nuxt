@@ -42,7 +42,10 @@
                 :allow-empty="true"
               >
               </multiselect>
-              <button class="ml-1 button is-normal is-warning" @click="clearAll">
+              <button
+                class="ml-1 button is-normal is-warning"
+                @click="clearAll"
+              >
                 Clear Filters
               </button>
             </div>
