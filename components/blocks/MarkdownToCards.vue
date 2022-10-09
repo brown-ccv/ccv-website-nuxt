@@ -122,7 +122,7 @@
                 {{ new Date(item.date).toDateString() }}
               </h2>
               <h2 class="has-text-black">
-                {{ item.toc }}
+                {{ item.description }}
               </h2>
             </div>
           </template>
