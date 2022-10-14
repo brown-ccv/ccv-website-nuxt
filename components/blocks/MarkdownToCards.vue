@@ -9,7 +9,7 @@
           is-flex is-flex-wrap-wrap is-justify-content-space-evenly
         "
       >
-        Filter posts by:
+        Filter posts by tags:
       </div>
       <div
         class="
@@ -20,35 +20,24 @@
         <div
           class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap"
         >
-          <div
-            v-for="(cat, index) in tagCategories"
-            :key="cat"
-            class="mb-1 mr-4"
-          >
-            <div class="multiselect-header">
-              {{ cat[0].toUpperCase() + cat.substring(1) }}
-            </div>
-            <div class="is-flex">
-              <multiselect
-                v-model="searchGroup[index]"
-                label="name"
-                track-by="tagCode"
-                :options="cardTags(cat)"
-                :close-on-select="true"
-                :clear-on-select="false"
-                :preserve-search="true"
-                :multiple="true"
-                placeholder="Select one or more"
-                :allow-empty="true"
-              >
-              </multiselect>
-              <button
-                class="ml-1 button is-normal is-warning"
-                @click="clearAll"
-              >
-                Clear Filters
-              </button>
-            </div>
+          <div class="is-flex">
+            <multiselect
+              v-model="searchGroup"
+              :options="tags"
+              :close-on-select="true"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :multiple="true"
+              placeholder="Select one or more"
+              :allow-empty="true"
+            >
+            </multiselect>
+            <button
+              class="ml-1 button is-normal is-warning"
+              @click="clearAll"
+            >
+              Clear Filters
+            </button>
           </div>
         </div>
       </div>
@@ -170,33 +159,15 @@ export default {
     ascending: true,
     sortBy: [],
     searchGroup: [],
-    tags: ['department', 'groups', 'tags', 'languages', 'active'],
-    tagColors: {
-      department: 'is-yellow',
-      groups: 'is-yellow',
-      tags: 'is-link',
-      languages: 'is-info',
-      active: 'is-info',
-    },
   }),
   computed: {
     filteredData() {
       const f = this.data.filter((d) => !d.hidden);
       return f;
     },
-    tagCategories() {
-      // create array of tag categories (tags, departments, languages, etc. for each our work type)
-      const tagCats = [];
-      for (let i = 0; i < this.tags.length; i++) {
-        const catExists = this.filteredData.some((o) => {
-          // eslint-disable-next-line no-prototype-builtins
-          return o.hasOwnProperty(this.tags[i]);
-        });
-        if (catExists) {
-          tagCats.push(this.tags[i]);
-        }
-      }
-      return tagCats;
+    tags() {
+      const tags = Array.from(new Set(this.filteredData.map(({ tags }) => tags)));
+      return [...new Set(tags.flat(1))].sort()
     },
     sortByOptions() {
       const options = [{ name: 'Title' }];
@@ -208,19 +179,14 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      for (let i = 0; i < this.searchGroup.length; i++) {
-        if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
-          filtered = filtered.filter((card) => {
-            return this.searchGroup[i]
-              .map((name) => name.tagCode)
-              .some((tag) =>
-                this.tags.some((tagType) => {
-                  const tags = card[tagType] ?? [];
-                  return tags.includes(tag);
-                })
-              );
-          });
-        }
+
+      // Filter cards by tags in searchGroup
+      if (this.searchGroup.length > 0) {
+        filtered = filtered.filter((card) => {
+          return this.searchGroup.some((tag) =>
+            card.tags.includes(tag)
+          );
+        });
       }
 
       // Sort by title alphabetical order
@@ -266,22 +232,6 @@ export default {
   },
   methods: {
     humanizeHero,
-    cardTags(category) {
-      const tags = [category]
-        .map((tagType) => this.filteredData.map((card) => card[tagType]))
-        .flat(2)
-        .filter((e) => e);
-      const names = tags
-        .filter((tag, index) => tags.indexOf(tag) === index)
-        .sort();
-      const tagCodes = names.map((item) => humanizeHero(item));
-      const res = [];
-      names.forEach((n, index) => {
-        const code = tagCodes[index];
-        res.push({ name: code, tagCode: n });
-      });
-      return res;
-    },
     clearAll() {
       this.searchGroup = [];
     },
