@@ -1,7 +1,9 @@
 <template>
   <main class="main-content">
-    <nuxt-content class="content" :document="post" />
-    <AuthorCard :post="post" :people="people" />
+    <div class="container">
+      <nuxt-content class="content" :document="post" />
+      <AuthorCard :post="post" :people="people" />
+    </div>
     <nuxtLink to="/blog" class="mb-5">
       <DButton name="Back to blog" variant="warning" size="medium" />
     </nuxtLink>

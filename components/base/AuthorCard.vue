@@ -1,11 +1,11 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
-    <div>
+    <div class="mt-5">
       <DCard
         class="mx-3 my-3 px-3"
         variant="light"
         accent="light"
-        width="medium"
+        width="full"
       >
         <template #header>
           <div class="is-flex is-justify-content-center">
