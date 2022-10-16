@@ -32,10 +32,7 @@
               :allow-empty="true"
             >
             </multiselect>
-            <button
-              class="ml-1 button is-normal is-warning"
-              @click="clearAll"
-            >
+            <button class="ml-1 button is-normal is-warning" @click="clearAll">
               Clear Filters
             </button>
           </div>
@@ -166,8 +163,10 @@ export default {
       return f;
     },
     tags() {
-      const tags = Array.from(new Set(this.filteredData.map(({ tags }) => tags)));
-      return [...new Set(tags.flat(1))].sort()
+      const tags = Array.from(
+        new Set(this.filteredData.map(({ tags }) => tags))
+      );
+      return [...new Set(tags.flat(1))].sort();
     },
     sortByOptions() {
       const options = [{ name: 'Title' }];
@@ -183,9 +182,7 @@ export default {
       // Filter cards by tags in searchGroup
       if (this.searchGroup.length > 0) {
         filtered = filtered.filter((card) => {
-          return this.searchGroup.some((tag) =>
-            card.tags.includes(tag)
-          );
+          return this.searchGroup.some((tag) => card.tags.includes(tag));
         });
       }
 

@@ -33,6 +33,9 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "nuxt": "^2.15.6",
+    "rehype-katex": "^6.0.2",
+    "rehype-mathjax": "^4.0.2",
+    "remark-math": "^5.1.1",
     "vue-multiselect": "^2.1.6",
     "vue-scrollto": "^2.20.0"
   },

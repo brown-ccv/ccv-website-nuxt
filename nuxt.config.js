@@ -92,7 +92,9 @@ export default {
         'remark-slug',
         'remark-external-links',
         'remark-footnotes',
+        // 'remark-math'
       ],
+      // rehypePlugins: () => ['rehype-katex'],
     },
   },
   buildDir: '.nuxt',

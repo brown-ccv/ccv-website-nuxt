@@ -20,17 +20,17 @@ export default {
     MarkdownToCards: () => import('@/components/blocks/MarkdownToCards.vue'),
   },
   async asyncData({ $content, params, error }) {
-    console.log(params);
     // get the files of top content directories.
     // this provides title and subtitle for banners
-    const index = await $content('meta', 'blog').fetch();
-    // .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
+    const index = await $content('meta', 'blog')
+      .fetch()
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
     // get the content for directories that are only one level deep
     const data = await $content('blog')
-      // .sortBy('date', 'asc')
-      .fetch();
-    // .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
+      .sortBy('date', 'asc')
+      .fetch()
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
     return { index, data };
   },
