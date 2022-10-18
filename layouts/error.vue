@@ -1,12 +1,6 @@
 <template>
   <div
-    class="
-      container
-      my-6
-      px-2
-      is-flex is-flex-direction-column is-align-items-center
-      has-text-centered
-    "
+    class="container my-6 px-2 is-flex is-flex-direction-column is-align-items-center has-text-centered"
   >
     <div v-if="error.statusCode === 404">
       <h1 class="is-size-1 has-text-weight-bold">404</h1>
@@ -30,7 +24,14 @@ export default {
     DButton,
   },
   layout: 'error',
-  props: ['error'],
+  props: {
+    error: {
+      default() {
+        return {};
+      },
+      type: Object,
+    },
+  },
 };
 </script>
 

@@ -6,12 +6,7 @@
         $route.params.main === 'services' ||
         ($route.params.main === 'our-work' && !$route.params.category)
       "
-      class="
-        card-container
-        is-flex
-        mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
-      "
+      class="card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
     >
       <DCard
         v-for="(item, i) in filteredData"
@@ -46,14 +41,7 @@
                 link.target.startsWith('mailto')
               "
               :href="link.target"
-              class="
-                m-1
-                link-item
-                d-button
-                has-background-link has-text-white has-text-weight-semibold
-                is-size-5
-                link-button
-              "
+              class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -63,14 +51,7 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="
-                m-1
-                link-item
-                d-button
-                has-background-link has-text-white has-text-weight-semibold
-                is-size-5
-                link-button
-              "
+              class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -83,20 +64,12 @@
     </div>
     <div v-else class="container">
       <div
-        class="
-          multiselect-header
-          mt-4
-          mb-1
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="multiselect-header mt-4 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         Filter cards by:
       </div>
       <div
-        class="
-          dropdown
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         <div
           class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap"
@@ -131,20 +104,12 @@
         </button>
       </div>
       <div
-        class="
-          multiselect-header
-          mt-5
-          mb-1
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="multiselect-header mt-5 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         Sort cards by:
       </div>
       <div
-        class="
-          dropdown
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         <div class="mb-1 is-flex">
           <multiselect
@@ -169,12 +134,7 @@
         </div>
       </div>
       <div
-        class="
-          card-container
-          is-flex
-          mt-6
-          is-justify-content-space-evenly is-flex-wrap-wrap
-        "
+        class="card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
       >
         <DCard
           v-for="(item, i) in sortedArray"
@@ -233,14 +193,7 @@
               <a
                 v-for="link in item.links"
                 :key="link.url"
-                class="
-                  m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button
-                "
+                class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
                 :href="link.url"
               >
                 <span>{{ link.category.toUpperCase() }} </span>
@@ -254,8 +207,8 @@
 </template>
 
 <script>
-import DCard from '@/components/base/DCard.vue';
 import Multiselect from 'vue-multiselect';
+import DCard from '@/components/base/DCard.vue';
 import { humanizeHero } from '@/utils';
 
 export default {

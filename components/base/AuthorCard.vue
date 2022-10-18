@@ -1,16 +1,14 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
     <div class="mt-5">
-      <DCard
-        class="mx-3 my-3 px-3"
-        variant="light"
-        accent="light"
-        width="full"
-      >
+      <DCard class="mx-3 my-3 px-3" variant="light" accent="light" width="full">
         <template #header>
           <div class="is-flex is-justify-content-center">
             <figure class="image is-128x128">
-              <img class="is-rounded" :src="'/content/images/people/' + person.image"></img>
+              <img
+                class="is-rounded"
+                :src="'/content/images/people/' + person.image"
+              />
             </figure>
           </div>
           <div class="media-content">
@@ -49,15 +47,23 @@ export default {
   },
   props: {
     post: {
+      default() {
+        return [];
+      },
       type: Array,
     },
     people: {
+      default() {
+        return [];
+      },
       type: Array,
-    }
+    },
   },
   computed: {
     person() {
-      const person = this.people[0].data.find((d) => d.name === this.post.author);
+      const person = this.people[0].data.find(
+        (d) => d.name === this.post.author
+      );
       return person;
     },
   },

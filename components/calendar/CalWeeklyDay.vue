@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import Event from '@/components/calendar/CalEvent';
 import { getStringDate } from '../../utils.js';
+import Event from '@/components/calendar/CalEvent';
 
 export default {
   name: 'WeeklyDay',
