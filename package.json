@@ -25,14 +25,14 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",
-    "@nuxtjs/markdownit": "^2.0.0",
+    "@nuxtjs/markdownit": "^0.0.2",
     "bulma": "^0.9.3",
     "bulma-checkradio": "^1.1.1",
     "express": "^4.17.1",
     "fibers": "^5.0.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-    "nuxt": "^2.15.6",
+    "nuxt": "^3.2.2",
     "vue-multiselect": "^2.1.6",
     "vue-scrollto": "^2.20.0"
   },
@@ -51,20 +51,20 @@
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "firebase-admin": "^9.9.0",
+    "firebase-admin": "^11.5.0",
     "firebase-functions": "^3.14.1",
-    "firebase-tools": "^9.12.1",
+    "firebase-tools": "^11.24.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "lunr": "^2.3.9",
     "node-fetch": "^2.6.1",
-    "node-sass": "^6.0.0",
-    "nuxt-svg-loader": "^1.2.0",
+    "node-sass": "^8.0.0",
+    "nuxt-svg-loader": "^0.1.0",
     "prettier": "^2.3.1",
     "sass-loader": "^10.2.0",
     "stylelint": "^13.13.0",
     "stylelint-webpack-plugin": "^2.1.1",
-    "webpack": "^4.46.0"
+    "webpack": "^5.75.0"
   },
   "lint-staged": {
     "*.{js,vue}": "npm run lint"
