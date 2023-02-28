@@ -29,13 +29,14 @@
 </template>
 
 <script>
-import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 import {
   ALL_MONTHS,
   ALL_DAYS_OF_WEEK,
   TODAYS_DATE,
   weeksInMonth,
 } from '../../utils.js';
+
+import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 
 export default {
   name: 'MonthlyTable',
