@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import Week from '@/components/calendar/CalWeek';
 import { ALL_MONTHS, ALL_DAYS_OF_WEEK, TODAYS_DATE } from '../../utils.js';
+import Week from '@/components/calendar/CalWeek';
 
 export default {
   name: 'WeeklyTable',
