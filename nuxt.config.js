@@ -72,9 +72,7 @@ export default {
     '@nuxtjs/style-resources',
     // https://google-analytics.nuxtjs.org
     '@nuxtjs/google-analytics',
-    
     '@nuxt/postcss8', 
-
   ],
   googleAnalytics: {
     id: 'UA-136333978-7',
