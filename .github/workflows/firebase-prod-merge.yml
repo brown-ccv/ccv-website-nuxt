@@ -37,6 +37,7 @@ jobs:
       - name: Build
         # Make sure content is tracking main and up-to date, then builds and deploys
         run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
           npm run generate
           npm run build
           npm run predeploy
