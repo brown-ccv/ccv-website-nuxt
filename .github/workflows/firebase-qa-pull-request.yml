@@ -28,12 +28,16 @@ jobs:
         run: |
           git submodule update --remote
           ls -la
+      - name: Generate
+        run: npm run generate
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Build
         run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          npm run generate
           npm run build
           npm run predeploy
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Get preview url for hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
