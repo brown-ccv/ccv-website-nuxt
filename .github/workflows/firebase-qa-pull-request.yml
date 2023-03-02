@@ -24,20 +24,20 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm ci
-      # - name: Init submodule
-      #   run: |
-      #     git submodule set-branch -b feat-blog content
-      #     git submodule update --remote
-      #     ls -la
+      - name: Init submodule
+        run: |
+          git submodule update --remote
+          ls -la
+      - name: Generate
+        run: npm run generate
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Build
         run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          npm run generate
           npm run build
           npm run predeploy
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Get preview url for hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
