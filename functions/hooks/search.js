@@ -159,15 +159,16 @@ export default (nuxt) => {
   nuxt.hook('generate:before', async () => {
     const docsBaseUrl = 'https://docs.ccv.brown.edu';
     const docsUrls = [
-      '/oscar',
-      '/stronghold',
-      '/jupyterhub',
-      '/globus',
-      '/visualization',
+      // '/oscar',
+      // '/stronghold',
+      // '/jupyterhub',
+      // '/globus',
+      // '/visualization',
     ];
 
     await Promise.allSettled(
       docsUrls.map(async (url) => {
+        // eslint-disable-next-line no-console
         console.log(`scraping docs from ${url}`);
         const docsDocs = {};
         await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
@@ -175,6 +176,7 @@ export default (nuxt) => {
           const doc = htmlToDocument(value);
           addDocument({ ...doc, route: key });
         }
+        // eslint-disable-next-line no-console
         console.log(`completed scraping: ${url}`);
       })
     );
