@@ -76,6 +76,8 @@ In deployment, the dynamic routes are served by Firebase functions. To simulate 
 npm install -g firebase-tools #if needed
 npm run fn-install # if needed
 npm run local-deploy
+npm run funccreds #if you don't have the gh envs for functions
+firebase emulators:start
 ```
 
 **Note:**
