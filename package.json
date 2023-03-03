@@ -6,8 +6,7 @@
   "author": "fernandogelin",
   "scripts": {
     "build": "nuxt build",
-    "preserve": "cd functions && firebase -P qa functions:config:get > .runtimeconfig.json && cd ..",
-    "serve": "firebase -P qa serve --only functions,hosting",
+    "funccreds": "cd functions && firebase functions:config:get > .runtimeconfig.json",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern '/functions/' .",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore --ignore-pattern '/functions/' .",
     "commit": "git-cz",
@@ -18,7 +17,7 @@
     "test": "jest",
     "fn-install": "cp .npmrc functions/.npmrc && cd functions && npm ci",
     "predeploy": "./predeploy.sh",
-    "local-deploy": "npm run generate && npm run build && npm run predeploy && npm run serve",
+    "local-deploy": "npm run generate && npm run build && npm run predeploy",
     "prod-deploy": "firebase deploy -P prod",
     "qa-deploy": "firebase deploy -P qa",
     "prepare": "husky install"

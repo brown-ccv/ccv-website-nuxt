@@ -1,31 +1,42 @@
 {
-    "hosting": {
-      "public": "dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "function": "ssrapp"
-        }
-      ],
-      "headers": [ {
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssrapp"
+      }
+    ],
+    "headers": [
+      {
         "source": "**/*.@(jpg|jpeg|gif|png)",
         "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=604800"
-            }
-          ]
-        }
-      ]
-    },
-    "emulators": {
-      "ui": {
-        "enabled": true
+          {
+            "key": "Cache-Control",
+            "value": "max-age=604800"
+          }
+        ]
       }
-    }
+    ]
+  },
+  "emulators": {
+    "ui": {
+      "enabled": true
+    },
+    "functions": {
+      "port": 8001
+    },
+    "hosting": {
+      "port": 8080
+    },
+    "singleProjectMode": true
+  },
+  "functions": {
+    "source": "functions"
   }
+}
