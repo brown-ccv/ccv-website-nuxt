@@ -159,11 +159,11 @@ export default (nuxt) => {
   nuxt.hook('generate:before', async () => {
     const docsBaseUrl = 'https://docs.ccv.brown.edu';
     const docsUrls = [
-      '/oscar',
-      '/stronghold',
-      '/jupyterhub',
-      '/globus',
-      '/visualization',
+      // '/oscar',
+      // '/stronghold',
+      // '/jupyterhub',
+      // '/globus',
+      // '/visualization',
     ];
 
     await Promise.allSettled(
