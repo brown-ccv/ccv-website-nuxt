@@ -127,6 +127,23 @@ const htmlToDocument = (html) => {
   };
 };
 
+// adapted from https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites/blob/master/build_index.js
+// scrapes the relevant info from the html to get the title and body data
+const htmlTitlesToDocument = (html) => {
+  const $ = cheerio.load(html);
+  let title = $('title').text();
+  if (typeof title === 'undefined') title = '';
+  let description = $('meta[name=description]').attr('content');
+  if (typeof description === 'undefined') description = 'description';
+  // ISA: We used to search the whole body, but index got too large. For docs we are now scraping only titles.
+  const body = '';
+  return {
+    title,
+    description,
+    body,
+  };
+};
+
 // run the hook
 // set up the documents and metas, on page generation add each doc to the index, also scrape the docs
 export default (nuxt) => {
@@ -159,11 +176,11 @@ export default (nuxt) => {
   nuxt.hook('generate:before', async () => {
     const docsBaseUrl = 'https://docs.ccv.brown.edu';
     const docsUrls = [
-      // '/oscar',
-      // '/stronghold',
-      // '/jupyterhub',
-      // '/globus',
-      // '/visualization',
+      '/oscar',
+      '/stronghold',
+      '/jupyterhub',
+      '/globus',
+      '/visualization',
     ];
 
     await Promise.allSettled(
@@ -173,7 +190,7 @@ export default (nuxt) => {
         const docsDocs = {};
         await scrapeDocs(docsBaseUrl + url, docsDocs, docsBaseUrl);
         for (const [key, value] of Object.entries(docsDocs)) {
-          const doc = htmlToDocument(value);
+          const doc = htmlTitlesToDocument(value);
           addDocument({ ...doc, route: key });
         }
         // eslint-disable-next-line no-console

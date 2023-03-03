@@ -71,6 +71,7 @@
 // component adapted form https://github.com/nuxt-community/lunr-module/blob/master/lib/search.vue
 const statusMessages = {
   fetching: 'Fetching search index',
+  serializing: 'Serializing search index',
   loading: 'Loading search index',
   searching: 'Searching...',
   noresults: 'No results found',
@@ -90,6 +91,8 @@ export default {
   async fetch() {
     this.setStatus('fetching');
     const searchIndex = await fetch('/_nuxt/search-index/en.json');
+    
+    this.setStatus('serializing');
     const searchJson = await searchIndex.json();
 
     this.setStatus('loading');

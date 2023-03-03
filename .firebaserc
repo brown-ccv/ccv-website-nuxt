@@ -1,6 +1,7 @@
 {
   "projects": {
     "prod": "ccv-brown-edu",
-    "qa": "qa-ccv-brown-edu"
+    "qa": "qa-ccv-brown-edu",
+    "default": "qa-ccv-brown-edu"
   }
 }
