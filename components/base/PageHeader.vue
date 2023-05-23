@@ -24,8 +24,8 @@
           :to="{
             name: 'main-category-page',
             params: {
-              main: 'home',
-              category: 'banners',
+              main: 'banners',
+              category: 'announcements',
               page: banner.title.toLowerCase(),
             },
           }"
@@ -52,7 +52,8 @@ export default {
     };
   },
   async fetch() {
-    this.banners = await this.$content('banners').fetch();
+    this.banners = await this.$content('banners', 'announcements').fetch();
+    console.log(this.banners)
     const res = await fetch('/_ghapi/status');
     this.status = await res.json();
   },
