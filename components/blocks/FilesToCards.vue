@@ -210,7 +210,6 @@
 import Multiselect from 'vue-multiselect';
 import DCard from '@/components/base/DCard.vue';
 import { humanizeHero } from '@/utils';
-import DCard from '@/components/base/DCard.vue';
 
 export default {
   components: {

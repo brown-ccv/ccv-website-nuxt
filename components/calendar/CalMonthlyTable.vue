@@ -37,8 +37,6 @@ import {
 } from '../../utils.js';
 import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 
-import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
-
 export default {
   name: 'MonthlyTable',
   components: {
