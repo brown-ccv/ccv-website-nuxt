@@ -18,7 +18,6 @@
           <span class="d-toc-start">
             {{ entry['name'] }}
           </span>
-          <span class="d-toc-end">{{ index + 1 }}</span>
         </a>
       </li>
     </ul>
