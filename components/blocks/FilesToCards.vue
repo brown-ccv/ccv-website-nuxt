@@ -6,12 +6,7 @@
         $route.params.main === 'services' ||
         ($route.params.main === 'our-work' && !$route.params.category)
       "
-      class="
-        card-container
-        is-flex
-        mt-6
-        is-justify-content-space-evenly is-flex-wrap-wrap
-      "
+      class="card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
     >
       <DCard
         v-for="(item, i) in filteredData"
@@ -46,14 +41,7 @@
                 link.target.startsWith('mailto')
               "
               :href="link.target"
-              class="
-                m-1
-                link-item
-                d-button
-                has-background-link has-text-white has-text-weight-semibold
-                is-size-5
-                link-button
-              "
+              class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -63,14 +51,7 @@
             <nuxt-link
               v-else
               :to="link.target"
-              class="
-                m-1
-                link-item
-                d-button
-                has-background-link has-text-white has-text-weight-semibold
-                is-size-5
-                link-button
-              "
+              class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
@@ -83,22 +64,16 @@
     </div>
     <div v-else class="container">
       <div
-        class="
-          multiselect-header
-          mt-4
-          mb-1
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="multiselect-header mt-4 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         Filter cards by:
       </div>
       <div
-        class="
-          dropdown
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
-        <div class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap">
+        <div
+          class="mb-1 is-flex is-justify-content-space-evenly is-flex-wrap-wrap"
+        >
           <div
             v-for="(cat, index) in tagCategories"
             :key="cat"
@@ -127,22 +102,14 @@
         <button class="ml-1 button is-normal is-warning" @click="clearAll">
           Clear Filters
         </button>
-    </div>
+      </div>
       <div
-        class="
-          multiselect-header
-          mt-5
-          mb-1
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="multiselect-header mt-5 mb-1 is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         Sort cards by:
       </div>
       <div
-        class="
-          dropdown
-          is-flex is-flex-wrap-wrap is-justify-content-space-evenly
-        "
+        class="dropdown is-flex is-flex-wrap-wrap is-justify-content-space-evenly"
       >
         <div class="mb-1 is-flex">
           <multiselect
@@ -167,12 +134,7 @@
         </div>
       </div>
       <div
-        class="
-          card-container
-          is-flex
-          mt-6
-          is-justify-content-space-evenly is-flex-wrap-wrap
-        "
+        class="card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
       >
         <DCard
           v-for="(item, i) in sortedArray"
@@ -231,14 +193,7 @@
               <a
                 v-for="link in item.links"
                 :key="link.url"
-                class="
-                  m-1
-                  link-item
-                  d-button
-                  has-background-link has-text-white has-text-weight-semibold
-                  is-size-5
-                  link-button
-                "
+                class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
                 :href="link.url"
               >
                 <span>{{ link.category.toUpperCase() }} </span>
@@ -333,17 +288,19 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      for (let i=0; i < this.searchGroup.length; i++) {
+      for (let i = 0; i < this.searchGroup.length; i++) {
         if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
           filtered = filtered.filter((card) => {
-            return this.searchGroup[i].map(name => name.tagCode).some((tag) =>
-              this.tags.some((tagType) => {
-                const tags = card[tagType] ?? [];
-                return tags.includes(tag);
+            return this.searchGroup[i]
+              .map((name) => name.tagCode)
+              .some((tag) =>
+                this.tags.some((tagType) => {
+                  const tags = card[tagType] ?? [];
+                  return tags.includes(tag);
                 })
               );
           });
-        };
+        }
       }
 
       // Sort by title alphabetical order
@@ -394,12 +351,14 @@ export default {
         .map((tagType) => this.filteredData.map((card) => card[tagType]))
         .flat(2)
         .filter((e) => e);
-      const names = tags.filter((tag, index) => tags.indexOf(tag) === index).sort();
-      const tagCodes = names.map(item => humanizeHero(item))
-      const res = []
+      const names = tags
+        .filter((tag, index) => tags.indexOf(tag) === index)
+        .sort();
+      const tagCodes = names.map((item) => humanizeHero(item));
+      const res = [];
       names.forEach((n, index) => {
         const code = tagCodes[index];
-        res.push({name: code, tagCode: n})
+        res.push({ name: code, tagCode: n });
       });
       return res;
     },

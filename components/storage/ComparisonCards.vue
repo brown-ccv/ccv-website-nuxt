@@ -1,11 +1,6 @@
 <template>
   <div
-    class="
-      is-flex
-      is-justify-content-space-around
-      is-flex-direction-row
-      is-flex-wrap-wrap
-    "
+    class="is-flex is-justify-content-space-around is-flex-direction-row is-flex-wrap-wrap"
   >
     <DCard
       v-for="(service, j) in services"
@@ -23,9 +18,7 @@
         <ul class="has-text-left">
           <li v-for="(feature, k) in service.features" :key="k">
             <div
-              class="
-                is-flex is-justify-content-space-between is-align-items-center
-              "
+              class="is-flex is-justify-content-space-between is-align-items-center"
             >
               <p>{{ humanize(feature.name) }}</p>
               <ComparisonCellContent
