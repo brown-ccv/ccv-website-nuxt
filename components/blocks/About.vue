@@ -82,7 +82,7 @@
             :hover-image="
               '/content/images/people/' + person.image.replace('main', 'hover')
             "
-            @click="$router.push(`/people/${people.github_username}`)"
+            @click.native="$router.push(`/people/${person.github_username}`)"
           >
             <template #icons>
               <a
@@ -101,7 +101,9 @@
                 ><span class="icon"><i class="mdi mdi-information" /></span>
               </a>
               <div>
-                <NuxtLink :to="`/people/${person.github_username}`">Learn More...</NuxtLink>
+                <NuxtLink :to="`/people/${person.github_username}`"
+                  >Read More...</NuxtLink
+                >
               </div>
             </template>
           </DPersonCard>
