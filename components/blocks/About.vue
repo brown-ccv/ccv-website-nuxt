@@ -100,11 +100,6 @@
                 aria-label="information icon"
                 ><span class="icon"><i class="mdi mdi-information" /></span>
               </a>
-              <div>
-                <NuxtLink :to="`/people/${person.github_username}`"
-                  >Read More...</NuxtLink
-                >
-              </div>
             </template>
           </DPersonCard>
         </div>
@@ -137,6 +132,7 @@ export default {
   },
   data: () => ({
     opportunities: [],
+    hover: false,
   }),
   async fetch() {
     const res = await fetch('/_workday/opportunities');
