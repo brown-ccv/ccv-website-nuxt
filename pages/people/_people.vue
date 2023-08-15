@@ -18,7 +18,9 @@
               v-if="person.github_username"
               :href="'https://github.com/' + person.github_username"
               aria-label="information icon"
-              ><span class="icon is-large"><i class="mdi mdi-48px mdi-github" /></span>
+              ><span class="icon is-large"
+                ><i class="mdi mdi-48px mdi-github"
+              /></span>
             </a>
             <a
               v-if="person.brown_directory_uuid"
@@ -27,7 +29,9 @@
                 person.brown_directory_uuid
               "
               aria-label="information icon"
-              ><span class="icon is-large"><i class="mdi mdi-48px mdi-information" /></span>
+              ><span class="icon is-large"
+                ><i class="mdi mdi-48px mdi-information"
+              /></span>
             </a>
           </div>
         </template>
@@ -47,7 +51,7 @@ export default {
   },
   async asyncData({ $content, params }) {
     const people = await $content('about', 'people').fetch();
-    const person = people.data.find((p) => p.github_username === params.people);
+    const person = people.data.find((p) => p.name === params.people);
     return { person };
   },
 };

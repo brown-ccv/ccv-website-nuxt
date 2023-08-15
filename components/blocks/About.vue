@@ -82,7 +82,7 @@
             :hover-image="
               '/content/images/people/' + person.image.replace('main', 'hover')
             "
-            @click.native="$router.push(`/people/${person.github_username}`)"
+            @click.native="$router.push(`/people/${person.name}`)"
           >
             <template #icons>
               <a
