@@ -91,7 +91,7 @@ export default {
   async fetch() {
     this.setStatus('fetching');
     const searchIndex = await fetch('/_nuxt/search-index/en.json');
-    
+
     this.setStatus('serializing');
     const searchJson = await searchIndex.json();
 

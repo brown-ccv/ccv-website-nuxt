@@ -6,10 +6,7 @@
     :class="['has-background-' + variant, textColor]"
   >
     <section
-      class="
-        d-footer-content-first
-        is-flex is-justify-content-space-between is-flex-wrap-wrap
-      "
+      class="d-footer-content-first is-flex is-justify-content-space-between is-flex-wrap-wrap"
     >
       <div class="is-flex is-align-content-center">
         <BrownLogo class="pr-4" size="xs" />
