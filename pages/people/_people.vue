@@ -4,7 +4,7 @@
       <DCard class="mx-3 my-3 px-3" variant="light" accent="light" width="full">
         <template #header>
           <div class="is-flex is-justify-content-center">
-            <figure class="image" style="width: 400px; height: 400px">
+            <figure class="image person-image-bio">
               <img :src="'/content/images/people/' + person.image" />
             </figure>
           </div>

@@ -17,3 +17,9 @@
 .person-image-figure {
   height: 30ex;
 }
+.person-image-bio {
+  height: 25%;
+  width: 25%;
+  object-fit: cover;
+  overflow: hidden;
+}
