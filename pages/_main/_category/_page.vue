@@ -13,18 +13,23 @@
         :document="data"
         class="content content-section"
       />
-      <div v-else-if="data.extension === '.yml'">{{ data }}</div>
+      <OurWorkDetail
+        v-else-if="data.extension === '.yml'"
+        :data="data"
+      ></OurWorkDetail>
     </main>
   </div>
 </template>
 
 <script>
 import DHero from '@/components/base/DHero.vue';
+import OurWorkDetail from '@/components/blocks/OurWorkDetail.vue';
 import { humanizeHero } from '@/utils';
 
 export default {
   components: {
     DHero,
+    OurWorkDetail,
   },
   async asyncData({ $content, params, error }) {
     const data = await $content(params.main, params.category, params.page)
@@ -32,8 +37,15 @@ export default {
       .fetch()
       .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
+    const ourwork = await $content('our-work', params.main, params.slug, {
+      deep: true,
+    })
+      .fetch()
+      .catch(() => []);
+
     return {
       data,
+      ourwork,
     };
   },
   methods: {
