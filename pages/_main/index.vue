@@ -1,6 +1,7 @@
 <template>
   <!-- General template for main routes i.e. about, services, help...  -->
   <div>
+    {{ categories }}
     <DHero
       variant="light"
       :title="index.title"

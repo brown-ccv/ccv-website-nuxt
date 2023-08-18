@@ -13,6 +13,7 @@
         :document="data"
         class="content content-section"
       />
+      <div v-else-if="data.extension === '.yml'">{{ data }}</div>
     </main>
   </div>
 </template>

@@ -143,7 +143,7 @@
           variant="light"
           accent="warning"
           width="medium"
-          @click.native="$router.push(`/our-work/${item.title}`)"
+          @click.native="$router.push(`${item.path}`)"
         >
           <template #header>
             <template v-for="(tagClass, tagType) in tagColors">
