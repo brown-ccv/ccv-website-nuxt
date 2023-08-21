@@ -1,7 +1,12 @@
 <template>
   <main class="card-container-wrapper is-flex is-justify-content-center">
     <div class="mt-5">
-      <DCard class="mx-3 my-3 px-3" variant="light" accent="light" width="full">
+      <DCard
+        class="mx-3 my-3 px-3"
+        variant="light"
+        accent="light"
+        width="large"
+      >
         <template #header>
           <template v-for="(tagClass, tagType) in tagColors">
             <span
