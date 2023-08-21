@@ -186,20 +186,8 @@
             </span>
           </template>
           <template #content>
-            {{ item.description }}
-          </template>
-          <template #footer>
-            <section v-if="item.links" class="link-group">
-              <div><i class="mdi mdi-link p-1 title"></i></div>
-              <a
-                v-for="link in item.links"
-                :key="link.url"
-                class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
-                :href="link.url"
-              >
-                <span>{{ link.category.toUpperCase() }} </span>
-              </a>
-            </section>
+            {{ truncateDescription(item.description) }}
+            <nuxt-link :to="'${item.path}'">...Read More</nuxt-link>
           </template>
         </DCard>
       </div>
@@ -384,6 +372,9 @@ export default {
     },
     common(a, b) {
       return b.filter(Set.prototype.has.bind(new Set(a)));
+    },
+    truncateDescription(string) {
+      return string.split(' ').splice(0, 9).join(' ');
     },
   },
 };

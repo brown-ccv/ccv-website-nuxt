@@ -43,14 +43,15 @@
           <section v-if="data.links" class="link-group">
             <div><i class="mdi mdi-link p-1 title"></i></div>
             <a
-              v-for="data in data.links"
-              :key="data.url"
+              v-for="d in data.links"
+              :key="d.url"
               class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
-              :href="data.url"
+              :href="d.url"
             >
-              <span>{{ data.category.toUpperCase() }} </span>
+              <span>{{ d.category.toUpperCase() }} </span>
             </a>
           </section>
+          <!-- {{ data }} -->
         </template>
       </DCard>
     </div>
@@ -86,6 +87,19 @@ export default {
       people: 'mdi-account-multiple',
     },
   }),
+//   computed: {
+//     activatedData() {
+//       let mutableData = this.data;
+//       mutableData = {
+//         if (mutableData.active === true) {
+//           mutableData.active = 'Active';
+//         } else if (mutableData.active === false) {
+//           mutableData.active = 'Inactive';
+//         }
+//       };
+//       return mutableData;
+//     },
+//   },
   methods: {
     clearAll() {
       this.searchGroup = [];
