@@ -2,7 +2,7 @@
   <div>
     <DHero
       variant="light"
-      :title="humanizeHero($route.params.page)"
+      :title="humanizeHero(data.title)"
       :subtitle="humanizeHero($route.params.category)"
     >
     </DHero>
