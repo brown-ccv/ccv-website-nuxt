@@ -71,7 +71,7 @@ export default {
   },
   props: {
     data: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
@@ -92,19 +92,6 @@ export default {
       people: 'mdi-account-multiple',
     },
   }),
-//   computed: {
-//     activatedData() {
-//       let mutableData = this.data;
-//       mutableData = {
-//         if (mutableData.active === true) {
-//           mutableData.active = 'Active';
-//         } else if (mutableData.active === false) {
-//           mutableData.active = 'Inactive';
-//         }
-//       };
-//       return mutableData;
-//     },
-//   },
   methods: {
     clearAll() {
       this.searchGroup = [];
