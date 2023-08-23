@@ -50,7 +50,7 @@
             </a>
             <nuxt-link
               v-else
-              to="/"
+              :to="link.target"
               class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
@@ -187,7 +187,7 @@
           </template>
           <template #content>
             {{ truncateDescription(item.description) }}
-            <nuxt-link :to="'${item.path}'">...Read More</nuxt-link>
+            <a @click="$router.push(`${item.path}`)">...Read more </a>
           </template>
         </DCard>
       </div>
