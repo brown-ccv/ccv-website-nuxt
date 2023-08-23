@@ -68,6 +68,9 @@ export default {
     categoryMeta() {
       return this.list.find((x) => x.slug === this.$route.params.category);
     },
+    ourWorkHero() {
+      return this.data.find((x) => x.slug === this.$route.params.category).title;
+    },
   },
   methods: {
     humanize,
