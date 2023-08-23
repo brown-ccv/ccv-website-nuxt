@@ -10,7 +10,7 @@
         <template #header>
           <template v-for="(tagClass, tagType) in tagColors">
             <span
-              v-for="tag in data[tagType]"
+              v-for="tag in filteredData[tagType]"
               :key="tag"
               class="radius-0 tag m-1"
               :class="tagClass"
@@ -92,6 +92,20 @@ export default {
       people: 'mdi-account-multiple',
     },
   }),
+  computed: {    
+    filteredData() {
+      const f = [this.data].filter((d) => !d.hidden);
+      f.forEach(function (obj) {
+        for (const key in obj) {
+          if (obj[key] === false) {
+            obj[key] = ['inactive'];
+          } else if (obj[key] === true) {
+            obj[key] = ['active'];
+          }
+        }
+      });
+      return f[0];
+    },},
   methods: {
     clearAll() {
       this.searchGroup = [];
