@@ -143,9 +143,6 @@ export default {
     },
     find_uuid(name) {
       const person = this.people[0].data.find((item) => item.name === name);
-      // if (person.brown_directory_uuid) {
-      //   return person.brown_directory_uuid;
-      // }
       return person;
     },
   },
