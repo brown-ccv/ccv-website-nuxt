@@ -68,8 +68,9 @@
         </client-only>
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
+          {{ teamSort }}
           <DPersonCard
-            v-for="person in orderedPeople"
+            v-for="person in teamSort"
             :key="urlize(person.name)"
             variant="white"
             accent="warning"
@@ -169,6 +170,22 @@ export default {
       const people = [...d.find((d) => d.title === 'People').data];
       people.sort((a, b) => (a.name > b.name ? 1 : -1));
       return people;
+    },
+    teams() {
+      const teams = [...new Set(this.orderedPeople.map((x) => x.team))];
+      const subteams = [...new Set(this.orderedPeople.map((x) => x.subteam))];
+      teams.sort((a, b) => (a > b ? 1 : -1));
+      subteams.sort((a, b) => (a > b ? 1 : -1));
+      return [teams, subteams];
+    },
+    teamSort() {
+      const d = this.orderedPeople;
+      d.sort((a, b) => {
+        return (
+          this.teams[1].indexOf(a.subteam) - this.teams[1].indexOf(b.subteam)
+        );
+      });
+      return d;
     },
   },
   methods: {
