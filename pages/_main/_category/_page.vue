@@ -16,6 +16,7 @@
       <OurWorkDetail
         v-else-if="data.extension === '.yml'"
         :data="data"
+        :people="people"
       ></OurWorkDetail>
     </main>
   </div>
@@ -43,9 +44,16 @@ export default {
       .fetch()
       .catch(() => []);
 
+    // get the content for directories that are only one level deep
+    const people = await $content('about')
+      .where({ slug: { $in: 'people' } })
+      .fetch()
+      .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
+
     return {
       data,
       ourwork,
+      people,
     };
   },
   methods: {

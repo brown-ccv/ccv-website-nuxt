@@ -35,6 +35,14 @@
                 v-for="(entry, index) in contributorArray"
                 :key="entry.name"
               >
+                <a v-if="contributorType === 'people'"
+                  :href="
+                    'https://directory.brown.edu/uuid/' +
+                    find_uuid(entry.name).brown_directory_uuid
+                  "
+                  aria-label="information icon"
+                  ><span class="icon"><i class="mdi mdi-information" /></span>
+                </a>
                 <a :href="contributorLink(entry)">{{ entry.name }}</a
                 ><span v-if="index + 1 < contributorArray.length">, </span>
               </span>
@@ -56,7 +64,6 @@
               <span>{{ d.category.toUpperCase() }} </span>
             </a>
           </section>
-          <!-- {{ data }} -->
         </template>
       </DCard>
     </div>
@@ -72,6 +79,10 @@ export default {
   props: {
     data: {
       type: Object,
+      required: true,
+    },
+    people: {
+      type: Array,
       required: true,
     },
   },
@@ -92,7 +103,7 @@ export default {
       people: 'mdi-account-multiple',
     },
   }),
-  computed: {    
+  computed: {
     filteredData() {
       const f = [this.data].filter((d) => !d.hidden);
       f.forEach(function (obj) {
@@ -105,7 +116,8 @@ export default {
         }
       });
       return f[0];
-    },},
+    },
+  },
   methods: {
     clearAll() {
       this.searchGroup = [];
@@ -128,6 +140,13 @@ export default {
     },
     common(a, b) {
       return b.filter(Set.prototype.has.bind(new Set(a)));
+    },
+    find_uuid(name) {
+      const person = this.people[0].data.find((item) => item.name === name);
+      // if (person.brown_directory_uuid) {
+      //   return person.brown_directory_uuid;
+      // }
+      return person;
     },
   },
 };
