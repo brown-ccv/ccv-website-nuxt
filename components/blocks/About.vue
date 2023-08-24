@@ -68,12 +68,11 @@
         </client-only>
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
-          {{ teamSort }}
           <DPersonCard
             v-for="person in teamSort"
             :key="urlize(person.name)"
             variant="white"
-            accent="warning"
+            :accent="teamColor()[person.subteam]"
             width="xsmall"
             class="mx-1 my-1"
             :name="person.name"
@@ -117,7 +116,7 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import DPersonCard from '@/components/base/DPersonCard.vue';
-import { urlize } from '@/utils';
+import { COLOR_VARIANTS, urlize } from '@/utils';
 
 export default {
   components: {
@@ -154,7 +153,6 @@ export default {
         return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
       });
     },
-
     tocData() {
       return this.sortedData.map((d, i) => {
         return {
@@ -164,7 +162,6 @@ export default {
         };
       });
     },
-
     orderedPeople() {
       const d = this.data;
       const people = [...d.find((d) => d.title === 'People').data];
@@ -190,6 +187,15 @@ export default {
   },
   methods: {
     urlize,
+    teamColor() {
+      const numTeams = this.teams[1].length;
+      const colors = COLOR_VARIANTS.slice(2, numTeams + 2);
+      const obj = {};
+      this.teams[1].forEach((k, i) => {
+        obj[k] = colors[i];
+      });
+      return obj;
+    },
   },
 };
 </script>
