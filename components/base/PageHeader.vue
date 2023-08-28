@@ -53,7 +53,7 @@ export default {
   },
   async fetch() {
     this.banners = await this.$content('banners', 'announcements').fetch();
-    console.log(this.banners)
+    console.log(this.banners);
     const res = await fetch('/_ghapi/status');
     this.status = await res.json();
   },
