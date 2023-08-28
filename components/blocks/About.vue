@@ -78,6 +78,7 @@
             :name="person.name"
             :title="person.title"
             :team="person.team"
+            :subteam="person.subteam"
             :main-image="'/content/images/people/' + person.image"
             :hover-image="
               '/content/images/people/' + person.image.replace('main', 'hover')

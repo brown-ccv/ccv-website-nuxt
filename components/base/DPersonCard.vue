@@ -30,7 +30,8 @@
       <footer class="content py-3 px-3">
         <h5>{{ name }}</h5>
         <p data-testid="title-team">
-          <small>{{ title }} | {{ team }}</small>
+          <small>{{ title }}</small>
+          <small v-scroll-to="'#our-teams'">{{ team }} | {{ subteam }}</small>
         </p>
         <slot name="icons" />
       </footer>
@@ -57,6 +58,10 @@ export default {
       required: true,
     },
     team: {
+      type: String,
+      required: true,
+    },
+    subteam: {
       type: String,
       required: true,
     },
