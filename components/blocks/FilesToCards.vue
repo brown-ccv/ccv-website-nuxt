@@ -6,7 +6,7 @@
         $route.params.main === 'services' ||
         ($route.params.main === 'our-work' && !$route.params.category)
       "
-      class="÷ card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
+      class="card-container is-flex mt-6 is-justify-content-space-evenly is-flex-wrap-wrap"
     >
       <DCard
         v-for="(item, i) in filteredData"
