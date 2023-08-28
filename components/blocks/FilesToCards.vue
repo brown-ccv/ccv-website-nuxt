@@ -288,7 +288,7 @@ export default {
     },
     sortedArray() {
       let filtered = this.filteredData;
-      for (let i=0; i < this.searchGroup.length; i++) {
+      for (let i = 0; i < this.searchGroup.length; i++) {
         if (this.searchGroup[i] && this.searchGroup[i].length > 0) {
           filtered = filtered.filter((card) => {
             return this.searchGroup[i]
@@ -300,7 +300,7 @@ export default {
                 })
               );
           });
-        };
+        }
       }
 
       // Sort by title alphabetical order
@@ -355,7 +355,7 @@ export default {
         .filter((tag, index) => tags.indexOf(tag) === index)
         .sort();
       const tagCodes = names.map((item) => humanizeHero(item));
-      const res = []
+      const res = [];
       names.forEach((n, index) => {
         const code = tagCodes[index];
         res.push({ name: code, tagCode: n });

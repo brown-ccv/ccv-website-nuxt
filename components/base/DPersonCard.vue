@@ -76,7 +76,14 @@ export default {
   data() {
     return {
       active: false,
+      hover: false,
     };
   },
 };
 </script>
+
+<style>
+.d-person-card {
+  cursor: pointer;
+}
+</style>
