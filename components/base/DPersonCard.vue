@@ -31,7 +31,8 @@
         <h5>{{ name }}</h5>
         <p data-testid="title-team">
           <small>{{ title }}</small>
-          <small v-scroll-to="'#our-teams'">{{ team }} | {{ subteam }}</small>
+          <small>{{ team }}</small>
+          <small>{{ subteam }}</small>
         </p>
         <slot name="icons" />
       </footer>
