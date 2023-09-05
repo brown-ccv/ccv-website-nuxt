@@ -19,7 +19,7 @@ export default {
     DHero,
     MarkdownToCards: () => import('@/components/blocks/MarkdownToCards.vue'),
   },
-  async asyncData({ $content, params, error }) {
+  async asyncData({ $content, error }) {
     // get the files of top content directories.
     // this provides title and subtitle for banners
     const index = await $content('meta', 'blog')
