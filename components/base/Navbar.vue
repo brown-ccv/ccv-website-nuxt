@@ -264,14 +264,6 @@
             <span class="mx-0 icon"><i class="mdi mdi-file-document" /></span>
           </a>
         </div>
-        <div class="navbar-item">
-          <a
-            href="https://medium.com/brown-ccv"
-            class="d-button is-white has-text-link"
-            aria-label="CCV's Medium Blog"
-            >Blog <span class="mx-0 icon"><i class="mdi mdi-notebook" /></span
-          ></a>
-        </div>
       </div>
     </div>
     <div class="navbar-item">
