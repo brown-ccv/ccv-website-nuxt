@@ -71,6 +71,7 @@
           accent="warning"
           width="medium"
         >
+          <!-- adding comment to test submodule merge conflict resolution -->
           <template #header>
             <div>
               <span
