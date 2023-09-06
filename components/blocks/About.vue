@@ -82,6 +82,7 @@
             :hover-image="
               '/content/images/people/' + person.image.replace('main', 'hover')
             "
+            @click.native="$router.push(`/people/${person.name}`)"
           >
             <template #icons>
               <a
@@ -131,6 +132,7 @@ export default {
   },
   data: () => ({
     opportunities: [],
+    hover: false,
   }),
   async fetch() {
     const res = await fetch('/_workday/opportunities');
