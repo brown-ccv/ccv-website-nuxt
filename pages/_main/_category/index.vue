@@ -64,6 +64,7 @@ export default {
       list,
     };
   },
+
   computed: {
     categoryMeta() {
       return this.list.find((x) => x.slug === this.$route.params.category);

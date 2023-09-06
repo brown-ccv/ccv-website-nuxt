@@ -248,6 +248,11 @@
             </div>
           </div>
         </div>
+        <div tabindex="0" class="navbar-item pl-0">
+          <nuxt-link class="navbar-item" to="/blog" @click.native="handleClick">
+            Blog
+          </nuxt-link>
+        </div>
       </div>
       <div class="navbar-end" data-testid="navbar-end">
         <div class="navbar-item">
@@ -258,14 +263,6 @@
             >Docs
             <span class="mx-0 icon"><i class="mdi mdi-file-document" /></span>
           </a>
-        </div>
-        <div class="navbar-item">
-          <a
-            href="https://medium.com/brown-ccv"
-            class="d-button is-white has-text-link"
-            aria-label="CCV's Medium Blog"
-            >Blog <span class="mx-0 icon"><i class="mdi mdi-notebook" /></span
-          ></a>
         </div>
       </div>
     </div>
