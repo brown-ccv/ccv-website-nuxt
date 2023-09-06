@@ -35,7 +35,6 @@ import {
   TODAYS_DATE,
   weeksInMonth,
 } from '../../utils.js';
-
 import MonthlyWeek from '@/components/calendar/CalMonthlyWeek';
 
 export default {
