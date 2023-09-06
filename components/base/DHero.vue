@@ -81,8 +81,8 @@ export default {
   background-image: url('@/assets/bharath-g-s-aLGiPJ4XRO4-unsplash.jpg');
 
   .hero-text {
-    color: hsla(0, 0, 20%, 0.9);
-    background-color: hsla(0, 0, 100%, 0.2);
+    color: hsla(0, 0%, 20%, 0.9);
+    background-color: hsla(0, 0%, 100%, 0.2);
     padding: 1rem;
     margin: 0 -1rem 0.5rem;
   }

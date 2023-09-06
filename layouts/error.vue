@@ -24,7 +24,14 @@ export default {
     DButton,
   },
   layout: 'error',
-  props: ['error'],
+  props: {
+    error: {
+      default() {
+        return {};
+      },
+      type: Object,
+    },
+  },
 };
 </script>
 

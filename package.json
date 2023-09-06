@@ -32,6 +32,7 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "nuxt": "^2.15.6",
+    "sass": "^1.66.1",
     "vue-multiselect": "^2.1.6",
     "vue-scrollto": "^2.20.0"
   },
@@ -58,13 +59,14 @@
     "lint-staged": "^11.0.0",
     "lunr": "^2.3.9",
     "node-fetch": "^2.6.1",
-    "node-sass": "^6.0.0",
     "nuxt-svg-loader": "^1.2.0",
     "postcss": "^8.4.21",
     "prettier": "^2.3.1",
-    "sass-loader": "^10.2.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^10.1.1",
     "stylelint": "^13.13.0",
     "stylelint-webpack-plugin": "^2.1.1",
+    "topojson": "^3.0.2",
     "webpack": "^4.46.0"
   },
   "lint-staged": {
