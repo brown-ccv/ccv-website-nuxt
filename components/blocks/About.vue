@@ -99,7 +99,7 @@
                   person.brown_directory_uuid
                 "
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-information" /></span>
+                ><span class="icon"><i class="mdi mdi-email" /></span>
               </a>
             </template>
           </DPersonCard>

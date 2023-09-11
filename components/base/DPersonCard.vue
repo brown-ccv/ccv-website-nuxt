@@ -30,9 +30,9 @@
       <footer class="content py-3 px-3">
         <h5>{{ name }}</h5>
         <p data-testid="title-team">
-          <small>{{ title }}</small>
-          <small>{{ team }}</small>
-          <small>{{ subteam }}</small>
+          <div><small>{{ title }}</small></div>
+          <div><small>{{ team }}</small></div>
+          <div><small>{{ subteam }}</small></div>
         </p>
         <slot name="icons" />
       </footer>

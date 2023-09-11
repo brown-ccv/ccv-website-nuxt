@@ -18,7 +18,9 @@
               v-if="person.github_username"
               :href="'https://github.com/' + person.github_username"
               aria-label="information icon"
-              ><span class="icon"><i class="mdi mdi-github" /></span>
+              ><span class="icon is-large"
+                ><i class="mdi mdi-48px mdi-github"
+              /></span>
             </a>
             <a
               v-if="person.brown_directory_uuid"
@@ -27,7 +29,9 @@
                 person.brown_directory_uuid
               "
               aria-label="information icon"
-              ><span class="icon"><i class="mdi mdi-information" /></span>
+              ><span class="icon is-large"
+                ><i class="mdi mdi-48px mdi-email"
+              /></span>
             </a>
           </div>
         </template>
