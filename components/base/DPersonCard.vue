@@ -87,7 +87,7 @@ export default {
       hover: false,
       teamIconArray: {
         'Computational Biology Core': 'mdi-dna',
-        'Graphics, Software and Data Core': 'mdi-graph',
+        'Graphics, Software, and Data Core': 'mdi-graph',
         'High-Performance Computing': 'mdi-server',
         'High-Performance Computing Systems': 'mdi-server-network',
         'Research Technical Services': 'mdi-earth'
