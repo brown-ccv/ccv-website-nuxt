@@ -32,7 +32,9 @@
         <p data-testid="title-team">
           <div><small>{{ title }}</small></div>
           <div><small>{{ team }}</small></div>
-          <div><small>{{ subteam }}</small></div>
+          <div><small>{{ subteam }}</small></div><span class="icon" :class="[`has-text-${accent}`]">
+            <i :class="['icon mdi', `${teamIcon(subteam)}`]" />
+          </span>
         </p>
         <slot name="icons" />
       </footer>
@@ -83,7 +85,19 @@ export default {
     return {
       active: false,
       hover: false,
+      teamIconArray: {
+        'Computational Biology Core': 'mdi-dna',
+        'Graphics, Software and Data Core': 'mdi-graph',
+        'High-Performance Computing': 'mdi-server',
+        'High-Performance Computing Systems': 'mdi-server-network',
+        'Research Technical Services': 'mdi-earth'
+      },
     };
+  },
+  methods: {
+    teamIcon(team) {
+      return this.teamIconArray[team];
+    },
   },
 };
 </script>
