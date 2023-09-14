@@ -69,20 +69,20 @@
         <!-- People -->
         <div v-if="item.title === 'People'" class="card-group">
           <DPersonCard
-            v-for="person in orderedPeople"
+            v-for="person in teamSort"
             :key="urlize(person.name)"
             variant="white"
-            accent="warning"
+            :accent="teamColor()[person.subteam]"
             width="xsmall"
             class="mx-1 my-1"
             :name="person.name"
             :title="person.title"
             :team="person.team"
+            :subteam="person.subteam"
             :main-image="'/content/images/people/' + person.image"
             :hover-image="
               '/content/images/people/' + person.image.replace('main', 'hover')
             "
-            @click.native="$router.push(`/people/${person.name}`)"
           >
             <template #icons>
               <a
@@ -98,7 +98,7 @@
                   person.brown_directory_uuid
                 "
                 aria-label="information icon"
-                ><span class="icon"><i class="mdi mdi-information" /></span>
+                ><span class="icon"><i class="mdi mdi-email" /></span>
               </a>
             </template>
           </DPersonCard>
@@ -117,7 +117,7 @@
 <script>
 import DTOC from '@/components/base/DTableOfContents.vue';
 import DPersonCard from '@/components/base/DPersonCard.vue';
-import { urlize } from '@/utils';
+import { COLOR_VARIANTS, urlize } from '@/utils';
 
 export default {
   components: {
@@ -155,7 +155,6 @@ export default {
         return sortOrder.indexOf(a.slug) - sortOrder.indexOf(b.slug);
       });
     },
-
     tocData() {
       return this.sortedData.map((d, i) => {
         return {
@@ -165,16 +164,40 @@ export default {
         };
       });
     },
-
     orderedPeople() {
       const d = this.data;
       const people = [...d.find((d) => d.title === 'People').data];
       people.sort((a, b) => (a.name > b.name ? 1 : -1));
       return people;
     },
+    teams() {
+      const teams = [...new Set(this.orderedPeople.map((x) => x.team))];
+      const subteams = [...new Set(this.orderedPeople.map((x) => x.subteam))];
+      teams.sort((a, b) => (a > b ? 1 : -1));
+      subteams.sort((a, b) => (a > b ? 1 : -1));
+      return [teams, subteams];
+    },
+    teamSort() {
+      const d = this.orderedPeople;
+      d.sort((a, b) => {
+        return (
+          this.teams[1].indexOf(a.subteam) - this.teams[1].indexOf(b.subteam)
+        );
+      });
+      return d;
+    },
   },
   methods: {
     urlize,
+    teamColor() {
+      const numTeams = this.teams[1].length;
+      const colors = COLOR_VARIANTS.slice(2, numTeams + 2);
+      const obj = {};
+      this.teams[1].forEach((k, i) => {
+        obj[k] = colors[i];
+      });
+      return obj;
+    },
   },
 };
 </script>

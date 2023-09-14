@@ -17,7 +17,10 @@
             <h2 class="title has-text-black pt-6">{{ person.name }}</h2>
             <h2 class="subtitle has-text-black">{{ person.title }}</h2>
             <h2 class="subtitle has-text-black">
-              {{ person.team }} | {{ person.subteam }}
+              {{ person.team }}
+            </h2>
+            <h2 class="subtitle has-text-black">
+              {{ person.subteam }}
             </h2>
             <a
               v-if="person.github_username"
@@ -35,7 +38,7 @@
               "
               aria-label="information icon"
               ><span class="icon is-large"
-                ><i class="mdi mdi-48px mdi-information"
+                ><i class="mdi mdi-48px mdi-email"
               /></span>
             </a>
           </div>
