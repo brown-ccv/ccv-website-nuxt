@@ -50,7 +50,7 @@
             </a>
             <a
               v-else-if="link.target.endsWith('.pdf')"
-              href="/content/images/people/Terms_of_Service_Slack.pdf"
+              href="/content/images/ help/Terms_of_Service_Slack.pdf"
               class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
             >
               {{ link.text.toUpperCase() }}
