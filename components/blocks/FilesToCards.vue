@@ -48,6 +48,16 @@
                 <i class="mdi mdi-menu-right" />
               </span>
             </a>
+            <a
+              v-else-if="link.target.endsWith('.pdf')"
+              href="/content/images/people/Terms_of_Service_Slack.pdf"
+              class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
+            >
+              {{ link.text.toUpperCase() }}
+              <span class="icon ml-2">
+                <i class="mdi mdi-menu-right" />
+              </span>
+            </a>
             <nuxt-link
               v-else
               :to="link.target"
