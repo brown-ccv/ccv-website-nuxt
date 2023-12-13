@@ -43,6 +43,7 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QA_CCV_BROWN_EDU }}'
+          firebaseToolsVersion: 9.12.1
           projectId: qa-ccv-brown-edu
           expires: 7d
         env:
