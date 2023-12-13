@@ -52,6 +52,7 @@
               v-else
               :to="link.target"
               class="m-1 link-item d-button has-background-link has-text-white has-text-weight-semibold is-size-5 link-button"
+              :target="link.target.endsWith('.pdf') ? '_blank' : ''"
             >
               {{ link.text.toUpperCase() }}
               <span class="icon ml-2">
