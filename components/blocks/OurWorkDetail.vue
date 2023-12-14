@@ -35,7 +35,8 @@
                 v-for="(entry, index) in contributorArray"
                 :key="entry.name"
               >
-                <a v-if="contributorType === 'people'"
+                <a
+                  v-if="contributorType === 'people'"
                   :href="
                     'https://directory.brown.edu/uuid/' +
                     find_uuid(entry.name).brown_directory_uuid
