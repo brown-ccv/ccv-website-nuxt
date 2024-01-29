@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style>
+.container {
+  padding: 48px;
+}
+
 .content {
   /* ... */
   display: grid;

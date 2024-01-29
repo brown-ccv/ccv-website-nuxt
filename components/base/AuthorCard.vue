@@ -36,7 +36,7 @@
           </div>
         </template>
         <template #footer>
-          <div class="content">{{ person.bio }}</div>
+          <div>{{ person.bio }}</div>
         </template>
       </DCard>
     </div>
