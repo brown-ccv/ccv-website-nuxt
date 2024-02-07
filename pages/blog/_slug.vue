@@ -36,3 +36,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.container {
+  padding: 48px;
+}
+
+.content {
+  /* ... */
+  display: grid;
+  grid-template-columns: 1fr min(100ch, 100%) 1fr;
+}
+
+.content > * {
+  grid-column: 2;
+}
+</style>
