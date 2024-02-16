@@ -174,9 +174,11 @@ export default {
         });
       } else if (this.sortBy.name === 'Date') {
         // Sort by date
-        filtered.sort((a, b) => {
-          return new Date(a.date) - new Date(b.date);
-        });
+        filtered
+          .sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+          })
+          .reverse();
       } else if (this.sortBy.name === 'Author') {
         // Sort by author
         filtered.sort((a, b) => {
