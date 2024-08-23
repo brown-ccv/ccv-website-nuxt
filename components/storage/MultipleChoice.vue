@@ -20,7 +20,7 @@
     <details v-if="question.information" class="question-details mb-4">
       <summary>
         <span class="icon has-text-info">
-          <i class="mdi mdi-information-outline" />
+          <i class="mdi mdi-information" />
         </span>
       </summary>
       <div class="content" v-html="$md.render(question.information)"></div>
