@@ -69,7 +69,7 @@
                 tabindex="0"
                 @click.native="handleClick"
               >
-                File Storage and Transfer
+                Campus File Storage and Transfer
               </nuxt-link>
             </div>
             <div class="navbar-item">
