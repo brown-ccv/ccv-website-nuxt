@@ -3,7 +3,7 @@
   <div>
     <DHero
       variant="light"
-      :title="humanizeHero($route.params.category)"
+      :title="humanizeHero(data.title)"
       :subtitle="categoryMeta.description"
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
