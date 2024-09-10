@@ -1,8 +1,8 @@
 <template>
   <!-- General template for sub-routes i.e. our-work/software  -->
   <div>
-    <pre>{{ categoryMeta }}</pre>
-    <pre>{{ $route.params }}</pre>
+    <div>{{ categoryMeta }}</div>
+    <div>{{ $route.params }}</div>
     <DHero
       variant="light"
       :title="humanizeHero($route.params.category)"
