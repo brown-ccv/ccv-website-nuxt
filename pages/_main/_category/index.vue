@@ -1,11 +1,9 @@
 <template>
   <!-- General template for sub-routes i.e. our-work/software  -->
   <div>
-    <div>{{ categoryMeta }}</div>
-    <div>{{ $route.params }}</div>
     <DHero
       variant="light"
-      :title="humanizeHero($route.params.category)"
+      :title="humanizeHero(categoryMeta.title)"
       :subtitle="categoryMeta.description"
     >
       <!-- Add a button to the Hero when index.yml includes call for action -->
