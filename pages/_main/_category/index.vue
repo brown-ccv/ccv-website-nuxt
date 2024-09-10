@@ -1,13 +1,13 @@
 <template>
   <!-- General template for sub-routes i.e. our-work/software  -->
   <div>
+    <pre>{{ categoryMeta }}</pre>
+    <pre>{{ $route.params }}</pre>
     <DHero
       variant="light"
       :title="humanizeHero($route.params.category)"
       :subtitle="categoryMeta.description"
     >
-      <pre>{{ data }}</pre>
-      <pre>{{ $route.params }}</pre>
       <!-- Add a button to the Hero when index.yml includes call for action -->
       <template v-if="categoryMeta['call-for-action']" #button>
         <nuxt-link
