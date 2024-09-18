@@ -8,11 +8,18 @@
     <div class="navbar-brand">
       <nuxt-link
         class="navbar-item"
+        to="https://it.brown.edu/"
+        aria-label="To OIT Home"
+        @click.native="handleClick"
+      >
+        <BrownLogo class="d-nav-brand pr-3" size="s" />
+      </nuxt-link>
+      <nuxt-link
+        class="navbar-item"
         to="/"
         aria-label="Back to Home"
         @click.native="handleClick"
       >
-        <BrownLogo class="d-nav-brand pr-3" size="s" />
         <CCVLogo size="s" />
       </nuxt-link>
       <a
