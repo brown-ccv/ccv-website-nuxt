@@ -29,15 +29,18 @@
               ]"
           /></span>
         </button>
-        <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
-        <details v-if="s.description" class="service-details mb-4">
-          <summary>
-            <span class="icon has-text-info is-medium">
-              <i class="mdi mdi-information-outline mdi-24px" />
-            </span>
-          </summary>
-          <div class="content" v-html="$md.render(s.description || '')"></div>
-        </details>
+        <div class="is-flex is-flex-direction-column">
+          <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
+          <details v-if="s.description" class="service-details mb-4">
+            <summary>
+              <span class="icon is-medium">
+                <i class="mdi mdi-information mdi-24px" />
+              </span>
+            </summary>
+            <div class="content" v-html="$md.render(s.description || '')"></div>
+          </details>
+        </div>
+
       </div>
     </div>
   </div>
