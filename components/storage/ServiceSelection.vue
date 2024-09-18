@@ -10,37 +10,36 @@
           matchingServices[i] ? 'has-background-info' : 'has-background-light',
         ]"
       >
-        <button
-          class="button-nostyle"
-          type="button"
-          :disabled="!matchingServices[i]"
-          @click="change(i)"
-        >
-          <span class="icon is-size-2"
-            ><i
-              :class="[
-                'mdi',
-                selectedServices[i] ||
-                (selectedServices[i] === null && matchingServices[i])
-                  ? 'mdi-checkbox-marked'
-                  : matchingServices[i]
-                  ? 'mdi-checkbox-blank'
-                  : 'mdi-checkbox-blank-off',
-              ]"
-          /></span>
-        </button>
-        <div class="is-flex is-flex-direction-column">
+        <div>
+          <button
+            class="button-nostyle"
+            type="button"
+            :disabled="!matchingServices[i]"
+            @click="change(i)"
+          >
+            <span class="icon is-size-2"
+              ><i
+                :class="[
+                  'mdi',
+                  selectedServices[i] ||
+                  (selectedServices[i] === null && matchingServices[i])
+                    ? 'mdi-checkbox-marked'
+                    : matchingServices[i]
+                    ? 'mdi-checkbox-blank'
+                    : 'mdi-checkbox-blank-off',
+                ]"
+            /></span>
+          </button>
           <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
-          <details v-if="s.description" class="service-details mb-4">
-            <summary>
-              <span class="icon is-medium">
-                <i class="mdi mdi-information mdi-24px" />
-              </span>
-            </summary>
-            <div class="content" v-html="$md.render(s.description || '')"></div>
-          </details>
         </div>
-
+        <details v-if="s.description" class="service-details mb-4">
+          <summary>
+            <span class="icon is-medium">
+              <i class="mdi mdi-information mdi-24px" />
+            </span>
+          </summary>
+          <div class="content" v-html="$md.render(s.description || '')"></div>
+        </details>
       </div>
     </div>
   </div>
