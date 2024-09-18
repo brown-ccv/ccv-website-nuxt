@@ -30,40 +30,23 @@
           /></span>
         </button>
         <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
-        <span class="icon is-clickable" @click="toggleShowModal(s)"
-          ><i class="mdi mdi-information"
-        /></span>
+        <details v-if="s.description" class="service-details mb-4">
+          <summary>
+            <span class="icon has-text-info is-medium">
+              <i class="mdi mdi-information-outline mdi-24px" />
+            </span>
+          </summary>
+          <div class="content" v-html="$md.render(s.description || '')"></div>
+        </details>
       </div>
-      <DModal
-        v-if="showModal"
-        variant="white"
-        accent="info"
-        width="large"
-        close-options="both"
-        close-button-text="Dismiss"
-        @close="showModal = !showModal"
-      >
-        <template #content>
-          <div class="content">
-            <h2 class="title">
-              {{ humanize(modalData.service) }}
-            </h2>
-            <p v-html="$md.render(modalData.description || '')" />
-          </div>
-        </template>
-      </DModal>
     </div>
   </div>
 </template>
 
 <script>
-import DModal from '@/components/base/DModal.vue';
 import { humanize } from '@/utils';
 
 export default {
-  components: {
-    DModal,
-  },
   props: {
     services: {
       type: Array,
@@ -78,19 +61,9 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      showModal: false,
-      modalData: '',
-    };
-  },
   methods: {
     change(id) {
       this.$emit('service', { id });
-    },
-    toggleShowModal(data) {
-      this.modalData = data;
-      this.showModal = true;
     },
     humanize,
   },
@@ -131,5 +104,10 @@ export default {
 .service-label {
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+.service-details {
+  cursor: pointer;
+  max-width: 50ch;
 }
 </style>
