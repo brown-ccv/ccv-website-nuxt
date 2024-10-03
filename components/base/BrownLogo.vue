@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BrownLogo from '@/assets/logos/brown-logo.vue';
+import BrownLogo from '@/assets/logos/oit-logo.vue';
 
 export default {
   components: {

@@ -6,13 +6,20 @@
     :class="'has-background-light'"
   >
     <div class="navbar-brand">
+      <a
+        class="navbar-item"
+        href="https://it.brown.edu/"
+        target="_blank"
+        aria-label="To OIT Home"
+      >
+        <BrownLogo class="d-nav-brand pr-3" size="s" />
+      </a>
       <nuxt-link
         class="navbar-item"
         to="/"
         aria-label="Back to Home"
         @click.native="handleClick"
       >
-        <BrownLogo class="d-nav-brand pr-3" size="s" />
         <CCVLogo size="s" />
       </nuxt-link>
       <a
