@@ -32,7 +32,7 @@
           </button>
           <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
         </div>
-        <details v-if="s.description" class="service-details mb-4">
+        <details v-if="s.description" class="service-details mb-4 ml-4">
           <summary>
             <span class="icon is-medium">
               <i class="mdi mdi-information mdi-24px" />
