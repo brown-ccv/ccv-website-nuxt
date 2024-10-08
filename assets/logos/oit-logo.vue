@@ -1896,7 +1896,7 @@ M337.077576,344.800323
 z"
     />
     <path
-      fill="#EB1D25"
+      fill="#ED1C24"
       opacity="1.000000"
       stroke="none"
       d="
@@ -1914,7 +1914,7 @@ M359.226196,365.111786
 z"
     />
     <path
-      fill="#EB1D25"
+      fill="#ED1C24"
       opacity="1.000000"
       stroke="none"
       d="
@@ -1933,7 +1933,7 @@ M119.396141,372.484467
 z"
     />
     <path
-      fill="#EB1D25"
+      fill="#ED1C24"
       opacity="1.000000"
       stroke="none"
       d="
@@ -2173,7 +2173,7 @@ z"
     />
 
     <path
-      fill="#EC1D24"
+      fill="#ED1C24"
       opacity="1.000000"
       stroke="none"
       d="
