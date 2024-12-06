@@ -10,7 +10,7 @@
           matchingServices[i] ? 'has-background-info' : 'has-background-light',
         ]"
       >
-        <div class="is-flex">
+        <div class="is-flex is-align-items-center">
           <button
             class="button-nostyle"
             type="button"
@@ -30,7 +30,7 @@
                 ]"
             /></span>
           </button>
-          <Accordion :title="humanize(s.name)">
+          <Accordion :title="humanize(s.name)" background-color="info">
             <div class="content" v-html="$md.render(s.description || '')"></div>
           </Accordion>
         </div>

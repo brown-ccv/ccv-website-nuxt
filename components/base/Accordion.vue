@@ -1,13 +1,16 @@
 <template>
   <div>
-    <div class="card" :class="{ 'not-expanded': !expanded }">
+    <div
+      class="card has-background-"
+      :class="{ 'not-expanded': !expanded, 'has-background-': backgroundColor }"
+    >
       <header class="card-header" @click="toggleCardState">
         <p class="card-header-title">
           {{ title }}
         </p>
         <a class="card-header-icon">
           <span class="icon">
-            <i class="fa fa-angle-up"></i>
+            <i class="mdi mdi-information-outline mdi-24px" />
           </span>
         </a>
       </header>
@@ -25,6 +28,7 @@
 export default {
   props: {
     title: String,
+    backgroundColor: String,
     expandAll: Boolean,
   },
   data() {
