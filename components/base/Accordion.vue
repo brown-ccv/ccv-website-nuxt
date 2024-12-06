@@ -1,14 +1,14 @@
 <template>
   <div class="column is-half">
-    <div class="card" :class="{ 'not-expanded': !this.expanded }">
+    <div class="card" :class="{ 'not-expanded': !expanded }">
       <header class="card-header" @click="toggleCardState">
         <p class="card-header-title">
-          {{title}}
+          {{ title }}
         </p>
         <a class="card-header-icon">
-            <span class="icon">
-              <i class="fa fa-angle-up"></i>
-            </span>
+          <span class="icon">
+            <i class="fa fa-angle-up"></i>
+          </span>
         </a>
       </header>
 
@@ -17,7 +17,6 @@
           <slot></slot>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -26,7 +25,7 @@
 export default {
   props: {
     title: String,
-    expandAll: Boolean
+    expandAll: Boolean,
   },
   data() {
     return {
@@ -39,8 +38,7 @@ export default {
     },
     closeAll() {
       this.expanded = false;
-    }
+    },
   },
-
 };
 </script>
