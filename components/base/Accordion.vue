@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-half">
+  <div>
     <div class="card" :class="{ 'not-expanded': !expanded }">
       <header class="card-header" @click="toggleCardState">
         <p class="card-header-title">
@@ -42,3 +42,38 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.card {
+  margin-bottom: 10px;
+  width: 100%;
+
+  .card-header {
+    cursor: pointer;
+
+    .icon {
+      transform: rotate(180deg);
+      transition: transform 150ms ease-out;
+    }
+  }
+
+  .card-content {
+    transition: all 150ms ease;
+  }
+}
+
+.card.not-expanded {
+  .card-header {
+    .icon {
+      transform: rotate(0deg);
+    }
+  }
+  .card-content {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+}
+</style>
