@@ -30,7 +30,7 @@
                 ]"
             /></span>
           </button>
-          <Accordion :title="humanize(s.name)" background-color="info">
+          <Accordion :title="humanize(s.name)">
             <div class="content" v-html="$md.render(s.description || '')"></div>
           </Accordion>
         </div>

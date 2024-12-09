@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="card has-background-info"
+      class="card has-background-info is-hoverable"
       :class="{ 'not-expanded': !expanded}"
     >
       <header class="card-header" @click="toggleCardState">
@@ -9,8 +9,11 @@
           {{ title }}
         </p>
         <a class="card-header-icon">
-          <span class="icon">
-            <i class="mdi mdi-menu-up mdi-24px" />
+          <span v-if="expanded === false" class="icon">
+            <i class="mdi mdi-plus mdi-24px" />
+          </span>
+          <span v-else class="icon">
+            <i class="mdi mdi-minus mdi-24px" />
           </span>
         </a>
       </header>
@@ -28,7 +31,6 @@
 export default {
   props: {
     title: String,
-    backgroundColor: String,
     expandAll: Boolean,
   },
   data() {
@@ -54,11 +56,6 @@ export default {
 
   .card-header {
     cursor: pointer;
-
-    .icon {
-      transform: rotate(180deg);
-      transition: transform 150ms ease-out;
-    }
   }
 
   .card-content {
