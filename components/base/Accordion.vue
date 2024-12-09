@@ -1,8 +1,8 @@
 <template>
   <div>
     <div
-      class="card has-background-"
-      :class="{ 'not-expanded': !expanded, 'has-background-': backgroundColor }"
+      class="card has-background-info"
+      :class="{ 'not-expanded': !expanded}"
     >
       <header class="card-header" @click="toggleCardState">
         <p class="card-header-title">
@@ -10,7 +10,7 @@
         </p>
         <a class="card-header-icon">
           <span class="icon">
-            <i class="mdi mdi-information-outline mdi-24px" />
+            <i class="mdi mdi-menu-up mdi-24px" />
           </span>
         </a>
       </header>
