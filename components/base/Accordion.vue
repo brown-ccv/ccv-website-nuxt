@@ -9,11 +9,11 @@
           {{ title }}
         </p>
         <a class="card-header-icon">
-          <span v-if="expanded === false" class="icon">
-            <i class="mdi mdi-plus mdi-24px" />
+          <span v-if="expanded" class="icon">
+            <i class="mdi mdi-minus mdi-24px" />
           </span>
           <span v-else class="icon">
-            <i class="mdi mdi-minus mdi-24px" />
+            <i class="mdi mdi-plus mdi-24px" />
           </span>
         </a>
       </header>
