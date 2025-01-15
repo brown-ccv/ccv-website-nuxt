@@ -10,7 +10,7 @@
           matchingServices[i] ? 'has-background-info' : 'has-background-light',
         ]"
       >
-        <div>
+        <div class="is-flex is-align-items-center">
           <button
             class="button-nostyle"
             type="button"
@@ -30,16 +30,10 @@
                 ]"
             /></span>
           </button>
-          <p class="is-size-5 has-text-bold">{{ humanize(s.name) }}</p>
+          <Accordion :title="humanize(s.name)">
+            <div class="content" v-html="$md.render(s.description || '')"></div>
+          </Accordion>
         </div>
-        <details v-if="s.description" class="service-details mb-4 ml-4">
-          <summary>
-            <span class="icon is-medium">
-              <i class="mdi mdi-information mdi-24px" />
-            </span>
-          </summary>
-          <div class="content" v-html="$md.render(s.description || '')"></div>
-        </details>
       </div>
     </div>
   </div>
@@ -47,8 +41,13 @@
 
 <script>
 import { humanize } from '@/utils';
+import Accordion from '~/components/base/Accordion.vue';
 
 export default {
+  comments: {
+    Accordion,
+  },
+  components: { Accordion },
   props: {
     services: {
       type: Array,
