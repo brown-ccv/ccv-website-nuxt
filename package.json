@@ -28,7 +28,6 @@
     "bulma": "^0.9.3",
     "bulma-checkradio": "^1.1.1",
     "express": "^4.17.1",
-    "fibers": "^5.0.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "nuxt": "^2.15.6",
