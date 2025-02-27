@@ -86,15 +86,6 @@
             </div>
             <div class="navbar-item">
               <nuxt-link
-                to="/services/visualization"
-                tabindex="0"
-                @click.native="handleClick"
-              >
-                Visualization Systems
-              </nuxt-link>
-            </div>
-            <div class="navbar-item">
-              <nuxt-link
                 to="/services/consulting"
                 tabindex="0"
                 @click.native="handleClick"
