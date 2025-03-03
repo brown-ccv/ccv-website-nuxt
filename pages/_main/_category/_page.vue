@@ -38,11 +38,9 @@ export default {
       .fetch()
       .catch((e) => error({ statusCode: 404, message: 'Page not found' }));
 
-    const ourwork = await $content('our-work', params.main, params.slug, {
+    const ourwork = await $content(params.main, params.slug, {
       deep: true,
-    })
-      .fetch()
-      .catch(() => []);
+    }).fetch();
 
     // get the content for directories that are only one level deep
     const people = await $content('about')
